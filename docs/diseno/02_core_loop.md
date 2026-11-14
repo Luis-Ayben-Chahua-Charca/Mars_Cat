@@ -42,7 +42,9 @@ Orden de pasos:
 6. Trajes.
 7. Más pasos por definir.
 
-Detalle de edificios, recursos y trajes en `03_sistemas.md`.
+La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione. Si la preparación entra en el PMV está por confirmar.
+
+Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 
 ## PMV (entrega del domingo 15)
 
