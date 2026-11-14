@@ -60,10 +60,17 @@ No es para el jugador: es la base científica de lo que se puede hacer.
 Desde `docs/Propuesta_mecanica/mecanica_energia.md`. Verificar cada dato y enlace antes de usarlo.
 
 - **Irradiancia solar en Marte:** cerca del 43 % de la de la Tierra.
+- **Limpieza de paneles por ISRU:** CO₂ atmosférico comprimido en lugar de agua; el agua líquida no es estable en la superficie por la baja presión (hierve y se congela). Base del minijuego "Operación Rescate Solar".
 - **Polvo:** se mide como profundidad óptica (τ). Las tormentas globales pueden bloquear la luz durante semanas; la de 2018 terminó la misión del rover Opportunity.
 - **Kilopower / KRUSTY** (Kilopower Reactor Using Stirling Technology): reactor de fisión de NASA de 1 a 10 kW eléctricos, con tubos de calor de sodio y motores Stirling. https://www.nasa.gov/directorates/stmd/technology-demonstration-missions-missions/kilopower/
 - **Opportunity y la tormenta de polvo:** https://mars.nasa.gov/resources/21495/opportunity-rover-and-the-martian-dust-storm/ (por verificar).
 - **DONKI:** eyecciones de masa coronal (CME) y llamaradas solares para alimentar eventos (ver `06_eventos_y_ritmo.md`).
+
+## Tormentas solares
+
+- NASA / phys.org (junio 2024): la tormenta solar del 20 de mayo de 2024 en Marte. Curiosity RAD midió unos 8100 microgray (como 30 radiografías de tórax), el mayor pico desde su aterrizaje; MAVEN vio auroras globales; la cámara estelar de Mars Odyssey se apagó y se recuperó en menos de una hora. https://phys.org/news/2024-06-nasa-mars-epic-solar-storm.html
+- ESA: errores de computadora en Mars Express y TGO durante la misma tormenta. https://www.marsdaily.com/reports/Solar_storm_supercharges_Mars_atmosphere_and_disrupts_ESA_orbiters_999.html
+- Scientific American: tormenta geomagnética de marzo de 1989 y apagón de Quebec. https://www.scientificamerican.com/article/geomagnetic-storm-march-13-1989-extreme-space-weather/
 
 ## Referencias no NASA (valores de la Tierra)
 

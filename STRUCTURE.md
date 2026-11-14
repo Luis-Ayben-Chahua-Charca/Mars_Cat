@@ -53,8 +53,6 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 |---|---|
 | `mecanica_<nombre>.md` | Una mecánica por archivo (por ejemplo, `mecanica_energia.md`) |
 
-Pendiente: la carpeta todavía se llama `Propuesta_mecánica` (con tilde). Se renombra quitando la tilde cuando nadie esté trabajando en esos archivos.
-
 ## `MarsCat/Assets/`
 
 | Carpeta | Contenido | Dueño |
