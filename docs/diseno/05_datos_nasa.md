@@ -57,7 +57,7 @@ No es para el jugador: es la base científica de lo que se puede hacer.
 
 ## Pendientes
 
-1. Tabla de minerales (mineral, para qué sirve, cuánto hay o dificultad): vacía en el documento original.
+1. Tabla de minerales marcianos con fuente NASA, incluido el regolito (mineral, para qué sirve, cuánto hay o dificultad): vacía en el documento original.
 2. Probar la API de DONKI y decidir qué eventos se descargan.
-3. Datos de cultivo para los valores guía y rangos de la preparación de alimentos (`03_sistemas.md`).
+3. Datos de cultivo para los valores guía y rangos de la preparación de alimentos (`03_sistemas.md`). Los valores actuales son solo ejemplos; si no hay dato de NASA, se busca en artículos de investigación.
 4. Verificar cada referencia en su fuente original antes de citarla en la presentación.

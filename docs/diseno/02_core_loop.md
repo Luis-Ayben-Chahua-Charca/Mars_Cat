@@ -59,14 +59,16 @@ Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 | 1 | Catástrofe | Evacuación y destrucción; control de daños | Cinemática inicial |
 | 2 | Reparación | Tutorial: reparar y preparar edificios | Diálogos de la IA |
 | 3 | Supervivencia | El mapa se amplía; exploración. En la zona nueva se descubre una **antigua mina de tierras raras** | Diálogos de la IA + mapa |
-| 4 | Esperanza | Se descubre el **beacon**: la misión es repararlo para comunicarse con la Tierra | Diálogo de la IA + cinemática del beacon |
+| 4 | Esperanza | Una tormenta desentierra el **beacon**: la misión es repararlo para comunicarse con la Tierra | Diálogo de la IA + cinemática del beacon |
 | 5 | Catástrofe | Al emitir la señal empieza la crisis máxima | — |
 | 6 | Apocalipsis | Clímax: todo se vuelve manual y las producciones se alargan | — |
-| 7 | Salvación | Rescate | Cinemática final |
+| 7 | Salvación | Los humanos rescatan a los gatos en la ventana de calma de las tormentas | Cinemática final |
 
 El PMV cubre los momentos 1 y 2. La curva de eventos de los momentos 4 a 6 está en `06_eventos_y_ritmo.md`.
 
-El mapa crece de pequeño a grande a medida que se obtiene información.
+El mapa crece de pequeño a grande a medida que se obtiene **información** (post-PMV): en cada zona, al completar un hito (por ejemplo, extraer algo del suelo), la IA aprende más del terreno y se abren nuevas zonas. Los hitos de zona están por definir.
+
+**Victoria:** sobrevivir hasta el rescate, 15 días después del aviso de los humanos (ver `07_lore.md`).
 
 ## Pendientes
 
@@ -74,7 +76,6 @@ El mapa crece de pequeño a grande a medida que se obtiene información.
 2. ¿Qué se enseña de los trajes en el tutorial, si construirlos con fibra no entra en el PMV?
 3. Qué módulos de agua y comida existen y cómo funcionan (issue #__).
 4. Qué otros pasos lleva el tutorial después de los trajes.
-5. Condición de derrota (la victoria es el rescate) y duración de la partida.
-6. Qué significa "se rebelan" en la escalada del documento antiguo (¿quién se rebela?).
-7. Niveles de progresión (idea previa: tres niveles, el primero de recursos) y si el mapa se abre por información, por árbol tecnológico o por ambos.
-8. Eventos aleatorios como presión y ritmo → `06_eventos_y_ritmo.md`.
+5. Condición de derrota y duración de la partida.
+6. Niveles de progresión (idea previa: tres niveles, el primero de recursos) y qué hitos abren cada zona (post-PMV).
+7. Eventos aleatorios como presión y ritmo → `06_eventos_y_ritmo.md`.

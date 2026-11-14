@@ -23,7 +23,7 @@ Los recursos y edificios están en `03_sistemas.md`. Esta página describe cómo
 
 1. **Reservas iniciales** de materiales.
 2. **Escombros** de los edificios destruidos.
-3. **Nodos de mineral marciano** cerca, en la cueva o en la superficie.
+3. **Nodos de mineral marciano** cerca, en la cueva o en la superficie. Los minerales salen siempre de datos de NASA. El **regolito** es infinito.
 4. **Edificios:**
    - Plantas: alimento, **fibra** y oxígeno.
    - Energía: electricidad.
@@ -51,9 +51,14 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 - **Sin comida**, hay menos gatos trabajadores.
 - Los únicos recursos externos son los nodos de mineral y la energía del sol.
 
-## Válvula de emergencia
+## Gatos heridos
 
-Un gato que pasó el umbral de exposición puede **internarse** (sigue consumiendo, pero no trabaja) o dejarse morir para que no consuma recursos.
+Un gato herido fuera de la base puede ser **auxiliado** a costa de un gato libre; si llega a una esclusa, va al **depósito**. Detalle en `03_sistemas.md`. El **ala médica** es una propuesta fuera del PMV.
+
+## Asignación de trabajo
+
+- **Automática:** si hay gatos libres y puestos libres, se asignan solos.
+- Como en *Frostpunk*, la construcción se hace de noche, cuando normalmente no están trabajando.
 
 ## Escalado
 
@@ -63,8 +68,7 @@ Un gato que pasó el umbral de exposición puede **internarse** (sigue consumien
 
 ## Pendientes
 
-1. ¿Los "minerales marcianos" son el mismo recurso que el **metal** de `03_sistemas.md`?
-2. Si la válvula de emergencia (internar o dejar morir) es una decisión del jugador **después** de la degradación al 50 %, o la reemplaza.
-3. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
-4. Consumo por gato y por edificio.
-5. Si el almacén compartido entra en el PMV.
+1. ¿El **metal** es uno de los minerales marcianos o un recurso aparte (por ejemplo, recuperado de escombros)?
+2. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
+3. Consumo por gato y por edificio.
+4. Si el almacén compartido entra en el PMV.

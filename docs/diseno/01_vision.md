@@ -33,7 +33,7 @@ Gatos abandonados por los humanos tienen que administrar una base en Marte, enfr
 
 - Control al estilo de *Frostpunk*.
 - Construcción y reparación de edificios, y macrogestión de recursos.
-- Asignación de trabajo automática a los gatos.
+- Asignación de trabajo **automática**: los gatos libres ocupan los puestos libres, como en *Frostpunk*.
 
 ## Diseño de niveles
 
@@ -48,4 +48,3 @@ El alcance del PMV del domingo está en `02_core_loop.md`.
 ## Pendientes
 
 1. Público objetivo exacto (edad) y los conceptos científicos concretos que debe aprender el jugador.
-2. Si "asignación de trabajo automática" convive con que el jugador asigne un gato libre a cada edificio (ver `03_sistemas.md`).

@@ -38,19 +38,19 @@ Las etapas jugables y el tutorial están en `02_core_loop.md`.
 
 ## Arco y final
 
-- Durante la partida se descubre un **beacon**. La misión es repararlo para comunicarse con la Tierra.
+- El **beacon** estaba enterrado; una tormenta lo desentierra. La misión es repararlo para comunicarse con la Tierra.
 - Emitir la señal desencadena la crisis máxima (ver `06_eventos_y_ritmo.md`).
-- El final es el **rescate**, con una cinemática final.
+- Al recibir la señal, los humanos responden: *"En 15 días las tormentas darán un descanso. Podemos rescatarles en esa brecha de tiempo; sobrevivan hasta ese momento."*
+- El final es el **rescate por los humanos**, con una cinemática final.
 - Momentos narrativos completos en `02_core_loop.md`; tono y referencias en `01_vision.md`.
 
 ## Pendientes
 
 1. Balance y recursos: primera versión en `04_economia_y_balance.md`; el equipo sigue trabajando en ello.
 2. Nombre final del juego.
-3. Quién rescata a los gatos: ¿los humanos que se fueron, u otros?
-4. Cuántos gatos hay y si tienen nombres o personalidades distintas.
-5. Personalidad y tono de la IA guía (afecta voz, textos y audio).
-6. Si habrá más cataclismos después de la lluvia de meteoritos y cuáles.
+3. Cuántos gatos hay y si tienen nombres o personalidades distintas.
+4. Personalidad y tono de la IA guía (afecta voz, textos y audio).
+5. Si habrá más cataclismos después de la lluvia de meteoritos y cuáles.
 
 ## Versión anterior descartada
 
