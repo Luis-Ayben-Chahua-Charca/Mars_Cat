@@ -63,7 +63,7 @@ Para que el tutorial sea seguro y los trajes no se degraden:
 4. **Sin caídas ni rescates.** Como los trajes no fallan, los estados Caído y Recuperando y la degradación no aparecen en el PMV; Lógica puede dejarlos para después.
 5. **Comida y agua con margen.** Las reservas iniciales alcanzan hasta que funcionen los edificios de alimentos y agua, con margen. La alerta extrema puede aparecer como enseñanza, pero el tutorial no se pierde por hambre o sed.
 6. **Primera noche segura.** El tutorial empieza al amanecer y la reparación de energía llega antes de la primera noche; si no, la energía inicial alcanza para esa noche.
-7. **Sin derrota.** El tutorial es lineal y no se puede perder.
+7. **Sin derrota (acordado).** El tutorial es lineal y no se puede perder: está guiado hacia el **hito de exploración**, donde el jugador recibe total libertad (post-PMV).
 
 ## Momentos narrativos (partida completa)
 
@@ -86,7 +86,7 @@ El mapa crece de pequeño a grande a medida que se obtiene **información** (pos
 ## Pendientes
 
 1. El tutorial original tenía un paso de **construir** un edificio; la lista actual solo tiene **reparaciones**. ¿Algún edificio se construye desde cero, o las reparaciones consumen el metal y los escombros?
-2. Aprobar las reglas del PMV propuestas arriba.
+2. Aprobar las reglas 1 a 6 del PMV (la 7 ya está acordada).
 3. Qué módulos de agua y comida existen y cómo funcionan (issue #__).
 4. Qué otros pasos lleva el tutorial después de los trajes.
 5. Condición de derrota y duración de la partida.

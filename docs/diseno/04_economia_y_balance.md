@@ -36,16 +36,24 @@ Según Cats Protection (Reino Unido):
 
 El agua es cerca de **4 veces más urgente** que la comida.
 
-### Propuesta de tiempos (no acordada)
+### Duración del sol (propuesta recomendada)
 
-Comprimidos para el juego, manteniendo que el agua es más urgente que la comida. La proporción se reduce a 2:1 para que el agua no sea injugable. Ejemplo con un sol de **6 minutos**, que reproduce el ejemplo original de 3, 6 y 7 minutos para la comida:
+- **1 sol = 8 minutos reales:** 6 minutos de día y 2 minutos de noche.
+- De noche el tiempo del juego corre **3 veces más rápido**. Así día y noche duran lo mismo en tiempo de juego (como en Marte, cerca del ecuador), pero la noche, en la que los gatos no trabajan, no se vuelve aburrida.
+- Referencias de otros juegos: un día de *Don't Starve* dura 8 minutos y uno de *RimWorld*, unos 17 minutos a velocidad normal.
+- Con 8 minutos por sol, el tutorial cabe en 1 o 2 soles (8–16 minutos), una duración razonable para una demo.
+- El hambre y la sed siguen corriendo de noche: los gatos descansan, pero comen y beben. Sus tiempos se cuentan en **minutos reales** (los de la tabla de abajo); la aceleración nocturna solo afecta al reloj del juego y al gasto de energía de la noche.
 
-| Necesidad | Intervalo | Alerta extrema | Muerte |
-|---|---|---|---|
-| Comida | 0,5 sol (3 min) | 1 sol (6 min) | 1,2 sol (7 min) |
-| Agua | 0,25 sol (1,5 min) | 0,5 sol (3 min) | 0,6 sol (3,5 min) |
-- El agua además se usa para regar las plantas.
-- Reemplaza a la regla del documento antiguo (reporte diario y muerte tras 2 días sin comer), que queda descartada.
+### Tiempos de hambre y sed (proporción 2:1 acordada; valores propuestos)
+
+El agua es el doble de urgente que la comida. Entre la alerta y la muerte queda un **margen de reacción** suficiente para que el jugador actúe: 2 minutos para la comida y 1 minuto para el agua.
+
+| Necesidad | Intervalo | Alerta extrema | Muerte | Margen de reacción |
+|---|---|---|---|---|
+| Comida | 0,5 sol (4 min) | 1 sol (8 min) | 1,25 sol (10 min) | 2 min |
+| Agua | 0,25 sol (2 min) | 0,5 sol (4 min) | 0,625 sol (5 min) | 1 min |
+
+Para que sea divertido, la producción de cada edificio reparado debería superar el consumo de la colonia por sol con margen. El jugador debe notar el progreso apenas un edificio funciona.
 
 ## Almacenamiento
 
@@ -110,6 +118,6 @@ Un gato herido fuera de la base puede ser **auxiliado** a costa de un gato libre
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
 2. Consumo por gato y por edificio.
 3. Si el tope del depósito y la cola de exceso entran en el PMV (el depósito en sí está en la zona segura).
-4. Duración del ciclo de día y noche (sol) en minutos reales, y proporción de día y de noche.
-5. Aprobar la propuesta de tiempos de hambre y sed, o ajustar la proporción 2:1.
+4. Aprobar la duración del sol (8 minutos, noche acelerada 3 veces) y los tiempos de hambre y sed.
+5. Producción por sol de cada edificio frente al consumo de la colonia.
 6. Cuánta salud cuesta el sobretrabajo (post-PMV).

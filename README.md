@@ -19,7 +19,8 @@ Mars_Cat/
 │   ├── 01_roles_y_personas.md ← quién hace qué
 │   ├── 02_reglas_de_trabajo.md← Git, commits, .meta, escenas, tablero
 │   ├── 03_agentes.md          ← registro de instancias de IA
-│   └── 04_hitos.md            ← H0–H4 y criterios de cierre
+│   ├── 04_hitos.md            ← H0–H4 y criterios de cierre
+│   └── diseno/                ← diseño del juego: visión, loop, sistemas, economía, lore…
 ├── Art_Source/          ← .blend y proyectos de OpenToonz
 └── MarsCat/             ← proyecto Unity (se crea con Unity Hub)
 ```
