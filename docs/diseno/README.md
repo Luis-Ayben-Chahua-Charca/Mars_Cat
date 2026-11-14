@@ -6,6 +6,7 @@ Documentos de diseño del juego. **Nombre del juego: por definir** (`Mars Cat` e
 
 - **Un dato, un lugar.** Los números de balance viven solo en `MarsCat/Assets/Data/`. Los documentos explican el porqué de cada valor y apuntan al archivo y la clave, sin copiar el número.
 - **Datos NASA trazables.** Todo valor real se registra en `05_datos_nasa.md` antes de usarse.
+- **Valores realistas.** Si no hay dato de NASA ni artículo, el valor se toma de cómo funciona en la Tierra, tirando a lo realista y evitando lo fantasioso (por ejemplo, "2 gotas de agua alcanzan para 30 plantas" no sirve).
 - **Una página por documento**, con tres campos arriba: Estado, Decidido en (#issue) y Pendientes.
 - Estados posibles: `por crear`, `borrador`, `acordado`.
 

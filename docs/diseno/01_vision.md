@@ -33,7 +33,7 @@ Gatos abandonados por los humanos tienen que administrar una base en Marte, enfr
 
 - Control al estilo de *Frostpunk*.
 - Construcción y reparación de edificios, y macrogestión de recursos.
-- Asignación de trabajo **automática**: los gatos libres ocupan los puestos libres, como en *Frostpunk*.
+- Asignación de trabajo **automática**: los gatos libres ocupan los puestos libres, como en *Frostpunk*. Se trabaja de día; de noche solo hay sobretrabajo de emergencia.
 
 ## Diseño de niveles
 

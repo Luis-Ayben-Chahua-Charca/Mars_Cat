@@ -4,7 +4,7 @@
 **Decidido en:** #__
 **Pendientes:** ver la sección "Pendientes" al final.
 
-Los porcentajes y cantidades de esta página son **ejemplos**: los valores reales deben salir de datos de NASA o de artículos de investigación (ver `05_datos_nasa.md`). Cuando Lógica cree el archivo de balance en `MarsCat/Assets/Data/`, pasan a vivir ahí y esta página solo explica su porqué (ver `README.md`).
+Los porcentajes y cantidades de esta página son **ejemplos**: los valores reales deben salir de datos de NASA, de artículos de investigación o, si no hay, de cómo funciona en la Tierra, siempre realistas (ver `README.md` y `05_datos_nasa.md`). Cuando Lógica cree el archivo de balance en `MarsCat/Assets/Data/`, pasan a vivir ahí y esta página solo explica su porqué (ver `README.md`).
 
 ## Recursos
 
@@ -14,7 +14,7 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Electricidad | Soporte vital | Sí |
 | Comida | Soporte vital | Sí |
 | Agua | Soporte vital | Sí |
-| Metal | Material de construcción; insumo de robots | Sí |
+| Metal | Material de construcción; insumo de robots y trajes. Se extrae de Marte y se recupera de escombros | Sí |
 | Escombros | Material de construcción | Sí |
 | Bacterias | Insumo de la preparación del cultivo. **Infinito**: solo se ajusta su valor óptimo en el minijuego | Sí |
 | Fibra | Insumo de trajes | No |
@@ -34,7 +34,7 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 | Extracción de agua del subsuelo | Agua | Por definir | Sí: reparar y preparar | Por definir |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
 | MOXIE (industrial) | Oxígeno neto | Por definir | No | Por definir |
-| Almacén compartido | Guarda alimentos, fibra y escombros (ver `04_economia_y_balance.md`) | — | Por definir | Por definir |
+| Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
 | Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No | Por definir |
 
 ## Ciclo de un edificio de producción
@@ -81,40 +81,77 @@ Para Lógica, esto se traduce en una clase de preparación por edificio que reci
 
 ## Salud y trajes espaciales
 
-- Cada gato tiene **dos barras**: la del **traje** (escudo) y la de **salud**. Al agotarse el traje, entra en juego la salud, que se consume rápido y tiene umbrales que definen el estado del gato.
+### Barras
+
+- Cada gato tiene dos barras: **traje** (integridad) y **salud**.
+- El traje protege contra la **radiación** y mantiene la **presión atmosférica**. En la realidad, el control de presión es un sí o no; el **umbral del 20 %** es referencial y sirve para unir radiación y presión en una sola mecánica.
+- La **radiación permanente** y el tiempo de exposición desgastan el traje.
 - Los edificios también tienen **escudo** (ver `04_economia_y_balance.md`).
-- Los trajes protegen a los gatos contra la **radiación** cuando salen de la base.
-- Tienen una **barra de integridad**.
-- **Umbral del 20 %:** representa el soporte vital de **presión atmosférica**. Cuando la integridad llega al 20 %, el traje comienza a **dañar la salud** del gato.
-- Los **eventos de arena** u otros eventos destructivos bajan la integridad por debajo del 20 %.
-- Si la integridad baja del 20 % por un evento, primero se tira la **probabilidad (50 %)**:
-  - **Muerte.**
-  - **Degradación:** por el daño de radiación, el gato **no puede volver a salir** de la base.
-- **Gato herido:**
-  1. Camina **5 segundos** hacia la base y cae.
-  2. Si llega a entrar a una **esclusa**, vive y va al **depósito**.
-  3. Si cae afuera, el jugador puede **auxiliarlo** con un botón. Cuesta un **gato libre**; si no hay gatos libres, no se puede.
-  4. Si no es rescatado en **1 minuto**, muere.
-- **Ala médica:** propuesta fuera del PMV.
-- Se fabrican en el **taller** con **fibra y un poco de metal**. No se construyen en el PMV.
-- La **radiación permanente** degrada los trajes con el tiempo de exposición.
+
+### Dos formas de caer
+
+| Caso | Qué pasa |
+|---|---|
+| **Desgaste gradual** | El traje llega al 20 % sin que lo rompa un evento. La **salud** empieza a bajar; si baja del **50 %**, el gato se pone mal y **cae**. Da más margen para reaccionar. |
+| **Ruptura por evento** | Un evento (arena u otro destructivo) baja el traje por debajo del 20 %. Se tira la probabilidad: **50 % muerte en el acto**, **50 % degradación** y el gato cae. |
+
+### Gato caído
+
+1. Camina **5 segundos** hacia la base y cae.
+2. Si llega a una **esclusa**, vive y va al **depósito**.
+3. Si cae afuera, el jugador puede **auxiliarlo** con un botón. Cuesta un **gato libre**; si no hay gatos libres, no se puede.
+4. Si no es rescatado en **1 minuto**, muere.
+
+Un gato que sobrevive a la ruptura del traje, o que cayó por desgaste gradual y durante el rescate llegó al **25 % de salud**, queda **degradado**: está demasiado mal para soportar el exterior y **no vuelve a salir**, aunque esté libre. Puede seguir trabajando dentro de la base. El **ala médica** es una propuesta fuera del PMV.
+
+### Estadísticas por gato
+
+| Estadística | Notas |
+|---|---|
+| Hambre | Individual, en tiempo real (ver `04_economia_y_balance.md`) |
+| Sed | Individual, en tiempo real |
+| Salud | Baja por traje al 20 %, sobretrabajo y hambre |
+| Traje (integridad) | Cada traje es un recurso con su propia integridad |
+| Estado | Ver tabla de estados |
+| Degradado | Sí o no, permanente |
+
+### Estados del gato (aprobado)
+
+Para la máquina de estados de Lógica:
+
+| Estado | Cuenta como libre | Descripción |
+|---|---|---|
+| Libre | Sí | Disponible para cualquier puesto permitido |
+| Trabajando (interior) | No | En un puesto dentro de la base |
+| Trabajando (exterior) | No | En un puesto fuera; con traje |
+| Caído | No | Herido afuera; corre el minuto de rescate |
+| Recuperando | No | En el depósito tras entrar por la esclusa o ser auxiliado; dura un tiempo y luego pasa a Libre |
+| Descansando | No | De noche; solo sale de este estado por sobretrabajo de emergencia (post-PMV) |
+| Buscando comida | No | Hambre extrema (6–7 minutos sin comer): deja de trabajar y va a comer |
+| Muerto | — | Fuera del juego |
+
+Además del estado, un **atributo permanente** `Degradado` (sí o no). El asignador automático nunca envía a un gato degradado a puestos exteriores ni a sobretrabajo nocturno. Para el sobretrabajo ordena a los gatos de más a menos salud. Para comer, ordena de más a menos hambre. Así no hace falta un estado falso de "trabajo" para retenerlo: el estado `Recuperando` cubre la pausa temporal y el atributo cubre la restricción permanente.
+
+### Fabricación
+
+- Los trajes se fabrican en el **taller** con **fibra y un poco de metal**. No se construyen en el PMV.
+- Cada traje tiene su propia integridad. Se **reparan automáticamente con el tiempo** en el taller.
 
 ## Pendientes
 
 1. Si el **abono** es recurso del pool general, y de dónde sale la **luz**.
 2. Si la **hidroponía** entra en el PMV como alternativa al cultivo en regolito.
-3. Valores reales de la preparación (fuente NASA o artículo); qué hacer si no hay referencia publicada.
-4. Qué es el **depósito** al que va el gato herido: ¿dónde se queda, consume recursos, puede trabajar dentro?
-5. Si la secuencia del gato herido aplica solo al caso de **degradación** o también antes de la tirada de probabilidad.
-6. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
-7. Confirmar la cadena **tierras raras → chips → robots (chips + metal)** en el taller.
-8. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
-9. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-10. Preparación de energía y de extracción de agua.
-11. Costo en metal y escombros de cada reparación.
-12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
-13. En qué zona está cada edificio.
-14. Si el daño a la salud por el traje empieza **al llegar** al 20 % o **por debajo**, y a qué ritmo.
-15. Si los trajes se pueden reparar.
-16. Si el MOXIE y el almacén compartido entran en el PMV.
-17. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+3. Valores reales de la preparación (NASA, artículo o funcionamiento en la Tierra).
+4. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
+5. Confirmar la cadena **tierras raras → chips → robots (chips + metal)** en el taller.
+6. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
+7. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
+8. Preparación de energía y de extracción de agua.
+9. Costo en metal y escombros de cada reparación.
+10. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
+11. En qué zona está cada edificio.
+12. Ritmo al que baja la salud con el traje al 20 %, y duración del estado Recuperando.
+13. Cuánto tarda la reparación de un traje en el taller, y si en el PMV (sin taller) los trajes se reparan de otra forma.
+14. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
+15. Si el MOXIE entra en el PMV.
+16. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.

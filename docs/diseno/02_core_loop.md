@@ -17,7 +17,7 @@ Los módulos de agua y comida están **por definir** en el issue #__.
 
 | Zona | Estado tras la lluvia de meteoritos | En el PMV |
 |---|---|---|
-| Segura (cueva) | Estable | Sí |
+| Segura (cueva, con el depósito) | Estable | Sí |
 | Media | Dañada, aún reparable | Sí |
 | Lejana | Destruida, no reparable | No |
 
@@ -50,7 +50,8 @@ Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 
 - Incluye **solo el tutorial** descrito arriba, en las zonas segura y media.
 - Incluye la **preparación** de los edificios de energía, agua y alimentos.
-- **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras ni la automatización.
+- Incluye el **ciclo de día y noche** y el **hambre individual** de cada gato.
+- **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras, la automatización ni el sobretrabajo nocturno.
 
 ## Momentos narrativos (partida completa)
 
