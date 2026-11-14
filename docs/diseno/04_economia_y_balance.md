@@ -14,15 +14,36 @@ Los recursos y edificios están en `03_sistemas.md`. Esta página describe cómo
 - **Emergencia (post-PMV):** el jugador puede activar **sobretrabajo** nocturno en un edificio. Van primero los gatos **más saludables**; solo si no queda otra opción, los más enfermos. Los **degradados nunca**: morirían.
   - El sobretrabajo cuesta un poco de **salud**, sin importar el traje. Afuera, se suma al daño por radiación si el traje está roto.
 
-## Consumo y hambre
+## Consumo, hambre y sed
 
 - La comida y el agua se consumen **en tiempo real**, con **estadísticas por gato** (ver `03_sistemas.md`).
-- Cada gato tiene su **hambre individual**. Valores de ejemplo:
-  - Come cada **3 minutos**.
-  - A los **6 minutos** sin comer salta una **alerta de hambre extrema**.
-  - A los **7 minutos** sin comer, **muere de hambre**.
-- **Orden para comer:** un gato come cuando tiene hambre. Si hay gatos con hambre extrema, comen primero los que tienen más hambre (los más cercanos a morir).
-- **Hambre extrema (6–7 minutos):** el gato no trabaja y busca comida. Si estaba trabajando, apenas haya comida deja lo que hace y va a comer.
+- **Hambre y sed siguen la misma lógica**, cada una con sus propios tiempos:
+  - El gato come o bebe cada cierto **intervalo**.
+  - Pasado un umbral sin comer o beber salta una **alerta extrema**.
+  - Pasado otro umbral, **muere**.
+- **Orden:** un gato come o bebe cuando lo necesita. Si hay gatos en alerta extrema, van primero los más cercanos a morir.
+- **Alerta extrema:** el gato no trabaja y busca comida o agua. Si estaba trabajando, apenas la haya deja lo que hace y va.
+- Los tiempos se miden en **fracciones del ciclo de día y noche (sol)**, no en minutos fijos, para que escalen con la duración del ciclo.
+
+### Referencia real (gatos en la Tierra)
+
+Según Cats Protection (Reino Unido):
+
+| Necesidad | Problemas serios | Supervivencia máxima |
+|---|---|---|
+| Comida (con agua) | A los 2 días sin comer | Hasta unas 2 semanas |
+| Agua | Deshidratación en 24 horas | Unos 3–4 días |
+
+El agua es cerca de **4 veces más urgente** que la comida.
+
+### Propuesta de tiempos (no acordada)
+
+Comprimidos para el juego, manteniendo que el agua es más urgente que la comida. La proporción se reduce a 2:1 para que el agua no sea injugable. Ejemplo con un sol de **6 minutos**, que reproduce el ejemplo original de 3, 6 y 7 minutos para la comida:
+
+| Necesidad | Intervalo | Alerta extrema | Muerte |
+|---|---|---|---|
+| Comida | 0,5 sol (3 min) | 1 sol (6 min) | 1,2 sol (7 min) |
+| Agua | 0,25 sol (1,5 min) | 0,5 sol (3 min) | 0,6 sol (3,5 min) |
 - El agua además se usa para regar las plantas.
 - Reemplaza a la regla del documento antiguo (reporte diario y muerte tras 2 días sin comer), que queda descartada.
 
@@ -89,6 +110,6 @@ Un gato herido fuera de la base puede ser **auxiliado** a costa de un gato libre
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
 2. Consumo por gato y por edificio.
 3. Si el tope del depósito y la cola de exceso entran en el PMV (el depósito en sí está en la zona segura).
-4. Si la **sed** sigue la misma regla que el hambre, y con qué tiempos.
-5. Tiempos reales de hambre (los 3, 6 y 7 minutos son ejemplos).
+4. Duración del ciclo de día y noche (sol) en minutos reales, y proporción de día y de noche.
+5. Aprobar la propuesta de tiempos de hambre y sed, o ajustar la proporción 2:1.
 6. Cuánta salud cuesta el sobretrabajo (post-PMV).

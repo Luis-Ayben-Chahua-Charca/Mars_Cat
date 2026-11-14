@@ -136,6 +136,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 
 - Los trajes se fabrican en el **taller** con **fibra y un poco de metal**. No se construyen en el PMV.
 - Cada traje tiene su propia integridad. Se **reparan automáticamente con el tiempo** en el taller.
+- **En el PMV los trajes no se degradan** (ver reglas del PMV en `02_core_loop.md`), así que no hace falta repararlos.
 
 ## Pendientes
 
@@ -150,8 +151,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 9. Costo en metal y escombros de cada reparación.
 10. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
 11. En qué zona está cada edificio.
-12. Ritmo al que baja la salud con el traje al 20 %, y duración del estado Recuperando.
-13. Cuánto tarda la reparación de un traje en el taller, y si en el PMV (sin taller) los trajes se reparan de otra forma.
-14. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
-15. Si el MOXIE entra en el PMV.
-16. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+12. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
+13. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
+14. Si el MOXIE entra en el PMV.
+15. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
