@@ -14,6 +14,8 @@ Mars_Cat/
 ├── BITACORA.md            Registro de hitos cerrados (Gestión)
 ├── .gitignore             (Gestión) — ignora _tablero/, scripts locales de gestión
 ├── .gitattributes         LFS y merge de YAML (Gestión)
+├── .claude/               Configuración compartida de Claude Code (Gestión)
+│   └── skills/work-issue/ Skill /work-issue: flujo por issue y propuesta de commit
 ├── agents/                Perfiles de agentes (Gestión)
 ├── docs/                  Documentación del equipo (Gestión)
 │   ├── 00–04_*.md         Proceso: stack, roles, reglas, agentes, hitos
