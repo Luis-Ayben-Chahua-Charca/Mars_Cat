@@ -29,7 +29,7 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 
 | Edificio | Produce | Insumos | En el PMV | Zona |
 |---|---|---|---|---|
-| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Mantenimiento contra el polvo (ver "Energía") | Sí: reparar y preparar | Por definir |
+| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Por definir |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
 | Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
@@ -88,15 +88,17 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_energia.md`, adaptada 
   - Tiene una **barra de integridad** propia que baja con el uso. Se mantiene con **correcciones de seguridad**, que cuestan materiales.
   - Si se usa demasiado tiempo sin correcciones, ocurre un **accidente nuclear**: aparece un **radio de contaminación**, más potente que la radiación ambiental, donde los trajes se desgastan más rápido.
 - **Polvo:** se acumula sobre los paneles y baja su producción; hay que limpiarlos.
+- **Limpieza (ISRU):** con **CO₂ marciano comprimido** y un **cepillo antiestático**. Comprimir el gas cuesta **energía** de las baterías. No se usa agua: el agua líquida no es estable en la superficie de Marte por la baja presión.
 - **Cuello de botella:** al inicio, reparar la energía primero y después priorizar qué edificios reciben energía.
 
 ### Minijuego candidato de preparación de energía: "Operación Rescate Solar"
 
-- El gato, como "conserje espacial", limpia el polvo de los paneles antes de que caiga la noche.
+- El gato, como "conserje espacial", limpia el polvo de los paneles antes de que caiga la noche, con ráfagas de CO₂ comprimido y el cepillo antiestático.
 - Una barra de "luz solar capturada" muestra el efecto.
+- **Balance:** cada ráfaga gasta energía de las baterías. Mantener el disparador apretado desperdicia energía y la base puede quedarse corta para la noche; conviene usar ráfagas cortas y el cepillo en seco.
 - Ráfagas de viento traen más polvo y obligan a ser rápido.
 - Es un minijuego de **acción**, distinto del modelo de valor guía y rango del cultivo.
-- La propuesta original limpia con **agua**: pendiente de revisión (ver pendientes).
+- **Enseña:** por qué el agua líquida no sirve en Marte, y el concepto de **ISRU** (usar recursos del propio planeta, como el CO₂, a cambio de energía).
 - Si es la preparación de energía del PMV está **pendiente de revisión**.
 
 ### Minijuego post-PMV: "Forja KRUSTY"
@@ -183,13 +185,12 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
 9. Preparación de extracción de agua.
-10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión).
-11. Limpieza de paneles con o sin agua (pendiente de revisión): el agua líquida no es estable en la superficie de Marte y en el juego es el recurso más urgente. Alternativas reales: cepillo, aire comprimido o escudo electrodinámico contra el polvo (cuestan tiempo o energía).
-12. Costo en metal y escombros de cada reparación.
-13. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
-14. En qué zona está cada edificio.
-15. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
-16. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
-17. Si el MOXIE entra en el PMV.
-18. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
-19. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
+11. Costo en metal y escombros de cada reparación.
+12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
+13. En qué zona está cada edificio.
+14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
+15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
+16. Si el MOXIE entra en el PMV.
+17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
+18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
