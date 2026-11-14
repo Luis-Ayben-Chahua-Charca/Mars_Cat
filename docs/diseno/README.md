@@ -13,11 +13,11 @@ Documentos de diseño del juego. **Nombre del juego: por definir** (`Mars Cat` e
 
 | Archivo | Contenido | Estado |
 |---|---|---|
-| `01_vision.md` | Pitch, público, pilares, qué aprende el jugador, alcance de la demo | por crear |
-| `02_core_loop.md` | Etapas, zonas de la base, tutorial, alcance del PMV | borrador |
+| `01_vision.md` | Logline, tema, tono, reglas del universo, agencia del jugador, niveles | borrador |
+| `02_core_loop.md` | Etapas, zonas, tutorial, PMV, momentos narrativos de la partida | borrador |
 | `03_sistemas.md` | Recursos, edificios, trajes y sus reglas | borrador |
-| `04_economia_y_balance.md` | Producción, consumo, costos, almacenamiento y el porqué de cada valor | por crear |
-| `05_datos_nasa.md` | Registro de datasets: fuente, archivo en `Data/`, variable, sistema que la usa | por crear |
-| `06_eventos_y_ritmo.md` | Catálogo de eventos y curva de presión | por crear |
-| `07_lore.md` | Premisa (gatos modificados en Marte), inicio del juego, IA guía, pendientes | borrador |
+| `04_economia_y_balance.md` | Ciclo diario, almacenamiento, fuentes, sumideros, cascadas, escalado | borrador |
+| `05_datos_nasa.md` | APIs, base científica de comida y oxígeno, referencias | borrador |
+| `06_eventos_y_ritmo.md` | Catálogo de eventos, curva de presión, clímax | borrador |
+| `07_lore.md` | Premisa, inicio, IA guía, antagonista, beacon y rescate | borrador |
 | `08_direccion_arte.md` | Paleta, escala, referencias y lista de assets | por crear |

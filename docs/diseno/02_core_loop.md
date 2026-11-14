@@ -42,14 +42,31 @@ Orden de pasos:
 6. Trajes.
 7. Más pasos por definir.
 
-La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione. Si la preparación entra en el PMV está por confirmar.
+La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione. La preparación **entra en el PMV** para los edificios de energía, agua y alimentos.
 
 Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 
 ## PMV (entrega del domingo 15)
 
 - Incluye **solo el tutorial** descrito arriba, en las zonas segura y media.
-- **No incluye:** la zona lejana ni la construcción de trajes con fibra.
+- Incluye la **preparación** de los edificios de energía, agua y alimentos.
+- **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras ni la automatización.
+
+## Momentos narrativos (partida completa)
+
+| # | Momento | Qué pasa | Entrega |
+|---|---|---|---|
+| 1 | Catástrofe | Evacuación y destrucción; control de daños | Cinemática inicial |
+| 2 | Reparación | Tutorial: reparar y preparar edificios | Diálogos de la IA |
+| 3 | Supervivencia | El mapa se amplía; exploración. En la zona nueva se descubre una **antigua mina de tierras raras** | Diálogos de la IA + mapa |
+| 4 | Esperanza | Se descubre el **beacon**: la misión es repararlo para comunicarse con la Tierra | Diálogo de la IA + cinemática del beacon |
+| 5 | Catástrofe | Al emitir la señal empieza la crisis máxima | — |
+| 6 | Apocalipsis | Clímax: todo se vuelve manual y las producciones se alargan | — |
+| 7 | Salvación | Rescate | Cinemática final |
+
+El PMV cubre los momentos 1 y 2. La curva de eventos de los momentos 4 a 6 está en `06_eventos_y_ritmo.md`.
+
+El mapa crece de pequeño a grande a medida que se obtiene información.
 
 ## Pendientes
 
@@ -57,6 +74,7 @@ Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 2. ¿Qué se enseña de los trajes en el tutorial, si construirlos con fibra no entra en el PMV?
 3. Qué módulos de agua y comida existen y cómo funcionan (issue #__).
 4. Qué otros pasos lleva el tutorial después de los trajes.
-5. Condición de victoria y de derrota.
-6. Niveles de progresión (idea previa: tres niveles, el primero de recursos).
-7. Eventos aleatorios como presión y ritmo → `06_eventos_y_ritmo.md`.
+5. Condición de derrota (la victoria es el rescate) y duración de la partida.
+6. Qué significa "se rebelan" en la escalada del documento antiguo (¿quién se rebela?).
+7. Niveles de progresión (idea previa: tres niveles, el primero de recursos) y si el mapa se abre por información, por árbol tecnológico o por ambos.
+8. Eventos aleatorios como presión y ritmo → `06_eventos_y_ritmo.md`.

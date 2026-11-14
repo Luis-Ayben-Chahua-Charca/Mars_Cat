@@ -1,0 +1,51 @@
+# 01 — Visión
+
+**Estado:** borrador
+**Decidido en:** #__
+**Pendientes:** ver la sección "Pendientes" al final.
+
+## Nombre
+
+Por definir. `Mars Cat` es solo el identificador del producto.
+
+## Logline
+
+Gatos abandonados por los humanos tienen que administrar una base en Marte, enfrentando la tragedia y superando nuevos retos de conocimiento.
+
+## Núcleo
+
+| Aspecto | Definición |
+|---|---|
+| Tema central | Supervivencia y adquisición de conocimiento |
+| Pilar ludonarrativo | Recuperación de edificios ("conserje espacial") |
+| Tono | Dramático pero esperanzador |
+| Referencias de tono | *El planeta de los simios*, *Stray*, *Rick y Morty* |
+| Antagonista | El ambiente de Marte; no hay un personaje antagonista |
+
+## Reglas del universo
+
+- Lo más realista posible, con datos de NASA.
+- Ciencia ficción solo en los gatos y su inteligencia.
+- Atmósfera tecnológica futurista, pero aterrizada.
+- El objetivo es restituir lo que ya existía.
+
+## Agencia del jugador
+
+- Control al estilo de *Frostpunk*.
+- Construcción y reparación de edificios, y macrogestión de recursos.
+- Asignación de trabajo automática a los gatos.
+
+## Diseño de niveles
+
+- Vista **2.5D**, con referencias a *The Binding of Isaac* y *Don't Starve Together*.
+- El mapa va de pequeño a grande: el escenario se expande y se descubren nuevos edificios.
+- No hay coleccionables ni objetos de lore extra.
+
+## Alcance
+
+El alcance del PMV del domingo está en `02_core_loop.md`.
+
+## Pendientes
+
+1. Público objetivo exacto (edad) y los conceptos científicos concretos que debe aprender el jugador.
+2. Si "asignación de trabajo automática" convive con que el jugador asigne un gato libre a cada edificio (ver `03_sistemas.md`).
