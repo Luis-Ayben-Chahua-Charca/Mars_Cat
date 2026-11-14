@@ -15,7 +15,10 @@ Mars_Cat/
 ├── .gitignore             (Gestión) — ignora _tablero/, scripts locales de gestión
 ├── .gitattributes         LFS y merge de YAML (Gestión)
 ├── agents/                Perfiles de agentes (Gestión)
-├── docs/                  Documentación mínima del equipo (Gestión)
+├── docs/                  Documentación del equipo (Gestión)
+│   ├── 00–04_*.md         Proceso: stack, roles, reglas, agentes, hitos
+│   ├── diseno/            Diseño del juego (Gestión; contenido acordado en issues)
+│   └── escenas/           Notas de armado de escenas (Design Master, solo si Leyni lo pide)
 ├── Art_Source/            Archivos fuente de arte, fuera de Unity (Arte)
 │   ├── Blender/           .blend
 │   └── OpenToonz/         Proyectos .tnz y fuentes
@@ -24,6 +27,22 @@ Mars_Cat/
     ├── Packages/          Integración — no tocar sin pedido
     └── ProjectSettings/   Integración — no tocar sin pedido
 ```
+
+## `docs/diseno/`
+
+Los mantiene Gestión. Índice y estado de cada documento en `docs/diseno/README.md`. Los números de balance no se copian aquí: viven en `MarsCat/Assets/Data/`.
+
+| Archivo | Contenido | Lo consume |
+|---|---|---|
+| `README.md` | Índice, reglas y estado de cada documento | Todos |
+| `01_vision.md` | Pitch, público, pilares, qué aprende el jugador, alcance de la demo | Todos |
+| `02_core_loop.md` | Etapas, zonas de la base, tutorial, alcance del PMV | Lógica, Integración Unity |
+| `03_sistemas.md` | Recursos, edificios, trajes, sus reglas y namespaces `MarsCat.Logic.*` | Lógica, Integración Unity |
+| `04_economia_y_balance.md` | Reglas de economía y el porqué de cada valor de `Data/` | Lógica |
+| `05_datos_nasa.md` | Registro de datasets NASA y su uso | Lógica |
+| `06_eventos_y_ritmo.md` | Catálogo de eventos y curva de presión | Lógica, Integración Unity |
+| `07_lore.md` | Premisa, personajes, textos del juego | Arte, Integración Unity |
+| `08_direccion_arte.md` | Paleta, escala, referencias y lista de assets | Arte, Integración |
 
 ## `MarsCat/Assets/`
 
@@ -62,5 +81,6 @@ Mars_Cat/
 | ScriptableObjects | `CFG_<Nombre>` | `CFG_Economy.asset` |
 | Datos | `snake_case` | `mars_temperature.csv` |
 | Escenas de prueba | `Sandbox_<Nombre>` | `Sandbox_Leyni.unity` |
+| Documentos | `NN_snake_case.md` | `03_sistemas.md` |
 
 Sin espacios, tildes ni ñ en nombres de archivos.

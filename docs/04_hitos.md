@@ -5,7 +5,7 @@ Los hitos se definen por **lo que debe ser jugable** y se cierran **manualmente*
 | Hito | Criterio de cierre | Tag |
 |---|---|---|
 | **H0 — Base** | Documentación de stack, roles, reglas y agentes en el repo; proyecto Unity 6000.6.7f1 creado y configurado (Visible Meta Files, Force Text); todos clonaron, abrieron el proyecto e hicieron un commit de prueba | `h0-base` |
-| **H1 — Loop mínimo** | Se puede jugar el ciclo principal de la colonia de principio a fin, aunque sea con cubos | `h1-jugable` |
+| **H1 — Tutorial jugable** | Se puede jugar el tutorial de principio a fin (ver `docs/diseno/02_core_loop.md`), aunque sea con cubos | `h1-jugable` |
 | **H2 — Datos NASA** | Al menos un sistema del juego usa datos reales de NASA (requisito del concurso) | `h2-datos` |
 | **H3 — Contenido y arte** | Modelos y animaciones reemplazan los placeholders | `h3-contenido` |
 | **H4 — Demo congelada** | Build estable, video y presentación. Desde aquí solo se corrigen bugs | `h4-demo` |
@@ -26,7 +26,7 @@ Los hitos se definen por **lo que debe ser jugable** y se cierran **manualmente*
 | 10 | Completar versiones de Blender y OpenToonz en `00_stack.md` | Arte | P1 |
 | 11 | Registrar las instancias de IA en `03_agentes.md` | Gestión | P1 |
 | 12 | Configurar UnityYAMLMerge (opcional) | Integración | P2 |
-| 13 | Decidir core loop, recursos y condiciones de victoria/derrota (se anotan en la propia tarjeta) | Todos (decisión de equipo) | P0 — bloquea H1 |
+| 13 | Decidir core loop, recursos y condiciones de victoria/derrota (se anotan en `docs/diseno/02_core_loop.md`) | Todos (decisión de equipo) | P0 — bloquea H1 |
 
 ## Estructura de carpetas en `Assets/`
 
