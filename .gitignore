@@ -1,0 +1,62 @@
+# ===== Proyecto Unity (en MarsCat/) =====
+/MarsCat/[Ll]ibrary/
+/MarsCat/[Tt]emp/
+/MarsCat/[Oo]bj/
+/MarsCat/[Bb]uild/
+/MarsCat/[Bb]uilds/
+/MarsCat/[Ll]ogs/
+/MarsCat/[Uu]ser[Ss]ettings/
+/MarsCat/[Mm]emoryCaptures/
+/MarsCat/[Rr]ecordings/
+
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/MarsCat/[Aa]ssets/**/*.meta
+
+# Autogenerados por Unity / IDEs
+/MarsCat/[Aa]ssets/AssetStoreTools*
+/MarsCat/[Aa]ssets/Plugins/Editor/JetBrains*
+.vs/
+.vscode/
+.idea/
+.gradle/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Crash reports y builds
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
+crashlytics-build.properties
+/MarsCat/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Blender: copias de respaldo automáticas
+*.blend1
+*.blend2
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Scripts locales de gestión (generadores de tablero, etc.) — no se versionan
+/_tablero/
