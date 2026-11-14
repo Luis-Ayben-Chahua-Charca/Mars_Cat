@@ -20,7 +20,7 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Fibra | Insumo de trajes | No |
 | Regolito (tierra) | Tierra del minijuego de alimentos. **Infinito**: está en la superficie marciana | Sí |
 | Tierras raras | Insumo de chips. Se producen en un edificio propio | No |
-| Chips | Intermediario: se fabrican con tierras raras | No |
+| Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
 
 Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún sin confirmar como recurso del pool general: **abono**. La **luz** se expresa en %; por confirmar si sale de la electricidad.
@@ -31,13 +31,19 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 |---|---|---|---|---|
 | Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Mantenimiento contra el polvo (ver "Energía") | Sí: reparar y preparar | Por definir |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
-| Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales y metal); materiales para correcciones de seguridad | No | Por definir |
+| Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
 | Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
 | Extracción de agua del subsuelo | Agua | Por definir | Sí: reparar y preparar | Por definir |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
 | MOXIE (industrial) | Oxígeno neto | Por definir | No | Por definir |
 | Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
 | Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No | Por definir |
+
+## Reparar o construir
+
+- **PMV:** todos los edificios se **reparan**; ninguno se construye desde cero. Reparar no usa chips.
+- **Post-PMV:** construir un edificio **nuevo o mejorado** (por ejemplo, hidroponía, reactor KRUSTY o edificios de extracción, una vez investigados) cuesta **chips** además de los materiales base. Así la producción de chips nunca deja de ser necesaria.
+- **Regla contra bloqueos:** nada de la cadena que produce chips (la mina de tierras raras y el taller) puede exigir chips para funcionar por primera vez. La primera mina es la **antigua mina** que se descubre y se repara, no se construye.
 
 ## Ciclo de un edificio de producción
 
@@ -173,16 +179,17 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 3. Valores reales de la preparación (NASA, artículo o funcionamiento en la Tierra).
 4. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
 5. Confirmar la cadena **tierras raras → chips → robots (chips + metal)** en el taller.
-6. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
-7. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-8. Preparación de extracción de agua.
-9. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión).
-10. Limpieza de paneles con o sin agua (pendiente de revisión): el agua líquida no es estable en la superficie de Marte y en el juego es el recurso más urgente. Alternativas reales: cepillo, aire comprimido o escudo electrodinámico contra el polvo (cuestan tiempo o energía).
-11. Costo en metal y escombros de cada reparación.
-12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
-13. En qué zona está cada edificio.
-14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
-15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
-16. Si el MOXIE entra en el PMV.
-17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
-18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
+7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
+8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
+9. Preparación de extracción de agua.
+10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión).
+11. Limpieza de paneles con o sin agua (pendiente de revisión): el agua líquida no es estable en la superficie de Marte y en el juego es el recurso más urgente. Alternativas reales: cepillo, aire comprimido o escudo electrodinámico contra el polvo (cuestan tiempo o energía).
+12. Costo en metal y escombros de cada reparación.
+13. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
+14. En qué zona está cada edificio.
+15. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
+16. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
+17. Si el MOXIE entra en el PMV.
+18. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
+19. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.

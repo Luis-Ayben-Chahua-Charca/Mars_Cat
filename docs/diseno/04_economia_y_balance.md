@@ -89,6 +89,7 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
   - Energía: según los edificios activos y, de noche, para mantener la temperatura.
   - La **protección** de los edificios está siempre activa y siempre consume energía.
 - **Activos:** la **reparación del beacon** para enviar la alerta a la Tierra.
+- **Construcción de edificios nuevos o mejorados (post-PMV):** consume **chips**, lo que mantiene activa la cadena mina → taller (ver `03_sistemas.md`).
 - **Mantenimiento del reactor (post-PMV):** las correcciones de seguridad gastan materiales; si se descuidan, hay riesgo de accidente nuclear (ver `03_sistemas.md`).
 
 ## Entropía y fallos en cascada
