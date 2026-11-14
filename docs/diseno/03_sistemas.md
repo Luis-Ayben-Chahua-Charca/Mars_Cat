@@ -29,8 +29,10 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 
 | Edificio | Produce | Insumos | En el PMV | Zona |
 |---|---|---|---|---|
-| Energía (paneles solares) | Electricidad | Por definir | Sí: reparar y preparar | Por definir |
-| Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (alternativa: hidroponía, por definir si entra en el PMV) | Sí: reparar y preparar | Por definir |
+| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Mantenimiento contra el polvo (ver "Energía") | Sí: reparar y preparar | Por definir |
+| Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
+| Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales y metal); materiales para correcciones de seguridad | No | Por definir |
+| Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
 | Extracción de agua del subsuelo | Agua | Por definir | Sí: reparar y preparar | Por definir |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
 | MOXIE (industrial) | Oxígeno neto | Por definir | No | Por definir |
@@ -67,7 +69,33 @@ Valores de ejemplo, no reales.
 | Bacterias | Por definir (cantidad) | Por definir |
 | Abono | Por definir (kg) | Por definir |
 
-La preparación de energía y de extracción de agua está por definir.
+La preparación de extracción de agua está por definir. La de energía tiene una propuesta (abajo).
+
+## Energía
+
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_energia.md`, adaptada aquí.
+
+- **Barra global** en la interfaz. Recurso intangible: no ocupa el depósito.
+- **Paneles solares:** fuente inicial. Producen poco y de forma fluctuante: solo de día y nada durante tormentas. Necesitan mejoras.
+- **Reactor KRUSTY:** fuente de *late game*, alto en el árbol de conocimiento. Produce mucho y de forma estable, sin depender del clima ni del ciclo de día y noche.
+  - **Costo único** de construcción; no consume combustible de forma continua.
+  - Tiene una **barra de integridad** propia que baja con el uso. Se mantiene con **correcciones de seguridad**, que cuestan materiales.
+  - Si se usa demasiado tiempo sin correcciones, ocurre un **accidente nuclear**: aparece un **radio de contaminación**, más potente que la radiación ambiental, donde los trajes se desgastan más rápido.
+- **Polvo:** se acumula sobre los paneles y baja su producción; hay que limpiarlos.
+- **Cuello de botella:** al inicio, reparar la energía primero y después priorizar qué edificios reciben energía.
+
+### Minijuego candidato de preparación de energía: "Operación Rescate Solar"
+
+- El gato, como "conserje espacial", limpia el polvo de los paneles antes de que caiga la noche.
+- Una barra de "luz solar capturada" muestra el efecto.
+- Ráfagas de viento traen más polvo y obligan a ser rápido.
+- Es un minijuego de **acción**, distinto del modelo de valor guía y rango del cultivo.
+- La propuesta original limpia con **agua**: pendiente de revisión (ver pendientes).
+- Si es la preparación de energía del PMV está **pendiente de revisión**.
+
+### Minijuego post-PMV: "Forja KRUSTY"
+
+Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de sodio → motor Stirling) y regulación de válvulas para mantener el motor en la zona verde. Enseña la idea de calor → movimiento → electricidad.
 
 ### Propuesta de lógica de rendimiento (no acordada)
 
@@ -141,17 +169,20 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 ## Pendientes
 
 1. Si el **abono** es recurso del pool general, y de dónde sale la **luz**.
-2. Si la **hidroponía** entra en el PMV como alternativa al cultivo en regolito.
+2. **Hidroponía:** se investiga más tarde en el árbol de conocimiento (post-PMV). Falta definir su mecánica.
 3. Valores reales de la preparación (NASA, artículo o funcionamiento en la Tierra).
 4. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
 5. Confirmar la cadena **tierras raras → chips → robots (chips + metal)** en el taller.
 6. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 7. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-8. Preparación de energía y de extracción de agua.
-9. Costo en metal y escombros de cada reparación.
-10. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
-11. En qué zona está cada edificio.
-12. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
-13. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
-14. Si el MOXIE entra en el PMV.
-15. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+8. Preparación de extracción de agua.
+9. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión).
+10. Limpieza de paneles con o sin agua (pendiente de revisión): el agua líquida no es estable en la superficie de Marte y en el juego es el recurso más urgente. Alternativas reales: cepillo, aire comprimido o escudo electrodinámico contra el polvo (cuestan tiempo o energía).
+11. Costo en metal y escombros de cada reparación.
+12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
+13. En qué zona está cada edificio.
+14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
+15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
+16. Si el MOXIE entra en el PMV.
+17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
+18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.

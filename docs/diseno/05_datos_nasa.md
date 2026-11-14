@@ -55,6 +55,16 @@ No es para el jugador: es la base científica de lo que se puede hacer.
 - Shunk, Gomez y Averesch (2020), *Radiotrophic Fungi can Attenuate Ionizing Radiation aboard the ISS*. **Preprint de bioRxiv sin revisión por pares**: citarlo como tal.
 - OSD-804, NASA Rodent Research 1: pérdida ósea en ratones tras 37 días en microgravedad. https://osdr.nasa.gov/bio/repo/data/studies/OSD-804 — posible uso para la mecánica de salud (caminadora T2).
 
+## Energía
+
+Desde `docs/Propuesta_mecanica/mecanica_energia.md`. Verificar cada dato y enlace antes de usarlo.
+
+- **Irradiancia solar en Marte:** cerca del 43 % de la de la Tierra.
+- **Polvo:** se mide como profundidad óptica (τ). Las tormentas globales pueden bloquear la luz durante semanas; la de 2018 terminó la misión del rover Opportunity.
+- **Kilopower / KRUSTY** (Kilopower Reactor Using Stirling Technology): reactor de fisión de NASA de 1 a 10 kW eléctricos, con tubos de calor de sodio y motores Stirling. https://www.nasa.gov/directorates/stmd/technology-demonstration-missions-missions/kilopower/
+- **Opportunity y la tormenta de polvo:** https://mars.nasa.gov/resources/21495/opportunity-rover-and-the-martian-dust-storm/ (por verificar).
+- **DONKI:** eyecciones de masa coronal (CME) y llamaradas solares para alimentar eventos (ver `06_eventos_y_ritmo.md`).
+
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.

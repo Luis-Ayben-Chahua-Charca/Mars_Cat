@@ -18,6 +18,7 @@ Mars_Cat/
 ├── docs/                  Documentación del equipo (Gestión)
 │   ├── 00–04_*.md         Proceso: stack, roles, reglas, agentes, hitos
 │   ├── diseno/            Diseño del juego (Gestión; contenido acordado en issues)
+│   ├── Propuesta_mecanica/ Investigación y propuestas por mecánica, insumo para diseno/ (cualquier integrante)
 │   └── escenas/           Notas de armado de escenas (Design Master, solo si Leyni lo pide)
 ├── Art_Source/            Archivos fuente de arte, fuera de Unity (Arte)
 │   ├── Blender/           .blend
@@ -43,6 +44,16 @@ Los mantiene Gestión. Índice y estado de cada documento en `docs/diseno/README
 | `06_eventos_y_ritmo.md` | Catálogo de eventos y curva de presión | Lógica, Integración Unity |
 | `07_lore.md` | Premisa, personajes, textos del juego | Arte, Integración Unity |
 | `08_direccion_arte.md` | Paleta, escala, referencias y lista de assets | Arte, Integración |
+
+## `docs/Propuesta_mecanica/`
+
+Investigación y propuestas de mecánicas que hace cualquier integrante. No son decisiones: Gestión las adapta a `docs/diseno/`, donde lo ya acordado prevalece ante contradicciones.
+
+| Archivo | Contenido |
+|---|---|
+| `mecanica_<nombre>.md` | Una mecánica por archivo (por ejemplo, `mecanica_energia.md`) |
+
+Pendiente: la carpeta todavía se llama `Propuesta_mecánica` (con tilde). Se renombra quitando la tilde cuando nadie esté trabajando en esos archivos.
 
 ## `MarsCat/Assets/`
 

@@ -11,11 +11,12 @@ Los eventos aleatorios presionan al jugador y marcan el ritmo de la partida.
 | Evento | Efecto |
 |---|---|
 | Lluvia de meteoritos | Daño físico a la base (el cataclismo inicial; ver `07_lore.md`) |
-| Tormenta de arena | Baja la integridad de los trajes (ver `03_sistemas.md`) |
+| Tormenta de arena | Baja la integridad de los trajes (ver `03_sistemas.md`); deja los paneles solares sin producción |
 | Tormenta iónica | Degrada edificios; puede reventar trajes |
-| Llamarada / explosión solar | Incidente que puede dañar trajes |
 | Martemoto | Destructor físico |
 | PEM | Inhabilita el funcionamiento de los edificios; en el clímax desactiva todas las máquinas |
+| Tormenta solar (CME o llamarada, desde DONKI) | Durante toda la partida: sube la radiación; los gatos deben refugiarse y los trajes se desgastan más rápido. Es el efecto real |
+| Accidente nuclear (post-PMV) | Si el reactor se usa sin correcciones de seguridad: radio de contaminación más potente que la radiación ambiental |
 | Implosión / ruptura por presión | Rompe edificios |
 | Radiación permanente | Degrada edificios y trajes de forma continua (no es un evento puntual) |
 
@@ -28,13 +29,14 @@ Los eventos aleatorios presionan al jugador y marcan el ritmo de la partida.
    - Inhabilitadores (PEM) del funcionamiento de los edificios.
    - Rupturas por presión de los edificios.
    - Pérdida de alimentos por falta de energía.
-4. **Clímax (últimos 1–2 minutos):** un **PEM** desactiva todas las máquinas de la base y la producción se vuelve **manual**. La mayoría de las producciones tardan el doble o el triple y algunos recursos ya no se pueden recolectar.
+4. **Clímax (últimos 1–2 minutos):** un **PEM** (por decidir si se atribuye a una CME severa; ver pendientes) desactiva todas las máquinas de la base y la producción se vuelve **manual**. La mayoría de las producciones tardan el doble o el triple y algunos recursos ya no se pueden recolectar.
    - Ejemplo ilustrativo: si antes 5 gatos conseguían 20 de oxígeno, ahora hacen falta 20 gatos para los mismos 20. La relación real debe ajustarse con datos.
 5. **Resolución:** los humanos rescatan a los gatos en la ventana de calma de las tormentas (ver `07_lore.md`).
 
 ## Pendientes
 
-1. "Tormenta iónica de viento morado": choca con la regla de ser lo más realista posible. Pendiente de revisión (post-PMV).
-2. Duración total de una partida, para ubicar el clímax.
-3. Si el PMV incluye algún evento.
-4. Qué eventos se toman de datos reales (por ejemplo, DONKI para los solares; ver `05_datos_nasa.md`).
+1. Origen del PEM del clímax: ¿se atribuye a una CME severa (licencia de ficción: en la superficie de Marte el efecto real de una CME es más radiación, no apagar equipos) o tiene otra causa?
+2. "Tormenta iónica de viento morado": choca con la regla de ser lo más realista posible. Pendiente de revisión (post-PMV).
+3. Duración total de una partida, para ubicar el clímax.
+4. Si el PMV incluye algún evento.
+5. Qué eventos se toman de datos reales (por ejemplo, DONKI para los solares; ver `05_datos_nasa.md`).

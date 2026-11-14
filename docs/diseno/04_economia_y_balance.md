@@ -57,7 +57,8 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 
 ## Almacenamiento
 
-- **Oxígeno y energía:** almacenamientos independientes, con tope. El tope crece con el árbol tecnológico.
+- **Oxígeno y energía:** almacenamientos independientes, con tope. El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
+- **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
 - **Alimentos, fibra y escombros:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
 - **Exceso:** si el almacén está lleno, la producción se detiene y queda **en cola**; el jugador debe permitir a mano que entre al almacén.
 
@@ -88,12 +89,14 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
   - Energía: según los edificios activos y, de noche, para mantener la temperatura.
   - La **protección** de los edificios está siempre activa y siempre consume energía.
 - **Activos:** la **reparación del beacon** para enviar la alerta a la Tierra.
+- **Mantenimiento del reactor (post-PMV):** las correcciones de seguridad gastan materiales; si se descuidan, hay riesgo de accidente nuclear (ver `03_sistemas.md`).
 
 ## Entropía y fallos en cascada
 
 - **Radiación permanente:** degrada edificios y trajes.
 - **Edificios:** tienen un **escudo**. Si se pierde, el interior se vuelve peligroso para los gatos (cambios bruscos de temperatura); si no se repara a tiempo, el edificio cae total o parcialmente. Los fenómenos del desierto abren pequeñas **grietas** que dañan la estructura.
-- **Sin energía**, un edificio no puede trabajar y arrastra al resto, en especial la protección contra radiación y el oxígeno.
+- **Sin energía**, cuando se agotan las baterías, los edificios dejan de funcionar y arrastran al resto, en especial la protección contra radiación y el oxígeno. Con el tiempo faltan los demás recursos y los gatos mueren.
+- **Válvula de emergencia de energía:** reparar y reconectar paneles lejanos, a costa de recursos.
 - **Sin comida**, hay menos gatos trabajadores.
 - Los únicos recursos externos son los nodos de mineral y la energía del sol.
 
