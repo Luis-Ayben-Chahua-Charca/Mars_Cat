@@ -10,8 +10,8 @@ Al crear una instancia nueva, agregarla aquí **antes** de que escriba en el rep
 | Design Master | Claude | `agents/design-master.md` | Leyni | `docs/escenas/` (solo si Leyni lo pide) |
 | `____` | Claude Code / Codex | `agents/agent_codigo.md` — Lógica | `____` | Sus archivos en `MarsCat/Assets/Scripts/Logic/` |
 | `____` | Claude Code / Codex | `agents/agent_codigo.md` — Lógica | `____` | Sus archivos en `MarsCat/Assets/Scripts/Logic/` |
-| `____` | Claude Code / Codex | `agents/agent_codigo.md` — Unity | `____` | Sus archivos en `MarsCat/Assets/Scripts/Unity/` |
-| `____` | Claude Code / Codex | `agents/agent_codigo.md` — Unity | `____` | Sus archivos en `MarsCat/Assets/Scripts/Unity/` |
+| `____` | Claude Code / Codex | `agents/agent_codigo.md` — Unity (Integración Unity) | `____` | Sus archivos en `MarsCat/Assets/Scripts/Unity/` |
+| `____` | Claude Code / Codex | `agents/agent_codigo.md` — Unity (Integración Unity) | `____` | Sus archivos en `MarsCat/Assets/Scripts/Unity/` |
 
 ## Coordinación entre instancias
 

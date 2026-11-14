@@ -24,8 +24,8 @@ Este archivo manda sobre cualquier otro perfil de agente. Lo leen automáticamen
 | Perfil | Archivo | Quién lo usa | Escribe código |
 |---|---|---|---|
 | Código — Lógica | `agents/agent_codigo.md` (sección Lógica) | Integrantes de Lógica C# | Sí, C# puro |
-| Código — Unity | `agents/agent_codigo.md` (sección Unity) | Integrantes de Unity | Sí, MonoBehaviours / UI |
-| Design Master | `agents/design-master.md` | Leyni (armado de escenas) | **No** |
+| Código — Unity | `agents/agent_codigo.md` (sección Unity) | Integración Unity | Sí, MonoBehaviours / UI |
+| Design Master | `agents/design-master.md` | Integración Unity (armado de escenas) | **No** |
 | Gestión | `agents/gestion.md` | Leyni (hitos, repo, docs) | **No** (solo docs y config del repo) |
 
 Notas específicas de Claude Code y Codex: `agents/herramientas.md`.
@@ -42,6 +42,7 @@ Notas específicas de Claude Code y Codex: `agents/herramientas.md`.
    - Mensaje de commit: `[area] descripción corta #issue`.
    - **Nunca** escribir `closes`, `fixes`, `resolves` (ni variantes) seguido de `#n`. Solo `#n` o `refs #n`.
    - Nunca `git add .` ni `git add -A`: solo los archivos de tu tarea.
+   - **Sin rastro de agentes en Git:** ningún commit lleva `Co-Authored-By`, firmas, enlaces de sesión ni menciones a Claude, Codex u otra IA. El mensaje es solo `[area] descripción #n`. Esto aplica también a los archivos que agregas: nada de cabeceras tipo "generado por IA".
 6. **No ejecutar Unity** (ni en batch mode) ni instalar paquetes en el proyecto sin pedido explícito.
 7. **No inventar datos de NASA.** Si un dato no está en `MarsCat/Assets/Data/` o en el issue, se pregunta.
 8. **No cambiar reglas ni docs.** `AGENTS.md`, `STRUCTURE.md`, `agents/` y `docs/` solo los modifica el perfil Gestión con aprobación de Leyni.

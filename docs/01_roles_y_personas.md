@@ -6,41 +6,39 @@ Completar con nombre y usuario de GitHub (se usa para asignar issues).
 
 | Persona | Usuario GitHub | Rol |
 |---|---|---|
-| Leyni | `____` | Gestión de hitos y repositorio + armado de escenas (arte + código), con apoyo del agente Design Master |
+| Leyni | `____` | Integración Unity + Gestión (hitos, repo, tablero) |
+| `____` | `____` | Integración Unity |
 | `____` | `____` | Arte 3D |
 | `____` | `____` | Arte 3D |
-| `____` | `____` | Unity |
-| `____` | `____` | Unity |
 | `____` | `____` | Lógica C# |
 | `____` | `____` | Lógica C# |
-| `____` | `____` | Integración |
-| `____` | `____` | Integración |
+
+Equipo de **6 personas**: 2 de Arte, 2 de Lógica C# y 2 de Integración Unity.
 
 ## Roles y propiedad
 
-Cada rol es **dueño** de una carpeta. Nadie edita archivos de una carpeta ajena; si hace falta un cambio, se pide en la tarjeta del tablero.
+Cada rol es **dueño** de una carpeta. Nadie edita archivos de una carpeta ajena; si hace falta un cambio, se pide en la tarjeta del tablero. Entre dos personas del mismo rol, el dueño de un archivo es quien tiene asignada la tarjeta que lo creó.
 
 | Rol | Hace | Es dueño de | No toca |
 |---|---|---|---|
-| **Gestión + Escenas** (Leyni) | Hitos, tablero, repo, docs, cierre manual de hitos, tags; arma las escenas principales con el arte y el código | `docs/`, `agents/`, `README.md`, `STRUCTURE.md`, `BITACORA.md`, `AGENTS.md`, config del repo, escenas principales | Contenido de scripts y modelos ajenos |
-| **Arte 3D** (2) | Modelos, texturas, exportes `.fbx` | `Art_Source/`, `MarsCat/Assets/Art/` (solo los archivos fuente: `.fbx`, `.png`) | `.meta`, escenas, prefabs, scripts |
-| **Unity** (2) | Comportamientos en Unity: `MonoBehaviour`, UI, cámara, input; conecta la lógica pura con el motor | `MarsCat/Assets/Scripts/Unity/`, `MarsCat/Assets/UI/` | Escenas principales, lógica pura |
+| **Arte 3D** (2) | Modelos, texturas, exportes `.fbx`, animación en OpenToonz | `Art_Source/`, archivos fuente en `MarsCat/Assets/Art/` (`.fbx`, `.png`) | `.meta`, escenas, prefabs, scripts |
 | **Lógica C#** (2) | Sistemas del juego en C# puro: recursos, economía, eventos, lectura de datos NASA | `MarsCat/Assets/Scripts/Logic/`, `MarsCat/Assets/Data/` | Todo lo que necesite abrir Unity; `.meta` |
-| **Integración** (2) | Importan assets, generan y suben los `.meta`, arman prefabs, materiales y configuraciones, ajustan import settings | `MarsCat/Assets/Prefabs/`, `MarsCat/Assets/Config/`, `MarsCat/Assets/Art/Materials/`, **todos los `.meta`**, `ProjectSettings/`, escenas secundarias que se les asignen | Escenas principales (de Leyni), contenido de scripts y modelos ajenos |
+| **Integración Unity** (2, incluye a Leyni) | MonoBehaviours, UI, cámara, input; importan assets, generan y suben los `.meta`, arman prefabs, materiales, configuraciones y escenas | `MarsCat/Assets/Scripts/Unity/`, `Prefabs/`, `Config/`, `Art/Materials/`, `Scenes/`, **todos los `.meta`**, `ProjectSettings/` | Contenido de `.blend`/`.fbx` y de scripts de Lógica |
+| **Gestión** (Leyni) | Hitos, tablero, repo, cierre manual de tarjetas e hitos, tags | `docs/`, `agents/`, `README.md`, `STRUCTURE.md`, `CONTRIBUTING.md`, `AGENTS.md`, `BITACORA.md`, config del repo | — |
 
 ## Reparto de escenas
 
-Cada escena tiene un solo dueño. Leyni arma las escenas principales; los integradores preparan los assets, `.meta` y prefabs que ella usa.
+Cada escena tiene un solo dueño.
 
 | Escena | Dueño |
 |---|---|
 | `Main.unity` | Leyni |
-| `MainMenu.unity` | `____` |
+| `MainMenu.unity` | `____` (Integración Unity) |
 | `Sandbox_<Nombre>.unity` | Cada quien la suya, para pruebas (no se integra) |
 
-## Contrato entre Lógica y Unity
+## Contrato entre Lógica e Integración Unity
 
-Antes de programar un sistema, Lógica y Unity acuerdan en la tarjeta del issue:
+Antes de programar un sistema, Lógica e Integración Unity acuerdan en la tarjeta del issue:
 
 - Nombre de la clase y namespace (`MarsCat.Logic.<Sistema>`).
 - Métodos y eventos públicos que Unity va a llamar o escuchar.

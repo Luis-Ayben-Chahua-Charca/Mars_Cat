@@ -37,11 +37,11 @@ Mars_Cat/
 | `Data/` | Datos NASA y de balance (`.json`, `.csv`) | Lógica |
 | `Scripts/Logic/` | C# puro, namespace `MarsCat.Logic.*` | Lógica |
 | `Scripts/Logic/Tests/` | Pruebas NUnit de la lógica | Lógica |
-| `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*` | Unity |
-| `Scripts/Unity/UI/` | Scripts de interfaz | Unity |
+| `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*` | Integración Unity |
+| `Scripts/Unity/UI/` | Scripts de interfaz | Integración Unity |
 | `Config/` | ScriptableObjects `.asset` de configuración | Integración |
 | `Prefabs/` | `.prefab` | Integración |
-| `Scenes/` | Escenas del juego (`Main.unity`, `MainMenu.unity`) | Leyni / Integración (una escena, un dueño) |
+| `Scenes/` | Escenas del juego (`Main.unity`, `MainMenu.unity`) | Integración Unity (una escena, un dueño) |
 | `Scenes/Sandbox/` | `Sandbox_<Nombre>.unity` de pruebas personales | Cada persona la suya; no se integran |
 | `UI/` | Sprites, fuentes y elementos visuales de interfaz | Arte / Integración |
 

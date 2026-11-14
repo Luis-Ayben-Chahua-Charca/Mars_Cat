@@ -1,6 +1,6 @@
 # 02 — Reglas de trabajo
 
-Pocas reglas, todas obligatorias. Existen para que 9 personas puedan trabajar en `main` sin ramas ni CI.
+Pocas reglas, todas obligatorias. Existen para que 6 personas puedan trabajar en `main` sin ramas ni CI.
 
 ## Git
 
