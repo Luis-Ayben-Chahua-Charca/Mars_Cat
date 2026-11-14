@@ -13,10 +13,10 @@
 ### Fuentes de Generación (Cómo se obtiene)
 * **Paneles solares:** Producen electricidad durante el dia, es una cantidad solo suficiente para lo basico, necesita hacer mejoras.
 * **Reactor Nuclear KRUSTY** Produce mucha energía pero es necesario avanzar mucho en el árbol de conocimientos.
-* **Dependencias:** Los paneles necesitan agua para dar mantenimiento y limpieza, el reactor necesita materiales raros para produccir energía.
+++ * **Dependencias:** Los paneles necesitan energía para comprimir CO2 atmosférico y usarlo en mantenimiento y limpieza, el reactor necesita materiales raros para produccir energía.
 
 ### Sumideros y Consumo (En qué se gasta)
-* **Consumo Activo:** Cuesta agua mantener los paneles solares para limpieza, los reactores necesitan materiales raros.
+++ * **Consumo Activo:** Cuesta energía comprimir el gas CO2 marciano para mantener los paneles solares limpios, los reactores necesitan materiales raros.
 * **Penalización por Población:** El consumo escala a medida que se crean mas edificios, el panel solar no genera demasiado y es fluctuante en los ciclos de dia, y de plano inactivo durante una tormenta, Por otro lado el reactor es mucho mas estable, el balance se da a que esta muy arriba en el arbol de conocimiento.
 
 ---
@@ -42,7 +42,7 @@
 
 ## 5. Respaldo Científico / NASA (Space Apps Challenge)
 * **Justificación Real:** 
-Energía Solar y Polvo Marciano: La irradiancia solar en Marte es aproximadamente el 43% de la terrestre, lo que hace que los paneles generen menos energía por metro cuadrado. El factor más crítico es el polvo en suspensión, medido científicamente como Profundidad Óptica (Dust Optical Depth o $\tau$). La acumulación física de regolito exige mantenimiento continuo, y las tormentas de polvo globales pueden bloquear la luz durante semanas, fenómeno real que inhabilitó permanentemente al rover Opportunity de la NASA en 2018. Esto justifica mecánicamente que el planeta sea el antagonista y la fluctuación temprana del recurso.   
+++ Energía Solar y Polvo Marciano: La irradiancia solar en Marte es aproximadamente el 43% de la terrestre, lo que hace que los paneles generen menos energía por metro cuadrado. El factor más crítico es el polvo en suspensión, medido científicamente como Profundidad Óptica (Dust Optical Depth o $\tau$). La acumulación física de regolito exige mantenimiento continuo, y las tormentas de polvo globales pueden bloquear la luz durante semanas, fenómeno real que inhabilitó permanentemente al rover Opportunity de la NASA en 2018. Esto justifica mecánicamente que el planeta sea el antagonista y la fluctuación temprana del recurso. Además, el mantenimiento se basa en el principio ISRU (In-Situ Resource Utilization) usando CO2 atmosférico comprimido, ya que el agua líquida es inviable en la superficie marciana debido a su baja presión atmosférica (herviría y se congelaría al instante).  
 Transición Nuclear (KRUSTY): El acrónimo corresponde a Kilopower Reactor Using Stirling Technology, un experimento real de la NASA diseñado para suministrar energía de fisión segura y continua (1 a 10 kilovatios) para colonias en la Luna y Marte. Funciona mediante tubos de calor de sodio líquido y motores Stirling. En el juego, esto justifica una fuente de energía masiva que ignora el clima marciano y el ciclo día/noche, ideal para sostener la demanda crítica de hidropónicos y soporte vital en el "late game".Uso de Datos/APIs de NASA:API de DONKI (Space Weather Database): Se integrará la API de DONKI (https://ccmc.gsfc.nasa.gov/DONKI/api/) para alimentar los eventos de riesgo de la colonia.   
 
 * **Uso de Datos/APIs de NASA:** Los datos de Eyecciones de Masa Coronal (CMEs) y Llamaradas Solares (Solar Flares) se traducirán en el juego como inhabilitadores PEM y tormentas de radiación. Un evento CME severo inhabilitará temporalmente los sistemas automatizados del reactor nuclear o la red de baterías de los paneles, detonando una crisis máxima de mantenimiento manual y pérdida de oxígeno.  
@@ -55,19 +55,16 @@ The Mars Exploration Rover Dust Storms: Reportes del Jet Propulsion Laboratory (
 
 ### Propuesta 1: Minijuego de Paneles Solares (El Conserje Espacial)
 
-**Nombre del Minijuego:** Operación: Rescate Solar
-
-**Objetivo:** Gestionar el agua de la colonia para limpiar el polvo marciano de los paneles y restaurar el flujo de electricidad antes de que caiga la noche.
+++ **Objetivo:** Gestionar la energía de las baterías de la colonia para disparar CO2 comprimido, limpiar el polvo marciano de los paneles y restaurar el flujo de electricidad antes de que caiga la noche.
 
 **Mecánica Jugable (Acción y Gestión):**
 * **El Problema:** La pantalla muestra los paneles solares cubiertos gradualmente por una gruesa capa de polvo rojo. Una barra visual de "Luz Solar Capturada" está casi vacía, advirtiendo que la energía está bajando.
-* **La Acción:** El jugador controla al gato en su rol de conserje espacial. Está equipado con una manguera a presión y una escobilla. El jugador debe usar el ratón o el joystick para "barrer" y "lavar" el polvo de las celdas solares.   
-* **El Balance de Recursos:** Aquí entra la gestión. Limpiar cuesta unidades de agua de las reservas de la colonia. Si el jugador simplemente mantiene presionado el botón de agua, desperdiciará el recurso vital y los gatos podrían no tener suficiente para los cultivos hidropónicos o para beber. Debe usar pequeños chorros precisos combinados con la escobilla en seco.
+++ * **La Acción:** El jugador controla al gato en su rol de conserje espacial. Está equipado con un tanque soplador de CO2 marciano comprimido y un cepillo antiestático. El jugador debe usar el ratón o el joystick para lanzar ráfagas de aire y "barrer" el polvo de las celdas solares.   
+++ * **El Balance de Recursos:** Aquí entra la gestión. Comprimir el gas marciano cuesta unidades de energía de las reservas de la colonia. Si el jugador simplemente mantiene presionado el disparador, desperdiciará los valiosos vatios y la base podría no tener suficiente electricidad para pasar la noche. Debe usar ráfagas cortas y precisas combinadas con el cepillo en seco.
 * **El Clima:** Ocasionalmente, ráfagas de viento traen más polvo, obligando al jugador a ser rápido y eficiente.
 
-**Contexto STEM (Ciencia para Niños):**
-Este minijuego enseña de forma visual que los paneles solares no producen energía por arte de magia, sino que necesitan una línea de visión directa y limpia hacia el Sol. Los niños aprenden que el regolito (polvo marciano) es un obstáculo físico real y que en la ingeniería espacial, resolver un problema (falta de energía) a menudo consume otro recurso valioso (agua), obligándolos a pensar en la conservación.
-
+++ **Contexto STEM (Ciencia para Niños):**
+++ Este minijuego enseña de forma visual que los paneles solares no producen energía por arte de magia, sino que necesitan una línea de visión directa y limpia hacia el Sol. Los niños aprenden dos lecciones vitales de ciencia espacial: primero, que el agua líquida no existe en Marte debido a la baja presión (herviría e instantáneamente se congelaría) y segundo, el concepto de ISRU (Utilización de Recursos In-Situ), que consiste en usar recursos del propio planeta (como el abundante CO2 atmosférico) para resolver problemas locales, entendiendo que transformar esos recursos exige un sacrificio energético.
 ---
 
 ### Propuesta 2: Minijuego del Generador KRUSTY (Transición Nuclear)
