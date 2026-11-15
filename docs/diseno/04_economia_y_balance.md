@@ -36,7 +36,7 @@ Según Cats Protection (Reino Unido):
 
 El agua es cerca de **4 veces más urgente** que la comida.
 
-### Duración del sol (propuesta recomendada)
+### Duración del sol (acordado)
 
 - **1 sol = 8 minutos reales:** 6 minutos de día y 2 minutos de noche.
 - De noche el tiempo del juego corre **3 veces más rápido**. Así día y noche duran lo mismo en tiempo de juego (como en Marte, cerca del ecuador), pero la noche, en la que los gatos no trabajan, no se vuelve aburrida.
@@ -44,7 +44,7 @@ El agua es cerca de **4 veces más urgente** que la comida.
 - Con 8 minutos por sol, el tutorial cabe en 1 o 2 soles (8–16 minutos), una duración razonable para una demo.
 - El hambre y la sed siguen corriendo de noche: los gatos descansan, pero comen y beben. Sus tiempos se cuentan en **minutos reales** (los de la tabla de abajo); la aceleración nocturna solo afecta al reloj del juego y al gasto de energía de la noche.
 
-### Tiempos de hambre y sed (proporción 2:1 acordada; valores propuestos)
+### Tiempos de hambre y sed (acordado)
 
 El agua es el doble de urgente que la comida. Entre la alerta y la muerte queda un **margen de reacción** suficiente para que el jugador actúe: 2 minutos para la comida y 1 minuto para el agua.
 
@@ -58,6 +58,7 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 ## Almacenamiento
 
 - **Energía y agua:** almacenamientos independientes, con tope (el agua, en **tanques**).
+- **PMV (acordado):** cada recurso tiene su **propio tope**. El tope compartido del depósito queda para después del PMV.
 - **Oxígeno:** no es un tanque, es el **aire de la base**, medido en % de O₂ (ver "Aire y oxígeno"). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
 - **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
 - **Alimentos, fibra, escombros y desechos:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
@@ -104,6 +105,15 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 - **Radiación permanente:** degrada edificios y trajes.
 - **Edificios:** tienen un **escudo**. Si se pierde, el interior se vuelve peligroso para los gatos (cambios bruscos de temperatura); si no se repara a tiempo, el edificio cae total o parcialmente. Los fenómenos del desierto abren pequeñas **grietas** que dañan la estructura.
 - **Sin energía**, cuando se agotan las baterías, los edificios dejan de funcionar y arrastran al resto, en especial la protección contra radiación y el oxígeno. Con el tiempo faltan los demás recursos y los gatos mueren.
+- **Prioridad de energía (acordado):** cuando no alcanza, los edificios se apagan por orden de importancia:
+
+| Prioridad | Edificios | Se apaga |
+|---|---|---|
+| Máxima | MOXIE (oxígeno) | Último |
+| Alta | Extracción de agua, taller y depósito | Después de los sin prioridad |
+| Sin prioridad | Reciclador orgánico (desechos), granja de ratones y granja de plantas (cosechas) | Primero |
+
+  La calefacción nocturna todavía no tiene prioridad asignada.
 - **Válvula de emergencia de energía:** reparar y reconectar paneles lejanos, a costa de recursos.
 - **Sin comida**, hay menos gatos trabajadores.
 - Los únicos recursos externos son los nodos de mineral y la energía del sol.
@@ -143,7 +153,7 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
 2. Consumo por gato y por edificio.
-3. Si el tope del depósito y la cola de exceso entran en el PMV (el depósito en sí está en la zona segura).
-4. Aprobar la duración del sol (8 minutos, noche acelerada 3 veces) y los tiempos de hambre y sed.
+3. Tope compartido del depósito y cola de exceso: post-PMV (en el PMV, tope por recurso; acordado).
+4. Prioridad de energía de la calefacción nocturna (se propone máxima).
 5. Producción por sol de cada edificio frente al consumo de la colonia.
 6. Cuánta salud cuesta el sobretrabajo (post-PMV).

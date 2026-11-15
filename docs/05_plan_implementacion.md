@@ -5,7 +5,7 @@
 
 ## Cómo usarlo (agentes y personas)
 
-1. Lee este archivo después de `STRUCTURE.md` y de tu perfil en `agents/`.
+1. Lee este archivo después de `STRUCTURE.md` y de tu perfil en `agents/`. Los contratos acordados de las olas 1 a 3, el reparto y la tabla de dependencias están en `06_guia_logica.md`.
 2. Toma el issue de la **ola más baja** que no esté bloqueado. Una ola empieza cuando los issues de los que depende están en `Hecho`, o cuando su **contrato** ya está acordado y el código vecino se puede simular con una interfaz.
 3. Un issue se cierra cuando cumple su checklist. Los checks los marca Gestión; el cierre del issue lo hace Leyni a mano.
 4. Si un issue depende de una decisión abierta (columna "Decisión abierta"), **se pregunta, no se inventa** (`AGENTS.md`, regla 7). Esas decisiones se cierran en #14.

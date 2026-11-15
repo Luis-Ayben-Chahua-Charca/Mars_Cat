@@ -196,7 +196,7 @@ Por encima de 22 % el aire está **enriquecido** y sube el riesgo de incendio (p
 
 Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aquí. **Acordado:** la extracción entra en el PMV y el reciclaje es post-PMV. El resto de la sección sigue en propuesta.
 
-- **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio, como el oxígeno; no ocupa el depósito.
+- **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio; no ocupa el depósito.
 - **Fuentes:**
   1. **Reciclador (soporte vital), post-PMV:** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
      - **En el PMV** no es un edificio: solo la IA lo menciona para explicar por qué falta agua y para presentar el dato del 98 % de la ISS (ver `05_datos_nasa.md`).
@@ -355,7 +355,7 @@ Para la máquina de estados de Lógica:
 | Caído | No | Herido afuera; corre el minuto de rescate |
 | Recuperando | No | En el depósito tras entrar por la esclusa o ser auxiliado; dura un tiempo y luego pasa a Libre |
 | Descansando | No | De noche; solo sale de este estado por sobretrabajo de emergencia (post-PMV) |
-| Buscando comida | No | Hambre extrema (6–7 minutos sin comer): deja de trabajar y va a comer |
+| Buscando comida | No | Hambre o sed extrema (alerta a los 8 minutos sin comer o a los 4 sin beber): deja de trabajar y va a comer o beber |
 | Muerto | — | Fuera del juego |
 
 Además del estado, un **atributo permanente** `Degradado` (sí o no). El asignador automático nunca envía a un gato degradado a puestos exteriores ni a sobretrabajo nocturno. Para el sobretrabajo ordena a los gatos de más a menos salud. Para comer, ordena de más a menos hambre. Así no hace falta un estado falso de "trabajo" para retenerlo: el estado `Recuperando` cubre la pausa temporal y el atributo cubre la restricción permanente.
@@ -378,7 +378,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
 9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
-20. Tope de los tanques de agua.
+20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
@@ -387,7 +387,6 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
 13. En qué zona está cada edificio.
 14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
-15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
 16. **MOXIE** (entra en el PMV, acordado): cada cuánto se ensucia un filtro, cuánto dura limpiarlo, producción con los 5 limpios y consumo de electricidad.
 17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
-18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+18. Contratos de Lógica: olas 1 a 3 acordados (ver `docs/06_guia_logica.md`); los de la ola 4 en adelante se acuerdan en su issue.
