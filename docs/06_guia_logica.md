@@ -38,7 +38,7 @@ Scripts/Logic/
 ├── Energy/       EnergyPriority, EnergyConfig, EnergyGrid
 ├── Buildings/    BuildingState, BuildingConfig, Building
 ├── Work/         JobKind, Job, WorkConfig, JobAssigner
-├── Air/          (ola 4) MoxieFilterConfig, MoxieFilters
+├── Air/          (ola 4) MoxieFilterConfig, MoxieFilters, AtmosphereConfig, AirBand, BaseAtmosphere
 ├── Food/         (ola 4) RatFarmConfig, RatFarm, LooseRats, RatRaid, RatHunt
 ├── Tutorial/     (ola 4) TutorialStep, TutorialSequence
 ├── Water/        (ola 4) MeltPhase, MeltingConfig, MeltingChamberSession
@@ -253,7 +253,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 ## Olas 4 en adelante — contratos propuestos
 
-**Estado:** **acordados** el #57 (granja, redada y caza), el #54 (solo el paso 2, con la cadena de abajo) y el #20 parte 2 (Fábrica de Suelo y su fórmula de rendimiento). El resto es propuesta de Gestión pendiente de aprobación de Leyni: no se programa hasta que el issue tenga marcado "Contrato acordado".
+**Estado:** **acordados** el #55 (aire), el #57 (granja, redada y caza), el #54 (solo el paso 2, con la cadena de abajo) y el #20 parte 2 (Fábrica de Suelo y su fórmula de rendimiento). El resto es propuesta de Gestión pendiente de aprobación de Leyni: no se programa hasta que el issue tenga marcado "Contrato acordado".
 
 ### Reglas de los minijuegos
 
@@ -266,7 +266,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 | Persona | Issues | Carpetas nuevas |
 |---|---|---|
-| **Lógica 1** | #56 (filtros del MOXIE), #57 (granja de ratones, esqueleto), #23 (secuencia del tutorial, esqueleto). Después, #55 (aire), cuando se apruebe su modelo | `Air/`, `Food/`, `Tutorial/` |
+| **Lógica 1** | #56 (filtros del MOXIE), #57 (granja, redada y caza), #23 (secuencia del tutorial, esqueleto) y #55 (aire, modelo acordado) | `Air/`, `Food/`, `Tutorial/` |
 | **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2, acordado), #58 (Compostador + Sopa de Bacterias), #20 parte 2 (Fábrica de Suelo) | `Water/`, `Recycling/`, `Preparation/` (ya suya) y `Energy/` (ya suya) |
 
 ### Rescate Solar (lógica) · Lógica 2 · `MarsCat.Logic.Energy`
@@ -334,7 +334,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - `CompostMix(CompostMixConfig, ResourcePool)`:
   - `void SetAmount(ResourceId id, float amount)` para `CatWaste`, `RatWaste` y `CropResidue`.
   - `float Ratio`: carbono total ÷ nitrógeno total, con `cn` y `n_fraction` de cada insumo (`minigame.compost.mix.<insumo>.cn` y `.n_fraction`). Con `n_fraction` igual en todos, es el promedio ponderado por cantidad.
-  - Valores de partida (`03_sistemas.md`): gato ~10, cama de rata 100–300, restos de papa 20; guía 30, rango 20–40 (pendiente de aprobación).
+  - Valores de partida (`03_sistemas.md`): gato ~10, cama de rata 100–300, restos de papa 20; guía 30, rango 20–40 (acordado).
   - `StepScore Evaluate()` (con `GuideRange`); `bool TryConfirm()`: si está en rango, cobra los desechos y devuelve `true`.
 - La Sopa recibe la mezcla ya cobrada: `CompostSession.TryStart()` deja de cobrar los desechos y pasa a recibir el puntaje de la mezcla, que multiplica el rendimiento final.
 - **Probar:** solo desechos de gato da una relación baja y fuera de rango; sumar cama de rata la sube; en rango cobra; fuera de rango no cobra.
@@ -385,6 +385,20 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - `void Tick(float gameDt)`, llamado **después** de `CatColony.Tick`: cada gato en `SeekingFood` sin raciones en el pool acumula tiempo de caza; al llegar a `HuntSeconds` toma `AnyLoose()` y satisface su hambre (`Cat.Satisfy(Need.Food)` es `internal` y se ve desde el mismo ensamblado: no hay que tocar `Cats/`).
   - Eventos `OnHunted(Cat, int ratId)` y `OnNoLooseRats` (una vez). Clave `rat.hunt_seconds`.
 - **Probar:** marcar y capturar suma a la granja y quita de las sueltas; no arranca hasta superar el pie de cría; convierte sin bajar del pie; sin forraje no convierte; con `BreedRate = 0` no crecen; con 10 ratas, tope 40 y 0,75 llegan a 15 en ~0,8 sol; en el tope no nacen más; un gato con hambre extrema y sin raciones caza una rata y deja de tener hambre; con raciones no caza; sin ratas sueltas no caza y avisa una vez.
+
+### Aire de la base (#55) · Lógica 1 · `MarsCat.Logic.Air`
+
+**Para qué:** el % de O₂ del aire (`03_sistemas.md`, "El aire de la base", acordado). Regla T3: el oxígeno no está en `ResourcePool`.
+
+- `AtmosphereConfig`: % inicial (0,21), límites de las franjas (19,5 %, 16 %, 10 %), consumo por gato en reposo y trabajando (kg de O₂ por sol; ~0,08–0,1), margen en crítico antes de que mueran los gatos (segundos reales), densidad del aire (1,2 kg/m³), % de O₂ del aire de un módulo recién presurizado. Claves `air.*`.
+- `enum AirBand`: `Green`, `Yellow`, `Red`, `Critical`.
+- `BaseAtmosphere(AtmosphereConfig, float initialVolumeM3)`:
+  - Masa de O₂ = % × volumen × densidad del aire (aproximación declarada).
+  - `void AddModule(float volumeM3, float leakKgPerSol)`: al presurizar un edificio reparado; el % baja una sola vez por la mezcla y queda una fuga permanente.
+  - `void Tick(float gameDt, float producedKg, int catsResting, int catsWorking)`: suma la producción (MOXIE × fracción de filtros limpios, #56; plantas después) y resta el consumo de los gatos y las fugas. Usa tiempo de juego, como la producción (T2).
+  - `float OxygenFraction`, `float VolumeM3`, `AirBand Band`.
+  - Eventos `OnBandChanged(AirBand)` y `OnCriticalTimeout` (pasó el margen en crítico). Integración aplica los efectos: más lento en amarillo, sin trabajo en rojo, muertes en `OnCriticalTimeout`.
+- **Probar:** sin producción el % baja con los gatos; con más volumen baja más lento; `AddModule` baja el % una vez y suma fuga; las franjas cambian en sus límites; en crítico, el evento sale solo al pasar el margen.
 
 ### Secuencia del tutorial (#23, esqueleto) · Lógica 1 · `MarsCat.Logic.Tutorial`
 

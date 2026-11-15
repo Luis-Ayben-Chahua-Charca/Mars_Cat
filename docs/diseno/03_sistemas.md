@@ -268,9 +268,9 @@ Para Lógica: un **resultado común** (`PreparationResult`: arranca, rendimiento
 
 Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_oxigeno.md`, adaptada aquí. **Acordado:** el MOXIE entra en el PMV (paso 4 del tutorial) con el minijuego de filtros; la limpieza ocupa un **gato libre** como tarea puntual. El modelo del aire es **propuesta**.
 
-### El aire de la base
+### El aire de la base (acordado)
 
-- La barra muestra el **% de O₂ del aire de la base**, como en un hábitat real, donde se controla la mezcla de gases y no un tanque. Meta propuesta: **21 %**, como el aire de la Tierra.
+- La barra muestra el **% de O₂ del aire de la base**, como en un hábitat real, donde se controla la mezcla de gases y no un tanque. Meta: **21 %**, como el aire de la Tierra.
 
 | Franja | % O₂ | Efecto |
 |---|---|---|
@@ -401,7 +401,7 @@ Antes de la "Sopa de Bacterias", el jugador **mezcla** los desechos para llegar 
 | Restos de cosecha (papa) | Algo de nitrógeno | **16–24:1** según la variedad (papa para almidón 16, semilla 20, consumo 24) | Wageningen University & Research |
 | Agua y bacterias | Humedad y la colonia (bacterias infinitas) | — | — |
 
-- **Meta:** valor guía **30:1** (Cornell y NDSU). Rango propuesto **20–40:1**, el rango de trabajo de NDSU (antes 25–30:1; pendiente de aprobación).
+- **Meta:** valor guía **30:1** (Cornell y NDSU). Rango **20–40:1** (acordado), el rango de trabajo de NDSU: 10 puntos de margen a cada lado.
 - **Lo que enseña la tabla:** los desechos de gato y los restos de papa están **por debajo** de la meta. Sin la cama de las ratas, el carbono no alcanza: la granja de ratones también aporta al compost.
 - **Cálculo correcto:** la C:N de la mezcla es carbono total ÷ nitrógeno total, no el promedio de las relaciones. Ejemplo con el mismo nitrógeno por kilo: 4 kg de gato (10) + 3 kg de restos (20) + 1 kg de cama (200) = (40 + 60 + 200) / 8 = **37,5:1**, dentro del rango.
 - **Fuera de rango:** con demasiado nitrógeno se pierde nutriente como amoníaco (mal olor); con demasiado carbono el proceso casi no avanza. El lote no arranca hasta corregir, sin perderse.
