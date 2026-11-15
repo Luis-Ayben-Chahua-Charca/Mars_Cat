@@ -228,8 +228,9 @@ Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene 
 1. **Presurizar:** un **manómetro** en el centro de la pantalla. El jugador mantiene la aguja dentro de la zona verde mientras se llena el círculo. Si falla, la presurización **se reinicia** (no se pierde hielo, solo tiempo).
 2. **Calentar:** después, un **termómetro** en el centro. Igual: mantener la aguja en verde hasta llenar el círculo. Si falla, el agua **hierve** y **se pierde el lote**.
 
+- **Círculo de progreso (valores de referencia, pendientes de balance):** arranca en **40 %**. Con la aguja en el centro se llena hasta 100 % en **5 segundos**. Si la aguja sale del centro, el círculo **baja**; si llega a **0 %**, la fase falla.
 - El orden es fijo (primero presión, después calor), y el castigo es más duro en la segunda fase: el jugador aprende que calentar sin presión hace hervir el agua.
-- **Botón acelerar:** reduce el tiempo a la **mitad**, pero gasta **más electricidad** y hace las agujas **más inestables** (oscilan más). Es un desafío opcional: más rápido, más caro y más difícil.
+- **Botón acelerar:** reduce el tiempo a la **mitad** (2,5 segundos), pero gasta **más electricidad** y hace las agujas **más inestables** (oscilan más). Es un desafío opcional: más rápido, más caro y más difícil.
 
 **Paso 3 — Biorreactor**
 
@@ -250,7 +251,16 @@ Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene 
 | `Ice_Contamination.png` | 6 bloques de hielo, de pequeño y sucio a grande y limpio: pureza y volumen de cada veta |
 | `Thermometer_Heating.png` | Termómetro con zonas azul, verde y roja para la fase de calentar |
 
-**Faltan:** manómetro para presurizar; círculo de progreso; botón acelerar; tanque del biorreactor con el agua en sus colores (púrpura o marrón → azul); ícono de dosis de bacterias.
+**Archivos nuevos que faltan** (en `Art-source/2D/`, con canal alfa):
+
+| Archivo | Contenido |
+|---|---|
+| `Pressure_Gauge.png` | Esfera del manómetro con la zona verde al centro |
+| `Pressure_Gauge_Needle.png` | Aguja del manómetro, separada para poder rotarla |
+| `Progress_Ring.png` | Círculo de progreso: anillo vacío y anillo lleno, por separado |
+| `Speed_Button.png` | Botón acelerar en tres estados: normal, presionado y activo |
+| `Bioreactor_Tank.png` | Tanque del biorreactor con el agua en tres estados: púrpura o marrón, intermedio y azul |
+| `Bacteria_Dose_Icon.png` | Ícono de la dosis de bacterias |
 
 **Observaciones pendientes del arte:** el taladro, el hielo y el termómetro tienen fondo oscuro con brillo pegado; exportarlos con canal alfa. Verificar el alfa de `Soil_Cutaway.png`.
 
@@ -366,7 +376,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-9. **Agua** (paso 2 acordado): cuánto tiempo fuera de la zona verde cuenta como fallo; duración de cada fase y costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
+9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua.
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
