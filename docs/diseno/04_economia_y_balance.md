@@ -57,7 +57,7 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 
 ## Almacenamiento
 
-- **Oxígeno y energía:** almacenamientos independientes, con tope. El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
+- **Oxígeno, energía y agua:** almacenamientos independientes, con tope (el agua, en **tanques**). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
 - **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
 - **Alimentos, fibra y escombros:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
 - **Exceso:** si el almacén está lleno, la producción se detiene y queda **en cola**; el jugador debe permitir a mano que entre al almacén.
@@ -74,6 +74,8 @@ Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelado
 4. **Edificios:**
    - Plantas: alimento, **fibra** y oxígeno.
    - Energía: electricidad.
+   - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).
+   - **Reciclador de agua:** recupera parte del agua consumida; dañado al inicio.
    - **MOXIE** (edificio industrial): producción neta de oxígeno.
 
 Para reparar un edificio caído, los escombros cubren cerca del **90 %** del costo; el **10 %** restante son minerales marcianos.

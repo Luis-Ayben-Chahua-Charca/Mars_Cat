@@ -1,5 +1,14 @@
 # Mecánica: Agua
 
+> **Adaptada al diseño en `docs/diseno/03_sistemas.md` (sección "Agua").** Ajustes respecto de esta propuesta:
+> - El extractor del subsuelo **es parte del PMV** (paso 5 del tutorial), no del *mid game*. El reciclador quedó dañado por los meteoritos: por eso al despertar falta agua.
+> - La cueva es la **zona segura**: el hielo está debajo y el gato trabaja dentro de la base. No se controla al gato directamente; el minijuego es un panel de estación con mecánica propia: elegir **dónde y qué tan hondo** perforar según el radar, la secuencia de presión y el biorreactor.
+> - Los percloratos vienen del polvo de regolito mezclado con el hielo; el hielo de los glaciares en sí es casi puro.
+> - En el PMV la comida sale de la **producción de alimentos** con regolito; la hidroponía es post-PMV.
+> - Tanques llenos: la extracción se detiene (cola), no se pierde agua.
+> - Sin agua rige la regla de sed de `04_economia_y_balance.md` (alerta extrema y muerte), no la reducción de velocidad.
+> - Los trajes se reparan solos en el taller; la falta de agua no los afecta directamente.
+
 ## 1. Descripción General
 > **Resumen:** El agua es el pilar de la supervivencia biológica. No solo sirve para mantener hidratados a los gatos, sino que es el insumo principal de las granjas hidropónicas que generan comida y oxígeno. 
 

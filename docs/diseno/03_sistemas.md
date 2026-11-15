@@ -13,7 +13,7 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Oxígeno | Soporte vital | Sí |
 | Electricidad | Soporte vital | Sí |
 | Comida | Soporte vital | Sí |
-| Agua | Soporte vital | Sí |
+| Agua | Soporte vital; se guarda en **tanques** propios, no en el depósito | Sí |
 | Metal | Material de construcción; insumo de robots y trajes. Se extrae de Marte y se recupera de escombros | Sí |
 | Escombros | Material de construcción | Sí |
 | Bacterias | Insumo de la preparación del cultivo. **Infinito**: solo se ajusta su valor óptimo en el minijuego | Sí |
@@ -33,7 +33,8 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
 | Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
-| Extracción de agua del subsuelo | Agua | Por definir | Sí: reparar y preparar | Por definir |
+| Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
+| Reciclador de agua (soporte vital) | Recupera parte del agua consumida | Electricidad | Por definir (dañado al inicio) | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
 | MOXIE (industrial) | Oxígeno neto | Por definir | No | Por definir |
 | Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
@@ -57,13 +58,27 @@ Así el jugador aprende primero qué necesita cada edificio, y la automatizació
 
 ## Preparación de edificios (minijuego)
 
-Inspirada en los minijuegos de *Among Us*.
+Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minijuego, con su propia mecánica**, elegida para enseñar la ciencia de ese edificio. Lo único común es el **resultado**:
+
+| Resultado | Significado |
+|---|---|
+| Arranca o no | Si la preparación quedó válida |
+| Rendimiento | Multiplicador de producción (por ejemplo, de 80 % a 120 %) |
+| Motivo | Si no arranca o rinde poco, qué corregir; la IA lo explica |
+
+| Edificio | Minijuego | Mecánica |
+|---|---|---|
+| Producción de alimentos | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
+| Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
+| Energía | "Operación Rescate Solar" | Acción: limpiar polvo gastando batería (ver "Energía") |
+
+### Producción de alimentos: valor guía y rango
 
 - Cada insumo tiene un **valor guía** que da la IA y un **rango de aceptación**.
 - **Fuera del rango:** se muestra una **advertencia de rango prohibitivo** que indica qué insumo hay que corregir; el edificio no arranca hasta corregirlo.
 - **Dentro del rango:** ciertos valores y **combinaciones** mejoran el **rendimiento**.
 
-### Ejemplo: producción de alimentos
+#### Ejemplo
 
 Valores de ejemplo, no reales.
 
@@ -75,7 +90,6 @@ Valores de ejemplo, no reales.
 | Bacterias | Por definir (cantidad) | Por definir |
 | Abono | Por definir (kg) | Por definir |
 
-La preparación de extracción de agua está por definir. La de energía tiene una propuesta (abajo).
 
 ## Energía
 
@@ -105,7 +119,7 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_energia.md`, adaptada 
 
 Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de sodio → motor Stirling) y regulación de válvulas para mantener el motor en la zona verde. Enseña la idea de calor → movimiento → electricidad.
 
-### Propuesta de lógica de rendimiento (no acordada)
+### Propuesta de lógica de rendimiento del cultivo (no acordada)
 
 - **Puntaje por insumo:** `s = 1 − |valor − guía| / tolerancia`. Vale 1 en el valor guía y 0 en el borde del rango.
 - **Rendimiento base:** `rendimiento = 0,8 + 0,4 × promedio(s)`. Va de 80 % (todo en el borde) a 120 % (todo en el valor guía).
@@ -113,7 +127,50 @@ Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de 
 - **Automatización (post-PMV):** el robot pone todos los insumos en su valor guía; el resultado es fijo y rápido. Hacerlo a mano permite buscar combinaciones y superar ese rendimiento.
 - **Datos reales:** los valores guía y rangos deberían salir de datos de NASA sobre cultivo en el espacio y registrarse en `05_datos_nasa.md`. No se inventan.
 
-Para Lógica, esto se traduce en una clase de preparación por edificio que recibe los insumos y la configuración (guía, tolerancia y sinergias desde `Data/`) y devuelve si arranca, con qué rendimiento o qué insumo está fuera de rango. El contrato se acuerda en el issue.
+Para Lógica: un **resultado común** (`PreparationResult`: arranca, rendimiento, motivo) y una clase de preparación **por minijuego**, cada una con su configuración en `Data/`. El ciclo del edificio solo lee el resultado, sin saber qué minijuego lo produjo. El contrato se acuerda en el issue.
+
+## Agua
+
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aquí. **Propuesta, no acordada.**
+
+- **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio, como el oxígeno; no ocupa el depósito.
+- **Fuentes:**
+  1. **Reciclador (soporte vital):** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
+  2. **Extracción de agua del subsuelo:** el edificio del tutorial (paso 5). Saca **hielo** de debajo de la cueva, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
+- **Consumo:** la sed de cada gato (`04_economia_y_balance.md`) y la preparación de la **producción de alimentos**. La hidroponía es post-PMV.
+- **Exceso:** con los tanques llenos, la extracción se detiene y queda en cola, igual que el depósito. El agua no se pierde.
+- **Sin agua:** rige la regla de sed (alerta extrema, busca agua, muere). La producción de alimentos no arranca porque el insumo agua queda fuera de rango.
+- **Post-PMV:** racionamiento (cortar el agua a los cultivos para que beban los gatos) y fisura del tanque por el evento **ruptura por presión**, que hace hervir y perder parte del agua (`06_eventos_y_ritmo.md`).
+
+### Preparación del extractor: "Alquimista Marciano"
+
+Panel de estación: el jugador **no controla al gato**, que se asigna solo al puesto. La mecánica es propia y gira en torno a **dónde y qué tan hondo perforar**.
+
+**Paso 1 — Sondeo y perforación**
+
+- Una **vista en corte del subsuelo** bajo la cueva muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
+- El jugador **coloca** el taladro y elige la **profundidad**:
+  - **Somero:** barato y rápido, pero hielo más sucio y con menos volumen.
+  - **Profundo:** hielo más puro y abundante, pero cuesta más electricidad y tiempo.
+  - **Fallar la veta** (quedarse corto o pasarse) no da agua: hay que reubicar.
+- Mientras baja, mantiene la **potencia** del taladro térmico en la zona verde: si se calienta de más, el hielo **sublima** y se pierde parte del lote.
+- **Cada veta se agota.** En la siguiente preparación hay que elegir otra, así el minijuego no se repite igual.
+
+**Paso 2 — Cámara de derretido**
+
+- Secuencia corta: primero **presurizar**, después **calentar**.
+- Si calienta antes de presurizar, el agua **hierve**: se pierde el lote y la IA explica por qué.
+
+**Paso 3 — Biorreactor**
+
+- La **dosis de bacterias** perclorato-reductoras depende de la pureza de la veta: hielo sucio necesita más bacterias y más tiempo.
+- El jugador mantiene la **temperatura** tibia mientras el agua pasa de púrpura o marrón a azul.
+- Si se queda corto, el agua sigue tóxica y no entra a los tanques.
+
+**Rendimiento:** volumen de la veta × pureza lograda × (1 − pérdidas por sublimación o ebullición). Una veta profunda bien trabajada rinde más, pero gasta más energía: el jugador decide según cuánta electricidad tenga.
+
+- **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
+- **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
 
 ## Salud y trajes espaciales
 
@@ -184,7 +241,9 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-9. Preparación de extracción de agua.
+9. Aprobar la propuesta de **Agua** y su preparación "Alquimista Marciano" (arriba). Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
+19. **Reciclador de agua:** si entra en el PMV (reparable o solo como explicación de la IA) y qué porcentaje recupera.
+20. Tope de los tanques de agua.
 10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
 11. Costo en metal y escombros de cada reparación.
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
