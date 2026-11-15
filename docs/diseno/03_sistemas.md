@@ -221,18 +221,38 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 - Mientras baja, mantiene la **potencia** del taladro térmico en la zona verde: si se calienta de más, el hielo **sublima** y se pierde parte del lote.
 - **Cada veta se agota.** En la siguiente preparación hay que elegir otra, así el minijuego no se repite igual.
 
-**Paso 2 — Cámara de derretido**
+**Paso 2 — Cámara de derretido** (acordado)
 
-- Secuencia corta: primero **presurizar**, después **calentar**.
-- Si calienta antes de presurizar, el agua **hierve**: se pierde el lote y la IA explica por qué.
+Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene un **círculo de progreso** que se llena mientras el jugador mantiene la aguja en su zona.
+
+1. **Presurizar:** un **manómetro** en el centro de la pantalla. El jugador mantiene la aguja dentro de la zona verde mientras se llena el círculo. Si falla, la presurización **se reinicia** (no se pierde hielo, solo tiempo).
+2. **Calentar:** después, un **termómetro** en el centro. Igual: mantener la aguja en verde hasta llenar el círculo. Si falla, el agua **hierve** y **se pierde el lote**.
+
+- El orden es fijo (primero presión, después calor), y el castigo es más duro en la segunda fase: el jugador aprende que calentar sin presión hace hervir el agua.
+- **Botón acelerar:** reduce el tiempo a la **mitad**, pero gasta **más electricidad** y hace las agujas **más inestables** (oscilan más). Es un desafío opcional: más rápido, más caro y más difícil.
 
 **Paso 3 — Biorreactor**
+
+- La purificación ocurre **dentro del edificio**, en un tanque propio, después de derretir el hielo. No se hace bajo tierra: las bacterias necesitan temperatura y condiciones controladas, el resultado debe poder medirse, y meter bacterias en el subsuelo contaminaría Marte (protección planetaria). Orden: extraer → derretir en la cámara → purificar en el biorreactor.
 
 - La **dosis de bacterias** perclorato-reductoras depende de la pureza de la veta: hielo sucio necesita más bacterias y más tiempo.
 - El jugador mantiene la **temperatura** tibia mientras el agua pasa de púrpura o marrón a azul.
 - Si se queda corto, el agua sigue tóxica y no entra a los tanques.
 
-**Rendimiento:** volumen de la veta × pureza lograda × (1 − pérdidas por sublimación o ebullición). Una veta profunda bien trabajada rinde más, pero gasta más energía: el jugador decide según cuánta electricidad tenga.
+**Rendimiento:** volumen de la veta × pureza lograda × (1 − pérdidas por sublimación en la perforación). Si el agua hierve en el paso 2 se pierde el lote entero. Una veta profunda bien trabajada rinde más, pero gasta más energía: el jugador decide según cuánta electricidad tenga.
+
+#### Arte de referencia (`Art-source/2D/`)
+
+| Archivo | Uso |
+|---|---|
+| `Soil_Cutaway.png` | Vista en corte con 4 estratos: cada estrato es un rango de profundidad; las vetas van encima |
+| `Drill_Box_Cable.png` | Carrete, cable y cabezal: el cable estirado marca la profundidad; los LEDs, la potencia; la luz naranja, el sobrecalentamiento |
+| `Ice_Contamination.png` | 6 bloques de hielo, de pequeño y sucio a grande y limpio: pureza y volumen de cada veta |
+| `Thermometer_Heating.png` | Termómetro con zonas azul, verde y roja para la fase de calentar |
+
+**Faltan:** manómetro para presurizar; círculo de progreso; botón acelerar; tanque del biorreactor con el agua en sus colores (púrpura o marrón → azul); ícono de dosis de bacterias.
+
+**Observaciones pendientes del arte:** el taladro, el hielo y el termómetro tienen fondo oscuro con brillo pegado; exportarlos con canal alfa. Verificar el alfa de `Soil_Cutaway.png`.
 
 - **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
 - **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
@@ -346,7 +366,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-9. Aprobar la propuesta de **Agua** y su preparación "Alquimista Marciano" (arriba). Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
+9. **Agua** (paso 2 acordado): cuánto tiempo fuera de la zona verde cuenta como fallo; duración de cada fase y costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua.
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
