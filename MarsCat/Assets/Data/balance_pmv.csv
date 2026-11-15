@@ -5,6 +5,7 @@ clock.day_seconds;360;s_reales;diseno
 clock.night_seconds;120;s_reales;diseno
 clock.night_time_scale;3;factor;diseno
 clock.start_progress;0;fraccion;diseno
+colony.initial_cats;15;gatos;diseno
 cat.food.interval_seconds;240;s_reales;diseno
 cat.food.alert_seconds;480;s_reales;diseno
 cat.food.death_seconds;600;s_reales;diseno

@@ -1,4 +1,5 @@
 using System;
+using MarsCat.Logic.Data;
 
 namespace MarsCat.Logic.Cats
 {
@@ -37,7 +38,16 @@ namespace MarsCat.Logic.Cats
             InitialNeedSpread = initialNeedSpread;
         }
 
-        // FromBalance(BalanceData) requiere la implementación de Data del issue #22.
+        public static CatConfig FromBalance(BalanceData data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            return new CatConfig(data.Get("cat.food.interval_seconds"),
+                data.Get("cat.food.alert_seconds"), data.Get("cat.food.death_seconds"),
+                data.Get("cat.food.ration"), data.Get("cat.water.interval_seconds"),
+                data.Get("cat.water.alert_seconds"), data.Get("cat.water.death_seconds"),
+                data.Get("cat.water.ration"), data.Get("cat.initial_need_spread"));
+        }
 
         private static void ValidateNeed(float interval, float alert, float death, float ration, string name)
         {

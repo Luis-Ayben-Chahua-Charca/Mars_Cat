@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MarsCat.Logic.Data;
 
 namespace MarsCat.Logic.Work
 {
@@ -23,7 +24,36 @@ namespace MarsCat.Logic.Work
             return importance;
         }
 
-        // FromBalance(BalanceData) requiere el cargador del issue #22 y sus claves acordadas.
+        public static WorkConfig FromBalance(BalanceData data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            var groups = new[] { new List<string>(), new List<string>(), new List<string>() };
+            const string prefix = "building.";
+            const string suffix = ".energy_priority";
+            int count = 0;
+            // Reutiliza la misma prioridad de BuildingConfig, sin duplicar el balance.
+            foreach (string key in data.Keys)
+            {
+                if (!key.StartsWith(prefix, StringComparison.Ordinal)
+                    || !key.EndsWith(suffix, StringComparison.Ordinal))
+                    continue;
+                if (key.Length <= prefix.Length + suffix.Length)
+                    throw new ArgumentException("Identificador de edificio vacío en la clave: " + key);
+                string id = key.Substring(prefix.Length, key.Length - prefix.Length - suffix.Length);
+                if (string.IsNullOrWhiteSpace(id))
+                    throw new ArgumentException("Identificador de edificio vacío en la clave: " + key);
+                float priority = data.Get(key);
+                if (priority != 0f && priority != 1f && priority != 2f)
+                    throw new ArgumentOutOfRangeException(key, "La prioridad debe ser None (0), High (1) o Max (2).");
+                groups[(int)priority].Add(id);
+                count++;
+            }
+            if (count == 0)
+                throw new KeyNotFoundException("Faltan claves de balance 'building.<id>.energy_priority'.");
+            return new WorkConfig(groups[0], groups[1], groups[2]);
+        }
+
         private void Add(IEnumerable<string> buildings, int importance, string name)
         {
             if (buildings == null)

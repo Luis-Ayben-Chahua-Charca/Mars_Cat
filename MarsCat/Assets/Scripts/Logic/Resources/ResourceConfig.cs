@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MarsCat.Logic.Data;
 
 namespace MarsCat.Logic.Resources
 {
@@ -50,7 +51,30 @@ namespace MarsCat.Logic.Resources
             return id == ResourceId.Bacteria || id == ResourceId.Regolith;
         }
 
-        // FromBalance(BalanceData) queda pendiente hasta disponer de la clase de #22.
+        public static ResourceConfig FromBalance(BalanceData data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            var initial = new Dictionary<ResourceId, float>();
+            var capacities = new Dictionary<ResourceId, float>();
+            foreach (ResourceId id in Enum.GetValues(typeof(ResourceId)))
+            {
+                if (id == ResourceId.Bacteria || id == ResourceId.Regolith)
+                    continue;
+                string key;
+                switch (id)
+                {
+                    case ResourceId.CatWaste: key = "cat_waste"; break;
+                    case ResourceId.RatWaste: key = "rat_waste"; break;
+                    case ResourceId.CropResidue: key = "crop_residue"; break;
+                    default: key = id.ToString().ToLowerInvariant(); break;
+                }
+                string prefix = "resource." + key + ".";
+                initial.Add(id, data.Get(prefix + "initial"));
+                capacities.Add(id, data.Get(prefix + "capacity"));
+            }
+            return new ResourceConfig(initial, capacities);
+        }
 
         internal static void ValidateId(ResourceId id)
         {

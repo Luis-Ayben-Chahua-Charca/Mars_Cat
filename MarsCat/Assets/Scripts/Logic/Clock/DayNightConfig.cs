@@ -1,4 +1,5 @@
 using System;
+using MarsCat.Logic.Data;
 
 namespace MarsCat.Logic.Clock
 {
@@ -35,7 +36,14 @@ namespace MarsCat.Logic.Clock
             StartProgress = startProgress;
         }
 
-        // FromBalance(BalanceData) queda pendiente hasta disponer del contrato implementado en #22.
+        public static DayNightConfig FromBalance(BalanceData data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            return new DayNightConfig(data.Get("clock.day_seconds"),
+                data.Get("clock.night_seconds"), data.Get("clock.night_time_scale"),
+                data.Get("clock.start_progress"));
+        }
 
         private static void ValidatePositive(float value, string parameterName)
         {
