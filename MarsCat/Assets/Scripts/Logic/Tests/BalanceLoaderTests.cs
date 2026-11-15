@@ -11,7 +11,6 @@ namespace MarsCat.Logic.Tests
         private const string Header = "clave;valor;unidad;fuente\n";
 
         [Test]
-        [NonParallelizable]
         public void ParseUsesInvariantCultureAndPreservesSource()
         {
             CultureInfo previous = CultureInfo.CurrentCulture;
