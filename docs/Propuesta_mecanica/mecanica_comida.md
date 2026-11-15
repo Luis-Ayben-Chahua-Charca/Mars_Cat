@@ -1,7 +1,7 @@
 # Mecánica: Comida
 
 ## 1. Descripción General
-> **Resumen:** Es el alimento de los gatos. Recurso de urgencia lenta (días, no minutos): el hambre no mata rápido como la falta de aire, pero vuelve lentos a los gatos y arrastra a todas las demás mecánicas. Enseña dos ideas STEM centrales: la jerarquía de supervivencia (aire > agua > comida) y la cadena trófica (cultivos → ratas → gatos).
+> **Resumen:** Es el alimento de los gatos. Recurso de urgencia lenta (días, no minutos): el hambre no mata rápido como la falta de aire, pero vuelve lentos a los gatos y arrastra a todas las demás mecánicas. En el MVP no existe ningún cultivo vivo: los gatos sobreviven de las reservas que dejaron los humanos, y el arco del juego es pasar de herederos a ganaderos (ratas) y, después del MVP, a agricultores. Enseña dos ideas STEM centrales: la jerarquía de supervivencia (aire > agua > comida) y la cadena trófica (cultivos → ratas → gatos).
 
 - **Tipo de Recurso:** Tangible (raciones almacenables)
 - **Visibilidad:** Barra global de raciones en la interfaz + estado de hambre por gato
@@ -10,18 +10,23 @@
 
 ## 2. Bucle Económico (Inputs y Outputs)
 
+> **Cadena del MVP:** despensa + pellets + reservas almacenadas → ratas → gatos. Nada se planta; todo se hereda, se gestiona o se captura.
+
 ### Fuentes de Generación (Cómo se obtiene)
-* **Despensa de los humanos:** raciones empaquetadas, finitas; parte quedó destruida por la lluvia de meteoritos (reloj narrativo inicial). Incluye alimento de laboratorio para animales y suplementos de taurina.
-* **Invernadero rescatado:** cultivos de los humanos que sobrevivieron semanas con sistemas automáticos a media energía. La tarea no es plantar: es rescatar (regar, reconectar luces LED, cosechar lo vivo).
-* **Granja de ratas:** convierte cultivos en proteína. Los gatos son carnívoros obligados (necesitan taurina, que solo está en la carne): la granja no es decoración, es la única fuente sostenible de comida felina. La IA procesa fuera de cámara y entrega "barras de comida".
-* **Hierba gatera seca (catnip):** frasco dejado por los científicos (sabían que tendrían gatos). Consumible de moral, finito, no se cultiva en el MVP.
-* **Dependencias:** el invernadero consume **agua** (riego) y **energía** (LED y calor), y aporta **oxígeno** al sistema de soporte vital (ver nota en sección 5; coordinar con mecánica Oxígeno). El trigo y la papa futuros dependen del **suelo curado** (Minijuego 1).
+* **Despensa de los humanos:** raciones empaquetadas, finitas; parte quedó destruida por la lluvia de meteoritos (reloj narrativo inicial).
+* **Reservas de almacén frío:** verduras ya cosechadas por los humanos (lechuga, tomate). Son comida guardada, no plantas: no se cultivan ni se replantan en el MVP.
+* **Pellets de laboratorio:** el alimento de los animales de experimento. Stock finito; es la comida principal de la granja de ratas en el MVP.
+* **Suplementos de taurina:** del laboratorio. Los gatos son carnívoros obligados (sin taurina, que solo está en la carne, enferman); estos suplementos son el puente hasta que la granja produzca.
+* **Granja de ratas (MVP):** convierte pellets y sobras en proteína felina. Las ratas son omnívoras (por eso son plaga): comen pellets, cáscaras, restos y lo caducado. La IA procesa fuera de cámara y entrega "barras de comida".
+* **Hierba gatera seca (catnip):** frasco dejado por los científicos (sabían que tendrían gatos). Consumible de moral, finito, no se cultiva.
+* **Post-MVP:** cultivos propios (ver sección 6) en el suelo curado y en la base de hidroponía cercana.
+* **Dependencias:** la granja consume pellets/sobras y horas de gato; el minijuego de suelo consume **agua** y **energía**; los cultivos post-MVP consumen agua, energía y **suelo curado** (Minijuego 1). El trigo post-MVP aporta **oxígeno** al soporte vital: 56 g de O₂ por m² al día según la NASA (BVAD, tabla 4.2.8) — coordinar con mecánica Oxígeno.
 
 ### Sumideros y Consumo (En qué se gasta)
 * **Consumo activo:** cada gato come a diario (~250 kcal/sol ≈ 1 rata + suplemento). Escala con gatos despiertos.
-* **Alimentar la granja:** cada rata come ~20 g/sol de material vegetal. Escala con la población: más ratas = más comida futura, pero más consumo hoy.
-* **Caducidad:** lo fresco se echa a perder en pocos soles; las barras procesadas duran más.
-* **Plaga:** las ratas sueltas comen reservas e invernadero (ver Eventos Ambientales).
+* **Alimentar la granja:** cada rata come ~20 g/sol (pellets y sobras en el MVP; grano después). Escala con la población: más ratas = más comida futura, pero más consumo hoy.
+* **Caducidad:** las reservas frescas del almacén se echan a perder en pocos soles; las barras procesadas duran más.
+* **Plaga:** las ratas sueltas muerden las reservas y los cables (ver Eventos Ambientales).
 
 ---
 
@@ -29,7 +34,7 @@
 
 - **Límites de Almacenamiento:** la despensa tiene capacidad fija. Lo fresco caduca rápido; procesar en barras extiende la duración pero requiere la granja activa.
 - **Pérdida Gradual (Merma/Entropía):** Sí — caducidad de frescos y daño de plaga.
-- **Cuellos de Botella:** *early game*: la despensa se agota y obliga a rescatar el invernadero ya. *Mid game*: equilibrar la población de ratas (deslizador de parejas reproductoras) contra el consumo de cultivos. Crecimiento exponencial vs. capacidad de carga: ecología real en una perilla.
+- **Cuellos de Botella:** *early game*: todo lo comestible del arranque se agota o se echa a perder; no hay forma de producir hasta fundar la granja. *Mid game*: equilibrar la población de ratas (deslizador de parejas reproductoras) contra el stock menguante de pellets — la IA avisa: "los pellets alcanzan para X soles; necesitamos cultivos propios". Crecimiento exponencial vs. capacidad de carga: ecología real en una perilla.
 
 ---
 
@@ -45,12 +50,30 @@
 ---
 
 ## 5. Respaldo Científico / NASA (Space Apps Challenge)
+
+* **Datos reales de cultivos (NASA BVAD, tablas 4.2.6 a 4.2.8):**
+
+| Cultivo | Comida seca (g/m²/día) | Parte no comestible (g/m²/día) | Oxígeno (g/m²/día) | Agua (kg/m²/día) | Ciclo (días) |
+|---|---|---|---|---|---|
+| Trigo | 20,00 | 30,00 | 56,00 | 11,79 | 79 |
+| Papa | 21,06 | 9,03 | 32,23 | 2,88 | 132 |
+| Soya | 4,54 | 6,80 | 13,91 | 2,88 | 97 |
+| Lechuga | 6,57 | 0,73 | 7,78 | 1,77 | 28 |
+| Tomate | 10,43 | 12,74 | 26,36 | 2,77 | 85 |
+
+Consumo humano de referencia (tabla 3.3.6): 0,835 kg de O₂, 0,998 kg de CO₂ y 0,617 kg de comida seca por persona al día.
+
 * **Justificación Real:**
-Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/VEG-01) resultó segura y nutritiva; los chiles de Plant Habitat-04 (2021) fueron el cultivo más complejo cosechado en órbita. Cadena trófica: los gatos son carnívoros obligados — sin proteína animal y taurina enferman — lo que justifica la granja de ratas como solución biológicamente correcta, y enseña la pirámide alimenticia y su pérdida de energía entre niveles. La papa fue probada en condiciones marcianas simuladas por el Centro Internacional de la Papa (CIP, Lima) junto a la NASA — proyecto peruano. Moral: la NASA cultivó zinnias (flores) en la ISS por puro bienestar psicológico de la tripulación; el catnip cumple ese rol para gatos. Oxígeno: según los valores de referencia de la NASA (BVAD), ~25 m² de cultivo intensivo cubren el O₂ de un humano; 5 gatos respiran como medio humano, así que ~12 m² de invernadero activo pueden cubrir el aire de toda la tripulación — cruce directo con la mecánica de Oxígeno.
-* **Uso de Datos/APIs de NASA:** OSDR (Open Science Data Repository): estudios VEG-01 (seguridad alimentaria de cultivos ISS) y OSD-804 / Rodent Research-1 (salud ósea, justifica ejercicio y gravedad en la salud de la tripulación). BVAD para consumos por individuo. Kit educativo de producción de comida espacial de la CSA (agencia aliada oficial).
+Cadena trófica: los gatos son carnívoros obligados — sin proteína animal y taurina enferman — lo que convierte la granja de ratas en la solución biológicamente correcta, y enseña la pirámide alimenticia y la pérdida de energía entre niveles. Las ratas son omnívoras y de ciclo rapidísimo (gestación de 21 días, adultas en 6 semanas): el ganado más veloz posible. Con los datos del BVAD, 1 m² de trigo rinde 20 g de grano seco al día, justo lo que come una rata: **~1 m² de trigo por rata**, así que una granja de 60–100 ratas pide 60–100 m² de cultivo, mientras que el oxígeno de los 5 gatos se cubre con ~7,5 m². Esa diferencia **es** la pérdida de energía de la cadena trófica, en números.
+Prioridad del trigo: produce 56 g de O₂ por m² al día, casi el doble que la papa, pero consume 11,79 kg de agua por m² al día, cuatro veces más — más aire y grano a cambio de más agua: la decisión con costo que pide el reto. Además deja 30 g de paja por m² al día (alimento de hongos y compost). La soya rinde solo 4,54 g, lo que justifica dejarla como opcional.
+Oxígeno: 835 g por persona al día ÷ 56 g por m² de trigo = **~15 m² por humano**; asumiendo que un gato respira ~1/10 de un humano (estimación propia), **~7,5 m² de trigo cubren el aire de los 5 gatos** — cruce directo con la mecánica de Oxígeno (aplica post-MVP).
+Cultivos espaciales reales que respaldan el post-MVP: la lechuga roja de la ISS (Veggie/VEG-01) resultó segura y nutritiva; los chiles de Plant Habitat-04 (2021) se cosecharon y comieron en órbita; la soya completó su ciclo en la ISS (2002); la papa fue probada en condiciones marcianas simuladas por el Centro Internacional de la Papa (CIP, Lima) junto a la NASA — proyecto peruano. Moral: la NASA cultivó zinnias (flores) en la ISS por puro bienestar psicológico; el catnip cumple ese rol para gatos.
+
+* **Uso de Datos/APIs de NASA:** BVAD (tablas de rendimiento de cultivos y consumo por individuo: la fuente de nuestros números). OSDR: estudios VEG-01 (seguridad alimentaria de cultivos en ISS) y OSD-804 / Rodent Research-1 (salud en microgravedad). Kit educativo de producción de comida espacial de la CSA (agencia aliada oficial).
+
 * **Artículos de Referencia:**
+  - NASA BVAD — Baseline Values and Assumptions Document. Cifras tomadas de la edición JSC-47804 (2002): https://spacearchitect.org/pubs/NASA-JSC-47804.pdf · Edición 2018: https://ntrs.nasa.gov/citations/20180001338 (verificar que coincidan antes de la entrega).
   - Khodadad et al., "Microbiological and Nutritional Analysis of Lettuce Crops Grown on the ISS", *Frontiers in Plant Science* (vía OSDR).
-  - NASA BVAD — Baseline Values and Assumptions Document (https://ntrs.nasa.gov/citations/20180001338)
   - CIP–NASA, proyecto "Potatoes on Mars" (cipotato.org)
   - CSA, "Food production on the Moon and in remote areas" (asc-csa.gc.ca)
   - Para el Minijuego 1: Davila et al. 2013 (percloratos, *Int. J. Astrobiology*); Verseux et al. 2021 (cianobacterias, *Frontiers in Microbiology*); Harris et al. 2021 (rizobios en regolito, *PLOS ONE*).
@@ -59,18 +82,18 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 
 ## 6. MVP / Post-MVP
 
-**MVP:**
-- Despensa finita + rescate del invernadero vecino (regar, reconectar LED, cosechar).
-- Granja de ratas completa: capturas ambientales → redada → clasificación, alimentación y control de sobrepoblación.
-- Catnip seco como consumible de moral.
-- Minijuego 1 (purificar tierra): produce las primeras bandejas de "suelo vivo" como hito.
+**MVP (todo son reservas; no hay cultivos vivos):**
+- Despensa + almacén frío + pellets + taurina + catnip: gestión de reservas que declinan.
+- Granja de ratas completa: capturas ambientales → redada → clasificación, alimentación (pellets/sobras) y control de sobrepoblación.
+- Minijuego 1 (purificar tierra): produce las primeras bandejas de "suelo vivo" como hito; la siembra llega después.
 - Minijuego 2 (la redada).
 
 **Post-MVP:**
-- Siembra en suelo curado: trigo enano y papa (calorías para la granja).
-- Hidroponía nueva (zona a desbloquear), espirulina (tanques), hongos (reciclan desechos).
-- Recolección de regolito exterior (gato con traje o robot).
-- Cultivo de catnip.
+- Expansión física: los gatos salen hacia una base cercana que tiene, entre otras cosas, la hidroponía.
+- Siembra en suelo curado: **trigo enano** (prioridad: grano para ratas + paja + oxígeno; ~1 m² por rata, así que la granja pide 60–100 m²) y **papa** (calorías, carta CIP; ciclo de 132 días frente a 79 del trigo). **Soya** opcional (con trigo + soya se fabrican "pellets caseros", la dieta real de ratas de laboratorio).
+- Sobras de la hidroponía de la otra base como complemento de vitaminas para las ratas.
+- Espirulina (tanques), hongos (crecen sobre la paja del trigo y desechos), cultivo de catnip.
+- Ciclo cerrado: desechos de la granja → compostera → compost para el Minijuego 1 → tierra para el trigo → trigo para las ratas.
 - Comunicación con la Tierra con retraso real (hoja de ruta general del juego).
 
 ---
@@ -79,9 +102,9 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 
 > Cosas que pasan solas y perjudican; el jugador decide cuándo y cómo responder.
 
-* **Ratas salvajes (pre-redada):** desde el inicio del juego hay ratas sueltas (escaparon durante la evacuación) dañando reservas e invernadero. El gato las ve, al principio no logra atraparlas; captura algunas (~3) de forma ambiental durante otras misiones. Preparan la redada sin tutorial explícito.
+* **Ratas salvajes (pre-redada):** desde el inicio hay ratas sueltas (escaparon durante la evacuación) mordiendo las reservas y los empaques de la despensa. El gato las ve, al principio no logra atraparlas; captura algunas (~3) de forma ambiental durante otras misiones. Preparan la redada sin tutorial explícito.
 * **Rata fugada de la granja (post-redada):** una rata escapa sin que la IA lo note; se descubren los estragos (reservas mordidas, un cable dañado de otra mecánica). Sigue haciendo daño mientras no sea capturada. Nace de la gestión del jugador, no de una misión incompleta.
-* **Lote echado a perder:** comida fresca no cosechada o mal almacenada caduca; la IA lo señala y explica por qué.
+* **Lote echado a perder:** reservas frescas mal gestionadas caducan; la IA lo señala y explica por qué.
 * **Gancho para otras mecánicas:** las ratas pueden morder cables de energía o sensores de oxígeno — cada mecánica define su "evento de daño por rata" (coordinar en equipo).
 
 ---
@@ -97,7 +120,7 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 * **Estación 1 — Lavadora:** dosificar agua sobre el regolito mirando el medidor de perclorato en vivo. Poca agua deja veneno; mucha desperdicia. Las bacterias del tanque limpian el agua para reusar (~90 %).
 * **Estación 2 — Tanques verdes:** mantener felices a las cianobacterias con tres perillas (luz, CO₂, temperatura); fabrican la materia orgánica.
 * **Estación 3 — Mezcladora:** armar la receta (~85 % regolito limpio, ~10 % compost, ~5 % biomasa) e inocular al final.
-* **Sin fallo duro:** la IA ejecuta cada estación cuando el jugador entra al rango aceptable, guiando ("un poco más", "¡uy, casi te pasas!"). La eficiencia se premia con más tierra por lote, nunca con calificaciones.
+* **Sin fallo duro y sin calificaciones:** la IA ejecuta cada estación cuando el jugador entra al rango aceptable, guiando ("un poco más", "¡uy, casi te pasas!"). La eficiencia se premia con más tierra por lote; hacerlo regular rinde menos, pero hay un piso: nunca se pierde el lote.
 * **Tiempo:** el lote corre en segundo plano y avisa al terminar. Gag: la IA anuncia "listo, ahora esperamos unas semanas" y el gato no entiende — la lección de escalas de tiempo, disfrazada.
 * **El valor educativo está en lo que la IA va diciendo durante la acción**, no en el minijuego en sí.
 
@@ -109,17 +132,17 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 
 **Mecánica Jugable (persecución 2D + gestión):**
 * **Detonante:** al terminar el primer lote de suelo, la IA cruza datos y descubre la magnitud de la plaga: hay que capturarlas todas.
-* **Captura:** destreza felina del jugador; la IA ayuda de forma parametrizada (no controlable). Sensores/radar marcan a las restantes para evitar la búsqueda frustrante de "la última rata".
+* **Captura:** destreza felina del jugador; la IA ayuda de forma parametrizada (no controlable). Sensores/radar marcan a las restantes para evitar la búsqueda frustrante de "la última rata". Se capturan todas las marcadas.
 * **Presión:** mientras dura la redada, las ratas siguen comiendo reservas y pueden dañar cables. UNA métrica visible para el niño: "reservas perdidas".
 * **Tono:** solo captura en pantalla. La IA pide no comérselas: "vivas valen más — serán tu granja". La conversión a barras de comida ocurre fuera de cámara, a cargo de la IA.
-* **Granja:** el escáner del laboratorio clasifica machos y hembras (la IA explica por qué importan más hembras para criar); alimentarlas cuesta cultivos (~20 g/rata/sol); un deslizador de parejas reproductoras controla la sobrepoblación.
+* **Granja:** el escáner del laboratorio clasifica machos y hembras (la IA explica por qué importan más hembras para criar); alimentarlas cuesta pellets y sobras (~20 g/rata/sol); un deslizador de parejas reproductoras controla la sobrepoblación.
 * **Licencia declarada:** las ratas crecen acelerado "porque eran experimentos" (misma tecnología que los gatos). La licencia es pequeña: las ratas reales ya gestan en 21 días y maduran en 6 semanas — el ganado más rápido que existe.
 
-**Contexto STEM:** cadena trófica (las plantas alimentan a las ratas, las ratas a los gatos, y en cada nivel se pierde energía), ganadería vs. caza, crecimiento exponencial de poblaciones y capacidad de carga.
+**Contexto STEM:** cadena trófica (las plantas alimentan a las ratas, las ratas a los gatos, y en cada nivel se pierde energía), ganadería vs. caza, omnivoría de las ratas (por eso son plaga), crecimiento exponencial de poblaciones y capacidad de carga.
 
 ---
 
-**Nota de rigor:** los números de consumo, colonia de ratas (60–100 para 5 gatos) y metros cuadrados de cultivo son estimaciones de diseño basadas en BVAD y biología básica, no especificaciones probadas — presentarlas como tales ante el jurado.
+**Nota de rigor:** los rendimientos de cultivos (comida, paja, oxígeno y agua por m² al día) son datos reales de la NASA (BVAD JSC-47804, tablas 4.2.6 a 4.2.8; la columna de días de ciclo conviene verificarla en el PDF). Los consumos de gatos (~250 kcal/sol) y ratas (~20 g/sol), el tamaño de la colonia (60–100) y el factor "1 gato = 1/10 de humano" son estimaciones de diseño propias — presentarlas como tales ante el jurado.
 
 ---
 
@@ -140,7 +163,7 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 * **Hidroponía:** cultivo sin tierra, con raíces en agua con nutrientes. Es como cultivan la lechuga en la ISS.
 * **Micorrizas / rizobios:** hongos de raíz y bacterias fijadoras de nitrógeno que se inoculan al suelo nuevo (post-MVP).
 * **Pellets:** alimento balanceado de animales de laboratorio (básicamente grano + proteína de soya).
-* **BVAD:** documento de la NASA con los valores de consumo por persona (oxígeno, agua, comida). Fuente de nuestros números.
+* **BVAD:** documento de la NASA con los valores de consumo por persona y rendimiento de cultivos (oxígeno, agua, comida, biomasa por m²). Fuente de nuestros números reales; usamos la edición JSC-47804 (2002).
 * **OSDR:** repositorio abierto de la NASA de biología espacial. De ahí citamos VEG-01 (lechuga ISS) y Rodent Research-1 (salud ósea).
 * **CIP:** Centro Internacional de la Papa, en Lima. Probó papas en condiciones marcianas simuladas con la NASA.
 * **CSA:** agencia espacial de Canadá, aliada oficial del reto; usamos su kit educativo de comida espacial.
@@ -156,3 +179,26 @@ Cultivos en el espacio: la lechuga roja cultivada en la ISS (experimento Veggie/
 * **Deslizador de parejas:** control de la granja que fija cuántas ratas se reproducen — más futuro vs. más consumo hoy.
 * **MVP:** la versión mínima jugable que se entrega en la hackatón. **Post-MVP:** lo diseñado para después (expansión a la base de hidroponía, siembra, espirulina...).
 * **Licencia declarada:** elemento de ficción admitido abiertamente (gatos inteligentes, criogenia, ratas aceleradas), separado de la capa de ciencia real.
+
+---
+
+## 10. Fuentes y datasets usados
+
+### Datos que alimentan números del juego
+| Fuente | Qué sacamos | Dónde se usa |
+|---|---|---|
+| [NASA BVAD, JSC-47804 (2002)](https://spacearchitect.org/pubs/NASA-JSC-47804.pdf) — tablas 4.2.6 a 4.2.8 y 3.3.6 | Rendimiento de trigo, papa, soya, lechuga y tomate (comida, paja, oxígeno y agua por m² al día; ciclo en días) y consumo humano de referencia | Tabla de la sección 5; balance de oxígeno, agua y alimento de la granja |
+| [NASA OSDR — VEG-01](https://osdr.nasa.gov/bio/repo/) (Khodadad et al., *Frontiers in Plant Science*) | La lechuga cultivada en la ISS resultó segura y nutritiva | Respaldo de los cultivos post-MVP y diálogos de la IA |
+| [NASA OSDR — OSD-804 / Rodent Research-1](https://osdr.nasa.gov/bio/repo/data/studies/OSD-804) | Pérdida de hueso en microgravedad: se debilitan los huesos que cargan peso, no la columna | Diálogos de la IA sobre salud y gravedad |
+
+### Fuentes que respaldan procesos y decisiones de diseño
+| Fuente | Qué respalda |
+|---|---|
+| Davila et al. (2013), *International Journal of Astrobiology* | Percloratos en el regolito y su limpieza con bacterias (Minijuego 1) |
+| Verseux et al. (2021), *Frontiers in Microbiology* | Cianobacterias creciendo con atmósfera marciana y regolito simulado (Minijuego 1) |
+| Harris et al. (2021), *PLOS ONE* | Rizobios fijando nitrógeno en regolito simulado (suelo post-MVP) |
+| CIP–NASA, "Potatoes on Mars" (cipotato.org) | Papa en condiciones marcianas simuladas — proyecto peruano |
+| [CSA, "Food production on the Moon and in remote areas"](https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/) | Producción de comida fuera de la Tierra, material educativo (agencia aliada del reto) |
+
+### Qué NO viene de estas fuentes
+Consumo de los gatos (~250 kcal/sol), de las ratas (~20 g/sol), tamaño de la colonia (60–100), receta del suelo (85/10/5) y el factor "1 gato = 1/10 de humano": son estimaciones de diseño propias, construidas a partir de los datos de arriba y de biología básica.
