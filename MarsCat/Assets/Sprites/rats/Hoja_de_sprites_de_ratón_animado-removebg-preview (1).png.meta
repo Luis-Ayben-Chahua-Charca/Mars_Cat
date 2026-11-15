@@ -1,0 +1,623 @@
+fileFormatVersion: 2
+guid: 39a59f5a11cd8fd44af6fb0f664545ff
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_0"
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 220
+        width: 89
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a974c1b6a51f6a41a4d7934564b556d
+      internalID: -350730829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_1"
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 223
+        width: 87
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: -0.04918033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52fc4d9fec790e343a1ed4afeb0fd92e
+      internalID: -753595266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_2"
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 224
+        width: 92
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5, y: -0.06779661}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d394f1f20715b0549a9611a04e7f2bf0
+      internalID: 370171688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_3"
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 222
+        width: 84
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: -0.032786883}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4309186337e851f4782e488de5c003ee
+      internalID: -494192990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_4"
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 152
+        width: 84
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: -0.037037037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f93340b949af7b43a22462cc0a67c18
+      internalID: 1727353922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_5"
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 153
+        width: 80
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: -0.056603774}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e5bb662033b9a40b8d93bd3017a73d
+      internalID: 1001680908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_6"
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 154
+        width: 78
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: -0.07272727}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4544c85f56f275e479167a90822e6000
+      internalID: 1754023770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_7"
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 153
+        width: 82
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05357143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef108702c8162a344bfd5426894b167f
+      internalID: -730476730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_8"
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 152
+        width: 86
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5, y: -0.03508772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5a54ebab002104faf53ee7588809b1
+      internalID: 1722702616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_9"
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 154
+        width: 88
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: -0.071428575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9bcb7693041cec4cb9fa8ffed51eac8
+      internalID: -1879962509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_10"
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 151
+        width: 77
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5, y: -0.016949153}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b907317a055c646a37c04c356b4506
+      internalID: 1297805559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_11"
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 150
+        width: 83
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd3c73658ad178418c5b374e6fc5701
+      internalID: 1782066661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_12"
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 80
+        width: 83
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4008ed04db5c35649815f0483e2d6114
+      internalID: -746145233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_13"
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 81
+        width: 87
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: -0.017857144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3a6e35dbbe3f047a50c8e6dede1e06
+      internalID: -315048242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_14"
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 84
+        width: 89
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: -0.0754717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8ed47e2243e3e48a3d3e3852da5dfd
+      internalID: 215288112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_15"
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 83
+        width: 89
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb7ed2774d365a48b76bf643bcfdbf0
+      internalID: 310334812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_16"
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 82
+        width: 93
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: -0.04255319}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc11f3d29310b842acea34c885ff69e
+      internalID: -1270679127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_17"
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 81
+        width: 86
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: -0.018867925}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed251402750e8a4ca7f1323af432cd4
+      internalID: 522798635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_18"
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 7
+        width: 84
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da94cbf032f1ae4e8f6e165f344f2b5
+      internalID: -185548318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_19"
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 6
+        width: 84
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5, y: -0.033898305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e462db53d833f9446a17c75fe2de61f0
+      internalID: -713301525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_20"
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 4
+        width: 96
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da46ef7f6c8620b48bd15f6b07483a4a
+      internalID: -569445681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_21"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 6
+        width: 92
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: -0.035714287}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b6a1cc728c022e45a07799b3e140fb8
+      internalID: 564000947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3176da93ddd99b64cbb37a27401b9772
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_0": -350730829
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_1": -753595266
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_10": 1297805559
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_11": 1782066661
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_12": -746145233
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_13": -315048242
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_14": 215288112
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_15": 310334812
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_16": -1270679127
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_17": 522798635
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_18": -185548318
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_19": -713301525
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_2": 370171688
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_20": -569445681
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_21": 564000947
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_3": -494192990
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_4": 1727353922
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_5": 1001680908
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_6": 1754023770
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_7": -730476730
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_8": 1722702616
+      "Hoja_de_sprites_de_rat\xF3n_animado-removebg-preview (1)_9": -1879962509
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
