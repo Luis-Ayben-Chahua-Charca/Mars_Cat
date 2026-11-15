@@ -58,7 +58,7 @@ Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 - Incluye el **ciclo de día y noche** y el **hambre individual** de cada gato.
 - **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras, la automatización ni el sobretrabajo nocturno.
 
-### Reglas del PMV (propuesta, no acordada)
+### Reglas del PMV (acordado)
 
 Para que el tutorial sea seguro y los trajes no se degraden:
 

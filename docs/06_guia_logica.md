@@ -112,7 +112,7 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
   - `string Source(string key)`: la fuente de ese valor.
 - Reglas: formato de T4; clave duplicada o número inválido → excepción con el **número de línea**.
 - **Probar:** lee con punto decimal aunque la cultura del sistema sea `es-PE`; ignora comentarios y líneas vacías; detecta duplicados; `Source` devuelve la fuente.
-- **Datos:** solo entran valores con fuente en la columna `fuente`. Un valor de diseño se marca `diseno`; uno que falta, `placeholder`. Las cifras de `docs/Propuesta_mecanica/balance_recursos.md` no se copian enteras: varias chocan con lo acordado (muerte a los 2 soles, oxígeno en tanques, sin agricultura en el PMV, 20 gatos).
+- **Datos:** solo entran valores con fuente en la columna `fuente`, con una de estas etiquetas: `nasa`, `tierra`, `derivado`, `estimacion`, `diseno` o `placeholder` (qué significa cada una y cuándo se usa: `docs/diseno/05_datos_nasa.md`, "Cuando no hay dato"). Para el código la fuente es solo texto: agregar etiquetas no cambia `BalanceLoader`. Las cifras de `docs/Propuesta_mecanica/balance_recursos.md` no se copian enteras: varias chocan con lo acordado (muerte a los 2 soles, oxígeno en tanques, sin agricultura en el PMV, 20 gatos).
 
 ### #20 (parte 1) — Resultado de preparación (`Preparation`) · Lógica 2
 
@@ -253,7 +253,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 ## Olas 4 en adelante — contratos propuestos
 
-**Estado:** propuesta de Gestión, **pendiente de aprobación de Leyni**. Nada de esta sección se programa hasta que el issue tenga marcado "Contrato acordado".
+**Estado:** **acordados** el #57 (granja, redada y caza), el #54 (solo el paso 2, con la cadena de abajo) y el #20 parte 2 (Fábrica de Suelo y su fórmula de rendimiento). El resto es propuesta de Gestión pendiente de aprobación de Leyni: no se programa hasta que el issue tenga marcado "Contrato acordado".
 
 ### Reglas de los minijuegos
 
@@ -267,7 +267,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 | Persona | Issues | Carpetas nuevas |
 |---|---|---|
 | **Lógica 1** | #56 (filtros del MOXIE), #57 (granja de ratones, esqueleto), #23 (secuencia del tutorial, esqueleto). Después, #55 (aire), cuando se apruebe su modelo | `Air/`, `Food/`, `Tutorial/` |
-| **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2; que el PMV lleve solo ese paso está **pendiente de aprobación**), #58 (Compostador + Sopa de Bacterias), #20 parte 2 (Fábrica de Suelo) | `Water/`, `Recycling/`, `Preparation/` (ya suya) y `Energy/` (ya suya) |
+| **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2, acordado), #58 (Compostador + Sopa de Bacterias), #20 parte 2 (Fábrica de Suelo) | `Water/`, `Recycling/`, `Preparation/` (ya suya) y `Energy/` (ya suya) |
 
 ### Rescate Solar (lógica) · Lógica 2 · `MarsCat.Logic.Energy`
 
@@ -284,7 +284,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 ### Cámara de derretido (#54, paso 2) · Lógica 2 · `MarsCat.Logic.Water`
 
-**Para qué:** las dos fases con aguja y círculo de progreso del extractor (`03_sistemas.md`, "Paso 2", acordado). Que el PMV lleve solo este paso está pendiente de aprobación; el paso 2 se programa igual porque está acordado.
+**Para qué:** las dos fases con aguja y círculo de progreso del extractor (`03_sistemas.md`, "Paso 2"). **Acordado: el PMV lleva solo este paso**, dentro de una cadena que deja enchufar los pasos 1 y 3 después sin cambiar nada.
 
 - `enum MeltPhase`: `Pressurize`, `Heat`, `Done`, `Lost`.
 - `MeltingConfig`: progreso inicial (0,4), segundos para llenar (5), velocidad de bajada fuera de zona, ancho de la zona verde, oscilación de la aguja, factor del botón acelerar (2) y electricidad extra al acelerar. Claves `minigame.melt.*`.
@@ -293,9 +293,17 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - `void SetAccelerated(bool)`.
   - `MeltPhase Phase`, `float Needle` (0–1), `float Progress` (0–1).
   - Si `Progress` llega a 0: en `Pressurize` la fase se reinicia; en `Heat` el agua hierve y el lote se pierde (`Fail("prep.water.boiled")`).
-  - Al terminar `Heat`: `PreparationResult.Ok(1)`. El volumen del lote sale de la configuración del edificio.
+  - Al terminar `Heat`: `PreparationResult.Ok(1)`.
   - Eventos `OnPhaseCompleted(MeltPhase)`, `OnPhaseFailed(MeltPhase)`, `OnFinished(PreparationResult)`.
 - **Probar:** en el centro se llena en 5 s; acelerado, en 2,5 s y cobra electricidad; fallar la presión reinicia sin perder el lote; fallar el calor pierde el lote.
+
+**Cadena del extractor, sin deuda técnica** (`MarsCat.Logic.Water`):
+
+- `readonly struct IceBatch`: `float Liters`, `float Purity` (0–1).
+- `interface IIceSource`: `IceBatch Take()`. PMV: `FixedVein(IceBatch)`, leído de `minigame.water.vein.liters` y `minigame.water.vein.purity`. Post-PMV: el sondeo (paso 1) implementa la misma interfaz y además puede devolver `Fail`.
+- `interface IWaterTreatment`: `IceBatch Treat(IceBatch)` y `bool IsSafe(IceBatch)`. PMV: `NoTreatment` (devuelve el mismo lote y lo da por seguro). Post-PMV: el biorreactor (paso 3).
+- `WaterExtraction(IIceSource, MeltingChamberSession, IWaterTreatment, ResourcePool)`: cuando la cámara termina con `Ok`, toma el lote, lo trata y, si es seguro, suma `Liters × Purity × Yield` de agua al pool. Si la cámara falla, el lote se pierde y no se suma nada.
+- **Probar:** con la veta fija y la cámara bien jugada se suman los litros del CSV; si el agua hierve no se suma nada; cambiar `NoTreatment` por un tratamiento de prueba no cambia la cámara.
 
 ### Fábrica de Suelo (#20, parte 2) · Lógica 2 · `MarsCat.Logic.Preparation`
 
@@ -316,7 +324,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - `GuideRange`: tolerancia por lado; con tolerancia 0 de un lado, quedarse corto es fuera de rango; dentro de la meseta, puntaje 1.
   - `Confirm()`: promedio ponderado; si `S < 1`, la clave de motivo es la del paso con menor puntaje (`prep.<paso>.improve`).
   - **Probar también:** abono 20 % y agua 1,5 × guía rinden 1,10; dentro de la meseta el puntaje es 1.
-- La fórmula sigue **pendiente de aprobación** en #14; como vive en `YieldConfig`, cambiar los números no toca el código.
+- La fórmula está **acordada**; como vive en `YieldConfig`, ajustar los números no toca el código.
 
 ### Compostador (#58, paso 1) · Lógica 2 · `MarsCat.Logic.Recycling`
 

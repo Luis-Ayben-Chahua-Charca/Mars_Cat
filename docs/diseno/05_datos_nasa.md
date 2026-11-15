@@ -190,6 +190,23 @@ Enlaces:
 
 **Investigado:** los restos de papa tienen valor publicado (WUR). Las heces de gato no: se usa una estimación con estiércoles de dieta proteica y la IA lo presenta como estimación.
 
+## Cuando no hay dato (acordado como regla de trabajo)
+
+Ningún número se inventa como si fuera real. Se busca en este orden y la columna `fuente` del CSV dice de dónde salió:
+
+| Orden | Etiqueta | Qué es | Ejemplo | Cómo lo dice la IA |
+|---|---|---|---|---|
+| 1 | `nasa` | Dato publicado por NASA, ESA u otra agencia | BVAD: 21 g de papa por m² al día | Como dato real |
+| 2 | `tierra` | Dato publicado de la Tierra (universidad, guía oficial) | C:N de los restos de papa (WUR) | Como dato real, aclarando que es de la Tierra |
+| 3 | `derivado` | Cálculo hecho con datos de 1 o 2; el cálculo queda escrito en el documento | Oxígeno de un gato escalado desde el de un humano | Como aproximación |
+| 4 | `estimacion` | Valor razonado a partir de casos parecidos, sin dato directo; se escribe el razonamiento | C:N de heces de gato (~10:1, por los estiércoles de dieta proteica) | Como estimación: "no hay mediciones; se parece a…" |
+| 5 | `diseno` | Elegido para que el juego funcione, sin pretender realismo | Sol de 8 minutos; ratas que se duplican en 1 sol | Como **licencia declarada** cuando el jugador lo vería raro |
+| — | `placeholder` | Aún sin decidir; solo para que el juego corra | Topes de tanques | No se muestra ni se cita |
+
+- **Cómo elegir un valor de diseño:** se parte del **efecto que se busca** y se despeja el número. Ejemplo: "sin MOXIE, el aire baja de 21 % a 16 % en 1 sol" fija el volumen de la base; "con 15 ratas la granja casi cubre la demanda" fija el ritmo de cría.
+- **En la presentación:** solo se citan como reales los niveles 1 y 2. Los demás se presentan como aproximación, estimación o licencia.
+- **Un `placeholder` no puede llegar a la entrega** en un valor que el jugador vea o que decida si el tutorial se puede terminar.
+
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.

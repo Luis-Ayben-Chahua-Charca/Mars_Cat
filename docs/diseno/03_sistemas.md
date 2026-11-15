@@ -75,7 +75,7 @@ Los gatos son **carnívoros obligados**: necesitan proteína animal y taurina, q
 - La papa da **forraje** (la parte comestible, para las ratas), **fibra** (de la parte no comestible; licencia: fibra de tallos para trajes) y **restos de cosecha** (para el reciclador).
 - Una rata de laboratorio come unos 20 g de alimento seco al día, y 1 m² de papa rinde unos 21 g al día: **cerca de 1 m² de cultivo por rata**. Esa diferencia entre niveles es la pérdida de energía de la cadena alimentaria.
 
-### Ritmo de la granja de ratas (propuesta de balance)
+### Ritmo de la granja de ratas (acordado)
 
 **Meta:** que la granja alimente a los 15 gatos solo si el jugador la mantiene con forraje, y que tarde lo suficiente para que las reservas iniciales y las ratas sueltas importen.
 
@@ -224,7 +224,7 @@ Inspirado en *Piano Tiles*. El gato, como "conserje espacial", limpia el polvo d
 
 Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de sodio → motor Stirling) y regulación de válvulas para mantener el motor en la zona verde. Enseña la idea de calor → movimiento → electricidad.
 
-### Rendimiento de las preparaciones de valor guía (propuesta detallada, pendiente de aprobación)
+### Rendimiento de las preparaciones de valor guía (acordado)
 
 Aplica a los minijuegos de **valor guía y rango**: Fábrica de Suelo y Compostador. Rescate Solar, la Sopa y los filtros del MOXIE ya tienen su propia medida (eficiencia o tiempo en verde) y la convierten al mismo rango al final. Todos los números viven en `YieldConfig` (CSV): cambiarlos no toca el código.
 
@@ -314,7 +314,14 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aqu
 
 Panel de estación: el jugador **no controla al gato**, que se asigna solo al puesto. La mecánica es propia y gira en torno a **dónde y qué tan hondo perforar**.
 
-**Paso 1 — Sondeo y perforación**
+**En el PMV (acordado): solo el paso 2.**
+
+- La IA explica que el radar ya ubicó una veta y que el taladro la dejó lista: el jugador entra directo a la **cámara de derretido**.
+- La veta del PMV es **fija**: volumen y pureza salen del CSV. Su hielo se considera ya apto (sin biorreactor), y la IA lo dice como licencia.
+- **Sin deuda técnica:** la preparación es una cadena de tres piezas: *de dónde sale el hielo* (paso 1), *derretirlo* (paso 2) y *tratar el agua* (paso 3). En el PMV la primera es una veta fija y la tercera no hace nada. Después del PMV se cambian por el sondeo y el biorreactor sin tocar la cámara ni el resultado (contrato en `docs/06_guia_logica.md`).
+- Los pasos 1 y 3, descritos abajo, son **post-PMV**.
+
+**Paso 1 — Sondeo y perforación** (post-PMV)
 
 - Una **vista en corte del subsuelo** bajo el cráter muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
 - El jugador **coloca** el taladro y elige la **profundidad**:
@@ -335,7 +342,7 @@ Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene 
 - El orden es fijo (primero presión, después calor), y el castigo es más duro en la segunda fase: el jugador aprende que calentar sin presión hace hervir el agua.
 - **Botón acelerar:** reduce el tiempo a la **mitad** (2,5 segundos), pero gasta **más electricidad** y hace las agujas **más inestables** (oscilan más). Es un desafío opcional: más rápido, más caro y más difícil.
 
-**Paso 3 — Biorreactor**
+**Paso 3 — Biorreactor** (post-PMV)
 
 - La purificación ocurre **dentro del edificio**, en un tanque propio, después de derretir el hielo. No se hace bajo tierra: las bacterias necesitan temperatura y condiciones controladas, el resultado debe poder medirse, y meter bacterias en el subsuelo contaminaría Marte (protección planetaria). Orden: extraer → derretir en la cámara → purificar en el biorreactor.
 
@@ -499,10 +506,10 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
+9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV (solo el paso 2, acordado): volumen y pureza de la veta fija. Post-PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
-21. **Granja de ratones:** aprobar el ritmo propuesto (12 sueltas, tope 40, 0,75 por sol, pie de 15, 4 raciones por rata) y probarlo; dónde están las ratas sueltas; cuántos desechos produce cada rata; cuánto tardan la captura y la caza.
+21. **Granja de ratones:** probar el ritmo acordado (12 sueltas, tope 40, 0,75 por sol, pie de 15, 4 raciones por rata); dónde están las ratas sueltas; cuántos desechos produce cada rata; cuánto tardan la captura y la caza.
 24. **Pasillos:** si cada pasillo se repara junto con su módulo (propuesta), si la red de la zona Media debe quedar intacta desde el inicio para no aislar edificios, y si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa.
 25. **Caminos de los gatos:** si usan una red de puntos de paso (puestos de trabajo y necesidades, como comer en el depósito) en lugar de una malla de navegación. Se decide en el issue de los gatos en escena (#33).
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
