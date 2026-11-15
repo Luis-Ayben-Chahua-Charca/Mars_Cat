@@ -18,7 +18,7 @@ Mars_Cat/
 │   └── skills/work-issue/ Skill /work-issue: flujo por issue y propuesta de commit
 ├── agents/                Perfiles de agentes (Gestión)
 ├── docs/                  Documentación del equipo (Gestión)
-│   ├── 00–04_*.md         Proceso: stack, roles, reglas, agentes, hitos
+│   ├── 00–05_*.md         Proceso: stack, roles, reglas, agentes, hitos, plan de implementación
 │   ├── diseno/            Diseño del juego (Gestión; contenido acordado en issues)
 │   ├── Propuesta_mecanica/ Investigación y propuestas por mecánica, insumo para diseno/ (cualquier integrante)
 │   └── escenas/           Notas de armado de escenas (Design Master, solo si Leyni lo pide)
