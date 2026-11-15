@@ -22,3 +22,4 @@ Documentos de diseño del juego. **Nombre del juego: por definir** (`Mars Cat` e
 | `06_eventos_y_ritmo.md` | Catálogo de eventos, curva de presión, clímax | borrador |
 | `07_lore.md` | Premisa, inicio, IA guía, antagonista, beacon y rescate | borrador |
 | `08_direccion_arte.md` | Paleta, escala, referencias y lista de assets | por crear |
+| `09_interfaz.md` | Wireframe del HUD: elementos, ubicación y datos que muestra | acordado |
