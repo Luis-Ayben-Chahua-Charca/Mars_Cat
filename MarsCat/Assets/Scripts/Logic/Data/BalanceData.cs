@@ -8,6 +8,16 @@ namespace MarsCat.Logic.Data
         private readonly Dictionary<string, float> _values;
         private readonly Dictionary<string, string> _sources;
 
+        // Enumera las claves sin exponer el diccionario mutable a otros sistemas.
+        internal IEnumerable<string> Keys
+        {
+            get
+            {
+                foreach (string key in _values.Keys)
+                    yield return key;
+            }
+        }
+
         internal BalanceData(Dictionary<string, float> values, Dictionary<string, string> sources)
         {
             _values = new Dictionary<string, float>(values, StringComparer.Ordinal);
