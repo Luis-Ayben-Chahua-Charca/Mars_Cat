@@ -196,7 +196,7 @@ Por encima de 22 % el aire está **enriquecido** y sube el riesgo de incendio (p
 
 Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aquí. **Acordado:** la extracción entra en el PMV y el reciclaje es post-PMV. El resto de la sección sigue en propuesta.
 
-- **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio, como el oxígeno; no ocupa el depósito.
+- **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio; no ocupa el depósito.
 - **Fuentes:**
   1. **Reciclador (soporte vital), post-PMV:** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
      - **En el PMV** no es un edificio: solo la IA lo menciona para explicar por qué falta agua y para presentar el dato del 98 % de la ISS (ver `05_datos_nasa.md`).
@@ -221,18 +221,48 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 - Mientras baja, mantiene la **potencia** del taladro térmico en la zona verde: si se calienta de más, el hielo **sublima** y se pierde parte del lote.
 - **Cada veta se agota.** En la siguiente preparación hay que elegir otra, así el minijuego no se repite igual.
 
-**Paso 2 — Cámara de derretido**
+**Paso 2 — Cámara de derretido** (acordado)
 
-- Secuencia corta: primero **presurizar**, después **calentar**.
-- Si calienta antes de presurizar, el agua **hierve**: se pierde el lote y la IA explica por qué.
+Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene un **círculo de progreso** que se llena mientras el jugador mantiene la aguja en su zona.
+
+1. **Presurizar:** un **manómetro** en el centro de la pantalla. El jugador mantiene la aguja dentro de la zona verde mientras se llena el círculo. Si falla, la presurización **se reinicia** (no se pierde hielo, solo tiempo).
+2. **Calentar:** después, un **termómetro** en el centro. Igual: mantener la aguja en verde hasta llenar el círculo. Si falla, el agua **hierve** y **se pierde el lote**.
+
+- **Círculo de progreso (valores de referencia, pendientes de balance):** arranca en **40 %**. Con la aguja en el centro se llena hasta 100 % en **5 segundos**. Si la aguja sale del centro, el círculo **baja**; si llega a **0 %**, la fase falla.
+- El orden es fijo (primero presión, después calor), y el castigo es más duro en la segunda fase: el jugador aprende que calentar sin presión hace hervir el agua.
+- **Botón acelerar:** reduce el tiempo a la **mitad** (2,5 segundos), pero gasta **más electricidad** y hace las agujas **más inestables** (oscilan más). Es un desafío opcional: más rápido, más caro y más difícil.
 
 **Paso 3 — Biorreactor**
+
+- La purificación ocurre **dentro del edificio**, en un tanque propio, después de derretir el hielo. No se hace bajo tierra: las bacterias necesitan temperatura y condiciones controladas, el resultado debe poder medirse, y meter bacterias en el subsuelo contaminaría Marte (protección planetaria). Orden: extraer → derretir en la cámara → purificar en el biorreactor.
 
 - La **dosis de bacterias** perclorato-reductoras depende de la pureza de la veta: hielo sucio necesita más bacterias y más tiempo.
 - El jugador mantiene la **temperatura** tibia mientras el agua pasa de púrpura o marrón a azul.
 - Si se queda corto, el agua sigue tóxica y no entra a los tanques.
 
-**Rendimiento:** volumen de la veta × pureza lograda × (1 − pérdidas por sublimación o ebullición). Una veta profunda bien trabajada rinde más, pero gasta más energía: el jugador decide según cuánta electricidad tenga.
+**Rendimiento:** volumen de la veta × pureza lograda × (1 − pérdidas por sublimación en la perforación). Si el agua hierve en el paso 2 se pierde el lote entero. Una veta profunda bien trabajada rinde más, pero gasta más energía: el jugador decide según cuánta electricidad tenga.
+
+#### Arte de referencia (`Art-source/2D/`)
+
+| Archivo | Uso |
+|---|---|
+| `Soil_Cutaway.png` | Vista en corte con 4 estratos: cada estrato es un rango de profundidad; las vetas van encima |
+| `Drill_Box_Cable.png` | Carrete, cable y cabezal: el cable estirado marca la profundidad; los LEDs, la potencia; la luz naranja, el sobrecalentamiento |
+| `Ice_Contamination.png` | 6 bloques de hielo, de pequeño y sucio a grande y limpio: pureza y volumen de cada veta |
+| `Thermometer_Heating.png` | Termómetro con zonas azul, verde y roja para la fase de calentar |
+
+**Archivos nuevos que faltan** (en `Art-source/2D/`, con canal alfa):
+
+| Archivo | Contenido |
+|---|---|
+| `Pressure_Gauge.png` | Esfera del manómetro con la zona verde al centro |
+| `Pressure_Gauge_Needle.png` | Aguja del manómetro, separada para poder rotarla |
+| `Progress_Ring.png` | Círculo de progreso: anillo vacío y anillo lleno, por separado |
+| `Speed_Button.png` | Botón acelerar en tres estados: normal, presionado y activo |
+| `Bioreactor_Tank.png` | Tanque del biorreactor con el agua en tres estados: púrpura o marrón, intermedio y azul |
+| `Bacteria_Dose_Icon.png` | Ícono de la dosis de bacterias |
+
+**Observaciones pendientes del arte:** el taladro, el hielo y el termómetro tienen fondo oscuro con brillo pegado; exportarlos con canal alfa. Verificar el alfa de `Soil_Cutaway.png`.
 
 - **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
 - **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
@@ -325,7 +355,7 @@ Para la máquina de estados de Lógica:
 | Caído | No | Herido afuera; corre el minuto de rescate |
 | Recuperando | No | En el depósito tras entrar por la esclusa o ser auxiliado; dura un tiempo y luego pasa a Libre |
 | Descansando | No | De noche; solo sale de este estado por sobretrabajo de emergencia (post-PMV) |
-| Buscando comida | No | Hambre extrema (6–7 minutos sin comer): deja de trabajar y va a comer |
+| Buscando comida | No | Hambre o sed extrema (alerta a los 8 minutos sin comer o a los 4 sin beber): deja de trabajar y va a comer o beber |
 | Muerto | — | Fuera del juego |
 
 Además del estado, un **atributo permanente** `Degradado` (sí o no). El asignador automático nunca envía a un gato degradado a puestos exteriores ni a sobretrabajo nocturno. Para el sobretrabajo ordena a los gatos de más a menos salud. Para comer, ordena de más a menos hambre. Así no hace falta un estado falso de "trabajo" para retenerlo: el estado `Recuperando` cubre la pausa temporal y el atributo cubre la restricción permanente.
@@ -346,9 +376,9 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 6. Cuántos chips cuesta cada edificio nuevo o mejorado, y qué edificios de extracción los piden.
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
-9. Aprobar la propuesta de **Agua** y su preparación "Alquimista Marciano" (arriba). Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
+9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
-20. Tope de los tanques de agua.
+20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
@@ -357,7 +387,6 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
 13. En qué zona está cada edificio.
 14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
-15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
 16. **MOXIE** (entra en el PMV, acordado): cada cuánto se ensucia un filtro, cuánto dura limpiarlo, producción con los 5 limpios y consumo de electricidad.
 17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
-18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.
+18. Contratos de Lógica: olas 1 a 3 acordados (ver `docs/06_guia_logica.md`); los de la ola 4 en adelante se acuerdan en su issue.

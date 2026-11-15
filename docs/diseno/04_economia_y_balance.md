@@ -16,6 +16,8 @@ Los recursos y edificios están en `03_sistemas.md`. Esta página describe cómo
 
 ## Consumo, hambre y sed
 
+- **Colonia inicial (acordado):** **15 gatos**. Cada uno despierta con un hambre y una sed iniciales algo distintas (aleatorias), para que no coman ni beban todos a la vez.
+
 - La comida y el agua se consumen **en tiempo real**, con **estadísticas por gato** (ver `03_sistemas.md`).
 - **Hambre y sed siguen la misma lógica**, cada una con sus propios tiempos:
   - El gato come o bebe cada cierto **intervalo**.
@@ -36,7 +38,7 @@ Según Cats Protection (Reino Unido):
 
 El agua es cerca de **4 veces más urgente** que la comida.
 
-### Duración del sol (propuesta recomendada)
+### Duración del sol (acordado)
 
 - **1 sol = 8 minutos reales:** 6 minutos de día y 2 minutos de noche.
 - De noche el tiempo del juego corre **3 veces más rápido**. Así día y noche duran lo mismo en tiempo de juego (como en Marte, cerca del ecuador), pero la noche, en la que los gatos no trabajan, no se vuelve aburrida.
@@ -44,7 +46,7 @@ El agua es cerca de **4 veces más urgente** que la comida.
 - Con 8 minutos por sol, el tutorial cabe en 1 o 2 soles (8–16 minutos), una duración razonable para una demo.
 - El hambre y la sed siguen corriendo de noche: los gatos descansan, pero comen y beben. Sus tiempos se cuentan en **minutos reales** (los de la tabla de abajo); la aceleración nocturna solo afecta al reloj del juego y al gasto de energía de la noche.
 
-### Tiempos de hambre y sed (proporción 2:1 acordada; valores propuestos)
+### Tiempos de hambre y sed (acordado)
 
 El agua es el doble de urgente que la comida. Entre la alerta y la muerte queda un **margen de reacción** suficiente para que el jugador actúe: 2 minutos para la comida y 1 minuto para el agua.
 
@@ -58,6 +60,7 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 ## Almacenamiento
 
 - **Energía y agua:** almacenamientos independientes, con tope (el agua, en **tanques**).
+- **PMV (acordado):** cada recurso tiene su **propio tope**. El tope compartido del depósito queda para después del PMV.
 - **Oxígeno:** no es un tanque, es el **aire de la base**, medido en % de O₂ (ver "Aire y oxígeno"). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
 - **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
 - **Alimentos, fibra, escombros y desechos:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
@@ -75,7 +78,7 @@ Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelado
 4. **Edificios:**
    - Granja de plantas: alimento, **fibra** y algo de oxígeno.
    - Granja de ratones: alimento (proteína) y **desechos de ratones**.
-   - Edificio de desechos: **abono**, a partir de los desechos de gatos y de ratones.
+   - Reciclador orgánico: **abono**, a partir de los desechos de gatos y de ratones y de los restos de cosecha.
    - Energía: electricidad.
    - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).
    - **Reciclador de agua (post-PMV):** recupera parte del agua consumida; dañado al inicio. Su eficiencia sube por niveles en el árbol tecnológico.
@@ -92,7 +95,7 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 - **Pasivos (por ciclo):**
   - Oxígeno: según la cantidad de gatos y cuánto trabajan, más una pequeña **fuga por cada edificio** presurizado.
   - Comida: según la cantidad de gatos.
-  - **Desechos:** cada gato genera desechos por sol, y la granja de ratones suma los suyos. Se **almacenan en el depósito** y ocupan espacio hasta que aparece el edificio de desechos y los procesa.
+  - **Desechos:** cada gato genera desechos según lo que come y bebe, y la granja de ratones suma los suyos. Se **almacenan en el depósito** y ocupan espacio hasta que aparece el reciclador orgánico y los procesa. Si el depósito se llena de desechos, los gatos pierden salud de forma gradual.
   - Energía: según los edificios activos y, de noche, para mantener la temperatura.
   - La **protección** de los edificios está siempre activa y siempre consume energía.
 - **Activos:** la **reparación del beacon** para enviar la alerta a la Tierra.
@@ -104,6 +107,14 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 - **Radiación permanente:** degrada edificios y trajes.
 - **Edificios:** tienen un **escudo**. Si se pierde, el interior se vuelve peligroso para los gatos (cambios bruscos de temperatura); si no se repara a tiempo, el edificio cae total o parcialmente. Los fenómenos del desierto abren pequeñas **grietas** que dañan la estructura.
 - **Sin energía**, cuando se agotan las baterías, los edificios dejan de funcionar y arrastran al resto, en especial la protección contra radiación y el oxígeno. Con el tiempo faltan los demás recursos y los gatos mueren.
+- **Prioridad de energía (acordado):** cuando no alcanza, los edificios se apagan por orden de importancia:
+
+| Prioridad | Edificios | Se apaga |
+|---|---|---|
+| Máxima | MOXIE (oxígeno) y calefacción nocturna | Último |
+| Alta | Extracción de agua, taller y depósito | Después de los sin prioridad |
+| Sin prioridad | Reciclador orgánico (desechos), granja de ratones y granja de plantas (cosechas) | Primero |
+
 - **Válvula de emergencia de energía:** reparar y reconectar paneles lejanos, a costa de recursos.
 - **Sin comida**, hay menos gatos trabajadores.
 - Los únicos recursos externos son los nodos de mineral y la energía del sol.
@@ -126,8 +137,10 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 | **Tarea puntual** | Reparar, limpiar filtros del MOXIE, auxiliar a un gato caído, jugar un minijuego de preparación | Hasta terminar la tarea |
 
 - Si hay gatos libres y puestos libres, se asignan solos.
-- **Las tareas puntuales tienen prioridad** sobre los puestos fijos.
-- **Sin gatos libres:** la tarea toma un gato de un puesto fijo según un **orden de prioridad de edificios** (en `Data/`; primero sale el del edificio menos crítico). El edificio rinde menos mientras falta ese gato: ese es el costo real de la tarea.
+- **Las tareas puntuales tienen prioridad** sobre los puestos fijos. Tienen dos niveles (acordado): **vital** (auxiliar a un gato herido, post-PMV) y **normal** (todas las demás).
+- **Sin gatos libres:** la tarea toma un gato de un puesto fijo según la **importancia del edificio**, la misma de la prioridad de energía. El edificio rinde menos mientras falta ese gato: ese es el costo real de la tarea. Acordado:
+  - Tarea normal: solo saca gatos de edificios sin prioridad; si no hay, espera.
+  - Tarea vital: saca primero de los sin prioridad, después de los de prioridad alta y, como último recurso, de los de prioridad máxima.
 - **Liberación manual:** al iniciar la tarea, el jugador puede elegir **de qué edificio** sale el gato en lugar de aceptar el automático. No hay asignación manual por edificio como en *Frostpunk*.
 - Si no hay ningún gato que pueda hacerla (todos en alerta extrema, degradados para el exterior o muertos), el botón queda desactivado y la IA lo explica.
 - Al terminar la tarea, el gato vuelve a estar libre y el asignador lo devuelve a un puesto.
@@ -143,7 +156,6 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
 2. Consumo por gato y por edificio.
-3. Si el tope del depósito y la cola de exceso entran en el PMV (el depósito en sí está en la zona segura).
-4. Aprobar la duración del sol (8 minutos, noche acelerada 3 veces) y los tiempos de hambre y sed.
+3. Tope compartido del depósito y cola de exceso: post-PMV (en el PMV, tope por recurso; acordado).
 5. Producción por sol de cada edificio frente al consumo de la colonia.
 6. Cuánta salud cuesta el sobretrabajo (post-PMV).

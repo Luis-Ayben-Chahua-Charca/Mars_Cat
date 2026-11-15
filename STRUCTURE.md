@@ -18,7 +18,7 @@ Mars_Cat/
 │   └── skills/work-issue/ Skill /work-issue: flujo por issue y propuesta de commit
 ├── agents/                Perfiles de agentes (Gestión)
 ├── docs/                  Documentación del equipo (Gestión)
-│   ├── 00–04_*.md         Proceso: stack, roles, reglas, agentes, hitos
+│   ├── 00–06_*.md         Proceso: stack, roles, reglas, agentes, hitos, plan de implementación, guía de lógica
 │   ├── diseno/            Diseño del juego (Gestión; contenido acordado en issues)
 │   ├── Propuesta_mecanica/ Investigación y propuestas por mecánica, insumo para diseno/ (cualquier integrante)
 │   └── escenas/           Notas de armado de escenas (Design Master, solo si Leyni lo pide)
@@ -65,9 +65,9 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 | `Art/Materials/` | `.mat` | Integración |
 | `Audio/` | `.wav`, `.ogg` | Quien se asigne en el issue |
 | `Data/` | Datos NASA y de balance (`.json`, `.csv`) | Lógica |
-| `Scripts/Logic/` | C# puro, namespace `MarsCat.Logic.*` | Lógica |
-| `Scripts/Logic/Tests/` | Pruebas NUnit de la lógica | Lógica |
-| `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*` | Integración Unity |
+| `Scripts/Logic/` | C# puro, namespace `MarsCat.Logic.*`. Una subcarpeta por sistema (`Clock/`, `Resources/`, `Data/`, `Cats/`, `Preparation/`, `Energy/`, `Buildings/`, `Work/`); el namespace sigue a la carpeta. Asmdef `MarsCat.Logic` | Lógica |
+| `Scripts/Logic/Tests/` | Pruebas NUnit de la lógica, `<Clase>Tests.cs`. Asmdef `MarsCat.Logic.Tests` | Lógica |
+| `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*`. Asmdef `MarsCat.Unity` | Integración Unity |
 | `Scripts/Unity/UI/` | Scripts de interfaz | Integración Unity |
 | `Config/` | ScriptableObjects `.asset` de configuración | Integración |
 | `Prefabs/` | `.prefab` | Integración |

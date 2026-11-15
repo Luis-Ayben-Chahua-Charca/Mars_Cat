@@ -1,5 +1,15 @@
 # Mecánica: Manejo de Desechos Orgánicos (Biorreactor)
 
+> **Adaptada al diseño en `docs/diseno/03_sistemas.md` (sección "Desechos y abono"). Acordada**, salvo el detalle del minijuego. Ajustes respecto de esta propuesta:
+> - El edificio se llama **reciclador orgánico**, para no confundirlo con el biorreactor del extractor de agua.
+> - Insumos: desechos de gatos, **desechos de ratones** y restos de cosecha de la **granja de plantas** (la hidroponía es post-PMV).
+> - Exceso: si el depósito se llena de desechos, los gatos pierden **salud** de forma gradual. No hay moral, ni recolección automática, ni basura en los pasillos.
+> - Sin abono, la granja de plantas rinde menos; los tiempos de hambre se miden en fracciones de sol, no en días.
+> - Calor con energía de paneles y baterías (el reactor KRUSTY es post-PMV).
+> - Zona verde con valores reales: 55–65 °C y 50–60 % de humedad. Pasarse de calor sobrecalienta y mata a las bacterias (no "hierve").
+> - Protección planetaria: son guías de COSPAR que buscan minimizar el impacto de los desechos en Marte, no una prohibición literal (ver `05_datos_nasa.md`).
+> - Post-PMV: micelio y fibra, ampliar tanques y pérdida del lote por PEM o tormentas solares.
+
 ## 1. Descripción General
 > **Resumen:** En el espacio no existe la "basura". Todo desecho biológico de la tripulación y de las granjas es un recurso secuestrado que debe reintroducirse en el sistema de circuito cerrado para sostener la vida y las construcciones.
 
