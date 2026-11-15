@@ -17,7 +17,7 @@ Los módulos de agua y comida están **por definir** en el issue #__.
 
 | Zona | Estado tras la lluvia de meteoritos | En el PMV |
 |---|---|---|
-| Segura (cráter Vivero, con el depósito, MOXIE y esclusa) | Estable | Sí |
+| Segura (cráter Vivero: la cabina principal, con el depósito, MOXIE y esclusas) | Estable | Sí |
 | Media | Dañada, aún reparable | Sí |
 | Lejana | Destruida, no reparable | No |
 
@@ -43,8 +43,8 @@ Pipeline **acordado** para el PMV. Desde el paso 3, cada edificio sigue el mismo
 | 3 | **Energía** (paneles solares) | "No tenemos energía: reparen el edificio de energía" | Primero, porque todo lo demás la consume |
 | 4 | **Oxígeno** (MOXIE) | "Ahora reparemos el MOXIE para tener una fuente de oxígeno estable" | Minijuego de filtros (ver "Oxígeno" en `03_sistemas.md`) |
 | 5 | **Agua** (extracción del subsuelo) | Por redactar | La IA explica que el reciclador de agua quedó dañado y por eso hay que sacar agua del hielo |
-| 6 | **Comida: granja de plantas** | Por redactar | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja |
-| 7 | **Comida: granja de ratones** | Por redactar | Los desechos de los gatos se guardan en el **depósito** desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
+| 6 | **Forraje: granja de plantas (papa)** | Por redactar | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja. Produce el forraje que comerán las ratas |
+| 7 | **Comida: granja de ratones** (las ratas comen forraje; los gatos, raciones) | Por redactar | Los desechos de los gatos se guardan en el **depósito** desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
 | 8 | **Reciclador orgánico** | Por redactar | Procesa los desechos guardados en el depósito y los restos de cosecha, los convierte en **abono** y cierra el ciclo con la granja de plantas |
 
 La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione.

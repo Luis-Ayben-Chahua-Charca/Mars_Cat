@@ -65,7 +65,7 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 | `Art/Materials/` | `.mat` | Integración |
 | `Audio/` | `.wav`, `.ogg` | Quien se asigne en el issue |
 | `Data/` | Datos NASA y de balance (`.json`, `.csv`) | Lógica |
-| `Scripts/Logic/` | C# puro, namespace `MarsCat.Logic.*`. Una subcarpeta por sistema (`Clock/`, `Resources/`, `Data/`, `Cats/`, `Preparation/`, `Energy/`, `Buildings/`, `Work/`); el namespace sigue a la carpeta. Asmdef `MarsCat.Logic` | Lógica |
+| `Scripts/Logic/` | C# puro, namespace `MarsCat.Logic.*`. Una subcarpeta por sistema (`Clock/`, `Resources/`, `Data/`, `Cats/`, `Preparation/`, `Energy/`, `Buildings/`, `Work/` y, desde la ola 4, `Air/`, `Food/`, `Tutorial/`, `Water/`, `Recycling/`); el namespace sigue a la carpeta. Asmdef `MarsCat.Logic` | Lógica |
 | `Scripts/Logic/Tests/` | Pruebas NUnit de la lógica, `<Clase>Tests.cs`. Asmdef `MarsCat.Logic.Tests` | Lógica |
 | `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*`. Asmdef `MarsCat.Unity` | Integración Unity |
 | `Scripts/Unity/UI/` | Scripts de interfaz | Integración Unity |
@@ -83,6 +83,7 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 | `Scenes/` | Escenas del juego (`Main.unity`, `MainMenu.unity`) | Integración Unity (una escena, un dueño) |
 | `Scenes/Sandbox/` | `Sandbox_<Nombre>.unity` de pruebas personales | Cada persona la suya; no se integran |
 | `UI/` | Sprites, fuentes y elementos visuales de interfaz | Arte / Integración |
+| `CabinaNavegable/` | Cabina principal (zona Segura de `Main`): modelos, colliders, texturas y su prefab. Adoptada del prototipo; no se mueve para conservar los GUID | Arte (archivo), Integración |
 
 **Todos los `.meta` son de Integración**, sin importar la carpeta.
 

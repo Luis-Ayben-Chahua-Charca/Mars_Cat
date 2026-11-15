@@ -37,7 +37,7 @@ Gatos abandonados por los humanos tienen que administrar una base en Marte, enfr
 
 ## Diseño de niveles
 
-- Vista **2.5D**, con referencias a *The Binding of Isaac* y *Don't Starve Together*.
+- Vista **2.5D**, con referencias a *The Binding of Isaac* y *Don't Starve Together*. En el PMV la base se ve **sin techo**; después del PMV el techo se abre para ver el interior.
 - El mapa va de pequeño a grande: el escenario se expande y se descubren nuevos edificios.
 - No hay coleccionables ni objetos de lore extra.
 
