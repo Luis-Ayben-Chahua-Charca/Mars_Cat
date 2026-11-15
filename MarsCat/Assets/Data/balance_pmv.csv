@@ -12,3 +12,7 @@ cat.food.death_seconds;600;s_reales;diseno
 cat.water.interval_seconds;120;s_reales;diseno
 cat.water.alert_seconds;240;s_reales;diseno
 cat.water.death_seconds;300;s_reales;diseno
+# Balance inicial acordado para #56, ajustable tras las pruebas de juego.
+minigame.moxie.filter_count;5;filtros;diseno
+minigame.moxie.dirty_interval_seconds;144;s_juego;diseno
+minigame.moxie.cleaning_seconds_per_filter;10;s_juego;diseno
