@@ -164,6 +164,10 @@ Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar 
 | Limpieza microbiana del perclorato | Microbios que lo degradan y suman materia orgánica, probados en el simulante MGS-1; el lavado necesita agua escasa y el calor mucha energía | Proyecto de A. Delgado (Arizona State University), financiado por NSF y NASA, 2024 (en curso, sin resultados publicados) |
 | Papa y fotoperíodo | Con 12 h de luz el rendimiento de tubérculo sube con más CO₂ y más luz; con luz continua no, y baja el índice de cosecha | Wheeler, Fitzpatrick y Tibbitts (2019), *Frontiers in Plant Science* 10:1632 |
 | Relación C:N para compostar | Empezar cerca de 30:1. Viruta y aserrín: 300–700:1; estiércol de vaca: 20:1; de caballo: 25:1 | Cornell Composting, *Composting Ingredients* |
+| C:N de estiércoles y camas | Vaca de leche 20:1, vacuno 19:1, pavo 16:1, oveja 16:1, cerdo 12:1, caballo 30:1; paja de trigo 127:1, aserrín 442:1, viruta 600:1. Empezar en 30:1; rango de trabajo 20–40:1 | NDSU Extension, *Composting Animal Manures* (NM1478), tabla 1 |
+| C:N de heces frescas | Vaca 23:1, cerdo 11:1, gallina 9:1 | UNU Press (archivo), tabla 2 |
+| C:N de heces de gato | **Sin valor publicado** encontrado. Se estima ~10:1 por ser carnívoro (dieta proteica, como cerdo y aves). Licencia declarada | Estimación del equipo |
+| C:N de restos de papa | Residuo del cultivo completo: papa para almidón 16:1, semilla 20:1, consumo 24:1 (valor de referencia anterior: 36:1) | Wageningen University & Research, valores de referencia de residuos de cultivo |
 | Sanitización del compost | Recipiente cerrado: 55 °C o más durante 3 días | EPA, 40 CFR 503, apéndice B (procesos que reducen patógenos) |
 | Toxoplasma | Los ooquistes esporulados dejan de ser infectivos tras 1 minuto a 60 °C; a 45 °C sobreviven 1 día | Dubey (1998), citado por Food Standards Australia New Zealand (2014) |
 | Ratas de laboratorio | Temperatura 20–26 °C; humedad 30–70 %; espacio de 187 cm² (hasta 300 g) a 387 cm² (hasta 500 g) por rata | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. (National Academies, 2011), tablas 3.1 y 3.2 |
@@ -176,8 +180,11 @@ Enlaces:
 - EPA 40 CFR 503, apéndice B: https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
 - FSANZ, Toxoplasma gondii (2014): https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Toxoplasma%20gondii%20-%20jan%202014.pdf
 - Guide, 8.ª ed.: https://www.nationalacademies.org/read/12910/chapter/4
+- NDSU NM1478: https://www.ndsu.edu/agriculture/extension/publications/composting-animal-manures-guide-process-and-management-animal-manure-compost
+- UNU Press (archivo): https://archive.unu.edu/unupress/unupbooks/80434e/80434E0q.htm
+- WUR, residuos de cultivo: https://subsites.wur.nl/nl/display-on-pages/show/reference-values-for-arable-crop-residues-organic-matter-and-cn-ratio.htm
 
-**Por verificar:** la relación C:N de los desechos de gato y de los restos de papa no aparece en la tabla de Cornell; hay que buscarla antes de cargar el balance.
+**Investigado:** los restos de papa tienen valor publicado (WUR). Las heces de gato no: se usa una estimación con estiércoles de dieta proteica y la IA lo presenta como estimación.
 
 ## Referencias no NASA (valores de la Tierra)
 

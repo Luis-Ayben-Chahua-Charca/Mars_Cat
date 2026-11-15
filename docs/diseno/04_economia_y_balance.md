@@ -91,7 +91,7 @@ Edificio principal en la zona segura (la cabina principal, junto con el MOXIE y 
 3. **Nodos de mineral marciano** cerca, en la cueva o en la superficie. Los minerales salen siempre de datos de NASA. El **regolito** es infinito. El **metal** se extrae de Marte y también se recupera de los escombros.
 4. **Edificios:**
    - Granja de plantas (papa): **forraje** para las ratas, **fibra** y algo de oxígeno. Los gatos no comen de aquí: son carnívoros (ver "Cadena alimentaria" en `03_sistemas.md`).
-   - Granja de ratones: **raciones de rata** (alimento, proteína) a partir de las ratas que trae un gato fijo en el puesto y que comen forraje, y **desechos de ratones** (ver "Granja de ratones y raciones" en `03_sistemas.md`).
+   - Granja de ratones: **raciones de rata** (alimento, proteína) a partir de las ratas capturadas en "La Redada" (finitas, salvo que se apruebe que se reproduzcan), que comen forraje, y **desechos de ratones** (ver "Granja de ratones y raciones" en `03_sistemas.md`).
    - Reciclador orgánico: **abono**, a partir de los desechos de gatos y de ratones y de los restos de cosecha.
    - Energía: electricidad.
    - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).

@@ -5,8 +5,8 @@
 > - Las **ratas comen forraje**; la granja de ratones da **raciones** a los gatos.
 > - Hambre en tiempo real (alerta a los 8 minutos, muerte a los 10), **15 gatos**, sin moral ni catnip. Caducidad, taurina y plaga quedan para después del PMV.
 > - **Fábrica de Suelo (adaptada):** en el PMV, lavar el regolito (perclorato) y mezclar (abono 20 %, rango 0–30 %, y bacterias). Los tanques de cianobacterias no entran; la luz LED (12 h, papa) es post-PMV.
-> - **La Redada y la plaga (post-PMV):** las ratas sueltas se vuelven plaga cuando funciona la granja de plantas; la redada funda la granja y de noche hay fugas que dañan otros edificios. En el PMV, el gato fijo trae las ratas.
-> - **Criadero (propuesta):** preparación de la granja de ratones con forraje, espacio y temperatura de las guías de laboratorio.
+> - **La Redada (PMV):** es la preparación de la granja de ratones. El jugador marca con un clic las ratas sueltas (finitas) y un gato libre las captura. Los gatos con hambre extrema cazan ratas sueltas. Cuando se acaban, la comida escasea de verdad.
+> - **Post-PMV:** persecución, plaga, fugas nocturnas y daños a otros edificios. El Criadero queda descartado.
 
 ## 1. Descripción General
 > **Resumen:** Es el alimento de los gatos. Recurso de urgencia lenta (días, no minutos): el hambre no mata rápido como la falta de aire, pero vuelve lentos a los gatos y arrastra a todas las demás mecánicas. En el MVP no existe ningún cultivo vivo: los gatos sobreviven de las reservas que dejaron los humanos, y el arco del juego es pasar de herederos a ganaderos (ratas) y, después del MVP, a agricultores. Enseña dos ideas STEM centrales: la jerarquía de supervivencia (aire > agua > comida) y la cadena trófica (cultivos → ratas → gatos).

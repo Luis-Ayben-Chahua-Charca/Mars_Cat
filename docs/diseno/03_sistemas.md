@@ -55,12 +55,14 @@ La zona Segura es la **cabina principal**, un solo conjunto dentro del cráter q
 
 Los edificios de la zona Media se conectan con la cabina por **pasillos**. Qué pasillos se reparan con qué módulo, y si los paneles solares quedan fuera de esa red, está en los pendientes.
 
-### Granja de ratones y raciones (acordado)
+### Granja de ratones y raciones (acordado; actualizado con La Redada)
 
-- Un **gato fijo** trabaja en el puesto de la granja de ratones y trae periódicamente una **rata**.
-- La **rata** es un recurso primitivo: existe solo dentro del edificio, no se come directamente y no se muestra en la barra superior.
-- La granja convierte las ratas en **raciones de rata**: es la comida real del pool (el número de alimentos de la barra superior, `09_interfaz.md`). Se guardan en el depósito.
-- Las ratas comen **forraje** de la granja de plantas. Sin forraje, la granja no convierte ratas en raciones.
+- Las ratas llegan a la granja con **"La Redada"** (abajo): ya no hay un gato que "trae ratas" solo.
+- La **rata** es un recurso primitivo: existe dentro de la granja o **suelta** en la estación; no se muestra en la barra superior.
+- Un **gato fijo** trabaja en el puesto (ciclo del edificio) y convierte ratas en **raciones de rata**: la comida real del pool (el número de alimentos de la barra superior, `09_interfaz.md`). Se guardan en el depósito.
+- **Pie de cría:** la granja deja siempre un mínimo de ratas sin convertir (propuesta: 2). La granja arranca cuando tiene más ratas que ese mínimo.
+- Las ratas comen **forraje** de la granja de plantas mientras viven en la granja. Sin forraje, la granja no convierte ni (si se aprueba) se reproduce.
+- **Reproducción (por decidir):** con forraje, las ratas de la granja aumentan a un ritmo por sol. Si el ritmo es 0, la comida dura lo que duran las ratas capturadas. El código admite las dos opciones con un valor del CSV.
 - Los gatos **comen en el depósito**; cada comida descuenta una ración (`cat.food.ration` en `Data/`).
 
 ### Cadena alimentaria (acordado)
@@ -73,29 +75,19 @@ Los gatos son **carnívoros obligados**: necesitan proteína animal y taurina, q
 - La papa da **forraje** (la parte comestible, para las ratas), **fibra** (de la parte no comestible; licencia: fibra de tallos para trajes) y **restos de cosecha** (para el reciclador).
 - Una rata de laboratorio come unos 20 g de alimento seco al día, y 1 m² de papa rinde unos 21 g al día: **cerca de 1 m² de cultivo por rata**. Esa diferencia entre niveles es la pérdida de energía de la cadena alimentaria.
 
-### Plaga de ratas y "La Redada" (post-PMV, acordado como idea)
+### "La Redada" y la caza (PMV, acordado)
 
-Sistema **transversal**, como los filtros del MOXIE: corre en segundo plano y pide atención de vez en cuando.
+- **Desde el inicio** hay un número **finito** de ratas sueltas en la estación (escaparon durante la evacuación; propuesta: 10–12). No aparecen más.
+- **La Redada es la preparación de la granja de ratones** (no tiene minijuego de valor guía): el jugador hace **clic sobre una rata suelta** visible; un **gato libre** va a buscarla como **tarea puntual normal** y la lleva a la granja. Cuando la granja supera el pie de cría, arranca. En el PMV el rendimiento es fijo (100 %).
+- **Caza por hambre extrema:** un gato en estado *Buscando comida* que no encuentra raciones en el depósito sale a **cazar** la rata suelta más cercana. Tarda un tiempo, se la come (cuenta como una comida) y esa rata **se pierde para la granja**. La IA lo avisa.
+- **Escasez real:** cuando no quedan ratas sueltas ya no hay redada ni caza; la única comida es la de la granja. Cada rata cazada es comida de hoy en lugar de comida de mañana.
+- **Licencia del PMV:** la rata suelta no huye; espera en su punto hasta que la buscan.
+- **Post-PMV:** persecución (el jugador controla al gato), **plaga** (las ratas sueltas comen forraje cuando funciona la granja de plantas), **fugas** nocturnas desde la granja y **daños** a otros edificios (cables, sensores) hasta recapturarlas.
+- **Sin deuda técnica:** la granja expone `AddRats` y `RemoveRats`, y las ratas sueltas viven en su propia clase; las fugas y la plaga se conectan después sin cambiar la granja (ver `docs/06_guia_logica.md`).
+- **Tono:** la captura se ve en pantalla; la conversión en raciones y la comida del gato cazador ocurren fuera de cámara.
+- **Enseña:** el instinto de caza de un carnívoro obligado y que un recurso finito se acaba: hay que pasar de cazar a criar.
 
-- **Desde el inicio** hay ratas sueltas en la estación: escaparon durante la evacuación.
-- Se vuelven **plaga** cuando funciona la granja de plantas: comen **forraje** y se pierden recursos.
-- **"La Redada":** para montar la granja de ratones, el jugador captura las ratas repartidas por la estación (persecución con el gato, cuando el jugador ya tiene libertad).
-- **Fugas:** de noche, con cierta probabilidad, algunas ratas se escapan de la granja y aparecen en otros edificios, donde los dañan (cables, sensores) hasta que se las recaptura.
-- **En el PMV:** no hay plaga ni persecución. Rige lo acordado: el gato fijo del puesto trae las ratas sueltas, una cada cierto tiempo.
-- **Sin deuda técnica:** la granja expone métodos para sumar y quitar ratas (`AddRats`, `RemoveRats`). La Redada y las fugas se conectan después sin cambiar la granja.
-- **Tono:** solo captura en pantalla; la conversión en raciones ocurre fuera de cámara.
-
-### Preparación de la granja de ratones: "Criadero" (propuesta)
-
-Valor guía y rango, como la granja de plantas, con valores de las guías de cría de ratas de laboratorio:
-
-| Control | Valor guía | Fuera de rango | Fuente |
-|---|---|---|---|
-| Forraje por rata | ~20 g por sol | Poco: crecen lento y dan menos raciones. Mucho: se desperdicia forraje | Estimación del equipo |
-| Espacio por rata | 187–387 cm² según el peso (300–500 g) | Hacinamiento: crían menos y se enferman | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. |
-| Temperatura | 20–26 °C | Frío o calor: no crían; calefaccionar gasta energía | Igual |
-
-- **Comedor (post-PMV):** un edificio propio para este fin. En el PMV se come directamente en el depósito.
+- **Comedor (post-PMV):** un edificio propio para comer. En el PMV se come directamente en el depósito.
 
 ## Reparar o construir
 
@@ -126,7 +118,7 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 | Edificio | Minijuego | Mecánica |
 |---|---|---|
 | Granja de plantas | "Fábrica de Suelo" | Lavar el regolito y mezclar, con valor guía y rango; la luz es post-PMV (abajo) |
-| Granja de ratones | Por definir (propuesta: "Criadero", abajo) | Valor guía y rango; la plaga y "La Redada" son post-PMV |
+| Granja de ratones | "La Redada" | Marcar ratas sueltas con un clic; un gato libre las captura. Los gatos con hambre extrema también las cazan (ver "La Redada y la caza") |
 | Reciclador orgánico | "Operación Sopa de Bacterias" | Mantener temperatura y humedad en la zona verde durante el ciclo (ver "Desechos y abono") |
 | MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
@@ -204,15 +196,43 @@ Inspirado en *Piano Tiles*. El gato, como "conserje espacial", limpia el polvo d
 
 Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de sodio → motor Stirling) y regulación de válvulas para mantener el motor en la zona verde. Enseña la idea de calor → movimiento → electricidad.
 
-### Propuesta de lógica de rendimiento del cultivo (no acordada)
+### Rendimiento de las preparaciones de valor guía (propuesta detallada, pendiente de aprobación)
 
-- **Tolerancia por lado:** cada insumo puede tener una tolerancia distinta por debajo y por encima del valor guía. Abono: 20 puntos hacia abajo (0 % da `s = 0`) y 10 hacia arriba (30 % da `s = 0`).
+Aplica a los minijuegos de **valor guía y rango**: Fábrica de Suelo y Compostador. Rescate Solar, la Sopa y los filtros del MOXIE ya tienen su propia medida (eficiencia o tiempo en verde) y la convierten al mismo rango al final. Todos los números viven en `YieldConfig` (CSV): cambiarlos no toca el código.
 
-- **Puntaje por insumo:** `s = 1 − |valor − guía| / tolerancia`. Vale 1 en el valor guía y 0 en el borde del rango.
-- **Rendimiento base:** `rendimiento = 0,8 + 0,4 × promedio(s)`. Va de 80 % (todo en el borde) a 120 % (todo en el valor guía).
-- **Combinaciones:** una tabla de sinergias por edificio. Si dos insumos de la sinergia tienen `s ≥ 0,8`, suman un bono fijo (por ejemplo +10 %). Para el PMV se puede dejar sin combinaciones.
-- **Automatización (post-PMV):** el robot pone todos los insumos en su valor guía; el resultado es fijo y rápido. Hacerlo a mano permite buscar combinaciones y superar ese rendimiento.
-- **Datos reales:** los valores guía y rangos deberían salir de datos de NASA sobre cultivo en el espacio y registrarse en `05_datos_nasa.md`. No se inventan.
+**1. Puntaje por insumo (`s`, de 0 a 1).** Cada insumo tiene valor guía `g`, mínimo y máximo. La tolerancia depende del lado:
+
+- Por debajo: `tol = g − mínimo`. Por encima: `tol = máximo − g`.
+- `s = 1 − |valor − g| / tol`, limitado a [0, 1].
+- **Meseta:** si `|valor − g|` es menor que una fracción de la tolerancia (propuesta: 10 %), `s = 1`. Así no se exige precisión de píxel.
+- Si un lado tiene tolerancia 0 (el mínimo es el valor guía), quedarse corto es **fuera de rango**: no arranca.
+- Fuera del rango no hay puntaje: el paso entrega `InRange = false` y su clave de motivo.
+
+**2. Puntaje de la preparación (`S`).** Promedio **ponderado** de los pasos (peso 1 por defecto, en el CSV). Se descartó usar el mínimo ("eslabón más débil") para el PMV: castiga demasiado y la IA tendría menos que explicar.
+
+**3. Rendimiento.** `Y = Ymín + (Ymáx − Ymín) × S`, con Ymín = 0,8 e Ymáx = 1,2. Multiplica la **producción de ese ciclo** del edificio (`production_rate_per_sol` y subproductos), no su duración.
+
+**4. Motivo.** Si `S < 1`, el resultado lleva la clave del paso con **menor puntaje** (`prep.<paso>.improve`), para que la IA diga qué mejorar la próxima vez.
+
+**5. Robot (post-PMV).** Rendimiento fijo de 1,0, rápido y sin esfuerzo; hacerlo a mano permite llegar a 1,2. Combinaciones o sinergias (+10 % si dos insumos tienen `s ≥ 0,8`) quedan post-PMV.
+
+**Ejemplos (Fábrica de Suelo):**
+
+| Paso | Valor | Cálculo | `s` |
+|---|---|---|---|
+| Abono (guía 20 %, rango 0–30 %) | 20 % | en la guía | 1 |
+| Abono | 10 % | 1 − 10/20 | 0,5 |
+| Abono | 25 % | 1 − 5/10 | 0,5 |
+| Abono | 0 % | 1 − 20/20 | 0 (arranca, rinde poco) |
+| Abono | 31 % | fuera de rango | no arranca: quema |
+| Agua de lavado (guía = litros justos para bajar el perclorato al umbral; máximo = el doble) | 1,5 × guía | 1 − 0,5/1 | 0,5 |
+| Agua de lavado | menos que la guía | tolerancia 0 por debajo | no arranca: perclorato alto |
+
+- Abono 20 % y agua 1,5 × guía: `S = (1 + 0,5) / 2 = 0,75` → `Y = 0,8 + 0,4 × 0,75 = 1,10`. La granja da **110 %** del forraje del ciclo y la IA sugiere usar menos agua.
+- Abono 0 % y agua justa: `S = 0,5` → `Y = 1,00`.
+- Todo en la guía: `Y = 1,20`. Todo en el borde: `Y = 0,80`.
+
+**Claves propuestas:** `yield.min` (0,8), `yield.max` (1,2), `yield.plateau` (0,1), `yield.robot` (1,0) y `minigame.<juego>.<paso>.weight` (1).
 
 Para Lógica: un **resultado común** (`PreparationResult`: arranca, rendimiento, motivo) y una clase de preparación **por minijuego**, cada una con su configuración en `Data/`. El ciclo del edificio solo lee el resultado, sin saber qué minijuego lo produjo. El contrato se acuerda en el issue.
 
@@ -341,12 +361,14 @@ Antes de la "Sopa de Bacterias", el jugador **mezcla** los desechos para llegar 
 
 | Insumo | Aporta | C:N aproximado | Fuente |
 |---|---|---|---|
-| Desechos de gatos | **Nitrógeno** (el gato es carnívoro) | Bajo (por verificar; el estiércol de vaca ronda 20:1) | Cornell |
-| Desechos de ratones **con su cama** | **Carbono** (la cama es viruta o papel) | Alto: viruta y aserrín, 300–700:1 | Cornell |
-| Restos de cosecha | Carbono | Por verificar | — |
+| Desechos de gatos | **Nitrógeno** (el gato es carnívoro) | **~10:1** (estimación). No hay un valor publicado para heces de gato; se usan estiércoles de dieta rica en proteína: cerdo 12:1 y pavo 16:1 (NDSU), gallina 9:1 (archivo de UNU Press) | NDSU NM1478; UNU Press |
+| Desechos de ratones **con su cama** | **Carbono** (la cama es viruta o aserrín) | Alto; lo domina la cama: aserrín 442:1, viruta 600:1. Para el CSV, entre 100 y 300:1 según la cama (estimación) | NDSU NM1478 |
+| Restos de cosecha (papa) | Algo de nitrógeno | **16–24:1** según la variedad (papa para almidón 16, semilla 20, consumo 24) | Wageningen University & Research |
 | Agua y bacterias | Humedad y la colonia (bacterias infinitas) | — | — |
 
-- **Meta:** **25–30:1** (Cornell recomienda empezar cerca de 30:1).
+- **Meta:** valor guía **30:1** (Cornell y NDSU). Rango propuesto **20–40:1**, el rango de trabajo de NDSU (antes 25–30:1; pendiente de aprobación).
+- **Lo que enseña la tabla:** los desechos de gato y los restos de papa están **por debajo** de la meta. Sin la cama de las ratas, el carbono no alcanza: la granja de ratones también aporta al compost.
+- **Cálculo correcto:** la C:N de la mezcla es carbono total ÷ nitrógeno total, no el promedio de las relaciones. Ejemplo con el mismo nitrógeno por kilo: 4 kg de gato (10) + 3 kg de restos (20) + 1 kg de cama (200) = (40 + 60 + 200) / 8 = **37,5:1**, dentro del rango.
 - **Fuera de rango:** con demasiado nitrógeno se pierde nutriente como amoníaco (mal olor); con demasiado carbono el proceso casi no avanza. El lote no arranca hasta corregir, sin perderse.
 - **Por qué importa la temperatura del paso 2:** los desechos de gato pueden traer **Toxoplasma**. Sus ooquistes mueren en 1 minuto a 60 °C, y la norma de la EPA para compostaje en recipiente cerrado pide 55 °C o más durante 3 días. Por eso la zona verde de la Sopa (55–65 °C) es también la **sanitización**: sin ella, el abono no sería apto para cultivar el forraje.
 - **Sin deuda técnica:** es una sesión aparte que entrega un factor de calidad de la mezcla; la Sopa no cambia (ver `docs/06_guia_logica.md`).
@@ -452,7 +474,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
-21. **Granja de ratones:** minijuego, cada cuánto llega una rata, cuántas raciones rinde cada una, cuánto forraje come y cuántos desechos produce.
+21. **Granja de ratones:** cuántas ratas sueltas hay al inicio y dónde; si las ratas de la granja se reproducen y a qué ritmo; pie de cría; cuántas raciones rinde cada rata; cuánto forraje come por sol; cuántos desechos produce; cuánto tarda la captura y la caza.
 24. **Pasillos:** si cada pasillo se repara junto con su módulo (propuesta), si la red de la zona Media debe quedar intacta desde el inicio para no aislar edificios, y si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa.
 25. **Caminos de los gatos:** si usan una red de puntos de paso (puestos de trabajo y necesidades, como comer en el depósito) en lugar de una malla de navegación. Se decide en el issue de los gatos en escena (#33).
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.

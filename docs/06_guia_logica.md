@@ -39,7 +39,7 @@ Scripts/Logic/
 ├── Buildings/    BuildingState, BuildingConfig, Building
 ├── Work/         JobKind, Job, WorkConfig, JobAssigner
 ├── Air/          (ola 4) MoxieFilterConfig, MoxieFilters
-├── Food/         (ola 4) RatFarmConfig, RatFarm
+├── Food/         (ola 4) RatFarmConfig, RatFarm, LooseRats, RatRaid, RatHunt
 ├── Tutorial/     (ola 4) TutorialStep, TutorialSequence
 ├── Water/        (ola 4) MeltPhase, MeltingConfig, MeltingChamberSession
 ├── Recycling/    (ola 4) CompostConfig, CompostSession
@@ -310,9 +310,13 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - Post-PMV: `LightStep` (horas de luz, guía 12 h) se agrega a la lista.
 - `MultiStepPreparation(IReadOnlyList<IPreparationStep> steps, YieldConfig)`:
   - `PreparationResult Confirm()`: si algún paso está fuera de rango, `Fail` con la clave de ese paso (no cobra nada); si no, `Ok(0,8 + 0,4 × promedio de los puntajes)`.
-  - Sirve también para el Criadero de ratones y para cualquier preparación futura de valor guía y rango.
+  - Sirve también para el Compostador y para cualquier preparación futura de valor guía y rango.
 - **Probar:** un paso fuera de rango no arranca y no cobra; en el valor guía rinde 1,2; abono en 0 % está dentro del rango y rinde menos; agregar un tercer paso no cambia los resultados de los otros dos.
-- La fórmula de rendimiento (80 %–120 %) sigue **pendiente de aprobación** en #14; vive en `YieldConfig`, así que cambiarla no toca el código.
+- `YieldConfig`: `Min` (0,8), `Max` (1,2), `Plateau` (0,1), `RobotYield` (1,0) y el peso de cada paso. Claves `yield.*` y `minigame.<juego>.<paso>.weight`. Detalle y ejemplos en `03_sistemas.md`, "Rendimiento de las preparaciones de valor guía".
+  - `GuideRange`: tolerancia por lado; con tolerancia 0 de un lado, quedarse corto es fuera de rango; dentro de la meseta, puntaje 1.
+  - `Confirm()`: promedio ponderado; si `S < 1`, la clave de motivo es la del paso con menor puntaje (`prep.<paso>.improve`).
+  - **Probar también:** abono 20 % y agua 1,5 × guía rinden 1,10; dentro de la meseta el puntaje es 1.
+- La fórmula sigue **pendiente de aprobación** en #14; como vive en `YieldConfig`, cambiar los números no toca el código.
 
 ### Compostador (#58, paso 1) · Lógica 2 · `MarsCat.Logic.Recycling`
 
@@ -321,7 +325,8 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - `CompostMixConfig`: C:N de cada insumo, meta (guía 30, rango 25–30 o el acordado en el CSV). Claves `minigame.compost.mix.*`.
 - `CompostMix(CompostMixConfig, ResourcePool)`:
   - `void SetAmount(ResourceId id, float amount)` para `CatWaste`, `RatWaste` y `CropResidue`.
-  - `float Ratio`: C:N de la mezcla, ponderado por cantidad.
+  - `float Ratio`: carbono total ÷ nitrógeno total, con `cn` y `n_fraction` de cada insumo (`minigame.compost.mix.<insumo>.cn` y `.n_fraction`). Con `n_fraction` igual en todos, es el promedio ponderado por cantidad.
+  - Valores de partida (`03_sistemas.md`): gato ~10, cama de rata 100–300, restos de papa 20; guía 30, rango 20–40 (pendiente de aprobación).
   - `StepScore Evaluate()` (con `GuideRange`); `bool TryConfirm()`: si está en rango, cobra los desechos y devuelve `true`.
 - La Sopa recibe la mezcla ya cobrada: `CompostSession.TryStart()` deja de cobrar los desechos y pasa a recibir el puntaje de la mezcla, que multiplica el rendimiento final.
 - **Probar:** solo desechos de gato da una relación baja y fuera de rango; sumar cama de rata la sube; en rango cobra; fuera de rango no cobra.
@@ -352,19 +357,26 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - El MOXIE gasta electricidad igual con filtros sucios (#21); su oxígeno entra al aire cuando exista #55.
 - **Probar:** se ensucian con el tiempo; sin gato no se limpia; limpiar 2 de 5 sube el rendimiento a lo esperado.
 
-### Granja de ratones (#57, esqueleto) · Lógica 1 · `MarsCat.Logic.Food`
+### Granja de ratones, La Redada y caza (#57) · Lógica 1 · `MarsCat.Logic.Food`
 
-**Para qué:** lo acordado en `03_sistemas.md`, "Granja de ratones y raciones" y "Cadena alimentaria".
+**Para qué:** `03_sistemas.md`, "Granja de ratones y raciones" y "La Redada y la caza" (PMV). Reemplaza el esqueleto anterior: ya no hay un gato que trae ratas por intervalo, y el Criadero queda descartado.
 
-- `RatFarmConfig`: cada cuánto trae una rata el gato (tiempo de juego), raciones por rata, **forraje por rata convertida**, desechos por rata y tope de ratas. Claves `building.rat_farm.*`.
+- `RatFarmConfig`: raciones por rata, segundos de conversión por rata (tiempo de juego), **forraje por rata por sol**, desechos por rata convertida, tope de ratas, `MinBreeders` (pie de cría) y `BreedPerSol` (0 = no se reproducen). Claves `building.rat_farm.*`.
 - `RatFarm(RatFarmConfig, ResourcePool)`:
-  - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato fijo no llegan ratas.
-  - `int Rats`: recurso primitivo, vive solo aquí.
-  - Convierte ratas en raciones (`Food`) consumiendo `Forage` del pool, y suma `RatWaste`. Sin forraje, las ratas esperan y no se convierten.
-  - `void AddRats(int count)` y `int RemoveRats(int count)` (devuelve las que realmente quitó): para que "La Redada" y las fugas nocturnas se conecten después del PMV sin tocar la granja.
-  - Eventos `OnRatBrought` y `OnRationsProduced(float)`.
-- La preparación "Criadero" (propuesta) usará `MultiStepPreparation` de #20, parte 2.
-- **Probar:** sin gato no hay ratas; `AddRats` y `RemoveRats` respetan el tope y el cero; con gato llega una rata por intervalo; cada rata convertida gasta forraje y suma raciones y desechos; sin forraje no convierte; respeta el tope.
+  - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato en el puesto no convierte.
+  - `int Rats`; `bool CanStart` = `Rats > MinBreeders`.
+  - Las ratas comen `Forage` del pool por sol. Con forraje y gato, convierte una rata cada cierto tiempo en raciones (`Food`) y suma `RatWaste`, sin bajar del pie de cría. Con `BreedPerSol > 0` y forraje, las ratas aumentan. Sin forraje, no convierte ni se reproduce.
+  - `int AddRats(int count)` (devuelve las que entraron, respeta el tope) y `int RemoveRats(int count)` (devuelve las que quitó): para la redada ahora y las fugas después.
+  - Eventos `OnRatsChanged(int)` y `OnRationsProduced(float)`.
+- `LooseRats(int count)`: ratas sueltas con id `0..count−1` (Unity las ubica en sus puntos). `int Count`; `bool IsLoose(int id)`; `bool TryTake(int id)`; `int AnyLoose()` (−1 si no queda ninguna); evento `OnTaken(int id)`. Clave `rat.loose.initial`.
+- `RatRaid(LooseRats, RatFarm)`, la preparación de la granja:
+  - `bool Mark(int ratId)`: el jugador marca una rata; Integración pide un gato libre como tarea puntual normal (#18).
+  - `bool Capture(int ratId)`: cuando el gato llega; `TryTake` + `AddRats(1)`.
+  - `PreparationResult Result`: `Ok(1f)` si `CanStart`; si no, `Fail("prep.rat_farm.need_rats")`.
+- `RatHunt(CatColony, LooseRats, ResourcePool, RatHuntConfig)`:
+  - `void Tick(float gameDt)`, llamado **después** de `CatColony.Tick`: cada gato en `SeekingFood` sin raciones en el pool acumula tiempo de caza; al llegar a `HuntSeconds` toma `AnyLoose()` y satisface su hambre (`Cat.Satisfy(Need.Food)` es `internal` y se ve desde el mismo ensamblado: no hay que tocar `Cats/`).
+  - Eventos `OnHunted(Cat, int ratId)` y `OnNoLooseRats` (una vez). Clave `rat.hunt_seconds`.
+- **Probar:** marcar y capturar suma a la granja y quita de las sueltas; no arranca hasta superar el pie de cría; convierte sin bajar del pie; sin forraje no convierte; con `BreedPerSol = 0` no crecen; un gato con hambre extrema y sin raciones caza una rata y deja de tener hambre; con raciones no caza; sin ratas sueltas no caza y avisa una vez.
 
 ### Secuencia del tutorial (#23, esqueleto) · Lógica 1 · `MarsCat.Logic.Tutorial`
 
