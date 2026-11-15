@@ -361,11 +361,11 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 **Para qué:** `03_sistemas.md`, "Granja de ratones y raciones" y "La Redada y la caza" (PMV). Reemplaza el esqueleto anterior: ya no hay un gato que trae ratas por intervalo, y el Criadero queda descartado.
 
-- `RatFarmConfig`: raciones por rata, segundos de conversión por rata (tiempo de juego), **forraje por rata por sol**, desechos por rata convertida, tope de ratas, `MinBreeders` (pie de cría) y `BreedPerSol` (0 = no se reproducen). Claves `building.rat_farm.*`.
+- `RatFarmConfig`: raciones por rata, segundos de conversión por rata (tiempo de juego), **forraje por rata por sol**, desechos por rata convertida, tope de ratas (`MaxRats`), `MinBreeders` (pie de cría) y `BreedRate` (por sol; 0 = no se reproducen). Claves `building.rat_farm.*` (valores propuestos en `03_sistemas.md`, "Ritmo de la granja de ratas").
 - `RatFarm(RatFarmConfig, ResourcePool)`:
   - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato en el puesto no convierte.
   - `int Rats`; `bool CanStart` = `Rats > MinBreeders`.
-  - Las ratas comen `Forage` del pool por sol. Con forraje y gato, convierte una rata cada cierto tiempo en raciones (`Food`) y suma `RatWaste`, sin bajar del pie de cría. Con `BreedPerSol > 0` y forraje, las ratas aumentan. Sin forraje, no convierte ni se reproduce.
+  - Las ratas comen `Forage` del pool por sol. Con forraje y gato, convierte una rata cada cierto tiempo en raciones (`Food`) y suma `RatWaste`, sin bajar del pie de cría. Con forraje, crecen de forma logística: `BreedRate × Rats × (1 − Rats / MaxRats)` por sol, acumulando la fracción hasta completar una rata. Sin forraje, no convierte ni se reproduce.
   - `int AddRats(int count)` (devuelve las que entraron, respeta el tope) y `int RemoveRats(int count)` (devuelve las que quitó): para la redada ahora y las fugas después.
   - Eventos `OnRatsChanged(int)` y `OnRationsProduced(float)`.
 - `LooseRats(int count)`: ratas sueltas con id `0..count−1` (Unity las ubica en sus puntos). `int Count`; `bool IsLoose(int id)`; `bool TryTake(int id)`; `int AnyLoose()` (−1 si no queda ninguna); evento `OnTaken(int id)`. Clave `rat.loose.initial`.
@@ -376,7 +376,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - `RatHunt(CatColony, LooseRats, ResourcePool, RatHuntConfig)`:
   - `void Tick(float gameDt)`, llamado **después** de `CatColony.Tick`: cada gato en `SeekingFood` sin raciones en el pool acumula tiempo de caza; al llegar a `HuntSeconds` toma `AnyLoose()` y satisface su hambre (`Cat.Satisfy(Need.Food)` es `internal` y se ve desde el mismo ensamblado: no hay que tocar `Cats/`).
   - Eventos `OnHunted(Cat, int ratId)` y `OnNoLooseRats` (una vez). Clave `rat.hunt_seconds`.
-- **Probar:** marcar y capturar suma a la granja y quita de las sueltas; no arranca hasta superar el pie de cría; convierte sin bajar del pie; sin forraje no convierte; con `BreedPerSol = 0` no crecen; un gato con hambre extrema y sin raciones caza una rata y deja de tener hambre; con raciones no caza; sin ratas sueltas no caza y avisa una vez.
+- **Probar:** marcar y capturar suma a la granja y quita de las sueltas; no arranca hasta superar el pie de cría; convierte sin bajar del pie; sin forraje no convierte; con `BreedRate = 0` no crecen; con 10 ratas, tope 40 y 0,75 llegan a 15 en ~0,8 sol; en el tope no nacen más; un gato con hambre extrema y sin raciones caza una rata y deja de tener hambre; con raciones no caza; sin ratas sueltas no caza y avisa una vez.
 
 ### Secuencia del tutorial (#23, esqueleto) · Lógica 1 · `MarsCat.Logic.Tutorial`
 

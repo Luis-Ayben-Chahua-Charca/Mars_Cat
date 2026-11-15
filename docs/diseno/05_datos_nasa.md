@@ -168,6 +168,8 @@ Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar 
 | C:N de heces frescas | Vaca 23:1, cerdo 11:1, gallina 9:1 | UNU Press (archivo), tabla 2 |
 | C:N de heces de gato | **Sin valor publicado** encontrado. Se estima ~10:1 por ser carnívoro (dieta proteica, como cerdo y aves). Licencia declarada | Estimación del equipo |
 | C:N de restos de papa | Residuo del cultivo completo: papa para almidón 16:1, semilla 20:1, consumo 24:1 (valor de referencia anterior: 36:1) | Wageningen University & Research, valores de referencia de residuos de cultivo |
+| Reproducción de la rata | Gestación 21–23 días; camada de 8–18 crías; destete a los 21 días; madurez: machos 6–10 semanas, hembras 8–12 | Merck Veterinary Manual, *Breeding and Reproduction of Rats* |
+| Energía de presas enteras | Los felinos aprovechan el 66–85 % de la energía bruta de presas enteras (ratón, rata, conejo, pollo, codorniz). La densidad (~1,6 kcal/g en fresco) es una estimación del equipo | Petfood Industry, *Whole prey diets targeted for consumption by exotic and domestic felines* |
 | Sanitización del compost | Recipiente cerrado: 55 °C o más durante 3 días | EPA, 40 CFR 503, apéndice B (procesos que reducen patógenos) |
 | Toxoplasma | Los ooquistes esporulados dejan de ser infectivos tras 1 minuto a 60 °C; a 45 °C sobreviven 1 día | Dubey (1998), citado por Food Standards Australia New Zealand (2014) |
 | Ratas de laboratorio | Temperatura 20–26 °C; humedad 30–70 %; espacio de 187 cm² (hasta 300 g) a 387 cm² (hasta 500 g) por rata | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. (National Academies, 2011), tablas 3.1 y 3.2 |
@@ -180,6 +182,8 @@ Enlaces:
 - EPA 40 CFR 503, apéndice B: https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
 - FSANZ, Toxoplasma gondii (2014): https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Toxoplasma%20gondii%20-%20jan%202014.pdf
 - Guide, 8.ª ed.: https://www.nationalacademies.org/read/12910/chapter/4
+- Merck, ratas: https://www.merckvetmanual.com/all-other-pets/rats/breeding-and-reproduction-of-rats
+- Presas enteras: https://www.petfoodindustry.com/nutrition/article/15460089/whole-prey-diets-targeted-for-consumption-by-exotic-and-domestic-felines
 - NDSU NM1478: https://www.ndsu.edu/agriculture/extension/publications/composting-animal-manures-guide-process-and-management-animal-manure-compost
 - UNU Press (archivo): https://archive.unu.edu/unupress/unupbooks/80434e/80434E0q.htm
 - WUR, residuos de cultivo: https://subsites.wur.nl/nl/display-on-pages/show/reference-values-for-arable-crop-residues-organic-matter-and-cn-ratio.htm

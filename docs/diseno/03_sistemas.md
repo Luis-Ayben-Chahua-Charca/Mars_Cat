@@ -60,9 +60,9 @@ Los edificios de la zona Media se conectan con la cabina por **pasillos**. Qué 
 - Las ratas llegan a la granja con **"La Redada"** (abajo): ya no hay un gato que "trae ratas" solo.
 - La **rata** es un recurso primitivo: existe dentro de la granja o **suelta** en la estación; no se muestra en la barra superior.
 - Un **gato fijo** trabaja en el puesto (ciclo del edificio) y convierte ratas en **raciones de rata**: la comida real del pool (el número de alimentos de la barra superior, `09_interfaz.md`). Se guardan en el depósito.
-- **Pie de cría:** la granja deja siempre un mínimo de ratas sin convertir (propuesta: 2). La granja arranca cuando tiene más ratas que ese mínimo.
+- **Pie de cría:** la granja deja siempre un mínimo de ratas sin convertir (propuesta: 15). La granja arranca cuando tiene más ratas que ese mínimo.
 - Las ratas comen **forraje** de la granja de plantas mientras viven en la granja. Sin forraje, la granja no convierte ni (si se aprueba) se reproduce.
-- **Reproducción (por decidir):** con forraje, las ratas de la granja aumentan a un ritmo por sol. Si el ritmo es 0, la comida dura lo que duran las ratas capturadas. El código admite las dos opciones con un valor del CSV.
+- **Reproducción (acordado):** con forraje, las ratas de la granja se reproducen. Crecen rápido con pocas ratas y se frenan al acercarse al **tope de espacio** (crecimiento logístico). Sin forraje no se reproducen. El ritmo está en "Ritmo de la granja de ratas" (abajo).
 - Los gatos **comen en el depósito**; cada comida descuenta una ración (`cat.food.ration` en `Data/`).
 
 ### Cadena alimentaria (acordado)
@@ -74,6 +74,34 @@ Los gatos son **carnívoros obligados**: necesitan proteína animal y taurina, q
 - **Cultivo del PMV: papa.** Datos reales en `05_datos_nasa.md` (BVAD de NASA y el experimento "Potatoes on Mars" del Centro Internacional de la Papa, en Lima).
 - La papa da **forraje** (la parte comestible, para las ratas), **fibra** (de la parte no comestible; licencia: fibra de tallos para trajes) y **restos de cosecha** (para el reciclador).
 - Una rata de laboratorio come unos 20 g de alimento seco al día, y 1 m² de papa rinde unos 21 g al día: **cerca de 1 m² de cultivo por rata**. Esa diferencia entre niveles es la pérdida de energía de la cadena alimentaria.
+
+### Ritmo de la granja de ratas (propuesta de balance)
+
+**Meta:** que la granja alimente a los 15 gatos solo si el jugador la mantiene con forraje, y que tarde lo suficiente para que las reservas iniciales y las ratas sueltas importen.
+
+| Valor | Propuesta | De dónde sale |
+|---|---|---|
+| Demanda de la colonia | 30 raciones por sol | 15 gatos × 2 raciones (acordado) |
+| Raciones por rata | **4** | Rata de 400 g × ~1,6 kcal/g ≈ 640 kcal; se aprovecha ~75 % (66–85 % en presas enteras) ≈ 480 kcal ≈ 4 raciones de 125 kcal (estimación) |
+| Ratas que hay que convertir | ~7,5 por sol | 30 ÷ 4 |
+| Ratas sueltas al inicio | **12** | Diseño: con la caza, la redada junta unas 10 |
+| Tope de espacio (`max_rats`) | **40** | Diseño; 40 × 387 cm² ≈ 1,5 m² de jaulas (*Guide*, 8.ª ed.) |
+| Ritmo de reproducción (`breed_rate`) | **0,75 por sol** | Licencia (abajo) |
+| Pie de cría (`min_breeders`) | **15** | Cerca de la mitad del tope, donde la cría da más ratas por sol |
+| Conversión | 1 rata cada **80 s de juego** (hasta 9 por sol) | Más rápido que la cría, para que nunca se acumulen sobre el pie |
+| Forraje | **20 g por rata por sol** | Rata de laboratorio (estimación del equipo) |
+
+**Fórmula:** cada sol nacen `breed_rate × ratas × (1 − ratas / tope)` ratas (se acumulan las fracciones y entra una rata entera cuando se completa).
+
+**Cómo se juega con estos números:**
+
+- La redada deja ~10 ratas. Con 0,75 por sol llegan a 15 en **~0,8 sol** (~6 minutos reales) y la granja arranca.
+- Con 15 ratas nacen ~7 por sol: **~28 raciones por sol**, casi la demanda (30). Con 20 ratas se llega a 7,5 por sol, el máximo; más cerca del tope, nacen menos.
+- Las 60 raciones iniciales cubren 2 soles: alcanzan para el arranque si el jugador no se demora. Cada rata cazada por un gato hambriento es una comida de hoy, pero son 4 raciones menos de mañana.
+- **Forraje necesario:** con 15–20 ratas, 0,3–0,4 kg por sol; con 40, 0,8 kg. La papa da ~21 g por m² al día (BVAD): la granja de plantas debe tener **unos 20 m²** (0,4 kg por sol), o más si se quiere llenar la granja.
+- **Sin forraje:** las ratas no se reproducen y la granja no convierte. La comida escasea de verdad.
+
+**Licencia declarada:** en la Tierra la gestación dura 21–23 días, la camada es de 8–18 crías y las hembras crían a las 8–12 semanas (Merck). Una colonia tarda meses en duplicarse; en el juego se duplica en ~1 sol. Es la misma compresión que el sol de 8 minutos, y la IA lo dice.
 
 ### "La Redada" y la caza (PMV, acordado)
 
@@ -474,7 +502,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
-21. **Granja de ratones:** cuántas ratas sueltas hay al inicio y dónde; si las ratas de la granja se reproducen y a qué ritmo; pie de cría; cuántas raciones rinde cada rata; cuánto forraje come por sol; cuántos desechos produce; cuánto tarda la captura y la caza.
+21. **Granja de ratones:** aprobar el ritmo propuesto (12 sueltas, tope 40, 0,75 por sol, pie de 15, 4 raciones por rata) y probarlo; dónde están las ratas sueltas; cuántos desechos produce cada rata; cuánto tardan la captura y la caza.
 24. **Pasillos:** si cada pasillo se repara junto con su módulo (propuesta), si la red de la zona Media debe quedar intacta desde el inicio para no aislar edificios, y si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa.
 25. **Caminos de los gatos:** si usan una red de puntos de paso (puestos de trabajo y necesidades, como comer en el depósito) en lugar de una malla de navegación. Se decide en el issue de los gatos en escena (#33).
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
