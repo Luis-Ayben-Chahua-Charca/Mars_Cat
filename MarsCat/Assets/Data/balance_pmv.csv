@@ -1,0 +1,13 @@
+clave;valor;unidad;fuente
+# Valores de diseño acordados en docs/06_guia_logica.md y docs/diseno/04_economia_y_balance.md.
+# Las raciones, capacidades, tasas y costos pendientes no se sustituyen por cifras inventadas.
+clock.day_seconds;360;s_reales;diseno
+clock.night_seconds;120;s_reales;diseno
+clock.night_time_scale;3;factor;diseno
+clock.start_progress;0;fraccion;diseno
+cat.food.interval_seconds;240;s_reales;diseno
+cat.food.alert_seconds;480;s_reales;diseno
+cat.food.death_seconds;600;s_reales;diseno
+cat.water.interval_seconds;120;s_reales;diseno
+cat.water.alert_seconds;240;s_reales;diseno
+cat.water.death_seconds;300;s_reales;diseno
