@@ -27,7 +27,7 @@ Wireframe básico del HUD de la partida. Boceto original: `img/wireframe_hud.png
 | # | Elemento | Ubicación | Qué muestra | Lógica que lo alimenta |
 |---|---|---|---|---|
 | §1 | **Esquina de la IA** | Arriba a la izquierda | Retrato de la IA guía; desde aquí habla (comunicación con el jugador) | Secuencia del tutorial y avisos (#23, #32) |
-| §2 | **Cantidad de alimentos** | Barra superior, junto a §1 | Ícono + número | Recursos y depósito (#16) |
+| §2 | **Cantidad de alimentos** (raciones) | Barra superior, junto a §1 | Ícono + número | Recursos y depósito (#16) |
 | §3 | **Cantidad de agua** | Barra superior, junto a §2 | Ícono + número | Recursos (#16) |
 | §4 | **Reloj** | Arriba al centro, semicírculo | Ciclo de día y noche (sol actual) | Reloj de día y noche (#15) |
 | §10 | **Materiales** | A la derecha del reloj | Metal, escombros y abono (ícono + número cada uno) | Recursos y depósito (#16) |

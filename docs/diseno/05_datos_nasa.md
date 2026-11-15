@@ -6,6 +6,20 @@
 
 Registro de las fuentes científicas que respaldan el juego. Nada de esto se usa en el código hasta tener el dato verificado y su archivo en `MarsCat/Assets/Data/`.
 
+## Ubicación de la base
+
+| Dato | Valor |
+|---|---|
+| Lugar | **Cráter Vivero**, Marte (nombre oficial de la nomenclatura planetaria) |
+| Coordenadas | **48,9710° N, 118,8322° E** |
+| Región | Utopia Planitia |
+| Fuente | NASA Mars Trek, capa de nomenclatura: https://trek.nasa.gov/mars/ |
+| Imágenes | `Art-source/mapas/` |
+
+**Por qué aquí:** el radar SHARAD del orbitador MRO detectó en Utopia Planitia, entre los 39° y 49° de latitud norte, un depósito de hielo enterrado con tanta agua como el lago Superior: 80 a 170 m de espesor, 50–85 % de hielo, bajo una capa de suelo de 1 a 10 m. NASA lo describe como más accesible que la mayoría del hielo marciano. Fuente: NASA/JPL, *Mars Ice Deposit Holds as Much Water as Lake Superior* (2016), https://www.jpl.nasa.gov/news/mars-ice-deposit-holds-as-much-water-as-lake-superior/
+
+**Por verificar:** Vivero (48,97° N) queda en el borde norte de ese rango de latitud. Conviene confirmar en el mapa del estudio (Stuurman et al., 2016, *Geophysical Research Letters*) que el cráter cae dentro del depósito antes de afirmarlo en la presentación.
+
 ## APIs
 
 | API | Para qué | Enlace | Estado |
@@ -126,6 +140,21 @@ Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar 
   - https://nodis3.gsfc.nasa.gov/OPD_docs/NID_8715-129_.pdf
   - https://cosparhq.cnes.fr/assets/uploads/2024/07/PP-Policy_SRT_220-July-2024.pdf
 - **Micelio (post-PMV):** NASA estudia hongos alimentados con residuos para fabricar materiales de construcción. Por verificar la fuente exacta.
+
+## Comida: papa, ratas y gatos
+
+| Dato | Valor | Fuente |
+|---|---|---|
+| Papa: biomasa comestible seca | 21,06 g/m² al día | NASA BVAD, JSC-47804 (2002), tablas 4.2.6–4.2.8 |
+| Papa: biomasa no comestible | 9,03 g/m² al día | Igual |
+| Papa: oxígeno | 32,23 g/m² al día | Igual |
+| Papa: agua | 2,88 kg/m² al día | Igual |
+| Papa: ciclo | 132 días (verificar en el PDF) | Igual |
+| Rata de laboratorio: alimento | ~20 g al día | Estimación del equipo (`mecanica_comida.md`) |
+| Gato: energía diaria | ~250 kcal | Fórmula veterinaria de energía en reposo × mantenimiento |
+
+- BVAD: https://spacearchitect.org/pubs/NASA-JSC-47804.pdf (edición 2018 para verificar: https://ntrs.nasa.gov/citations/20180001338).
+- "Potatoes on Mars", Centro Internacional de la Papa (Lima) con la UTEC y asesoría de NASA Ames: papa cultivada en suelo análogo marciano. https://cipotato.org/blog/indicators-show-potatoes-can-grow-mars/
 
 ## Referencias no NASA (valores de la Tierra)
 

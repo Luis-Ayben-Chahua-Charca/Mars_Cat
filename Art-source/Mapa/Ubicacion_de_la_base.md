@@ -77,8 +77,8 @@ Eso es justo lo que hace creíble que una base sobreviviera parcialmente, y que 
 
 | Zona | Dónde está | Qué le pasó |
 |---|---|---|
-| **Segura** (depósito) | Al pie de la pared norte del cráter | La pared la protegió. Los gatos criogenizados sobrevivieron aquí |
-| **Media** (reparable) | Fondo plano, hacia el centro | Protegida a medias: dañada pero recuperable |
+| **Segura** (depósito, MOXIE y esclusa) | Dentro del cráter, al pie de la pared norte | La pared la protegió. Los gatos criogenizados sobrevivieron aquí |
+| **Media** (reparable: paneles solares, granjas, reciclador orgánico y extractor de agua) | Fondo plano, hacia el centro | Protegida a medias: dañada pero recuperable |
 | **Lejana** (destruida) | Fuera del cráter, en la llanura abierta | Sin nada que la protegiera |
 
 ---

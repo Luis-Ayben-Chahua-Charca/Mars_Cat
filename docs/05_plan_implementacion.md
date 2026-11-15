@@ -21,8 +21,8 @@
 ## Estado de partida
 
 - **H0** casi cerrado: faltan el check de #6 y el de #9 (Integración Unity 2 clona y abre el proyecto) y #4.
-- **H1** sin lógica escrita: `Scripts/Logic/` y `Scripts/Unity/` solo tienen su `.gitkeep`.
-- **Hay código de prototipo fuera de la estructura** de `STRUCTURE.md`: `Assets/Scripts/Enemies`, `Environment`, `Player` y `Systems`, `Assets/Editor`, `Assets/Sprites`, `Assets/CabinaNavegable` y `Scenes/CabinaPrincipal.unity`. **No se toca ni se mueve** hasta que Gestión e Integración decidan (paso 0.3).
+- **H1:** la lógica de las olas 1 a 3 (#15 a #22) ya está escrita. Falta su cierre (ola 3.5 en `06_guia_logica.md`: `FromBalance` pendientes y CSV completo) y los `.meta` de `Buildings/` y `Energy/`. Los contratos de la ola 4 en adelante están propuestos en `06_guia_logica.md`.
+- **Hay código de prototipo fuera de la estructura** de `STRUCTURE.md`: `Assets/Scripts/Enemies`, `Environment`, `Player` y `Systems`, `Assets/Editor`, `Assets/Sprites`, `Assets/CabinaNavegable` y `Scenes/CabinaPrincipal.unity`. **No se toca ni se mueve** hasta que Gestión e Integración decidan (paso 0.3), con una excepción acordada: la **cabina** (`CabinaNavegable`) se adopta como zona Segura de `Main` y sus scripts de puertas y animación se adaptan a `MarsCat.Unity.*` (no se mueven ni se editan los originales). El ratón enemigo no se integra: no está en el diseño del PMV.
 
 ## Ola 0 — Preparación
 
@@ -50,7 +50,7 @@
 | 4 | 55 | Aire de la base (% de O₂) | #17 | Aprobar meta, franjas, volumen y fuga | Tras la aprobación en #14 |
 | 5 | 54 | Preparación del extractor de agua | #20, #21, #16 | Veta, profundidad y electricidad por metro (valores) | Sí (la preparación ya está aprobada en #14) |
 | 5 | 56 | MOXIE y filtros | #21, #55, #18 | Cada cuánto se ensucia un filtro; cuánto dura limpiarlo | Tras #55 y los valores |
-| 6 | 57 | Granja de ratones | #19, #20 | **Bloqueada:** insumos, minijuego, comida y desechos (propuesta en `Propuesta_mecanica/mecanica_comida.md`, sin aprobar) | No |
+| 6 | 57 | Granja de ratones | #19, #20 | **Parcial:** acordado que un gato fijo trae ratas y la granja las convierte en raciones (`03_sistemas.md`); faltan insumos, minijuego, cadencia y desechos (propuesta en `Propuesta_mecanica/mecanica_comida.md`) | Esqueleto del puesto y las raciones |
 | 6 | 58 | Reciclador orgánico (desechos y abono) | #57, #19, #20 | Aprobar controles; desechos por gato y por ratón; abono por lote | Parcial: el modelo ya está acordado, falta el minijuego |
 | 7 | 23 | Secuencia del tutorial | Todas las anteriores | Pasos después de "Trajes"; ¿el paso Trajes va al final del tutorial? | Esqueleto de los pasos 1 a 5 |
 

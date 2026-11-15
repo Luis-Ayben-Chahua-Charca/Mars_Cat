@@ -13,7 +13,7 @@
 - En Marte existe una **colonia humana ya funcional**. No es necesario explicar cómo se llegó a ella.
 - En la colonia, los humanos trabajaban con **gatos genéticamente modificados** para hacerlos más inteligentes. Se eligieron gatos por ser atractivos para los niños.
 - Un **cataclismo** obliga a los humanos a abandonar la base: una **lluvia de meteoritos** que merma la integridad de la base. Es el **primer** cataclismo.
-- Antes de irse, dejan a los gatos **congelados en un módulo seguro: una cueva en una montaña**, con la intención de volver cuando el cataclismo termine.
+- Antes de irse, dejan a los gatos **congelados en un módulo seguro: la cabina principal, dentro del cráter Vivero** (ubicación real; ver `05_datos_nasa.md`), con la intención de volver cuando el cataclismo termine.
 
 ## Inicio del juego
 
@@ -33,7 +33,7 @@ Las etapas jugables y el tutorial están en `02_core_loop.md`.
 ## Narrativa ambiental
 
 - Escombros de la base.
-- La cueva.
+- El cráter Vivero y la cabina principal.
 - Datos de NASA integrados en el escenario.
 
 ## Arco y final

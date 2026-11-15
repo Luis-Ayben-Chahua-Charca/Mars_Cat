@@ -16,6 +16,20 @@ Los recursos y edificios están en `03_sistemas.md`. Esta página describe cómo
 
 ## Consumo, hambre y sed
 
+### Primera tanda de valores (acordado)
+
+| Valor | Cantidad | Fuente |
+|---|---|---|
+| Necesidad diaria de un gato | ~250 kcal por sol | Tierra: energía en reposo de un gato de 4 kg (70 × peso^0,75 ≈ 200 kcal) × 1,2–1,4 de mantenimiento |
+| Ración | 1 ración = 125 kcal; 2 por sol | Derivado |
+| Agua por gato | 0,2 L por sol (0,05 L por bebida, 4 por sol) | Tierra: ~50 mL por kg de peso al día (guía veterinaria; por verificar) |
+| Oxígeno por gato (para el aire, #55) | ~0,08–0,1 kg por sol | Derivado: 0,835 kg por humano al día (BVAD) escalado por metabolismo (peso^0,75 ≈ 1/10) |
+| Paneles | ~6 kWh por sol cada 10 m² | Derivado: irradiancia del 43 % de la Tierra y eficiencia del panel a la latitud de Vivero |
+| Comida inicial | ~60 raciones | Diseño: unos 2 soles de margen para 15 gatos (regla 5 del PMV) |
+| Agua inicial | ~6 L | Diseño: igual |
+
+Tanques, baterías, calefacción nocturna y costos de reparación quedan como `placeholder` hasta probarlos.
+
 - **Colonia inicial (acordado):** **15 gatos**. Cada uno despierta con un hambre y una sed iniciales algo distintas (aleatorias), para que no coman ni beban todos a la vez.
 
 - La comida y el agua se consumen **en tiempo real**, con **estadísticas por gato** (ver `03_sistemas.md`).
@@ -63,12 +77,12 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 - **PMV (acordado):** cada recurso tiene su **propio tope**. El tope compartido del depósito queda para después del PMV.
 - **Oxígeno:** no es un tanque, es el **aire de la base**, medido en % de O₂ (ver "Aire y oxígeno"). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
 - **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
-- **Alimentos, fibra, escombros y desechos:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
+- **Raciones, forraje, fibra, escombros y desechos:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
 - **Exceso:** si el almacén está lleno, la producción se detiene y queda **en cola**; el jugador debe permitir a mano que entre al almacén.
 
 ## El depósito
 
-Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelados y donde están al inicio la comida, el agua y los materiales. Los gatos heridos que entran por una esclusa se recuperan ahí.
+Edificio principal en la zona segura (la cabina principal, junto con el MOXIE y las esclusas). Es donde sobrevivieron los gatos congelados y donde están al inicio la comida, el agua y los materiales. Los gatos **comen aquí**, y los **trajes iniciales** se guardan aquí hasta que exista el taller (post-PMV). Los gatos heridos que entran por una esclusa se recuperan ahí.
 
 ## Fuentes
 
@@ -76,8 +90,8 @@ Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelado
 2. **Escombros** de los edificios destruidos.
 3. **Nodos de mineral marciano** cerca, en la cueva o en la superficie. Los minerales salen siempre de datos de NASA. El **regolito** es infinito. El **metal** se extrae de Marte y también se recupera de los escombros.
 4. **Edificios:**
-   - Granja de plantas: alimento, **fibra** y algo de oxígeno.
-   - Granja de ratones: alimento (proteína) y **desechos de ratones**.
+   - Granja de plantas (papa): **forraje** para las ratas, **fibra** y algo de oxígeno. Los gatos no comen de aquí: son carnívoros (ver "Cadena alimentaria" en `03_sistemas.md`).
+   - Granja de ratones: **raciones de rata** (alimento, proteína) a partir de las ratas que trae un gato fijo en el puesto y que comen forraje, y **desechos de ratones** (ver "Granja de ratones y raciones" en `03_sistemas.md`).
    - Reciclador orgánico: **abono**, a partir de los desechos de gatos y de ratones y de los restos de cosecha.
    - Energía: electricidad.
    - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).

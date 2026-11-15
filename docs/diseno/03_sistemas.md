@@ -12,17 +12,19 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 |---|---|---|
 | Oxígeno | Soporte vital. Se mide como **% de O₂ del aire de la base**, no como tanque (ver "Oxígeno") | Sí |
 | Electricidad | Soporte vital | Sí |
-| Comida | Soporte vital | Sí |
+| Comida | Soporte vital. Se mide en **raciones** y se guarda en el depósito; los gatos comen allí y cada comida descuenta una ración | Sí |
 | Agua | Soporte vital; se guarda en **tanques** propios, no en el depósito | Sí |
 | Metal | Material de construcción; insumo de robots y trajes. Se extrae de Marte y se recupera de escombros | Sí |
 | Escombros | Material de construcción | Sí |
 | Bacterias | Insumo de la preparación del cultivo. **Infinito**: solo se ajusta su valor óptimo en el minijuego | Sí |
-| Fibra | Insumo de trajes | No |
+| Fibra | Insumo de trajes y de reparaciones post-PMV. La produce la granja de plantas (de la parte no comestible de la papa) y se guarda en el depósito | Sí (se produce; su uso es post-PMV) |
+| Forraje | Alimento de las **ratas**: la parte comestible de la cosecha de papa. Lo produce la granja de plantas y lo consume la granja de ratones. Se guarda en el depósito | Sí |
 | Regolito (tierra) | Base de la mezcla de suelo de la granja de plantas. **Infinito**: está en la superficie marciana | Sí |
 | Abono | Insumo de la granja de plantas. **Reserva inicial** suficiente para la primera granja; después sale del reciclador orgánico | Sí |
 | Desechos de gatos | Los generan todos los gatos desde el inicio, según lo que comen y beben. Se guardan en el **depósito** hasta que se repara el reciclador orgánico | Sí |
 | Desechos de ratones | Los genera la granja de ratones. Se guardan en el **depósito** hasta que se procesan en el reciclador orgánico | Sí |
 | Restos de cosecha | Partes no comestibles de la granja de plantas (tallos, raíces). Insumo del reciclador orgánico | Sí |
+| Ratas | **Recurso primitivo** de la granja de ratones: existe solo dentro de ese edificio, no se come directamente y no entra al depósito ni al pool. Se convierte en **raciones de rata** (comida) | Sí |
 | Tierras raras | Insumo de chips. Se producen en un edificio propio | No |
 | Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
@@ -33,18 +35,44 @@ Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso 
 
 | Edificio | Produce | Insumos | En el PMV | Zona |
 |---|---|---|---|---|
-| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Por definir |
+| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Media |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
-| Granja de plantas | Comida; también fibra, algo de oxígeno y restos de cosecha | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
-| Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Por definir |
-| Reciclador orgánico | **Abono** | Desechos de gatos y de ratones, restos de cosecha; electricidad (calor) y agua | Sí: reparar y preparar (paso 8) | Por definir |
-| Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
+| Granja de plantas (papa) | **Forraje** (para las ratas); también **fibra**, algo de oxígeno y restos de cosecha | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Media |
+| Granja de ratones | **Raciones de rata** (comida, proteína); **desechos de ratones** | Un gato fijo en el puesto trae periódicamente una **rata**; las ratas comen **forraje** (ver "Granja de ratones y raciones") | Sí: reparar y preparar | Media |
+| Reciclador orgánico | **Abono** | Desechos de gatos y de ratones, restos de cosecha; electricidad (calor) y agua | Sí: reparar y preparar (paso 8) | Media |
+| Extracción de agua del subsuelo | Agua (hielo bajo el cráter, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Media |
 | Reciclador de agua (soporte vital) | Recupera parte del agua consumida; el porcentaje sube con la investigación | Electricidad | No: dañado; en el PMV solo lo menciona la IA | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
-| MOXIE (industrial) | Oxígeno | Mucha electricidad; filtros de entrada limpios | Sí: reparar y mantener filtros (paso 4) | Por definir |
+| MOXIE (industrial) | Oxígeno | Mucha electricidad; filtros de entrada limpios | Sí: reparar y mantener filtros (paso 4) | Segura |
 | Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
-| Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No | Por definir |
+| Esclusa | Puertas exteriores de la cabina principal: salida de los gatos al exterior; los heridos que llegan a ella pasan al depósito | — | Sí | Segura |
+| Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No (post-PMV: se construye) | Segura |
+
+### Zona Segura: la cabina principal (acordado)
+
+La zona Segura es la **cabina principal**, un solo conjunto dentro del cráter que contiene el **depósito**, el **MOXIE** y las **esclusas** (sus puertas exteriores). Las unidades de la escena se miden en metros: la cabina mide unos 26 × 30 m, con pasillos de 2 m. En el PMV la cabina se ve **sin techo** para que se vea el interior; después del PMV el techo puede abrirse al seleccionar un edificio.
+
+Los edificios de la zona Media se conectan con la cabina por **pasillos**. Qué pasillos se reparan con qué módulo, y si los paneles solares quedan fuera de esa red, está en los pendientes.
+
+### Granja de ratones y raciones (acordado)
+
+- Un **gato fijo** trabaja en el puesto de la granja de ratones y trae periódicamente una **rata**.
+- La **rata** es un recurso primitivo: existe solo dentro del edificio, no se come directamente y no se muestra en la barra superior.
+- La granja convierte las ratas en **raciones de rata**: es la comida real del pool (el número de alimentos de la barra superior, `09_interfaz.md`). Se guardan en el depósito.
+- Las ratas comen **forraje** de la granja de plantas. Sin forraje, la granja no convierte ratas en raciones.
+- Los gatos **comen en el depósito**; cada comida descuenta una ración (`cat.food.ration` en `Data/`).
+
+### Cadena alimentaria (acordado)
+
+Los gatos son **carnívoros obligados**: necesitan proteína animal y taurina, que las plantas no tienen. Por eso no comen de la granja de plantas:
+
+**granja de plantas (papa) → forraje → ratas → raciones → gatos → desechos → reciclador orgánico → abono → granja de plantas**
+
+- **Cultivo del PMV: papa.** Datos reales en `05_datos_nasa.md` (BVAD de NASA y el experimento "Potatoes on Mars" del Centro Internacional de la Papa, en Lima).
+- La papa da **forraje** (la parte comestible, para las ratas), **fibra** (de la parte no comestible; licencia: fibra de tallos para trajes) y **restos de cosecha** (para el reciclador).
+- Una rata de laboratorio come unos 20 g de alimento seco al día, y 1 m² de papa rinde unos 21 g al día: **cerca de 1 m² de cultivo por rata**. Esa diferencia entre niveles es la pérdida de energía de la cadena alimentaria.
+- **Comedor (post-PMV):** un edificio propio para este fin. En el PMV se come directamente en el depósito.
 
 ## Reparar o construir
 
@@ -201,7 +229,7 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aqu
   1. **Reciclador (soporte vital), post-PMV:** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
      - **En el PMV** no es un edificio: solo la IA lo menciona para explicar por qué falta agua y para presentar el dato del 98 % de la ISS (ver `05_datos_nasa.md`).
      - **Post-PMV** se repara, y su **eficiencia de reciclaje sube por niveles** de investigación en el árbol tecnológico. Reciclar cuesta menos energía que perforar vetas profundas, así que el jugador elige entre las dos fuentes.
-  2. **Extracción de agua del subsuelo, PMV:** el edificio del tutorial (paso 5). Saca **hielo** de debajo de la cueva, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
+  2. **Extracción de agua del subsuelo, PMV:** el edificio del tutorial (paso 5). Saca **hielo** de debajo del cráter, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
 - **Consumo:** la sed de cada gato (`04_economia_y_balance.md`) y la preparación de la **granja de plantas**. La hidroponía es post-PMV.
 - **Exceso:** con los tanques llenos, la extracción se detiene y queda en cola, igual que el depósito. El agua no se pierde.
 - **Sin agua:** rige la regla de sed (alerta extrema, busca agua, muere). La granja de plantas no arranca porque el insumo agua queda fuera de rango.
@@ -213,7 +241,7 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 
 **Paso 1 — Sondeo y perforación**
 
-- Una **vista en corte del subsuelo** bajo la cueva muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
+- Una **vista en corte del subsuelo** bajo el cráter muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
 - El jugador **coloca** el taladro y elige la **profundidad**:
   - **Somero:** barato y rápido, pero hielo más sucio y con menos volumen.
   - **Profundo:** hielo más puro y abundante, pero cuesta más electricidad y tiempo.
@@ -271,7 +299,7 @@ Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene 
 
 Propuesta del equipo en `docs/Propuesta_mecanica/mecanica-desechos.md`, adaptada aquí. **Acordado**, incluido el minijuego; los controles son propuesta.
 
-- **Edificio: reciclador orgánico.** Módulo sellado que convierte desechos en **abono** con bacterias de compost. Cierra el ciclo: comida → gatos y ratones → desechos → abono → granja de plantas. Es la misma idea del sistema MELiSSA de la ESA (ver `05_datos_nasa.md`).
+- **Edificio: reciclador orgánico.** Módulo sellado que convierte desechos en **abono** con bacterias de compost. Cierra el ciclo: forraje → ratas → raciones → gatos; gatos y ratas → desechos → abono → granja de plantas. Es la misma idea del sistema MELiSSA de la ESA (ver `05_datos_nasa.md`).
 - **Insumos:** desechos de gatos, desechos de ratones y restos de cosecha de la granja de plantas. Las bacterias son infinitas.
 - **Dependencias:** **electricidad** (paneles y baterías) para mantener el calor, porque el frío de Marte enfría el módulo, y un poco de **agua** para la humedad de la colonia bacteriana.
 - **Desechos de gatos:** cada gato los genera según lo que come y bebe. Se guardan en el **depósito** desde el inicio y ocupan espacio.
@@ -365,6 +393,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 - Los trajes se fabrican en el **taller** con **fibra y un poco de metal**. No se construyen en el PMV.
 - Cada traje tiene su propia integridad. Se **reparan automáticamente con el tiempo** en el taller.
 - **En el PMV los trajes no se degradan** (ver reglas del PMV en `02_core_loop.md`), así que no hace falta repararlos.
+- Los trajes iniciales **viven en el depósito** hasta que se construye el **taller** (post-PMV). El taller permite fabricar más trajes y activa la mecánica de degradación.
 
 ## Pendientes
 
@@ -379,13 +408,15 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 9. **Agua** (paso 2 acordado): balance del círculo (arranque en 40 %, 5 s, velocidad de bajada) si resulta muy difícil; costo del botón acelerar; arte faltante. Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
-21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
+21. **Granja de ratones:** minijuego, cada cuánto llega una rata, cuántas raciones rinde cada una, cuánto forraje come y cuántos desechos produce.
+24. **Pasillos:** si cada pasillo se repara junto con su módulo (propuesta), si la red de la zona Media debe quedar intacta desde el inicio para no aislar edificios, y si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa.
+25. **Caminos de los gatos:** si usan una red de puntos de paso (puestos de trabajo y necesidades, como comer en el depósito) en lugar de una malla de navegación. Se decide en el issue de los gatos en escena (#33).
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
 10. **Operación Rescate Solar** (acordada): costo por disparo y velocidad de la banda según la producción de los paneles en `Data/`; las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV); observaciones pendientes del arte.
 11. Costo en metal y escombros de cada reparación.
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
-13. En qué zona está cada edificio.
+13. En qué zona está cada edificio: **acordado para los edificios del PMV** (ver la tabla de edificios); faltan las baterías de emergencia y el reactor KRUSTY.
 14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
 16. **MOXIE** (entra en el PMV, acordado): cada cuánto se ensucia un filtro, cuánto dura limpiarlo, producción con los 5 limpios y consumo de electricidad.
 17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).

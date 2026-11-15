@@ -1,6 +1,6 @@
 # 06 — Guía de Lógica: olas 1 a 3
 
-**Estado:** contratos acordados (#15 a #22).
+**Estado:** contratos acordados de las olas 1 a 3 (#15 a #22). Contratos de la ola 4 en adelante: propuesta pendiente de aprobación (ver su sección).
 **Para quién:** Lógica 1, Lógica 2 y sus agentes. Integración Unity la usa para saber qué conectar.
 **Qué es:** qué clases se crean, en qué orden, para qué sirve cada una y de qué depende. Complementa `05_plan_implementacion.md`. El avance no se anota aquí: vive en el tablero y en los commits `#n`.
 
@@ -38,6 +38,11 @@ Scripts/Logic/
 ├── Energy/       EnergyPriority, EnergyConfig, EnergyGrid
 ├── Buildings/    BuildingState, BuildingConfig, Building
 ├── Work/         JobKind, Job, WorkConfig, JobAssigner
+├── Air/          (ola 4) MoxieFilterConfig, MoxieFilters
+├── Food/         (ola 4) RatFarmConfig, RatFarm
+├── Tutorial/     (ola 4) TutorialStep, TutorialSequence
+├── Water/        (ola 4) MeltPhase, MeltingConfig, MeltingChamberSession
+├── Recycling/    (ola 4) CompostConfig, CompostSession
 └── Tests/        <Clase>Tests.cs
 ```
 
@@ -86,7 +91,7 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
 
 **Para qué:** el inventario de la base. Cada recurso tiene cantidad y tope propio. En el PMV no hay tope compartido del depósito (acordado).
 
-- `enum ResourceId`: `Electricity`, `Food`, `Water`, `Metal`, `Debris`, `Compost`, `CatWaste`, `RatWaste`, `CropResidue`, `Bacteria`, `Regolith`. `Bacteria` y `Regolith` son infinitos.
+- `enum ResourceId`: `Electricity`, `Food`, `Water`, `Metal`, `Debris`, `Compost`, `CatWaste`, `RatWaste`, `CropResidue`, `Forage`, `Fiber`, `Bacteria`, `Regolith`. `Bacteria` y `Regolith` son infinitos. `Forage` (alimento de las ratas) y `Fiber` se agregaron en la ola 3.5 (cadena alimentaria acordada).
 - `ResourceConfig`: cantidad inicial y tope por recurso. `FromBalance` lee `resource.<id>.initial` y `resource.<id>.capacity` (por ejemplo `resource.water.capacity`). El tope de `Electricity` es la capacidad de las baterías; el de `Water`, la de los tanques.
 - `ResourcePool(ResourceConfig)`:
   - `float Get(ResourceId)`; `float Capacity(ResourceId)`; `bool IsInfinite(ResourceId)`.
@@ -201,6 +206,146 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
   - Al terminar una tarea puntual, el gato vuelve a estar libre.
   - Un gato degradado nunca va a un puesto exterior; un gato que pasa a `SeekingFood` o muere libera su puesto.
 - **Probar:** asigna gatos libres de día y no de noche; respeta el orden; libera al gato en alerta extrema; no manda degradados afuera.
+
+## Ola 3.5 — Cierre de las olas 1 a 3 (ya se puede tomar)
+
+Sin esto el GameBootstrap (#26) no puede cargar el balance.
+
+### `FromBalance` pendientes · Lógica 1 (#15, #16, #17, #18)
+
+`DayNightConfig`, `ResourceConfig`, `CatConfig` y `WorkConfig` todavía no tienen `FromBalance` (T5). Cada dueño lo agrega en su archivo, con su prueba.
+
+| Clase | Claves |
+|---|---|
+| `DayNightConfig` | `clock.day_seconds`, `clock.night_seconds`, `clock.night_time_scale`, `clock.start_progress` |
+| `ResourceConfig` | `resource.<id>.initial` y `resource.<id>.capacity` para cada recurso finito. Ids en minúsculas con guion bajo: `electricity`, `food`, `water`, `metal`, `debris`, `compost`, `cat_waste`, `rat_waste`, `crop_residue`, `forage`, `fiber` |
+| `CatConfig` | `cat.food.interval_seconds`, `cat.food.alert_seconds`, `cat.food.death_seconds`, `cat.food.ration`, lo mismo con `water`, y `cat.initial_need_spread` |
+| `WorkConfig` | La importancia de cada edificio es su prioridad de energía (acordado): `FromBalance(BalanceData, IEnumerable<string> buildingIds)` lee `building.<id>.energy_priority` |
+
+`colony.initial_cats` no pertenece a ninguna configuración: lo lee el GameBootstrap para llamar a `Spawn`.
+
+**También en la ola 3.5 (cadena alimentaria acordada en `03_sistemas.md`):**
+- **Lógica 1 (#16):** agregar `Forage` y `Fiber` a `ResourceId`, con sus pruebas.
+- **Lógica 2 (#19):** un edificio puede dar **subproductos** además de su producto principal. La granja de plantas produce `Forage` y, como subproductos, `Fiber` y `CropResidue`. `BuildingConfig` suma `IReadOnlyDictionary<ResourceId, float> ByproductRatesPerSol`; `FromBalance` los lee con `TryGet` de `building.<id>.byproduct.<recurso>_per_sol` (si la clave no está, no hay subproducto). El edificio los entrega al pool junto con el producto, con el mismo rendimiento y la misma cola de exceso.
+
+### CSV completo · Lógica 2 (#22)
+
+`Data/balance_pmv.csv` debe tener **todas** las claves que piden las configuraciones de arriba, más `colony.initial_cats`, `energy.heating.rate_per_sol` y, para cada edificio del PMV, las de `BuildingConfig`: `building.<id>.energy_priority`, `repair_metal_cost`, `repair_debris_cost`, `repair_seconds`, `production_rate_per_sol`, `run_seconds` y `energy_rate_per_sol`.
+
+- Ids de edificio: `solar_panels`, `moxie`, `water_extractor`, `plant_farm`, `rat_farm`, `organic_recycler`, `depot`.
+- Prioridad de energía como número: `None` = 0, `High` = 1, `Max` = 2.
+- Valor acordado → su fuente (`diseno` o la referencia). Valor sin acordar → `placeholder`. Nunca una cifra de NASA inventada.
+- Prueba recomendada: cargar el CSV del repositorio y construir todas las configuraciones sin excepción.
+
+**Primera tanda de valores (acordada; detalle y fuentes en `04_economia_y_balance.md`):**
+
+| Clave | Valor | Unidad | Fuente (columna del CSV) |
+|---|---|---|---|
+| `colony.initial_cats` | 15 | gatos | diseno |
+| `cat.initial_need_spread` | 0.3 | fraccion | diseno |
+| `cat.food.ration` | 1 | raciones | diseno: 1 racion = 125 kcal; 250 kcal/sol por gato |
+| `cat.water.ration` | 0.05 | L | Tierra: 50 mL/kg/dia para un gato de 4 kg |
+| `resource.food.initial` | 60 | raciones | diseno: 2 soles de margen |
+| `resource.water.initial` | 6 | L | diseno: 2 soles de margen |
+| `building.solar_panels.production_rate_per_sol` | 6 | kWh | derivado: irradiancia 43 % y eficiencia del panel |
+
+Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, `forage` y `fiber` en kg. El resto de las claves va como `placeholder`. La fuente no puede llevar `;`.
+
+## Olas 4 en adelante — contratos propuestos
+
+**Estado:** propuesta de Gestión, **pendiente de aprobación de Leyni**. Nada de esta sección se programa hasta que el issue tenga marcado "Contrato acordado".
+
+### Reglas de los minijuegos
+
+- La lógica de cada minijuego es una **sesión** en C# puro: recibe la entrada del jugador como métodos (`Fire`, `SetHeat`…), avanza con `Tick(float dt)` en **segundos reales** (es interacción del jugador) y al terminar entrega un `PreparationResult`.
+- Unity solo dibuja la sesión y le pasa la entrada. Nada de física ni de animación en la lógica.
+- Lo aleatorio recibe una semilla (`int seed`) para que las pruebas sean repetibles.
+- Todo valor de balance va en el CSV con el prefijo `minigame.<nombre>.`.
+
+### Reparto propuesto
+
+| Persona | Issues | Carpetas nuevas |
+|---|---|---|
+| **Lógica 1** | #56 (filtros del MOXIE), #57 (granja de ratones, esqueleto), #23 (secuencia del tutorial, esqueleto). Después, #55 (aire), cuando se apruebe su modelo | `Air/`, `Food/`, `Tutorial/` |
+| **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2; que el PMV lleve solo ese paso está **pendiente de aprobación**), #58 (Sopa de Bacterias) | `Water/`, `Recycling/`, y `Energy/` (ya suya) |
+
+### Rescate Solar (lógica) · Lógica 2 · `MarsCat.Logic.Energy`
+
+**Para qué:** la limpieza de paneles con disparos de CO₂ (`03_sistemas.md`, "Operación Rescate Solar").
+
+- `SolarCleaningConfig`: carriles (3), segundos por fila (1), filas por sesión, probabilidad de celda sucia, electricidad por disparo. Claves `minigame.solar.*`.
+- `SolarCleaningSession(SolarCleaningConfig, ResourcePool, int seed)`:
+  - `void Tick(float dt)`; `void Fire(int lane)` (0 a 2): siempre cobra la electricidad, acierte o no.
+  - `bool[] CurrentRow` (qué celdas de la fila actual están sucias), `int RowsRemaining`, `bool IsFinished`.
+  - `float Efficiency` = celdas sucias limpiadas ÷ total de celdas sucias.
+  - Al terminar: `PreparationResult.Ok(Efficiency)`.
+  - Eventos `OnRowPassed(int cleaned, int missed)` y `OnFinished(PreparationResult)`.
+- **Probar:** disparar a una celda limpia gasta energía y no suma; una fila sin limpiar pasa al segundo; con la misma semilla se repite la banda; sin electricidad, el disparo no sale.
+
+### Cámara de derretido (#54, paso 2) · Lógica 2 · `MarsCat.Logic.Water`
+
+**Para qué:** las dos fases con aguja y círculo de progreso del extractor (`03_sistemas.md`, "Paso 2", acordado). Que el PMV lleve solo este paso está pendiente de aprobación; el paso 2 se programa igual porque está acordado.
+
+- `enum MeltPhase`: `Pressurize`, `Heat`, `Done`, `Lost`.
+- `MeltingConfig`: progreso inicial (0,4), segundos para llenar (5), velocidad de bajada fuera de zona, ancho de la zona verde, oscilación de la aguja, factor del botón acelerar (2) y electricidad extra al acelerar. Claves `minigame.melt.*`.
+- `MeltingChamberSession(MeltingConfig, ResourcePool, int seed)`:
+  - `void Tick(float dt, float input)`: `input` de −1 a 1 empuja la aguja; la lógica le suma la oscilación.
+  - `void SetAccelerated(bool)`.
+  - `MeltPhase Phase`, `float Needle` (0–1), `float Progress` (0–1).
+  - Si `Progress` llega a 0: en `Pressurize` la fase se reinicia; en `Heat` el agua hierve y el lote se pierde (`Fail("prep.water.boiled")`).
+  - Al terminar `Heat`: `PreparationResult.Ok(1)`. El volumen del lote sale de la configuración del edificio.
+  - Eventos `OnPhaseCompleted(MeltPhase)`, `OnPhaseFailed(MeltPhase)`, `OnFinished(PreparationResult)`.
+- **Probar:** en el centro se llena en 5 s; acelerado, en 2,5 s y cobra electricidad; fallar la presión reinicia sin perder el lote; fallar el calor pierde el lote.
+
+### Sopa de Bacterias (#58) · Lógica 2 · `MarsCat.Logic.Recycling`
+
+**Para qué:** el minijuego del reciclador orgánico (`03_sistemas.md`, "Operación Sopa de Bacterias"). Zonas verdes con valores reales.
+
+- `CompostConfig`: zona verde de temperatura (55–65 °C), sobrecalentamiento (70 °C), zona verde de humedad (50–60 %), límites de 65 % y 40 %, enfriamiento por segundo, inercia de la temperatura, electricidad por segundo al 100 % de calor, agua por segundo del aspersor, duración del ciclo y desechos por lote. Claves `minigame.compost.*`.
+- `CompostSession(CompostConfig, ResourcePool)`:
+  - `bool TryStart()`: cobra los desechos del lote (`CatWaste`, `RatWaste`, `CropResidue`); si no alcanzan, no arranca.
+  - `void Tick(float dt)`; `void SetHeat(float level)` (0–1, gasta electricidad); `void SetSprinkler(bool on)` (gasta agua).
+  - `float Temperature`, `float Humidity`, `float TimeInGreen`, `bool IsFinished`.
+  - Rendimiento = tiempo con las dos agujas en verde ÷ duración del ciclo. Sobre 70 °C: `Fail("prep.compost.overheated")`.
+  - Eventos `OnFinished(PreparationResult)`.
+- **Probar:** sin calor la temperatura baja; la inercia retrasa la subida; el aspersor gasta agua; sobre 70 °C se pierde el lote; todo el ciclo en verde rinde 1.
+
+### Filtros del MOXIE (#56) · Lógica 1 · `MarsCat.Logic.Air`
+
+**Para qué:** el mantenimiento continuo del MOXIE (`03_sistemas.md`, "MOXIE y sus filtros").
+
+- `MoxieFilterConfig`: cantidad de filtros (5), tiempo de juego en que se ensucia un filtro, segundos de limpieza por filtro. Claves `minigame.moxie.*`.
+- `MoxieFilters(MoxieFilterConfig)`:
+  - `void Tick(float gameDt)`: los filtros se ensucian de a uno con el tiempo.
+  - `void RequestCleaning(int count)` (1, 2 o 5); `void SetWorkerPresent(bool)`: la limpieza solo avanza con un gato (tarea puntual de #18).
+  - `int CleanFilters`; `float Yield` = filtros limpios ÷ total.
+  - Eventos `OnFilterDirty`, `OnCleaningFinished(int cleaned)`.
+- El MOXIE gasta electricidad igual con filtros sucios (#21); su oxígeno entra al aire cuando exista #55.
+- **Probar:** se ensucian con el tiempo; sin gato no se limpia; limpiar 2 de 5 sube el rendimiento a lo esperado.
+
+### Granja de ratones (#57, esqueleto) · Lógica 1 · `MarsCat.Logic.Food`
+
+**Para qué:** lo acordado en `03_sistemas.md`, "Granja de ratones y raciones" y "Cadena alimentaria".
+
+- `RatFarmConfig`: cada cuánto trae una rata el gato (tiempo de juego), raciones por rata, **forraje por rata convertida**, desechos por rata y tope de ratas. Claves `building.rat_farm.*`.
+- `RatFarm(RatFarmConfig, ResourcePool)`:
+  - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato fijo no llegan ratas.
+  - `int Rats`: recurso primitivo, vive solo aquí.
+  - Convierte ratas en raciones (`Food`) consumiendo `Forage` del pool, y suma `RatWaste`. Sin forraje, las ratas esperan y no se convierten.
+  - Eventos `OnRatBrought` y `OnRationsProduced(float)`.
+- **Probar:** sin gato no hay ratas; con gato llega una rata por intervalo; cada rata convertida gasta forraje y suma raciones y desechos; sin forraje no convierte; respeta el tope.
+
+### Secuencia del tutorial (#23, esqueleto) · Lógica 1 · `MarsCat.Logic.Tutorial`
+
+**Para qué:** el pipeline acordado de 8 pasos (`02_core_loop.md`). No decide cuándo se cumple un paso: el GameBootstrap escucha los eventos de los sistemas y le avisa. Así no depende de ninguna otra clase.
+
+- `enum TutorialStep`: `Cinematic`, `MoveCamera`, `Energy`, `Oxygen`, `Water`, `PlantFarm`, `RatFarm`, `Recycler`, `Done`.
+- `TutorialSequence()`:
+  - `TutorialStep CurrentStep`; `string MissionKey` (por ejemplo `tutorial.energy.mission`).
+  - `bool Complete(TutorialStep step)`: avanza solo si es el paso actual; si no, devuelve `false` y no cambia nada.
+  - Eventos `OnStepStarted(TutorialStep)` y `OnStepCompleted(TutorialStep)`.
+- Sin derrota (regla 7 del PMV). El paso Trajes queda fuera hasta que se decida en #14.
+- **Probar:** avanza en orden; completar un paso que no es el actual no hace nada; al final queda en `Done`.
 
 ## Al terminar cada issue
 

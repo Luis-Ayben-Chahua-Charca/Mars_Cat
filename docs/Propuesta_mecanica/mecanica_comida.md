@@ -1,5 +1,11 @@
 # Mecánica: Comida
 
+> **Adaptación acordada (`docs/diseno/03_sistemas.md`, "Cadena alimentaria"):** donde esta propuesta contradiga lo acordado, prevalece `docs/diseno/`.
+> - La **granja de plantas sí está en el PMV**, con **papa** como cultivo. Produce **forraje** (alimento de las ratas), **fibra** (para trajes) y restos de cosecha. Los gatos no comen plantas.
+> - Las **ratas comen forraje**; la granja de ratones da **raciones** a los gatos.
+> - Hambre en tiempo real (alerta a los 8 minutos, muerte a los 10), **15 gatos**, sin moral ni catnip. Caducidad, taurina y plaga quedan para después del PMV.
+> - La adaptación de los minijuegos "Fábrica de Suelo" y "La Redada" está pendiente.
+
 ## 1. Descripción General
 > **Resumen:** Es el alimento de los gatos. Recurso de urgencia lenta (días, no minutos): el hambre no mata rápido como la falta de aire, pero vuelve lentos a los gatos y arrastra a todas las demás mecánicas. En el MVP no existe ningún cultivo vivo: los gatos sobreviven de las reservas que dejaron los humanos, y el arco del juego es pasar de herederos a ganaderos (ratas) y, después del MVP, a agricultores. Enseña dos ideas STEM centrales: la jerarquía de supervivencia (aire > agua > comida) y la cadena trófica (cultivos → ratas → gatos).
 
