@@ -6,8 +6,11 @@
 // - Modo Deslizar: cada hoja se desplaza "desplazamientos[i]" (muros rectos: la hoja entra en el hueco del muro).
 // - Modo GirarSobreEje: las hojas giran "anguloGrados" alrededor de "centroGiro" (puertas en muro curvo de las salas:
 //   la hoja recorre el arco del muro en lugar de salir en línea recta hacia el vestíbulo).
+// - Eventos AlCerrarse / AlAbrirse (C# y UnityEvent en el Inspector): se lanzan cuando la puerta termina de cerrarse
+//   (hojas en su sitio y collider de bloqueo activo) o deja de estar cerrada. Los usa DoorSecurityController.
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [DisallowMultipleComponent]
 public class CabinaPuertaAutomatica : MonoBehaviour
@@ -34,14 +37,26 @@ public class CabinaPuertaAutomatica : MonoBehaviour
     [Tooltip("Opcional: renderer de la baliza INT_LuzAdvertencia_<id> (se activa mientras la puerta se mueve).")]
     public Renderer indicador;
 
+    [Tooltip("Se invoca cuando la puerta termina de cerrarse (bloquea el paso).")]
+    public UnityEvent alCerrarse = new UnityEvent();
+    [Tooltip("Se invoca cuando la puerta deja de estar cerrada.")]
+    public UnityEvent alAbrirse = new UnityEvent();
+    /// <summary>La puerta terminó de cerrarse y bloquea el paso.</summary>
+    public event System.Action<CabinaPuertaAutomatica> AlCerrarse;
+    /// <summary>La puerta dejó de estar cerrada (empieza a abrirse).</summary>
+    public event System.Action<CabinaPuertaAutomatica> AlAbrirse;
+
     public int Aperturas { get; private set; }
     public float Apertura01 { get { return apertura; } }
     public bool Abierta { get { return apertura >= 0.999f; } }
+    /// <summary>Hojas cerradas y collider de bloqueo activo: no se puede pasar.</summary>
+    public bool Cerrada { get { return apertura <= 0.001f && (colliderBloqueo == null || colliderBloqueo.enabled); } }
 
     Vector3[] cerradas;
     Quaternion[] rotCerradas;
     float apertura, recorrido = 1f, tSalida;
     bool contadaApertura;
+    bool estabaCerrada = true;
     readonly HashSet<Collider> ocupantes = new HashSet<Collider>();
 
     void Awake()
@@ -108,5 +123,13 @@ public class CabinaPuertaAutomatica : MonoBehaviour
 
         if (apertura >= 0.999f && !contadaApertura) { Aperturas++; contadaApertura = true; }
         if (apertura <= 0.001f) contadaApertura = false;
+
+        bool cerrada = Cerrada;
+        if (cerrada != estabaCerrada)
+        {
+            estabaCerrada = cerrada;
+            if (cerrada) { AlCerrarse?.Invoke(this); alCerrarse?.Invoke(); }
+            else { AlAbrirse?.Invoke(this); alAbrirse?.Invoke(); }
+        }
     }
 }
