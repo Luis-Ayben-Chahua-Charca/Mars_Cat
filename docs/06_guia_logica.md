@@ -129,8 +129,8 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
   - `float Hunger` y `float Thirst`: 0–1, donde 1 es la muerte. Con los valores acordados, come o bebe en 0,4 y entra en alerta en 0,8.
   - `bool TryAssign(bool outdoor)`: solo si está `Free`; un gato degradado nunca acepta un puesto exterior.
   - `void Release()`.
-- `CatColony(CatConfig, ResourcePool)`:
-  - `IReadOnlyList<Cat> Cats`, `IEnumerable<Cat> FreeCats`, `void Spawn(int count)`.
+- `CatColony(CatConfig, ResourcePool, int seed)`:
+  - `IReadOnlyList<Cat> Cats`, `IEnumerable<Cat> FreeCats`, `void Spawn(int count)`. La cantidad inicial viene de `colony.initial_cats` (acordado: **15**). Cada gato arranca con un **hambre y una sed iniciales aleatorias** entre 0 y `cat.initial_need_spread` (por ejemplo 0,3), para que no coman todos a la vez. `CatColony` recibe la semilla aleatoria (`int seed`) en el constructor para que las pruebas sean repetibles.
   - `void Tick(float dt, bool isNight)`.
   - Eventos: `OnStateChanged(Cat, CatState from, CatState to)`, `OnExtremeAlert(Cat, Need)`, `OnDied(Cat)`.
 - Reglas:
@@ -139,7 +139,7 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
   - En alerta extrema pasa a `SeekingFood`: deja el trabajo y no acepta otro.
   - En 1, muere.
   - De noche, los gatos libres pasan a `Resting`; al amanecer, a `Free`.
-- **Probar:** come a los 240 s si hay comida; alerta a los 480 s; muere a los 600 s; con poca comida come el más hambriento; de noche descansa; el degradado no acepta puestos exteriores.
+- **Probar:** con la misma semilla, el hambre inicial se repite y queda dentro del rango; come a los 240 s si hay comida; alerta a los 480 s; muere a los 600 s; con poca comida come el más hambriento; de noche descansa; el degradado no acepta puestos exteriores.
 
 ### #21 — Energía (`Energy`) · Lógica 2
 
@@ -149,11 +149,11 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
 
 | Prioridad | Consumidores | En un apagón |
 |---|---|---|
-| `Max` | MOXIE (oxígeno) | Se apaga último |
+| `Max` | MOXIE (oxígeno) y calefacción nocturna | Se apaga último |
 | `High` | Extracción de agua, taller y depósito | Se apaga después de los `None` |
 | `None` | Reciclador orgánico (desechos), granja de ratones y granja de plantas (cosechas) | Se apaga primero |
 
-  La **calefacción nocturna** todavía no tiene prioridad asignada (por confirmar en #14; se propone `Max`). Dentro de una misma prioridad, por defecto se apaga primero el último registrado.
+  Dentro de una misma prioridad, por defecto se apaga primero el último registrado.
 - `EnergyConfig`: consumo de calefacción por sol de noche y lo que haga falta para los paneles. `FromBalance` convierte por sol a por segundo de juego (T7).
 - `EnergyGrid(EnergyConfig, ResourcePool)`:
   - `void Tick(float gameDt, bool isNight)`: recibe **tiempo de juego**.
@@ -184,15 +184,20 @@ Todo en `MarsCat.Logic.<Sistema>`. Los miembros listados son la parte **pública
 **Para qué:** reparte automáticamente los gatos libres en los puestos libres, como en *Frostpunk*.
 
 - `enum JobKind`: `Post` (puesto fijo en un edificio) y `OneOff` (tarea puntual, por ejemplo limpiar filtros).
-- `Job`: `string Id`, `JobKind Kind`, `string BuildingId`, `bool Outdoor`.
-- `WorkConfig`: orden de prioridad de los edificios (inyectable; el orden real se decide en #14 y vive en `Data/`). Se propone reutilizar el orden de importancia de la energía.
+- `enum TaskPriority`: `Normal`, `Vital` (acordado). `Vital` es solo auxiliar a un gato caído (post-PMV: en el PMV no hay caídas).
+- `Job`: `string Id`, `JobKind Kind`, `string BuildingId`, `bool Outdoor`, `TaskPriority Priority` (solo cuenta en tareas puntuales).
+- `WorkConfig`: importancia de cada edificio para sacarle un gato. Se reutiliza el orden de la energía: primero los `None`, después los `High`, nunca los `Max` salvo en tareas `Vital`.
 - `JobAssigner(WorkConfig)`:
   - `void RegisterJob(Job)`, `void UnregisterJob(string id)`, `void Release(string buildingId)` (liberación manual).
   - `void Tick(float dt, CatColony colony, bool isNight)`.
   - Eventos `OnAssigned(Job, Cat)` y `OnReleased(Job, Cat)`.
 - Reglas (de `04_economia_y_balance.md`, "Asignación de trabajo"):
   - No se asigna de noche.
-  - Las tareas puntuales tienen prioridad sobre los puestos fijos. Sin gatos libres, una tarea puntual toma un gato de un puesto fijo, empezando por el edificio **menos crítico** según `WorkConfig`. `Release(buildingId)` permite que el jugador elija de qué edificio sale.
+  - Las tareas puntuales tienen prioridad sobre los puestos fijos. Primero se usan gatos libres.
+  - **Sin gatos libres (acordado):**
+    - Tarea `Normal`: saca un gato solo de un edificio `None`. Si no hay, espera.
+    - Tarea `Vital`: saca un gato de un `None`; si no hay, de un `High`; y como último recurso, de un `Max`.
+  - `Release(buildingId)` permite que el jugador elija de qué edificio sale el gato.
   - Al terminar una tarea puntual, el gato vuelve a estar libre.
   - Un gato degradado nunca va a un puesto exterior; un gato que pasa a `SeekingFood` o muere libera su puesto.
 - **Probar:** asigna gatos libres de día y no de noche; respeta el orden; libera al gato en alerta extrema; no manda degradados afuera.

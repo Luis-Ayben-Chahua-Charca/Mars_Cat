@@ -16,6 +16,8 @@ Los recursos y edificios están en `03_sistemas.md`. Esta página describe cómo
 
 ## Consumo, hambre y sed
 
+- **Colonia inicial (acordado):** **15 gatos**. Cada uno despierta con un hambre y una sed iniciales algo distintas (aleatorias), para que no coman ni beban todos a la vez.
+
 - La comida y el agua se consumen **en tiempo real**, con **estadísticas por gato** (ver `03_sistemas.md`).
 - **Hambre y sed siguen la misma lógica**, cada una con sus propios tiempos:
   - El gato come o bebe cada cierto **intervalo**.
@@ -109,11 +111,10 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 
 | Prioridad | Edificios | Se apaga |
 |---|---|---|
-| Máxima | MOXIE (oxígeno) | Último |
+| Máxima | MOXIE (oxígeno) y calefacción nocturna | Último |
 | Alta | Extracción de agua, taller y depósito | Después de los sin prioridad |
 | Sin prioridad | Reciclador orgánico (desechos), granja de ratones y granja de plantas (cosechas) | Primero |
 
-  La calefacción nocturna todavía no tiene prioridad asignada.
 - **Válvula de emergencia de energía:** reparar y reconectar paneles lejanos, a costa de recursos.
 - **Sin comida**, hay menos gatos trabajadores.
 - Los únicos recursos externos son los nodos de mineral y la energía del sol.
@@ -136,8 +137,10 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 | **Tarea puntual** | Reparar, limpiar filtros del MOXIE, auxiliar a un gato caído, jugar un minijuego de preparación | Hasta terminar la tarea |
 
 - Si hay gatos libres y puestos libres, se asignan solos.
-- **Las tareas puntuales tienen prioridad** sobre los puestos fijos.
-- **Sin gatos libres:** la tarea toma un gato de un puesto fijo según un **orden de prioridad de edificios** (en `Data/`; primero sale el del edificio menos crítico). El edificio rinde menos mientras falta ese gato: ese es el costo real de la tarea.
+- **Las tareas puntuales tienen prioridad** sobre los puestos fijos. Tienen dos niveles (acordado): **vital** (auxiliar a un gato herido, post-PMV) y **normal** (todas las demás).
+- **Sin gatos libres:** la tarea toma un gato de un puesto fijo según la **importancia del edificio**, la misma de la prioridad de energía. El edificio rinde menos mientras falta ese gato: ese es el costo real de la tarea. Acordado:
+  - Tarea normal: solo saca gatos de edificios sin prioridad; si no hay, espera.
+  - Tarea vital: saca primero de los sin prioridad, después de los de prioridad alta y, como último recurso, de los de prioridad máxima.
 - **Liberación manual:** al iniciar la tarea, el jugador puede elegir **de qué edificio** sale el gato en lugar de aceptar el automático. No hay asignación manual por edificio como en *Frostpunk*.
 - Si no hay ningún gato que pueda hacerla (todos en alerta extrema, degradados para el exterior o muertos), el botón queda desactivado y la IA lo explica.
 - Al terminar la tarea, el gato vuelve a estar libre y el asignador lo devuelve a un puesto.
@@ -154,6 +157,5 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).
 2. Consumo por gato y por edificio.
 3. Tope compartido del depósito y cola de exceso: post-PMV (en el PMV, tope por recurso; acordado).
-4. Prioridad de energía de la calefacción nocturna (se propone máxima).
 5. Producción por sol de cada edificio frente al consumo de la colonia.
 6. Cuánta salud cuesta el sobretrabajo (post-PMV).
