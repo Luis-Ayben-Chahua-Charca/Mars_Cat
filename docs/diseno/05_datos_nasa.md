@@ -72,6 +72,60 @@ Desde `docs/Propuesta_mecanica/mecanica_energia.md`. Verificar cada dato y enlac
 - ESA: errores de computadora en Mars Express y TGO durante la misma tormenta. https://www.marsdaily.com/reports/Solar_storm_supercharges_Mars_atmosphere_and_disrupts_ESA_orbiters_999.html
 - Scientific American: tormenta geomagnética de marzo de 1989 y apagón de Quebec. https://www.scientificamerican.com/article/geomagnetic-storm-march-13-1989-extreme-space-weather/
 
+## Agua
+
+Desde `docs/Propuesta_mecanica/mecanica_agua.md`. Verificar cada dato y enlace antes de usarlo.
+
+- **Reciclaje en la ISS (ECLSS):** el sistema de soporte vital recupera cerca del **98 %** del agua (procesadores de orina y de agua). Base del reciclador.
+- **Presión y agua líquida:** la presión media de Marte es de unos **6 milibares**, cerca del punto triple del agua: el agua líquida no es estable en la superficie (hierve y se congela). Base de la cámara presurizada y de no limpiar paneles con agua.
+- **Hielo subterráneo:** el proyecto *Subsurface Water Ice Mapping* (SWIM) de NASA mapea hielo bajo el regolito en latitudes medias, con datos de radar como SHARAD (Mars Reconnaissance Orbiter). Base del extractor y de la vista de radar del paso 1; las profundidades de las vetas podrían tomarse de sus mapas. Por verificar.
+- **Percloratos:** la misión Phoenix (2008) los encontró en el suelo; son tóxicos. Al derretir hielo con polvo de regolito, se disuelven en el agua. Base del biorreactor (ver bacterias perclorato-reductoras arriba).
+- **Taladro térmico:** proyecto *RedWater* (Honeybee Robotics con NASA) para extraer agua de depósitos de hielo. Por verificar.
+
+## Oxígeno y aire
+
+Desde `docs/Propuesta_mecanica/mecanica_oxigeno.md` e investigación propia. Verificar cada dato y enlace antes de usarlo.
+
+- **Aire de la ISS:** imita el de la Tierra a nivel del mar (21 % O₂, 78 % N₂, 14,7 psia). NASA-STD-3001 fija una normoxia de 145–155 mmHg de presión parcial de O₂. https://www.nasa.gov/wp-content/uploads/2023/07/eclss-technical-brief-ochmo.pdf
+- **Hábitats para Luna y Marte:** NASA propuso una "atmósfera de exploración" de 8,2 psia y 34 % O₂: menos presión y más porcentaje para facilitar las caminatas. Para el juego se usa la mezcla terrestre (21 %), más fácil de entender. https://ntrs.nasa.gov/citations/20240003211
+- **Umbrales:** bajo 19,5 % el aire es deficiente y sobre 22 % está enriquecido (OSHA); bajo 16 % bajan la coordinación y la agudeza; bajo 10 % puede haber pérdida de conciencia; bajo 6 %, muerte (NIOSH). Base de las franjas del aire en `03_sistemas.md`.
+  - https://www.osha.gov/laws-regs/standardinterpretations/2007-04-02-0
+  - https://webarchive.library.unt.edu/eot2008/20090109085115/http:/www.cdc.gov/niosh/docs/2005-100/chapter5.html
+- **Consumo metabólico:** una persona consume entre 0,49 y 1,25 kg de O₂ al día (promedio 0,84 kg), según su actividad. https://ntrs.nasa.gov/api/citations/20120015343/downloads/20120015343.pdf
+- **Consumo de un gato:** 8,4 mL de O₂ por kg por minuto en reposo (Dhindsa, Hoversland y Metcalfe, 1979). Para un gato de unos 4–4,6 kg da unos 70–80 g al día, cerca de una décima parte de una persona. Anotar el peso supuesto.
+- **Volumen como reserva:** la ISS usa su volumen y el rango permitido de presiones parciales como colchón; pueden pasar días entre una producción de oxígeno y la siguiente. https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20150010425.pdf
+- **Fugas:** NASA modela la fuga de aire en kg por día y por módulo; la ISS tiene una pérdida de diseño de unos 0,195 kg de aire al día. Base de la fuga por edificio.
+  - https://ntrs.nasa.gov/api/citations/20230013896/downloads/Logistics_BeyondLEO-ASCEND2023-Pres.pdf
+  - https://newspaceeconomy.ca/2025/09/03/what-cargo-is-needed-to-sustain-astronauts-during-space-exploration/
+- **Filtros:** en la ISS la tripulación aspira cada semana las entradas de los filtros HEPA de los conductos de aire. Base del minijuego de filtros. https://ntrs.nasa.gov/api/citations/20180008634/downloads/20180008634.pdf
+- **MOXIE:** la meta era 6 g de O₂ por hora con 98 % de pureza; llegó a 12 g por hora y produjo 122 g en total (2021–2023). Escalar a kilogramos por hora pediría unos 25 kW. Base de la dependencia del MOXIE de la energía.
+  - https://www.freethink.com/space/oxygen-on-mars-isru
+  - https://www.therobotreport.com/?p=563715
+- **Espirulina:** 0,10–0,45 mmol de O₂ por litro y hora (programa MELiSSA). 1000 L dan unos 77–346 g por día (post-PMV).
+- **Por revisar en la propuesta:** "40 g/día en 40 m² de papa" parece estar en g por m² por día; revisar la fuente (Frontiers in Astronomy and Space Sciences, 2022). El enlace de la API PDS (`pds.mcp.nasa.gov`) parece mal escrito.
+- **MEDA (Perseverance):** la presión en Jezero cambia con las estaciones. Podría hacer variar el rendimiento del MOXIE con datos reales (post-PMV, H2).
+
+## Suelo y abono
+
+- **Regolito con materia orgánica:** Wamelink et al. (2019) cultivaron nueve de diez especies en simulante de suelo marciano de NASA mezclado con materia orgánica; el contenido óptimo de materia orgánica aún no se conoce. https://doi.org/10.1515/opag-2019-0051
+- **Valores de la Tierra para el abono** (regla de `README.md`): en mezclas de cultivo, el compost suele ser del 20 al 33 % del volumen, y no conviene usar demasiado porque el exceso de sales solubles quema las raíces. Base del valor guía (20 %) y del límite de quemadura (30 %).
+  - https://extension.usu.edu/yardandgarden/research/using-compost-in-utah-gardens.pdf
+  - https://ncagr.gov/compost-guidelines/download
+
+## Desechos y compostaje
+
+Base del compostador (`03_sistemas.md`, "Desechos y abono"). Verificar antes de usar.
+
+- **MELiSSA (ESA), compartimento I:** recibe los desechos de la misión (heces, orina, restos de comida, partes no comestibles de las plantas) y trabaja a 55 °C por bioseguridad: a esa temperatura se inactivan la mayoría de los patógenos humanos. Referencia espacial del compostador. https://www.esa.int/articles/compartment-i-the-liquefying-compartment · https://www.melissafoundation.org/page/waste-treatment
+- **Sanitización (EPA, 40 CFR 503):** en recipiente cerrado o pila aireada, 55 °C o más durante al menos 3 días. Base del paso 3. https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
+- **Relación carbono:nitrógeno:** ideal 25–30 : 1 (aceptable 20–40 : 1). Con poco carbono el nitrógeno se pierde como amoníaco; con mucho, el proceso es lento. Base del paso 1. https://extension.oregonstate.edu/es/catalog/em-8825-composting-alternative-livestock-manure-management-disposal-dead-animals
+- **Humedad:** entre 40 y 65 %, ideal 50–60 %. Sobre 60 % falta oxígeno y se vuelve anaerobio; bajo 40 % se frena mucho. Base del paso 2. https://extension.oregonstate.edu/animals-livestock/beef/disposal-animal-mortality-byproducts
+- **Camas como carbono:** la mayoría de los estiércoles aportan nitrógeno, pero pueden tener poco carbono según la cama que lleven. Base de que los desechos de ratón (con su cama) aporten carbono. https://www1.agriculture.alberta.ca/$department/deptdocs.nsf/all/agdex8875
+- **Desechos de gato:** tienen unas 2,5 veces el nitrógeno del estiércol de vaca y pueden portar *Toxoplasma* y parásitos intestinales; por eso los manuales suelen excluir los estiércoles de carnívoros del compostaje común. Base de la sanitización obligatoria. Las temperaturas citadas para *Toxoplasma* varían entre fuentes: por verificar.
+  - https://www.gardeningknowhow.com/composting/manurescat-feces-in-compost.htm
+  - https://www.ctahr.hawaii.edu/oc/freepubs/pdf/AWM-1.pdf
+- **Temperaturas:** los microorganismos termófilos crecen mejor entre 55 y 75 °C; si falta oxígeno o la temperatura se acerca a 70 °C, el proceso se resiente. Base de ventilar en el paso 3. https://www.pew.org/-/media/legacy/uploadedfiles/phg/content_level_pages/issue_briefs/psppewpspcompostingmanurenarrativev42pdf.pdf
+
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.

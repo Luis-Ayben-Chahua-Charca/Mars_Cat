@@ -57,9 +57,10 @@ Para que sea divertido, la producción de cada edificio reparado debería supera
 
 ## Almacenamiento
 
-- **Oxígeno, energía y agua:** almacenamientos independientes, con tope (el agua, en **tanques**). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
+- **Energía y agua:** almacenamientos independientes, con tope (el agua, en **tanques**).
+- **Oxígeno:** no es un tanque, es el **aire de la base**, medido en % de O₂ (ver "Aire y oxígeno"). El tope crece con el árbol tecnológico (en energía, con la investigación nuclear). El tope de energía obliga a repartirla bien, porque la solar es limitada y fluctuante.
 - **Energía sin merma:** no se pierde con el tiempo. Hay **baterías de emergencia** reparables.
-- **Alimentos, fibra y escombros:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
+- **Alimentos, fibra, escombros y desechos:** físicos y visibles, en un **almacén compartido** (un solo edificio: el **depósito**, ver abajo). El jugador debe vigilar qué está acumulando y qué necesita.
 - **Exceso:** si el almacén está lleno, la producción se detiene y queda **en cola**; el jugador debe permitir a mano que entre al almacén.
 
 ## El depósito
@@ -72,11 +73,13 @@ Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelado
 2. **Escombros** de los edificios destruidos.
 3. **Nodos de mineral marciano** cerca, en la cueva o en la superficie. Los minerales salen siempre de datos de NASA. El **regolito** es infinito. El **metal** se extrae de Marte y también se recupera de los escombros.
 4. **Edificios:**
-   - Plantas: alimento, **fibra** y oxígeno.
+   - Granja de plantas: alimento, **fibra** y algo de oxígeno.
+   - Granja de ratones: alimento (proteína) y **desechos de ratones**.
+   - Edificio de desechos (compostador): **abono**, a partir de los desechos de gatos y de ratones.
    - Energía: electricidad.
    - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).
-   - **Reciclador de agua:** recupera parte del agua consumida; dañado al inicio.
-   - **MOXIE** (edificio industrial): producción neta de oxígeno.
+   - **Reciclador de agua (post-PMV):** recupera parte del agua consumida; dañado al inicio. Su eficiencia sube por niveles en el árbol tecnológico.
+   - **MOXIE** (edificio industrial, PMV): fuente principal de oxígeno; depende de la electricidad y de sus filtros.
 
 Para reparar un edificio caído, los escombros cubren cerca del **90 %** del costo; el **10 %** restante son minerales marcianos.
 
@@ -87,7 +90,9 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 ## Sumideros
 
 - **Pasivos (por ciclo):**
-  - Oxígeno y comida: según la cantidad de gatos.
+  - Oxígeno: según la cantidad de gatos y cuánto trabajan, más una pequeña **fuga por cada edificio** presurizado.
+  - Comida: según la cantidad de gatos.
+  - **Desechos:** cada gato genera desechos por sol, que ocupan el depósito hasta compostarlos.
   - Energía: según los edificios activos y, de noche, para mantener la temperatura.
   - La **protección** de los edificios está siempre activa y siempre consume energía.
 - **Activos:** la **reparación del beacon** para enviar la alerta a la Tierra.
@@ -107,11 +112,26 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 
 Un gato herido fuera de la base puede ser **auxiliado** a costa de un gato libre; si llega a una esclusa, va al **depósito**. Detalle en `03_sistemas.md`. El **ala médica** es una propuesta fuera del PMV.
 
+## Aire y oxígeno
+
+Modelo propuesto en "Oxígeno" de `03_sistemas.md`: barra de % de O₂ con meta de 21 %, cambio por tick = (producción − consumo − fugas) ÷ volumen de la base. Más edificios dan más **reserva** (el % cambia más lento) pero suman **fugas**; el consumo depende de los gatos.
+
 ## Asignación de trabajo
 
-- **Automática:** si hay gatos libres y puestos libres, se asignan solos.
-- La construcción se hace **de día**, si hay gatos libres.
-- De noche no se trabaja, salvo sobretrabajo de emergencia (ver arriba).
+Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de trabajo:
+
+| Tipo | Ejemplos | Duración |
+|---|---|---|
+| **Puesto fijo** | Operar un edificio de producción | Mientras el edificio funcione |
+| **Tarea puntual** | Reparar, limpiar filtros del MOXIE, auxiliar a un gato caído, jugar un minijuego de preparación | Hasta terminar la tarea |
+
+- Si hay gatos libres y puestos libres, se asignan solos.
+- **Las tareas puntuales tienen prioridad** sobre los puestos fijos.
+- **Sin gatos libres:** la tarea toma un gato de un puesto fijo según un **orden de prioridad de edificios** (en `Data/`; primero sale el del edificio menos crítico). El edificio rinde menos mientras falta ese gato: ese es el costo real de la tarea.
+- **Liberación manual:** al iniciar la tarea, el jugador puede elegir **de qué edificio** sale el gato en lugar de aceptar el automático. No hay asignación manual por edificio como en *Frostpunk*.
+- Si no hay ningún gato que pueda hacerla (todos en alerta extrema, degradados para el exterior o muertos), el botón queda desactivado y la IA lo explica.
+- Al terminar la tarea, el gato vuelve a estar libre y el asignador lo devuelve a un puesto.
+- La construcción y las tareas se hacen **de día**. De noche no se trabaja, salvo sobretrabajo de emergencia (ver arriba).
 
 ## Escalado
 

@@ -10,7 +10,7 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 
 | Recurso | Tipo | En el PMV |
 |---|---|---|
-| Oxígeno | Soporte vital | Sí |
+| Oxígeno | Soporte vital. Se mide como **% de O₂ del aire de la base**, no como tanque (ver "Oxígeno") | Sí |
 | Electricidad | Soporte vital | Sí |
 | Comida | Soporte vital | Sí |
 | Agua | Soporte vital; se guarda en **tanques** propios, no en el depósito | Sí |
@@ -18,12 +18,15 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Escombros | Material de construcción | Sí |
 | Bacterias | Insumo de la preparación del cultivo. **Infinito**: solo se ajusta su valor óptimo en el minijuego | Sí |
 | Fibra | Insumo de trajes | No |
-| Regolito (tierra) | Tierra del minijuego de alimentos. **Infinito**: está en la superficie marciana | Sí |
+| Regolito (tierra) | Base de la mezcla de suelo de la granja de plantas. **Infinito**: está en la superficie marciana | Sí |
+| Abono | Insumo de la granja de plantas. **Reserva inicial** suficiente para la primera granja; después sale del edificio de desechos | Sí |
+| Desechos de gatos | Los generan todos los gatos desde el inicio. Mucho nitrógeno; pueden traer patógenos. Se acumulan en el depósito hasta procesarlos | Sí |
+| Desechos de ratones | Los genera la granja de ratones. Vienen con su **cama** de fibra vegetal, que aporta carbono. Insumo separado del compostador | Sí |
 | Tierras raras | Insumo de chips. Se producen en un edificio propio | No |
 | Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
 
-Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún sin confirmar como recurso del pool general: **abono**. La **luz** se expresa en %; por confirmar si sale de la electricidad.
+Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso del pool general (acordado). La **luz** se expresa en %; por confirmar si sale de la electricidad.
 
 ## Edificios
 
@@ -32,11 +35,13 @@ Los minerales del juego salen siempre de datos de NASA. Insumo del cultivo aún 
 | Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Por definir |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
-| Producción de alimentos (plantas y ratones) | Comida; también fibra y oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
+| Granja de plantas | Comida; también fibra y algo de oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
+| Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Por definir |
+| Edificio de desechos (compostador) | **Abono** | Desechos de gatos, desechos de ratones, bacterias (infinitas), agua | Sí: reparar y preparar | Por definir |
 | Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
-| Reciclador de agua (soporte vital) | Recupera parte del agua consumida | Electricidad | Por definir (dañado al inicio) | Segura |
+| Reciclador de agua (soporte vital) | Recupera parte del agua consumida; el porcentaje sube con la investigación | Electricidad | No: dañado; en el PMV solo lo menciona la IA | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
-| MOXIE (industrial) | Oxígeno neto | Por definir | No | Por definir |
+| MOXIE (industrial) | Oxígeno | Mucha electricidad; filtros de entrada limpios | Sí: reparar y mantener filtros (paso 4) | Por definir |
 | Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
 | Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No | Por definir |
 
@@ -68,27 +73,33 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 
 | Edificio | Minijuego | Mecánica |
 |---|---|---|
-| Producción de alimentos | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
+| Granja de plantas | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
+| Granja de ratones | Por definir | Por definir |
+| Edificio de desechos | "Compostador" | Mezcla de desechos (carbono y nitrógeno), humedad y temperatura de sanitización (ver "Desechos y abono") |
+| MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
 | Energía | "Operación Rescate Solar" | Acción: limpiar polvo gastando batería (ver "Energía") |
 
-### Producción de alimentos: valor guía y rango
+### Granja de plantas: valor guía y rango
 
 - Cada insumo tiene un **valor guía** que da la IA y un **rango de aceptación**.
 - **Fuera del rango:** se muestra una **advertencia de rango prohibitivo** que indica qué insumo hay que corregir; el edificio no arranca hasta corregirlo.
 - **Dentro del rango:** ciertos valores y **combinaciones** mejoran el **rendimiento**.
 
-#### Ejemplo
+#### Valores
 
-Valores de ejemplo, no reales.
+El **abono** usa valores de la Tierra (compost en mezclas de cultivo; ver `05_datos_nasa.md`). El resto siguen siendo ejemplos. Pasan a `MarsCat/Assets/Data/` cuando Lógica cree el archivo de balance.
 
-| Insumo | Valor guía | Rango de aceptación |
-|---|---|---|
-| Regolito (tierra) | 20 % | 15 %–25 % |
-| Agua | 2 L | Por definir |
-| Luz | Por definir (%) | Por definir |
-| Bacterias | Por definir (cantidad) | Por definir |
-| Abono | Por definir (kg) | Por definir |
+| Insumo | Valor guía | Rango de aceptación | Fuera de rango |
+|---|---|---|---|
+| Abono (% del volumen de la mezcla de suelo) | 20 % | **0 %–30 %** | Más de 30 %: el exceso de sales **quema** las plantas; no arranca |
+| Regolito (tierra) | El resto de la mezcla (80 % con el valor guía) | — | — |
+| Agua | 2 L (ejemplo) | Por definir | Por definir |
+| Luz | Por definir (%) | Por definir | Por definir |
+| Bacterias | Por definir (cantidad) | Por definir | Por definir |
+
+- **Abono en 0 %:** está **dentro** del rango. La granja arranca, pero rinde menos; así la IA enseña para qué sirve el abono antes de que exista el edificio de desechos.
+- **Rango asimétrico:** hacia abajo el abono baja hasta 0 sin bloquear; hacia arriba el borde es la quemadura.
 
 
 ## Energía
@@ -121,6 +132,8 @@ Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de 
 
 ### Propuesta de lógica de rendimiento del cultivo (no acordada)
 
+- **Tolerancia por lado:** cada insumo puede tener una tolerancia distinta por debajo y por encima del valor guía. Abono: 20 puntos hacia abajo (0 % da `s = 0`) y 10 hacia arriba (30 % da `s = 0`).
+
 - **Puntaje por insumo:** `s = 1 − |valor − guía| / tolerancia`. Vale 1 en el valor guía y 0 en el borde del rango.
 - **Rendimiento base:** `rendimiento = 0,8 + 0,4 × promedio(s)`. Va de 80 % (todo en el borde) a 120 % (todo en el valor guía).
 - **Combinaciones:** una tabla de sinergias por edificio. Si dos insumos de la sinergia tienen `s ≥ 0,8`, suman un bono fijo (por ejemplo +10 %). Para el PMV se puede dejar sin combinaciones.
@@ -129,17 +142,50 @@ Recolección de minerales y metal, ensamblaje del reactor (núcleo → tubos de 
 
 Para Lógica: un **resultado común** (`PreparationResult`: arranca, rendimiento, motivo) y una clase de preparación **por minijuego**, cada una con su configuración en `Data/`. El ciclo del edificio solo lee el resultado, sin saber qué minijuego lo produjo. El contrato se acuerda en el issue.
 
+## Oxígeno
+
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_oxigeno.md`, adaptada aquí. **Acordado:** el MOXIE entra en el PMV (paso 4 del tutorial) con el minijuego de filtros; la limpieza ocupa un **gato libre** como tarea puntual. El modelo del aire es **propuesta**.
+
+### El aire de la base
+
+- La barra muestra el **% de O₂ del aire de la base**, como en un hábitat real, donde se controla la mezcla de gases y no un tanque. Meta propuesta: **21 %**, como el aire de la Tierra.
+
+| Franja | % O₂ | Efecto |
+|---|---|---|
+| Verde | 19,5–22 % | Normal |
+| Amarillo | 16–19,5 % | La IA avisa; los gatos trabajan más lento |
+| Rojo | 10–16 % | Los gatos dejan de trabajar |
+| Crítico | Menos de 10 % | Si dura más que el margen de reacción, los gatos mueren |
+
+Por encima de 22 % el aire está **enriquecido** y sube el riesgo de incendio (post-PMV, si se quiere usar). Umbrales con fuente en `05_datos_nasa.md`.
+
+- **Cambio por tick:** (producción del MOXIE + aporte de las plantas − consumo de los gatos − fugas) ÷ volumen de la base.
+- **El consumo es de los gatos**, según cuántos son y cuánto trabajan, no del tamaño de la base.
+- **El volumen es la reserva:** cuanto más grande la base, más lento cambia el %.
+- **Cada edificio reparado suma volumen:** al presurizarlo, el % baja un poco una sola vez y la base gana reserva, pero también una **fuga** pequeña permanente. Así, una base más grande pide más oxígeno de forma realista.
+
+### MOXIE y sus filtros
+
+- **Stash de 5 filtros** de entrada. Se **ensucian solos** con el tiempo (post-PMV, más rápido con tormentas de polvo).
+- **Producción:** cada filtro limpio aporta el 20 % de la capacidad del MOXIE. Con los 5 tapados no produce y el % de O₂ baja de forma continua.
+- El MOXIE gasta electricidad igual aunque tenga filtros sucios: limpiarlos aprovecha mejor la energía.
+- **Limpieza:** el jugador limpia **1, 2 o los 5** cuando quiera; se puede hacer parcial. Solo cuesta **tiempo**: es una **tarea puntual** que ocupa un **gato libre** mientras dura (ver "Asignación de trabajo" en `04_economia_y_balance.md`). Sin gatos disponibles no se puede limpiar.
+- **No sigue el ciclo preparar → funcionar → volver a preparar:** es mantenimiento continuo. Su resultado común (rendimiento) es la fracción de filtros limpios.
+- **Enseña:** ISRU (oxígeno a partir del CO₂ marciano), que producir oxígeno cuesta mucha energía y que el mantenimiento es parte de la vida en una estación (la tripulación de la ISS aspira sus filtros cada semana).
+
 ## Agua
 
-Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aquí. **Propuesta, no acordada.**
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aquí. **Acordado:** la extracción entra en el PMV y el reciclaje es post-PMV. El resto de la sección sigue en propuesta.
 
 - **Recurso físico.** Barra global en la interfaz. Se guarda en **tanques** con tope propio, como el oxígeno; no ocupa el depósito.
 - **Fuentes:**
-  1. **Reciclador (soporte vital):** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
-  2. **Extracción de agua del subsuelo:** el edificio del tutorial (paso 5). Saca **hielo** de debajo de la cueva, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
-- **Consumo:** la sed de cada gato (`04_economia_y_balance.md`) y la preparación de la **producción de alimentos**. La hidroponía es post-PMV.
+  1. **Reciclador (soporte vital), post-PMV:** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
+     - **En el PMV** no es un edificio: solo la IA lo menciona para explicar por qué falta agua y para presentar el dato del 98 % de la ISS (ver `05_datos_nasa.md`).
+     - **Post-PMV** se repara, y su **eficiencia de reciclaje sube por niveles** de investigación en el árbol tecnológico. Reciclar cuesta menos energía que perforar vetas profundas, así que el jugador elige entre las dos fuentes.
+  2. **Extracción de agua del subsuelo, PMV:** el edificio del tutorial (paso 5). Saca **hielo** de debajo de la cueva, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
+- **Consumo:** la sed de cada gato (`04_economia_y_balance.md`) y la preparación de la **granja de plantas**. La hidroponía es post-PMV.
 - **Exceso:** con los tanques llenos, la extracción se detiene y queda en cola, igual que el depósito. El agua no se pierde.
-- **Sin agua:** rige la regla de sed (alerta extrema, busca agua, muere). La producción de alimentos no arranca porque el insumo agua queda fuera de rango.
+- **Sin agua:** rige la regla de sed (alerta extrema, busca agua, muere). La granja de plantas no arranca porque el insumo agua queda fuera de rango.
 - **Post-PMV:** racionamiento (cortar el agua a los cultivos para que beban los gatos) y fisura del tanque por el evento **ruptura por presión**, que hace hervir y perder parte del agua (`06_eventos_y_ritmo.md`).
 
 ### Preparación del extractor: "Alquimista Marciano"
@@ -171,6 +217,29 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 
 - **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
 - **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
+
+## Desechos y abono
+
+**Propuesta, no acordada.** Cierra el ciclo de nutrientes: comida → gatos y ratones → desechos → abono → granja de plantas. Es la misma idea del sistema de soporte vital MELiSSA de la ESA, cuyo primer compartimento recibe los desechos de la tripulación y las partes no comestibles de las plantas (ver `05_datos_nasa.md`).
+
+- **Desechos de gatos:** los produce cada gato, desde el inicio. Se guardan en el depósito y ocupan espacio. Tienen mucho nitrógeno y pueden traer patógenos (por ejemplo, *Toxoplasma*), así que necesitan **sanitizarse** con calor.
+- **Desechos de ratones:** llegan con la granja de ratones (paso 7), mezclados con su cama de fibra vegetal, que aporta el **carbono** que les falta a los de gato.
+- **El problema del tutorial:** con los ratones, el depósito se llena de desechos. Reparar el compostador (paso 8) lo resuelve y convierte el problema en abono.
+
+### Preparación del compostador: "Compostador"
+
+Panel de estación; ocupa un gato libre como tarea puntual. Tres pasos con mecánica propia:
+
+| Paso | Qué hace el jugador | Meta (valores de la Tierra) | Si sale mal |
+|---|---|---|---|
+| 1. Mezcla | Elige la proporción de desechos de gatos y de ratones. Un indicador muestra la relación **carbono:nitrógeno** | 25–30 : 1 (aceptable 20–40 : 1) | Poco carbono: el nitrógeno se escapa como **amoníaco** (mal olor, abono más pobre). Mucho carbono: compostaje lento |
+| 2. Humedad | Agrega **agua** | 50–60 % (aceptable 40–65 %) | Más de 65 %: falta aire, se vuelve anaerobia y lenta. Menos de 40 %: casi se detiene |
+| 3. Sanitización | Agrega **bacterias** (infinitas); la mezcla se calienta sola. El jugador **ventila** para no pasarse | Al menos **55 °C** durante el tiempo requerido, sin acercarse a 70 °C | Si no llega a 55 °C el tiempo suficiente, el abono sale **no apto** (patógenos): la IA lo marca y no se puede usar en la granja de plantas; hay que volver a compostarlo. Cerca de 70 °C las bacterias se frenan |
+
+- **Rendimiento:** cantidad de abono según la masa de desechos, menos el nitrógeno perdido por una mezcla o humedad fuera de la meta.
+- **Gasta** agua (paso 2) y un poco de electricidad para ventilar (paso 3).
+- **Tiempo:** en la realidad, la sanitización en recipiente cerrado dura 3 días a 55 °C o más; en el juego se escala al ritmo del sol.
+- **Enseña:** que los nutrientes se reciclan, qué es la relación carbono:nitrógeno, que el compostaje caliente elimina patógenos y por qué los desechos de carnívoros piden más cuidado.
 
 ## Salud y trajes espaciales
 
@@ -233,7 +302,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 
 ## Pendientes
 
-1. Si el **abono** es recurso del pool general, y de dónde sale la **luz**.
+1. De dónde sale la **luz** (el abono ya es recurso del pool: acordado).
 2. **Hidroponía:** se investiga más tarde en el árbol de conocimiento (post-PMV). Falta definir su mecánica.
 3. Valores reales de la preparación (NASA, artículo o funcionamiento en la Tierra).
 4. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
@@ -242,14 +311,17 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 7. Cuánto dura el funcionamiento de cada edificio antes de volver a prepararlo.
 8. Si con el rango prohibitivo los insumos ya puestos se descuentan o no.
 9. Aprobar la propuesta de **Agua** y su preparación "Alquimista Marciano" (arriba). Para el PMV: cuántas vetas hay y con qué profundidad, pureza y volumen; si van los tres pasos; cuánta electricidad gasta perforar por metro.
-19. **Reciclador de agua:** si entra en el PMV (reparable o solo como explicación de la IA) y qué porcentaje recupera.
+19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua.
+21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
+22. **Compostador:** aprobar el minijuego; desechos por gato y por ratón por sol; cuánto abono rinde cada lote; duración de la sanitización en el juego; qué pasa si el depósito se llena de desechos (post-PMV: riesgo sanitario).
+23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
 10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
 11. Costo en metal y escombros de cada reparación.
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
 13. En qué zona está cada edificio.
 14. Ritmo al que baja la salud con el traje al 20 %, duración del estado Recuperando y tiempo de reparación de un traje en el taller (post-PMV).
 15. "Buscando comida" se agregó a los estados por la regla de hambre: confirmar.
-16. Si el MOXIE entra en el PMV.
+16. **MOXIE** (entra en el PMV, acordado): cada cuánto se ensucia un filtro, cuánto dura limpiarlo, producción con los 5 limpios y consumo de electricidad.
 17. Ritmo de desgaste de la integridad del reactor, costo de las correcciones de seguridad y tamaño del radio de contaminación (post-PMV).
 18. Contrato de cada sistema para Lógica (clase y namespace `MarsCat.Logic.<Sistema>`), que se acuerda en el issue.

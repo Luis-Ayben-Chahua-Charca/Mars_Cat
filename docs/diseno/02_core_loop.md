@@ -34,22 +34,27 @@ Los gatos empiezan en la zona segura con:
 
 Orden de pasos:
 
-1. Cinemática (etapa 1).
-2. Mover la cámara.
-3. Reparar el edificio de **energía** (paneles solares).
-4. Reparar el edificio de **producción de alimentos** (plantas y ratones).
-5. Reparar el **sistema de extracción de agua del subsuelo**.
-6. Trajes.
-7. Más pasos por definir.
+Pipeline **acordado** para el PMV. Desde el paso 3, cada edificio sigue el mismo patrón: **misión de la IA → reparación → minijuego**.
 
-La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione. La preparación **entra en el PMV** para los edificios de energía, agua y alimentos.
+| # | Paso | Misión de la IA | Notas |
+|---|---|---|---|
+| 1 | Cinemática (etapa 1) | — | Evacuación y lluvia de meteoritos |
+| 2 | Mover la cámara | — | |
+| 3 | **Energía** (paneles solares) | "No tenemos energía: reparen el edificio de energía" | Primero, porque todo lo demás la consume |
+| 4 | **Oxígeno** (MOXIE) | "Ahora reparemos el MOXIE para tener una fuente de oxígeno estable" | Minijuego de filtros (ver "Oxígeno" en `03_sistemas.md`) |
+| 5 | **Agua** (extracción del subsuelo) | Por redactar | La IA explica que el reciclador de agua quedó dañado y por eso hay que sacar agua del hielo |
+| 6 | **Comida: granja de plantas** | Por redactar | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja |
+| 7 | **Comida: granja de ratones** | Por redactar | Los gatos generan desechos desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
+| 8 | **Desechos** (compostador) | Por redactar | Convierte los desechos de gatos y de ratones en **abono** y cierra el ciclo con la granja de plantas |
+
+La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione.
 
 Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 
 ## PMV (entrega del domingo 15)
 
 - Incluye **solo el tutorial** descrito arriba, en las zonas segura y media.
-- Incluye la **preparación** de los edificios de energía, agua y alimentos.
+- Incluye la **preparación** (o el mantenimiento, en el caso del MOXIE) de los edificios de energía, oxígeno, agua, granja de plantas, granja de ratones y desechos.
 - Incluye el **ciclo de día y noche** y el **hambre individual** de cada gato.
 - **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras, la automatización ni el sobretrabajo nocturno.
 
@@ -88,7 +93,7 @@ El mapa crece de pequeño a grande a medida que se obtiene **información** (pos
 1. El tutorial original tenía un paso de **construir** un edificio; la lista actual solo tiene **reparaciones**. ¿Algún edificio se construye desde cero, o las reparaciones consumen el metal y los escombros?
 2. Aprobar las reglas 1 a 6 del PMV (la 7 ya está acordada).
 3. Qué módulos de agua y comida existen y cómo funcionan (issue #__).
-4. Qué otros pasos lleva el tutorial después de los trajes.
+4. El paso **Trajes** quedó fuera del pipeline acordado: decidir si va al final del tutorial o pasa a post-PMV (afecta la regla 3).
 5. Condición de derrota y duración de la partida.
 6. Niveles de progresión (idea previa: tres niveles, el primero de recursos) y qué hitos abren cada zona (post-PMV).
 7. Eventos aleatorios como presión y ritmo → `06_eventos_y_ritmo.md`.

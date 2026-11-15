@@ -1,5 +1,13 @@
 # Mecánica: Oxígeno
 
+> **Adaptada al diseño en `docs/diseno/03_sistemas.md` (sección "Oxígeno").** Ajustes respecto de esta propuesta:
+> - El MOXIE **entra en el PMV** (paso 4 del tutorial).
+> - El oxígeno se mide como **% de O₂ del aire de la base** (meta propuesta: 21 %), no como un almacén de 5 kg. El volumen de la base es la reserva y cada edificio suma una fuga.
+> - Los filtros se **ensucian solos**; el jugador limpia 1, 2 o los 5 cuando quiere. Cada filtro limpio da el 20 % de la producción. La limpieza ocupa un **gato libre** como tarea puntual; no se controla al gato directamente.
+> - Cantidad de gatos: pendiente en el diseño (la propuesta asume 20).
+> - Por revisar: "40 g/día en 40 m² de papa" (¿por m²?), el origen de "4 kg por día" y el enlace de la API PDS.
+> - Espirulina, fugas por fisuras, consumo nocturno de las plantas y MEDA: post-PMV.
+
 ## 1. Descripción General
 > **Resumen:** Es la producción de oxígeno para la supervivencia de los gatos, se trata del soporte vital con el que los gatos pueden vivir en el entorno de marte, al implicar directamente la vida de los gatos que son los trabajadores, el juego depende totalmente de este recurso
 
