@@ -22,6 +22,7 @@ Para agentes que ayudan a los integrantes de **Lógica C#** y **Unity**. Solo es
 - Valores de balance (costos, tasas de consumo, capacidades) **no van hardcodeados**: se reciben en una clase de configuración o se leen de `MarsCat/Assets/Data/`.
 - Datos NASA: lectores/parsers en `MarsCat.Logic.Data`. Documentar en un comentario la fuente exacta del dato (dataset, URL o archivo).
 - Si el issue lo permite, incluir pruebas simples en `MarsCat/Assets/Scripts/Logic/Tests/` (NUnit, sin Unity).
+- **Las pruebas se escriben para el NUnit que trae Unity (3.5, `com.unity.ext.nunit` 2.1.0), no para el último NUnit.** Usa solo `[Test]`, `[TestCase]`, `[SetUp]`, `[TearDown]`, `Assert.That` con constraints básicos (`Is`, `Does`, `Has`, `Throws`) y `Assert.Throws`. No uses `[NonParallelizable]`, `[Parallelizable]`, `Assert.Multiple` ni APIs de NUnit más nuevas: no existen en Unity y un solo error de compilación deja **todo** el ensamblado `MarsCat.Logic.Tests` sin pruebas (el Test Runner queda vacío: "No tests to show"). Las pruebas de EditMode ya corren en secuencia.
 
 ## Sección Unity (MonoBehaviours)
 
@@ -31,6 +32,17 @@ Para agentes que ayudan a los integrantes de **Lógica C#** y **Unity**. Solo es
 - Configuración editable en el Editor mediante `ScriptableObject` en `MarsCat.Unity.Config`; el `.asset` lo crea el integrador.
 - Evitar `Find`, `FindObjectOfType` y `SendMessage`; usar referencias serializadas o eventos.
 - No crear objetos en escenas por código para "montar" la escena; eso lo hace el integrador.
+
+## Antes de proponer el push
+
+Revisa estas cuatro cosas con el código escrito. Si alguna falla, no propongas el commit hasta corregirla:
+
+1. **Compila.** Si puedes abrir Unity, la Console debe quedar sin errores. Si no puedes, escribe **"No verificado en Unity"** en el commit sugerido y en el comentario de la tarjeta; Integración lo comprueba en el Test Runner antes de subir los `.meta` (`docs/05_plan_implementacion.md`, "Traspaso de Lógica a Unity").
+2. **Pruebas en el subconjunto de Unity.** Releé los atributos y los `using` de cada archivo de `Tests/` contra la regla de arriba. Un solo error ahí detiene las pruebas de todo el equipo.
+3. **Solo tus archivos.** `git status` lista únicamente los `.cs` (y `.csv`/`.json` si el issue lo pide) de tu tarea. Sin `.meta`: si Unity generó alguno en tu máquina, no lo agregues y bórralo antes del siguiente `pull`.
+4. **Un commit por issue,** con el formato `[logica|unity] descripción #n` y sin rastro de agentes (`AGENTS.md`, regla 5).
+
+Si el equipo detecta un error de compilación después del push, quien lo causó lo corrige en un commit aparte `[logica|unity] corrige ... #n`; no se reescribe la historia.
 
 ## Al terminar
 

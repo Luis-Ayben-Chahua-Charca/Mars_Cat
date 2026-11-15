@@ -69,8 +69,17 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 | `Scripts/Logic/Tests/` | Pruebas NUnit de la lógica, `<Clase>Tests.cs`. Asmdef `MarsCat.Logic.Tests` | Lógica |
 | `Scripts/Unity/` | MonoBehaviours, namespace `MarsCat.Unity.*`. Asmdef `MarsCat.Unity` | Integración Unity |
 | `Scripts/Unity/UI/` | Scripts de interfaz | Integración Unity |
+| `Scripts/Unity/View/` | Cámara y vista de la base, namespace `MarsCat.Unity.View` | Integración Unity |
+| `Scripts/Unity/Lighting/` | Luz de día y noche, namespace `MarsCat.Unity.Lighting` | Integración Unity |
+| `Scripts/Unity/Config/` | Clases `ScriptableObject` de configuración, namespace `MarsCat.Unity.Config` (los `.asset` van en `Config/`) | Integración Unity |
 | `Config/` | ScriptableObjects `.asset` de configuración | Integración |
-| `Prefabs/` | `.prefab` | Integración |
+| `Prefabs/Buildings/` | Edificios (`P_Building_<Nombre>`) | Integración |
+| `Prefabs/Units/` | Gatos, robots y demás unidades (`P_Unit_<Nombre>`) | Integración |
+| `Prefabs/Cameras/` | Rigs de cámara (`P_Camera_<Nombre>`) | Integración |
+| `Prefabs/Environment/` | Escombros, terreno y decorado (`P_Env_<Nombre>`) | Integración |
+| `Prefabs/UI/` | Paneles y elementos del HUD (`P_UI_<Nombre>`) | Integración |
+| `Prefabs/Effects/` | Partículas y efectos visuales (`P_FX_<Nombre>`) | Integración |
+| `Prefabs/Minigames/` | Un prefab por minijuego (`P_Minigame_<Nombre>`) | Integración |
 | `Scenes/` | Escenas del juego (`Main.unity`, `MainMenu.unity`) | Integración Unity (una escena, un dueño) |
 | `Scenes/Sandbox/` | `Sandbox_<Nombre>.unity` de pruebas personales | Cada persona la suya; no se integran |
 | `UI/` | Sprites, fuentes y elementos visuales de interfaz | Arte / Integración |
@@ -88,7 +97,7 @@ Investigación y propuestas de mecánicas que hace cualquier integrante. No son 
 | Modelos | `SM_<Nombre>` (estático), `SK_<Nombre>` (con esqueleto) | `SM_Habitat.fbx` |
 | Texturas | `T_<Nombre>_<Tipo>` (`D` color, `N` normal, `R` rugosidad) | `T_Habitat_D.png` |
 | Materiales | `M_<Nombre>` | `M_Habitat.mat` |
-| Prefabs | `P_<Nombre>` | `P_Habitat.prefab` |
+| Prefabs | `P_<Categoría>_<Nombre>`, en la subcarpeta de su categoría | `P_Building_Depot.prefab` |
 | ScriptableObjects | `CFG_<Nombre>` | `CFG_Economy.asset` |
 | Datos | `snake_case` | `mars_temperature.csv` |
 | Escenas de prueba | `Sandbox_<Nombre>` | `Sandbox_Leyni.unity` |
