@@ -6,12 +6,12 @@ Completar con nombre y usuario de GitHub (se usa para asignar issues).
 
 | Persona | Usuario GitHub | Rol |
 |---|---|---|
-| Leyni | `____` | Integración Unity + Gestión (hitos, repo, tablero) |
-| `____` | `____` | Integración Unity |
-| `____` | `____` | Arte 3D |
-| `____` | `____` | Arte 3D |
-| `____` | `____` | Lógica C# |
-| `____` | `____` | Lógica C# |
+| Leyni | Luis-Ayben-Chahua-Charca | Integración Unity + Gestión (hitos, repo, tablero) |
+| Fabricio | FabricioYared | Integración Unity |
+| Wilger | THEFAFAS | Arte 3D |
+| Ariana | Fmolinalo | Arte 3D |
+| Milton | Arcan9-mac| Lógica C# |
+| Bruce | Rutihsoc23 | Lógica C# |
 
 Equipo de **6 personas**: 2 de Arte, 2 de Lógica C# y 2 de Integración Unity.
 
