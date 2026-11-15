@@ -9,6 +9,7 @@
 > - Zona verde con valores reales: 55–65 °C y 50–60 % de humedad. Pasarse de calor sobrecalienta y mata a las bacterias (no "hierve").
 > - Protección planetaria: son guías de COSPAR que buscan minimizar el impacto de los desechos en Marte, no una prohibición literal (ver `05_datos_nasa.md`).
 > - Post-PMV: micelio y fibra, ampliar tanques y pérdida del lote por PEM o tormentas solares.
+> - **Paso 1 agregado, "Compostador":** antes de la Sopa se mezclan los desechos de gato (nitrógeno) con la cama de las ratas y los restos de cosecha (carbono) hasta una relación C:N de 25–30:1. La zona verde de la Sopa (55–65 °C) es además la sanitización contra el Toxoplasma de los desechos de gato.
 
 ## 1. Descripción General
 > **Resumen:** En el espacio no existe la "basura". Todo desecho biológico de la tripulación y de las granjas es un recurso secuestrado que debe reintroducirse en el sistema de circuito cerrado para sostener la vida y las construcciones.
@@ -70,4 +71,4 @@
 * **El Peligro de Excederse:** Si el jugador inyecta demasiada energía de golpe, el biorreactor hierve y mata a la colonia bacteriana. Si usa demasiada agua, las ahoga y, peor aún, agota las limitadas reservas hídricas que los gatos necesitan para beber.
 
 **Contexto STEM (Ciencia para Niños):**
-Este minijuego transforma la asquerosa idea de "gestionar basura" en un laboratorio de biología. Los niños aprenden la base de la Economía Circular: la materia orgánica no desaparece mágicamente al tirarla al tacho. Aprenden que las bacterias son seres vivos microscópicos que, al igual que los astronautas felinos, necesitan rangos muy específicos de temperatura y agua para sobrevivir y hacer su trabajo. Así comprenden por qué las agencias espaciales tratan el excremento y los restos de plantas como un tesoro químico indispensable para sobrevivir lejos de la Tierra.
+Este minijuego transforma la asquerosa idea de "gestionar basura" en un laboratorio de biología. Los niños aprenden la base de la Economía Circular: la materia orgánica no desaparece mágicamente al tirarla al tacho. Aprenden que las bacterias son seres vivos microscópicos que, al igual que los astronautas felinos, necesitan rangos muy específicos de temperatura y agua para sobrevivir y hacer su trabajo. Así comprenden por qué las agencias espaciales tratan el excremento y los restos de plantas como un tesoro químico indispensable para sobrevivir lejos de la Tierra.

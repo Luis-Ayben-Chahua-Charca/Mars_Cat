@@ -4,7 +4,9 @@
 > - La **granja de plantas sí está en el PMV**, con **papa** como cultivo. Produce **forraje** (alimento de las ratas), **fibra** (para trajes) y restos de cosecha. Los gatos no comen plantas.
 > - Las **ratas comen forraje**; la granja de ratones da **raciones** a los gatos.
 > - Hambre en tiempo real (alerta a los 8 minutos, muerte a los 10), **15 gatos**, sin moral ni catnip. Caducidad, taurina y plaga quedan para después del PMV.
-> - La adaptación de los minijuegos "Fábrica de Suelo" y "La Redada" está pendiente.
+> - **Fábrica de Suelo (adaptada):** en el PMV, lavar el regolito (perclorato) y mezclar (abono 20 %, rango 0–30 %, y bacterias). Los tanques de cianobacterias no entran; la luz LED (12 h, papa) es post-PMV.
+> - **La Redada y la plaga (post-PMV):** las ratas sueltas se vuelven plaga cuando funciona la granja de plantas; la redada funda la granja y de noche hay fugas que dañan otros edificios. En el PMV, el gato fijo trae las ratas.
+> - **Criadero (propuesta):** preparación de la granja de ratones con forraje, espacio y temperatura de las guías de laboratorio.
 
 ## 1. Descripción General
 > **Resumen:** Es el alimento de los gatos. Recurso de urgencia lenta (días, no minutos): el hambre no mata rápido como la falta de aire, pero vuelve lentos a los gatos y arrastra a todas las demás mecánicas. En el MVP no existe ningún cultivo vivo: los gatos sobreviven de las reservas que dejaron los humanos, y el arco del juego es pasar de herederos a ganaderos (ratas) y, después del MVP, a agricultores. Enseña dos ideas STEM centrales: la jerarquía de supervivencia (aire > agua > comida) y la cadena trófica (cultivos → ratas → gatos).
@@ -213,4 +215,4 @@ Cultivos espaciales reales que respaldan el post-MVP: la lechuga roja de la ISS 
 | Cosecha de chiles en la ISS, Plant Habitat-04 (2021) | El cultivo más complejo cosechado y comido en órbita | Verificado solo en prensa; buscar la página oficial de NASA antes de citarlo |
 
 ### 10.3 Qué NO viene de estas fuentes
-Consumo de los gatos (~250 kcal/sol), de las ratas (~20 g/sol), tamaño de la colonia (60–100), receta del suelo (85/10/5) y el factor "1 gato = 1/10 de humano": son estimaciones de diseño propias, construidas a partir de los datos de arriba y de biología básica.
+Consumo de los gatos (~250 kcal/sol), de las ratas (~20 g/sol), tamaño de la colonia (60–100), receta del suelo (85/10/5) y el factor "1 gato = 1/10 de humano": son estimaciones de diseño propias, construidas a partir de los datos de arriba y de biología básica.

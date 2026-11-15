@@ -156,6 +156,29 @@ Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar 
 - BVAD: https://spacearchitect.org/pubs/NASA-JSC-47804.pdf (edición 2018 para verificar: https://ntrs.nasa.gov/citations/20180001338).
 - "Potatoes on Mars", Centro Internacional de la Papa (Lima) con la UTEC y asesoría de NASA Ames: papa cultivada en suelo análogo marciano. https://cipotato.org/blog/indicators-show-potatoes-can-grow-mars/
 
+## Suelo, papa, ratas y compost (minijuegos de comida y desechos)
+
+| Dato | Valor | Fuente |
+|---|---|---|
+| Perclorato en el suelo de Marte | 0,4–0,6 % de la masa, medido en la solución al mojar la muestra (es muy soluble) | Hecht et al. (2009), *Science* 325:64–67, sonda Phoenix |
+| Limpieza microbiana del perclorato | Microbios que lo degradan y suman materia orgánica, probados en el simulante MGS-1; el lavado necesita agua escasa y el calor mucha energía | Proyecto de A. Delgado (Arizona State University), financiado por NSF y NASA, 2024 (en curso, sin resultados publicados) |
+| Papa y fotoperíodo | Con 12 h de luz el rendimiento de tubérculo sube con más CO₂ y más luz; con luz continua no, y baja el índice de cosecha | Wheeler, Fitzpatrick y Tibbitts (2019), *Frontiers in Plant Science* 10:1632 |
+| Relación C:N para compostar | Empezar cerca de 30:1. Viruta y aserrín: 300–700:1; estiércol de vaca: 20:1; de caballo: 25:1 | Cornell Composting, *Composting Ingredients* |
+| Sanitización del compost | Recipiente cerrado: 55 °C o más durante 3 días | EPA, 40 CFR 503, apéndice B (procesos que reducen patógenos) |
+| Toxoplasma | Los ooquistes esporulados dejan de ser infectivos tras 1 minuto a 60 °C; a 45 °C sobreviven 1 día | Dubey (1998), citado por Food Standards Australia New Zealand (2014) |
+| Ratas de laboratorio | Temperatura 20–26 °C; humedad 30–70 %; espacio de 187 cm² (hasta 300 g) a 387 cm² (hasta 500 g) por rata | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. (National Academies, 2011), tablas 3.1 y 3.2 |
+
+Enlaces:
+- Hecht et al. (2009): https://experts.arizona.edu/en/publications/detection-of-perchlorate-and-the-soluble-chemistry-of-martian-soi/
+- Microbios y perclorato (ASU): https://www.notebookcheck.net/Toxic-Mars-soil-could-potentially-get-a-microbial-makeover-for-future-farming.903805.0.html
+- Wheeler et al. (2019): https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2019.01632/
+- Cornell: https://www.compost.css.cornell.edu/Factsheets/FS2.html
+- EPA 40 CFR 503, apéndice B: https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
+- FSANZ, Toxoplasma gondii (2014): https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Toxoplasma%20gondii%20-%20jan%202014.pdf
+- Guide, 8.ª ed.: https://www.nationalacademies.org/read/12910/chapter/4
+
+**Por verificar:** la relación C:N de los desechos de gato y de los restos de papa no aparece en la tabla de Cornell; hay que buscarla antes de cargar el balance.
+
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.

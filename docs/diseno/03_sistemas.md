@@ -29,7 +29,7 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
 
-Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso del pool general (acordado). La **luz** se expresa en %; por confirmar si sale de la electricidad.
+Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso del pool general (acordado). La **luz** de la granja de plantas sale de lámparas LED que gastan electricidad, y llega después del PMV (acordado).
 
 ## Edificios
 
@@ -72,6 +72,29 @@ Los gatos son **carnívoros obligados**: necesitan proteína animal y taurina, q
 - **Cultivo del PMV: papa.** Datos reales en `05_datos_nasa.md` (BVAD de NASA y el experimento "Potatoes on Mars" del Centro Internacional de la Papa, en Lima).
 - La papa da **forraje** (la parte comestible, para las ratas), **fibra** (de la parte no comestible; licencia: fibra de tallos para trajes) y **restos de cosecha** (para el reciclador).
 - Una rata de laboratorio come unos 20 g de alimento seco al día, y 1 m² de papa rinde unos 21 g al día: **cerca de 1 m² de cultivo por rata**. Esa diferencia entre niveles es la pérdida de energía de la cadena alimentaria.
+
+### Plaga de ratas y "La Redada" (post-PMV, acordado como idea)
+
+Sistema **transversal**, como los filtros del MOXIE: corre en segundo plano y pide atención de vez en cuando.
+
+- **Desde el inicio** hay ratas sueltas en la estación: escaparon durante la evacuación.
+- Se vuelven **plaga** cuando funciona la granja de plantas: comen **forraje** y se pierden recursos.
+- **"La Redada":** para montar la granja de ratones, el jugador captura las ratas repartidas por la estación (persecución con el gato, cuando el jugador ya tiene libertad).
+- **Fugas:** de noche, con cierta probabilidad, algunas ratas se escapan de la granja y aparecen en otros edificios, donde los dañan (cables, sensores) hasta que se las recaptura.
+- **En el PMV:** no hay plaga ni persecución. Rige lo acordado: el gato fijo del puesto trae las ratas sueltas, una cada cierto tiempo.
+- **Sin deuda técnica:** la granja expone métodos para sumar y quitar ratas (`AddRats`, `RemoveRats`). La Redada y las fugas se conectan después sin cambiar la granja.
+- **Tono:** solo captura en pantalla; la conversión en raciones ocurre fuera de cámara.
+
+### Preparación de la granja de ratones: "Criadero" (propuesta)
+
+Valor guía y rango, como la granja de plantas, con valores de las guías de cría de ratas de laboratorio:
+
+| Control | Valor guía | Fuera de rango | Fuente |
+|---|---|---|---|
+| Forraje por rata | ~20 g por sol | Poco: crecen lento y dan menos raciones. Mucho: se desperdicia forraje | Estimación del equipo |
+| Espacio por rata | 187–387 cm² según el peso (300–500 g) | Hacinamiento: crían menos y se enferman | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. |
+| Temperatura | 20–26 °C | Frío o calor: no crían; calefaccionar gasta energía | Igual |
+
 - **Comedor (post-PMV):** un edificio propio para este fin. En el PMV se come directamente en el depósito.
 
 ## Reparar o construir
@@ -102,34 +125,38 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 
 | Edificio | Minijuego | Mecánica |
 |---|---|---|
-| Granja de plantas | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
-| Granja de ratones | Por definir | Por definir |
+| Granja de plantas | "Fábrica de Suelo" | Lavar el regolito y mezclar, con valor guía y rango; la luz es post-PMV (abajo) |
+| Granja de ratones | Por definir (propuesta: "Criadero", abajo) | Valor guía y rango; la plaga y "La Redada" son post-PMV |
 | Reciclador orgánico | "Operación Sopa de Bacterias" | Mantener temperatura y humedad en la zona verde durante el ciclo (ver "Desechos y abono") |
 | MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
 | Energía | "Operación Rescate Solar" | Ritmo al estilo *Piano Tiles*: disparar CO₂ a las celdas sucias de una banda de paneles (ver "Energía") |
 
-### Granja de plantas: valor guía y rango
+### Granja de plantas (papa): "Fábrica de Suelo" (acordado)
 
-- Cada insumo tiene un **valor guía** que da la IA y un **rango de aceptación**.
-- **Fuera del rango:** se muestra una **advertencia de rango prohibitivo** que indica qué insumo hay que corregir; el edificio no arranca hasta corregirlo.
-- **Dentro del rango:** ciertos valores y **combinaciones** mejoran el **rendimiento**.
+Adaptada de `docs/Propuesta_mecanica/mecanica_comida.md` (minijuego 1). Panel de estación: el gato se asigna solo. Cada paso tiene un **valor guía** que da la IA y un **rango de aceptación**; fuera del rango se muestra la **advertencia de rango prohibitivo** con el insumo a corregir y el lote **no se pierde**: la granja no arranca hasta corregirlo. Dentro del rango, acercarse al valor guía mejora el **rendimiento**.
+
+| Paso | En el PMV | Qué ajusta el jugador | Qué enseña |
+|---|---|---|---|
+| 1. **Lavar el regolito** | Sí | Litros de **agua** sobre el regolito, mirando un **medidor de perclorato** que baja en vivo | El suelo marciano trae **percloratos** tóxicos. Son muy solubles en agua: por eso Phoenix los detectó al mojar la muestra, y por eso el lavado los quita |
+| 2. **Mezclar** | Sí | **Abono** (% del volumen) y dosis de **bacterias** (infinitas) | El suelo fértil se fabrica: regolito limpio + abono + vida microbiana |
+| 3. **Luz** | No (post-PMV) | **Horas de luz LED** por sol (gastan electricidad) | La papa forma tubérculos con días cortos: con luz continua da hojas y menos papa |
 
 #### Valores
 
-El **abono** usa valores de la Tierra (compost en mezclas de cultivo; ver `05_datos_nasa.md`). El resto siguen siendo ejemplos. Pasan a `MarsCat/Assets/Data/` cuando Lógica cree el archivo de balance.
-
-| Insumo | Valor guía | Rango de aceptación | Fuera de rango |
-|---|---|---|---|
-| Abono (% del volumen de la mezcla de suelo) | 20 % | **0 %–30 %** | Más de 30 %: el exceso de sales **quema** las plantas; no arranca |
-| Regolito (tierra) | El resto de la mezcla (80 % con el valor guía) | — | — |
-| Agua | 2 L (ejemplo) | Por definir | Por definir |
-| Luz | Por definir (%) | Por definir | Por definir |
-| Bacterias | Por definir (cantidad) | Por definir | Por definir |
+| Insumo | Valor guía | Rango | Fuera de rango | Fuente |
+|---|---|---|---|---|
+| Perclorato del regolito sin lavar | — | — | Valor de partida del medidor: **0,4–0,6 %** de la masa | Phoenix (Hecht et al., 2009) |
+| Agua de lavado | Por definir | Por definir | Poca: el perclorato queda sobre el umbral y no arranca. Mucha: arranca, pero se gasta agua que beben los gatos | Diseño (cantidad por probar) |
+| Abono (% del volumen de la mezcla) | 20 % | **0 %–30 %** | Más de 30 %: el exceso de sales **quema** las plantas; no arranca | Tierra (ver `05_datos_nasa.md`) |
+| Regolito | El resto de la mezcla (80 % con el valor guía) | — | — | — |
+| Bacterias | Por definir (dosis) | Por definir | Infinitas: solo cuenta la dosis | Diseño |
+| Luz (post-PMV) | **12 h por sol** | Por definir | Luz continua: menos tubérculo y más gasto de energía | NASA (Wheeler et al., 2019) |
 
 - **Abono en 0 %:** está **dentro** del rango. La granja arranca, pero rinde menos; así la IA enseña para qué sirve el abono antes de que exista el reciclador orgánico.
 - **Rango asimétrico:** hacia abajo el abono baja hasta 0 sin bloquear; hacia arriba el borde es la quemadura.
-
+- **Sin deuda técnica para la luz:** la preparación es una **lista de pasos**, cada uno con su puntaje. En el PMV la lista tiene los pasos 1 y 2. La luz se agrega después como un paso más, sin cambiar los otros ni el resultado común (ver el contrato en `docs/06_guia_logica.md`).
+- **Licencia declarada:** el proceso completo (lavar, mezclar, cultivar papa en regolito) se arma con estudios parciales reales; nadie lo integró todavía en Marte, y la IA lo dice así.
 
 ## Energía
 
@@ -308,6 +335,23 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica-desechos.md`, adaptada
 - **Por qué no se tira afuera:** las agencias buscan que los desechos de una misión tripulada no contaminen Marte (protección planetaria, ver `05_datos_nasa.md`).
 - **Post-PMV:** ampliar los tanques cuando crece la población; pérdida del lote si un PEM o una tormenta solar corta la energía (las bacterias se vuelven a sembrar); cultivo de **hongos**, que dejan **micelio y fibra** para trajes y para reparar fisuras.
 
+### Paso 1 del reciclador: "Compostador" (acordado)
+
+Antes de la "Sopa de Bacterias", el jugador **mezcla** los desechos para llegar a la relación **carbono:nitrógeno (C:N)** que necesitan las bacterias.
+
+| Insumo | Aporta | C:N aproximado | Fuente |
+|---|---|---|---|
+| Desechos de gatos | **Nitrógeno** (el gato es carnívoro) | Bajo (por verificar; el estiércol de vaca ronda 20:1) | Cornell |
+| Desechos de ratones **con su cama** | **Carbono** (la cama es viruta o papel) | Alto: viruta y aserrín, 300–700:1 | Cornell |
+| Restos de cosecha | Carbono | Por verificar | — |
+| Agua y bacterias | Humedad y la colonia (bacterias infinitas) | — | — |
+
+- **Meta:** **25–30:1** (Cornell recomienda empezar cerca de 30:1).
+- **Fuera de rango:** con demasiado nitrógeno se pierde nutriente como amoníaco (mal olor); con demasiado carbono el proceso casi no avanza. El lote no arranca hasta corregir, sin perderse.
+- **Por qué importa la temperatura del paso 2:** los desechos de gato pueden traer **Toxoplasma**. Sus ooquistes mueren en 1 minuto a 60 °C, y la norma de la EPA para compostaje en recipiente cerrado pide 55 °C o más durante 3 días. Por eso la zona verde de la Sopa (55–65 °C) es también la **sanitización**: sin ella, el abono no sería apto para cultivar el forraje.
+- **Sin deuda técnica:** es una sesión aparte que entrega un factor de calidad de la mezcla; la Sopa no cambia (ver `docs/06_guia_logica.md`).
+- Respaldo: compartimento I del proyecto MELiSSA de la ESA (ver `05_datos_nasa.md`).
+
 ### Minijuego: "Operación Sopa de Bacterias" (acordado)
 
 Tarea puntual: ocupa un gato libre. Sigue el ciclo del edificio (preparar → procesar un tiempo → volver a preparar).
@@ -397,7 +441,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 
 ## Pendientes
 
-1. De dónde sale la **luz** (el abono ya es recurso del pool: acordado).
+1. **Luz:** LED post-PMV (acordado); falta el rango de horas.
 2. **Hidroponía:** se investiga más tarde en el árbol de conocimiento (post-PMV). Falta definir su mecánica.
 3. Valores reales de la preparación (NASA, artículo o funcionamiento en la Tierra).
 4. Insumos y minijuego de la **mina de tierras raras** (post-PMV).
