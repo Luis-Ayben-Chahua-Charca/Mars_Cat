@@ -20,8 +20,8 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Fibra | Insumo de trajes | No |
 | Regolito (tierra) | Base de la mezcla de suelo de la granja de plantas. **Infinito**: está en la superficie marciana | Sí |
 | Abono | Insumo de la granja de plantas. **Reserva inicial** suficiente para la primera granja; después sale del edificio de desechos | Sí |
-| Desechos de gatos | Los generan todos los gatos desde el inicio. Mucho nitrógeno; pueden traer patógenos. Se acumulan en el depósito hasta procesarlos | Sí |
-| Desechos de ratones | Los genera la granja de ratones. Vienen con su **cama** de fibra vegetal, que aporta carbono. Insumo separado del compostador | Sí |
+| Desechos de gatos | Los generan todos los gatos desde el inicio. Se guardan en el **depósito** hasta que se repara el edificio de desechos | Sí |
+| Desechos de ratones | Los genera la granja de ratones. Se guardan en el **depósito** hasta que se procesan en el edificio de desechos | Sí |
 | Tierras raras | Insumo de chips. Se producen en un edificio propio | No |
 | Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
@@ -37,7 +37,7 @@ Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso 
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
 | Granja de plantas | Comida; también fibra y algo de oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
 | Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Por definir |
-| Edificio de desechos (compostador) | **Abono** | Desechos de gatos, desechos de ratones, bacterias (infinitas), agua | Sí: reparar y preparar | Por definir |
+| Edificio de desechos | **Abono** | Desechos de gatos y de ratones; resto por definir | Sí: reparar y preparar | Por definir |
 | Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
 | Reciclador de agua (soporte vital) | Recupera parte del agua consumida; el porcentaje sube con la investigación | Electricidad | No: dañado; en el PMV solo lo menciona la IA | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
@@ -75,7 +75,7 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 |---|---|---|
 | Granja de plantas | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
 | Granja de ratones | Por definir | Por definir |
-| Edificio de desechos | "Compostador" | Mezcla de desechos (carbono y nitrógeno), humedad y temperatura de sanitización (ver "Desechos y abono") |
+| Edificio de desechos | Por definir (lo trabaja el equipo) | Por definir |
 | MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
 | Energía | "Operación Rescate Solar" | Acción: limpiar polvo gastando batería (ver "Energía") |
@@ -218,29 +218,6 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 - **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
 - **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
 
-## Desechos y abono
-
-**Propuesta, no acordada.** Cierra el ciclo de nutrientes: comida → gatos y ratones → desechos → abono → granja de plantas. Es la misma idea del sistema de soporte vital MELiSSA de la ESA, cuyo primer compartimento recibe los desechos de la tripulación y las partes no comestibles de las plantas (ver `05_datos_nasa.md`).
-
-- **Desechos de gatos:** los produce cada gato, desde el inicio. Se guardan en el depósito y ocupan espacio. Tienen mucho nitrógeno y pueden traer patógenos (por ejemplo, *Toxoplasma*), así que necesitan **sanitizarse** con calor.
-- **Desechos de ratones:** llegan con la granja de ratones (paso 7), mezclados con su cama de fibra vegetal, que aporta el **carbono** que les falta a los de gato.
-- **El problema del tutorial:** con los ratones, el depósito se llena de desechos. Reparar el compostador (paso 8) lo resuelve y convierte el problema en abono.
-
-### Preparación del compostador: "Compostador"
-
-Panel de estación; ocupa un gato libre como tarea puntual. Tres pasos con mecánica propia:
-
-| Paso | Qué hace el jugador | Meta (valores de la Tierra) | Si sale mal |
-|---|---|---|---|
-| 1. Mezcla | Elige la proporción de desechos de gatos y de ratones. Un indicador muestra la relación **carbono:nitrógeno** | 25–30 : 1 (aceptable 20–40 : 1) | Poco carbono: el nitrógeno se escapa como **amoníaco** (mal olor, abono más pobre). Mucho carbono: compostaje lento |
-| 2. Humedad | Agrega **agua** | 50–60 % (aceptable 40–65 %) | Más de 65 %: falta aire, se vuelve anaerobia y lenta. Menos de 40 %: casi se detiene |
-| 3. Sanitización | Agrega **bacterias** (infinitas); la mezcla se calienta sola. El jugador **ventila** para no pasarse | Al menos **55 °C** durante el tiempo requerido, sin acercarse a 70 °C | Si no llega a 55 °C el tiempo suficiente, el abono sale **no apto** (patógenos): la IA lo marca y no se puede usar en la granja de plantas; hay que volver a compostarlo. Cerca de 70 °C las bacterias se frenan |
-
-- **Rendimiento:** cantidad de abono según la masa de desechos, menos el nitrógeno perdido por una mezcla o humedad fuera de la meta.
-- **Gasta** agua (paso 2) y un poco de electricidad para ventilar (paso 3).
-- **Tiempo:** en la realidad, la sanitización en recipiente cerrado dura 3 días a 55 °C o más; en el juego se escala al ritmo del sol.
-- **Enseña:** que los nutrientes se reciclan, qué es la relación carbono:nitrógeno, que el compostaje caliente elimina patógenos y por qué los desechos de carnívoros piden más cuidado.
-
 ## Salud y trajes espaciales
 
 ### Barras
@@ -314,7 +291,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua.
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
-22. **Compostador:** aprobar el minijuego; desechos por gato y por ratón por sol; cuánto abono rinde cada lote; duración de la sanitización en el juego; qué pasa si el depósito se llena de desechos (post-PMV: riesgo sanitario).
+22. **Edificio de desechos:** insumos, minijuego y cuánto abono rinde cada lote (lo trabaja el equipo); desechos por gato y por ratón por sol.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
 10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
 11. Costo en metal y escombros de cada reparación.

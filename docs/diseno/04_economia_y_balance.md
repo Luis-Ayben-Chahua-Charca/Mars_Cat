@@ -75,7 +75,7 @@ Edificio principal en la zona segura. Es donde sobrevivieron los gatos congelado
 4. **Edificios:**
    - Granja de plantas: alimento, **fibra** y algo de oxígeno.
    - Granja de ratones: alimento (proteína) y **desechos de ratones**.
-   - Edificio de desechos (compostador): **abono**, a partir de los desechos de gatos y de ratones.
+   - Edificio de desechos: **abono**, a partir de los desechos de gatos y de ratones.
    - Energía: electricidad.
    - **Extracción de agua del subsuelo:** agua de hielo purificado (ver "Agua" en `03_sistemas.md`).
    - **Reciclador de agua (post-PMV):** recupera parte del agua consumida; dañado al inicio. Su eficiencia sube por niveles en el árbol tecnológico.
@@ -92,7 +92,7 @@ En un edificio se juntan los insumos y sale el producto; el gato solo lo trabaja
 - **Pasivos (por ciclo):**
   - Oxígeno: según la cantidad de gatos y cuánto trabajan, más una pequeña **fuga por cada edificio** presurizado.
   - Comida: según la cantidad de gatos.
-  - **Desechos:** cada gato genera desechos por sol, que ocupan el depósito hasta compostarlos.
+  - **Desechos:** cada gato genera desechos por sol, y la granja de ratones suma los suyos. Se **almacenan en el depósito** y ocupan espacio hasta que aparece el edificio de desechos y los procesa.
   - Energía: según los edificios activos y, de noche, para mantener la temperatura.
   - La **protección** de los edificios está siempre activa y siempre consume energía.
 - **Activos:** la **reparación del beacon** para enviar la alerta a la Tierra.

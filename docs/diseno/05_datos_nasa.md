@@ -112,20 +112,6 @@ Desde `docs/Propuesta_mecanica/mecanica_oxigeno.md` e investigación propia. Ver
   - https://extension.usu.edu/yardandgarden/research/using-compost-in-utah-gardens.pdf
   - https://ncagr.gov/compost-guidelines/download
 
-## Desechos y compostaje
-
-Base del compostador (`03_sistemas.md`, "Desechos y abono"). Verificar antes de usar.
-
-- **MELiSSA (ESA), compartimento I:** recibe los desechos de la misión (heces, orina, restos de comida, partes no comestibles de las plantas) y trabaja a 55 °C por bioseguridad: a esa temperatura se inactivan la mayoría de los patógenos humanos. Referencia espacial del compostador. https://www.esa.int/articles/compartment-i-the-liquefying-compartment · https://www.melissafoundation.org/page/waste-treatment
-- **Sanitización (EPA, 40 CFR 503):** en recipiente cerrado o pila aireada, 55 °C o más durante al menos 3 días. Base del paso 3. https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
-- **Relación carbono:nitrógeno:** ideal 25–30 : 1 (aceptable 20–40 : 1). Con poco carbono el nitrógeno se pierde como amoníaco; con mucho, el proceso es lento. Base del paso 1. https://extension.oregonstate.edu/es/catalog/em-8825-composting-alternative-livestock-manure-management-disposal-dead-animals
-- **Humedad:** entre 40 y 65 %, ideal 50–60 %. Sobre 60 % falta oxígeno y se vuelve anaerobio; bajo 40 % se frena mucho. Base del paso 2. https://extension.oregonstate.edu/animals-livestock/beef/disposal-animal-mortality-byproducts
-- **Camas como carbono:** la mayoría de los estiércoles aportan nitrógeno, pero pueden tener poco carbono según la cama que lleven. Base de que los desechos de ratón (con su cama) aporten carbono. https://www1.agriculture.alberta.ca/$department/deptdocs.nsf/all/agdex8875
-- **Desechos de gato:** tienen unas 2,5 veces el nitrógeno del estiércol de vaca y pueden portar *Toxoplasma* y parásitos intestinales; por eso los manuales suelen excluir los estiércoles de carnívoros del compostaje común. Base de la sanitización obligatoria. Las temperaturas citadas para *Toxoplasma* varían entre fuentes: por verificar.
-  - https://www.gardeningknowhow.com/composting/manurescat-feces-in-compost.htm
-  - https://www.ctahr.hawaii.edu/oc/freepubs/pdf/AWM-1.pdf
-- **Temperaturas:** los microorganismos termófilos crecen mejor entre 55 y 75 °C; si falta oxígeno o la temperatura se acerca a 70 °C, el proceso se resiente. Base de ventilar en el paso 3. https://www.pew.org/-/media/legacy/uploadedfiles/phg/content_level_pages/issue_briefs/psppewpspcompostingmanurenarrativev42pdf.pdf
-
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.
