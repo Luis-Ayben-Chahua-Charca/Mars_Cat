@@ -67,7 +67,7 @@ Consumo humano de referencia (tabla 3.3.6): 0,835 kg de O₂, 0,998 kg de CO₂ 
 Cadena trófica: los gatos son carnívoros obligados — sin proteína animal y taurina enferman — lo que convierte la granja de ratas en la solución biológicamente correcta, y enseña la pirámide alimenticia y la pérdida de energía entre niveles. Las ratas son omnívoras y de ciclo rapidísimo (gestación de 21 días, adultas en 6 semanas): el ganado más veloz posible. Con los datos del BVAD, 1 m² de trigo rinde 20 g de grano seco al día, justo lo que come una rata: **~1 m² de trigo por rata**, así que una granja de 60–100 ratas pide 60–100 m² de cultivo, mientras que el oxígeno de los 5 gatos se cubre con ~7,5 m². Esa diferencia **es** la pérdida de energía de la cadena trófica, en números.
 Prioridad del trigo: produce 56 g de O₂ por m² al día, casi el doble que la papa, pero consume 11,79 kg de agua por m² al día, cuatro veces más — más aire y grano a cambio de más agua: la decisión con costo que pide el reto. Además deja 30 g de paja por m² al día (alimento de hongos y compost). La soya rinde solo 4,54 g, lo que justifica dejarla como opcional.
 Oxígeno: 835 g por persona al día ÷ 56 g por m² de trigo = **~15 m² por humano**; asumiendo que un gato respira ~1/10 de un humano (estimación propia), **~7,5 m² de trigo cubren el aire de los 5 gatos** — cruce directo con la mecánica de Oxígeno (aplica post-MVP).
-Cultivos espaciales reales que respaldan el post-MVP: la lechuga roja de la ISS (Veggie/VEG-01) resultó segura y nutritiva; los chiles de Plant Habitat-04 (2021) se cosecharon y comieron en órbita; la soya completó su ciclo en la ISS (2002); la papa fue probada en condiciones marcianas simuladas por el Centro Internacional de la Papa (CIP, Lima) junto a la NASA — proyecto peruano. Moral: la NASA cultivó zinnias (flores) en la ISS por puro bienestar psicológico; el catnip cumple ese rol para gatos.
+Cultivos espaciales reales que respaldan el post-MVP: la lechuga roja de la ISS (Veggie/VEG-01) resultó segura y nutritiva; los chiles de Plant Habitat-04 (2021) se cosecharon y comieron en órbita; la soya completó su ciclo en la ISS (2002); la papa fue cultivada en suelo análogo marciano del desierto peruano de La Joya, dentro de un CubeSat que simulaba la presión, los gases y los ciclos de temperatura de Marte: un experimento del Centro Internacional de la Papa (CIP) y la universidad UTEC, en Lima, con asesoría de NASA Ames — carta peruana del proyecto. Moral: la NASA cultivó zinnias (flores) en la ISS por puro bienestar psicológico; el catnip cumple ese rol para gatos.
 
 * **Uso de Datos/APIs de NASA:** BVAD (tablas de rendimiento de cultivos y consumo por individuo: la fuente de nuestros números). OSDR: estudios VEG-01 (seguridad alimentaria de cultivos en ISS) y OSD-804 / Rodent Research-1 (salud en microgravedad). Kit educativo de producción de comida espacial de la CSA (agencia aliada oficial).
 
@@ -182,23 +182,29 @@ Cultivos espaciales reales que respaldan el post-MVP: la lechuga roja de la ISS 
 
 ---
 
-## 10. Fuentes y datasets usados
+---
 
-### Datos que alimentan números del juego
-| Fuente | Qué sacamos | Dónde se usa |
+## 10. Fuentes y datasets
+
+### 10.1 Datos que alimentan números del juego
+
+| Fuente | Qué sacamos | Dónde se usa | Enlace |
+|---|---|---|---|
+| NASA BVAD, JSC-47804 (2002), tablas 4.2.6 a 4.2.8 y 3.3.6 | Rendimiento de trigo, papa, soya, lechuga y tomate (comida, paja, oxígeno y agua por m² al día; ciclo en días) y consumo humano de referencia (0,835 kg O₂/día) | Tabla de la sección 5; balance de oxígeno, agua y alimento de la granja | https://spacearchitect.org/pubs/NASA-JSC-47804.pdf |
+| NASA BVAD, edición 2018 (verificar que coincida) | Misma fuente, versión más reciente | Verificación | https://ntrs.nasa.gov/citations/20180001338 |
+| NASA OSDR — OSD-804 / Rodent Research-1 | Pérdida de hueso en microgravedad: se debilitan los huesos que cargan peso, no la columna | Diálogos de la IA sobre salud y gravedad | https://osdr.nasa.gov/bio/repo/data/studies/OSD-804 |
+
+### 10.2 Fuentes que respaldan la ciencia del diseño
+
+| Fuente | Qué respalda | Enlace |
 |---|---|---|
-| [NASA BVAD, JSC-47804 (2002)](https://spacearchitect.org/pubs/NASA-JSC-47804.pdf) — tablas 4.2.6 a 4.2.8 y 3.3.6 | Rendimiento de trigo, papa, soya, lechuga y tomate (comida, paja, oxígeno y agua por m² al día; ciclo en días) y consumo humano de referencia | Tabla de la sección 5; balance de oxígeno, agua y alimento de la granja |
-| [NASA OSDR — VEG-01](https://osdr.nasa.gov/bio/repo/) (Khodadad et al., *Frontiers in Plant Science*) | La lechuga cultivada en la ISS resultó segura y nutritiva | Respaldo de los cultivos post-MVP y diálogos de la IA |
-| [NASA OSDR — OSD-804 / Rodent Research-1](https://osdr.nasa.gov/bio/repo/data/studies/OSD-804) | Pérdida de hueso en microgravedad: se debilitan los huesos que cargan peso, no la columna | Diálogos de la IA sobre salud y gravedad |
+| Khodadad et al. (2020), *Frontiers in Plant Science* | La lechuga roja cultivada en la ISS (VEG-01) resultó segura y nutritiva | https://www.frontiersin.org/articles/10.3389/fpls.2020.00199/pdf |
+| Davila et al. (2013), *International Journal of Astrobiology* | Percloratos en el regolito marciano: peligro y recurso; limpieza biológica (Minijuego 1) | https://cambridge.org/core/journals/international-journal-of-astrobiology/article/perchlorate-on-mars-a-chemical-hazard-and-a-resource-for-humans/E4906FAD7F45A9AE8212B9198C6FD4AB |
+| Verseux et al. (2021), *Frontiers in Microbiology* | Cianobacterias creciendo con atmósfera tipo Marte y regolito simulado (Minijuego 1) | https://frontiersin.org/articles/10.3389/fmicb.2021.611798/pdf |
+| Harris et al. (2021), *PLOS ONE* | Rizobios fijando nitrógeno en regolito marciano simulado (suelo post-MVP) | https://pmc.ncbi.nlm.nih.gov/articles/PMC8480890 |
+| Centro Internacional de la Papa (CIP), Lima, 2017 | Papa cultivada en suelo análogo marciano del desierto de La Joya (Perú), en un CubeSat que simulaba presión, gases y ciclos de temperatura de Marte. Lo hizo el CIP con la universidad UTEC de Lima, **con asesoría de NASA Ames** | https://cipotato.org/blog/indicators-show-potatoes-can-grow-mars/ |
+| CSA (Agencia Espacial Canadiense), kit educativo | Producción de comida fuera de la Tierra, material para público joven (agencia aliada oficial del reto) | https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/ |
+| Cosecha de chiles en la ISS, Plant Habitat-04 (2021) | El cultivo más complejo cosechado y comido en órbita | Verificado solo en prensa; buscar la página oficial de NASA antes de citarlo |
 
-### Fuentes que respaldan procesos y decisiones de diseño
-| Fuente | Qué respalda |
-|---|---|
-| Davila et al. (2013), *International Journal of Astrobiology* | Percloratos en el regolito y su limpieza con bacterias (Minijuego 1) |
-| Verseux et al. (2021), *Frontiers in Microbiology* | Cianobacterias creciendo con atmósfera marciana y regolito simulado (Minijuego 1) |
-| Harris et al. (2021), *PLOS ONE* | Rizobios fijando nitrógeno en regolito simulado (suelo post-MVP) |
-| CIP–NASA, "Potatoes on Mars" (cipotato.org) | Papa en condiciones marcianas simuladas — proyecto peruano |
-| [CSA, "Food production on the Moon and in remote areas"](https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/) | Producción de comida fuera de la Tierra, material educativo (agencia aliada del reto) |
-
-### Qué NO viene de estas fuentes
+### 10.3 Qué NO viene de estas fuentes
 Consumo de los gatos (~250 kcal/sol), de las ratas (~20 g/sol), tamaño de la colonia (60–100), receta del suelo (85/10/5) y el factor "1 gato = 1/10 de humano": son estimaciones de diseño propias, construidas a partir de los datos de arriba y de biología básica.
