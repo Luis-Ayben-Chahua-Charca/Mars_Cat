@@ -1,0 +1,531 @@
+fileFormatVersion: 2
+guid: c2b751fe982502b4580ebea1b6f69aa2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 302
+        width: 88
+        height: 106
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: becd73c6e5daee548b7f596f281b513e
+      internalID: -134067325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 303
+        width: 86
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: -0.00952381}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da5142564fe4efa4f8f34007a5d9b25f
+      internalID: -394595644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 302
+        width: 88
+        height: 104
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e554366b0ec4ac46aab3e87e35485c7
+      internalID: -1171531296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 303
+        width: 86
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: -0.009708738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed58e2816d7dd14c9d33ad4a782e34a
+      internalID: 934387700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 212
+        width: 94
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c83f9ecb6745442b0063f9284c1db7
+      internalID: -416638871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 213
+        width: 93
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: -0.0125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 917e3e3cea19f4146b62f346efbc1c42
+      internalID: 974629627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 215
+        width: 88
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5, y: -0.03797468}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e503e20ba19cca4cacde98a3b822d8d
+      internalID: 1271934563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 213
+        width: 90
+        height: 82
+      alignment: 9
+      pivot: {x: 0.5, y: -0.0121951215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4237e0cb8ba31d24f944e41575b6ab20
+      internalID: 1750288464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 213
+        width: 93
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5, y: -0.012345679}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decad10833ec8bd4bbd6b800845626a0
+      internalID: 1285625597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 214
+        width: 96
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: -0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac26ab4e23a78c74fbfb45af1abceeb6
+      internalID: 407018466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 122
+        width: 110
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a6c75248483e6458ea959f504633b5
+      internalID: -1749528493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 122
+        width: 120
+        height: 82
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d546bdf2eea08459a3b1011810c144
+      internalID: 535495131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 122
+        width: 106
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71e98a5ea632d044b50459dab6e6cfa
+      internalID: -1843142161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 122
+        width: 111
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3789d5f1d320d3248b771ded8f15bfab
+      internalID: -1935482646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 7
+        width: 82
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 260d9abfda2faf8429c33443201306ab
+      internalID: -1100473433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 9
+        width: 78
+        height: 97
+      alignment: 9
+      pivot: {x: 0.5, y: -0.020618556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b49d813df5d73de4bb2ba65a22013f16
+      internalID: 337779661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 9
+        width: 79
+        height: 103
+      alignment: 9
+      pivot: {x: 0.5, y: -0.019417476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276c6d85d7294b646803dc08a42a271e
+      internalID: -1988259805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hoja_de_sprites_del_astronauta_Nio-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 7
+        width: 92
+        height: 98
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a751dc429736445a7b96b068cf12e5
+      internalID: 1298887086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 26e563ce9e26158489eccf4af0ef9176
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_0: -134067325
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_1: -394595644
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_10: -1749528493
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_11: 535495131
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_12: -1843142161
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_13: -1935482646
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_14: -1100473433
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_15: 337779661
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_16: -1988259805
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_17: 1298887086
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_2: -1171531296
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_3: 934387700
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_4: -416638871
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_5: 974629627
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_6: 1271934563
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_7: 1750288464
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_8: 1285625597
+      Hoja_de_sprites_del_astronauta_Nio-removebg-preview_9: 407018466
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
