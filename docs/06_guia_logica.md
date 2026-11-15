@@ -267,7 +267,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 | Persona | Issues | Carpetas nuevas |
 |---|---|---|
 | **Lógica 1** | #56 (filtros del MOXIE), #57 (granja de ratones, esqueleto), #23 (secuencia del tutorial, esqueleto). Después, #55 (aire), cuando se apruebe su modelo | `Air/`, `Food/`, `Tutorial/` |
-| **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2; que el PMV lleve solo ese paso está **pendiente de aprobación**), #58 (Sopa de Bacterias) | `Water/`, `Recycling/`, y `Energy/` (ya suya) |
+| **Lógica 2** | Rescate Solar (lógica; issue por crear o parte de #31), #54 (solo el paso 2; que el PMV lleve solo ese paso está **pendiente de aprobación**), #58 (Compostador + Sopa de Bacterias), #20 parte 2 (Fábrica de Suelo) | `Water/`, `Recycling/`, `Preparation/` (ya suya) y `Energy/` (ya suya) |
 
 ### Rescate Solar (lógica) · Lógica 2 · `MarsCat.Logic.Energy`
 
@@ -297,16 +297,45 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - Eventos `OnPhaseCompleted(MeltPhase)`, `OnPhaseFailed(MeltPhase)`, `OnFinished(PreparationResult)`.
 - **Probar:** en el centro se llena en 5 s; acelerado, en 2,5 s y cobra electricidad; fallar la presión reinicia sin perder el lote; fallar el calor pierde el lote.
 
-### Sopa de Bacterias (#58) · Lógica 2 · `MarsCat.Logic.Recycling`
+### Fábrica de Suelo (#20, parte 2) · Lógica 2 · `MarsCat.Logic.Preparation`
+
+**Para qué:** la preparación de la granja de plantas (`03_sistemas.md`, "Fábrica de Suelo"). En el PMV tiene dos pasos (lavar y mezclar); la luz se agrega después **sin cambiar nada de lo existente**.
+
+- `interface IPreparationStep`: `string Id`; `StepScore Evaluate()`. Cada paso guarda sus propios valores y sabe si está dentro del rango.
+- `readonly struct StepScore`: `bool InRange`, `float Score` (0–1; 1 = en el valor guía), `string ReasonKey` (qué corregir si está fuera de rango).
+- `GuideRange` (valor guía, mínimo y máximo de un insumo, leídos del CSV) con `StepScore Evaluate(float value)`: puntaje `1 − |valor − guía| / tolerancia` hacia el lado que corresponda (el rango puede ser asimétrico, como el abono de 0 a 30 %).
+- Pasos del PMV:
+  - `WashStep(WashConfig, ResourcePool)`: `void SetWater(float liters)`; el perclorato baja según el agua y parte de 0,4–0,6 %; cobra el agua al confirmar. Claves `minigame.soil.wash.*`.
+  - `MixStep(MixConfig)`: `void SetCompost(float percent)`, `void SetBacteria(float dose)`; usa `GuideRange` (abono: guía 20 %, rango 0–30 %). Cobra el abono al confirmar. Claves `minigame.soil.mix.*`.
+  - Post-PMV: `LightStep` (horas de luz, guía 12 h) se agrega a la lista.
+- `MultiStepPreparation(IReadOnlyList<IPreparationStep> steps, YieldConfig)`:
+  - `PreparationResult Confirm()`: si algún paso está fuera de rango, `Fail` con la clave de ese paso (no cobra nada); si no, `Ok(0,8 + 0,4 × promedio de los puntajes)`.
+  - Sirve también para el Criadero de ratones y para cualquier preparación futura de valor guía y rango.
+- **Probar:** un paso fuera de rango no arranca y no cobra; en el valor guía rinde 1,2; abono en 0 % está dentro del rango y rinde menos; agregar un tercer paso no cambia los resultados de los otros dos.
+- La fórmula de rendimiento (80 %–120 %) sigue **pendiente de aprobación** en #14; vive en `YieldConfig`, así que cambiarla no toca el código.
+
+### Compostador (#58, paso 1) · Lógica 2 · `MarsCat.Logic.Recycling`
+
+**Para qué:** la mezcla por relación C:N antes de la Sopa (`03_sistemas.md`, "Compostador").
+
+- `CompostMixConfig`: C:N de cada insumo, meta (guía 30, rango 25–30 o el acordado en el CSV). Claves `minigame.compost.mix.*`.
+- `CompostMix(CompostMixConfig, ResourcePool)`:
+  - `void SetAmount(ResourceId id, float amount)` para `CatWaste`, `RatWaste` y `CropResidue`.
+  - `float Ratio`: C:N de la mezcla, ponderado por cantidad.
+  - `StepScore Evaluate()` (con `GuideRange`); `bool TryConfirm()`: si está en rango, cobra los desechos y devuelve `true`.
+- La Sopa recibe la mezcla ya cobrada: `CompostSession.TryStart()` deja de cobrar los desechos y pasa a recibir el puntaje de la mezcla, que multiplica el rendimiento final.
+- **Probar:** solo desechos de gato da una relación baja y fuera de rango; sumar cama de rata la sube; en rango cobra; fuera de rango no cobra.
+
+### Sopa de Bacterias (#58, paso 2) · Lógica 2 · `MarsCat.Logic.Recycling`
 
 **Para qué:** el minijuego del reciclador orgánico (`03_sistemas.md`, "Operación Sopa de Bacterias"). Zonas verdes con valores reales.
 
 - `CompostConfig`: zona verde de temperatura (55–65 °C), sobrecalentamiento (70 °C), zona verde de humedad (50–60 %), límites de 65 % y 40 %, enfriamiento por segundo, inercia de la temperatura, electricidad por segundo al 100 % de calor, agua por segundo del aspersor, duración del ciclo y desechos por lote. Claves `minigame.compost.*`.
 - `CompostSession(CompostConfig, ResourcePool)`:
-  - `bool TryStart()`: cobra los desechos del lote (`CatWaste`, `RatWaste`, `CropResidue`); si no alcanzan, no arranca.
+  - `void Start(float mixScore)`: arranca con la mezcla ya cobrada por el Compostador.
   - `void Tick(float dt)`; `void SetHeat(float level)` (0–1, gasta electricidad); `void SetSprinkler(bool on)` (gasta agua).
   - `float Temperature`, `float Humidity`, `float TimeInGreen`, `bool IsFinished`.
-  - Rendimiento = tiempo con las dos agujas en verde ÷ duración del ciclo. Sobre 70 °C: `Fail("prep.compost.overheated")`.
+  - Rendimiento = (tiempo con las dos agujas en verde ÷ duración del ciclo) × puntaje de la mezcla. Sobre 70 °C: `Fail("prep.compost.overheated")`. La zona verde de temperatura es también la sanitización (Toxoplasma).
   - Eventos `OnFinished(PreparationResult)`.
 - **Probar:** sin calor la temperatura baja; la inercia retrasa la subida; el aspersor gasta agua; sobre 70 °C se pierde el lote; todo el ciclo en verde rinde 1.
 
@@ -332,8 +361,10 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
   - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato fijo no llegan ratas.
   - `int Rats`: recurso primitivo, vive solo aquí.
   - Convierte ratas en raciones (`Food`) consumiendo `Forage` del pool, y suma `RatWaste`. Sin forraje, las ratas esperan y no se convierten.
+  - `void AddRats(int count)` y `int RemoveRats(int count)` (devuelve las que realmente quitó): para que "La Redada" y las fugas nocturnas se conecten después del PMV sin tocar la granja.
   - Eventos `OnRatBrought` y `OnRationsProduced(float)`.
-- **Probar:** sin gato no hay ratas; con gato llega una rata por intervalo; cada rata convertida gasta forraje y suma raciones y desechos; sin forraje no convierte; respeta el tope.
+- La preparación "Criadero" (propuesta) usará `MultiStepPreparation` de #20, parte 2.
+- **Probar:** sin gato no hay ratas; `AddRats` y `RemoveRats` respetan el tope y el cero; con gato llega una rata por intervalo; cada rata convertida gasta forraje y suma raciones y desechos; sin forraje no convierte; respeta el tope.
 
 ### Secuencia del tutorial (#23, esqueleto) · Lógica 1 · `MarsCat.Logic.Tutorial`
 
