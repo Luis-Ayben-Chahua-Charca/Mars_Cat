@@ -79,7 +79,7 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 | Reciclador orgánico | "Operación Sopa de Bacterias" | Mantener temperatura y humedad en la zona verde durante el ciclo (ver "Desechos y abono") |
 | MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
-| Energía | "Operación Rescate Solar" | Acción: limpiar polvo gastando batería (ver "Energía") |
+| Energía | "Operación Rescate Solar" | Ritmo al estilo *Piano Tiles*: disparar CO₂ a las celdas sucias de una banda de paneles (ver "Energía") |
 
 ### Granja de plantas: valor guía y rango
 
@@ -117,15 +117,33 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_energia.md`, adaptada 
 - **Limpieza (ISRU):** con **CO₂ marciano comprimido** y un **cepillo antiestático**. Comprimir el gas cuesta **energía** de las baterías. No se usa agua: el agua líquida no es estable en la superficie de Marte por la baja presión.
 - **Cuello de botella:** al inicio, reparar la energía primero y después priorizar qué edificios reciben energía.
 
-### Minijuego candidato de preparación de energía: "Operación Rescate Solar"
+### Minijuego de preparación de energía: "Operación Rescate Solar" (acordado)
 
-- El gato, como "conserje espacial", limpia el polvo de los paneles antes de que caiga la noche, con ráfagas de CO₂ comprimido y el cepillo antiestático.
-- Una barra de "luz solar capturada" muestra el efecto.
-- **Balance:** cada ráfaga gasta energía de las baterías. Mantener el disparador apretado desperdicia energía y la base puede quedarse corta para la noche; conviene usar ráfagas cortas y el cepillo en seco.
-- Ráfagas de viento traen más polvo y obligan a ser rápido.
-- Es un minijuego de **acción**, distinto del modelo de valor guía y rango del cultivo.
-- **Enseña:** por qué el agua líquida no sirve en Marte, y el concepto de **ISRU** (usar recursos del propio planeta, como el CO₂, a cambio de energía).
-- Si es la preparación de energía del PMV está **pendiente de revisión**.
+Inspirado en *Piano Tiles*. El gato, como "conserje espacial", limpia el polvo de los paneles con disparos de **CO₂ comprimido**. Tarea puntual: ocupa un gato libre.
+
+- **Escena:** una **banda de paneles** con **3 carriles** que avanza fila por fila hacia una **plataforma con 3 boquillas** (1, 2, 3). Algunas celdas traen polvo.
+- **Controles:** **Q / W / E** disparan por la boquilla 1, 2 o 3. La animación del gato presiona el botón correspondiente.
+- **Ventana:** cada fila queda frente a las boquillas durante **1 segundo**; lo que no se limpia en ese tiempo pasa sucio.
+- **Disparos sin límite, con costo:** cada disparo gasta **electricidad** de las baterías, acierte o no. Disparar a celdas limpias o *spamear* los tres carriles desperdicia energía: ese es el castigo. El tiempo también cuenta, pero pesa menos.
+- **Eficiencia** = celdas sucias limpiadas ÷ total de celdas sucias. Es el rendimiento del resultado común de preparación.
+- **Balance:** el costo por disparo se ajusta con la producción de electricidad de los paneles en `Data/`. Debe costar menos de lo que gana un panel limpio, y disparar siempre a los tres carriles debe costar más de lo que se gana.
+- **Enseña:** por qué el agua líquida no sirve en Marte y el concepto de **ISRU** (usar el CO₂ del propio planeta, a cambio de energía).
+- **Post-PMV (opcional):** suciedad pesada que pide 2 disparos; banda más rápida durante tormentas de polvo; cepillo antiestático como acción gratuita pero lenta.
+
+#### Arte de referencia (`Art-source/2D/`)
+
+| Archivo | Uso |
+|---|---|
+| `Panel_solar.png` | Textura de la banda (3 columnas, se repite en vertical; se desplaza por UV) |
+| `Plataforma.png` | Plataforma con las 3 boquillas numeradas |
+| `gato_apuntando.png` | Animación del gato presionando 1, 2 o 3 |
+| `disparo_co2.png` | Secuencia del disparo de CO₂ |
+| `Manchas_tierra.png` | 6 variantes de polvo sobre las celdas |
+
+**Observaciones pendientes del arte:**
+- `Manchas_tierra.png` tiene fondo oscuro con brillo pegado; hace falta exportarlo con canal alfa.
+- `disparo_co2.png` tiene bordes cian y blancos que quedaron al quitar el fondo.
+- La plataforma está en vista 3/4 y el panel en vista cenital; probar cómo se ven juntos.
 
 ### Minijuego post-PMV: "Forja KRUSTY"
 
@@ -334,7 +352,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
-10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
+10. **Operación Rescate Solar** (acordada): costo por disparo y velocidad de la banda según la producción de los paneles en `Data/`; las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV); observaciones pendientes del arte.
 11. Costo en metal y escombros de cada reparación.
 12. Cuánto produce y consume cada edificio, y cuánto consume cada gato.
 13. En qué zona está cada edificio.
