@@ -45,7 +45,7 @@ Pipeline **acordado** para el PMV. Desde el paso 3, cada edificio sigue el mismo
 | 5 | **Agua** (extracción del subsuelo) | Por redactar | La IA explica que el reciclador de agua quedó dañado y por eso hay que sacar agua del hielo |
 | 6 | **Comida: granja de plantas** | Por redactar | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja |
 | 7 | **Comida: granja de ratones** | Por redactar | Los desechos de los gatos se guardan en el **depósito** desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
-| 8 | **Desechos** | Por redactar | Procesa los desechos guardados en el depósito, los convierte en **abono** y cierra el ciclo con la granja de plantas |
+| 8 | **Reciclador orgánico** | Por redactar | Procesa los desechos guardados en el depósito y los restos de cosecha, los convierte en **abono** y cierra el ciclo con la granja de plantas |
 
 La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione.
 
@@ -54,7 +54,7 @@ Detalle de edificios, recursos, preparación y trajes en `03_sistemas.md`.
 ## PMV (entrega del domingo 15)
 
 - Incluye **solo el tutorial** descrito arriba, en las zonas segura y media.
-- Incluye la **preparación** (o el mantenimiento, en el caso del MOXIE) de los edificios de energía, oxígeno, agua, granja de plantas, granja de ratones y desechos.
+- Incluye la **preparación** (o el mantenimiento, en el caso del MOXIE) de los edificios de energía, oxígeno, agua, granja de plantas, granja de ratones y reciclador orgánico.
 - Incluye el **ciclo de día y noche** y el **hambre individual** de cada gato.
 - **No incluye:** la zona lejana, la construcción de trajes con fibra, las tierras raras, la automatización ni el sobretrabajo nocturno.
 

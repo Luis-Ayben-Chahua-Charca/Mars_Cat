@@ -112,6 +112,21 @@ Desde `docs/Propuesta_mecanica/mecanica_oxigeno.md` e investigación propia. Ver
   - https://extension.usu.edu/yardandgarden/research/using-compost-in-utah-gardens.pdf
   - https://ncagr.gov/compost-guidelines/download
 
+## Desechos y reciclaje orgánico
+
+Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar antes de usar.
+
+- **MELiSSA (ESA), compartimento I:** recibe los desechos de la misión (heces, orina, restos de comida y partes no comestibles de las plantas) y trabaja a 55 °C por bioseguridad; a esa temperatura se inactivan la mayoría de los patógenos humanos. https://www.esa.int/articles/compartment-i-the-liquefying-compartment · https://www.melissafoundation.org/page/waste-treatment
+- **Sanitización (EPA, 40 CFR 503):** en recipiente cerrado, 55 °C o más durante al menos 3 días. Base del borde inferior de la zona verde. https://www.law.cornell.edu/cfr/text/40/appendix-B_to_part_503
+- **Temperatura máxima:** los microorganismos termófilos crecen mejor entre 55 y 75 °C; cerca de 70 °C o con poco oxígeno, el proceso se resiente. Base del sobrecalentamiento. https://www.pew.org/-/media/legacy/uploadedfiles/phg/content_level_pages/issue_briefs/psppewpspcompostingmanurenarrativev42pdf.pdf
+- **Humedad:** entre 40 y 65 %, ideal 50–60 %; sobre 60 % falta oxígeno y el proceso se vuelve anaerobio; bajo 40 % se frena mucho. https://extension.oregonstate.edu/animals-livestock/beef/disposal-animal-mortality-byproducts
+- **Desechos de gato:** tienen unas 2,5 veces el nitrógeno del estiércol de vaca y pueden traer *Toxoplasma* y parásitos; por eso necesitan compostaje caliente. Las temperaturas citadas para *Toxoplasma* varían entre fuentes: por verificar. https://www.gardeningknowhow.com/composting/manurescat-feces-in-compost.htm
+- **Protección planetaria:** el COSPAR (Comité de Investigación Espacial) tiene principios y guías para misiones humanas a Marte, que NASA y ESA siguen. Buscan evitar dos contaminaciones: la **directa** (llevar microbios de la Tierra a Marte, que arruinaría la búsqueda de vida) y la **inversa** (traer algo de Marte a la Tierra). Una tripulación es una fuente continua de microbios, y NASA pide desarrollar formas de **eliminar los desechos biológicos minimizando el impacto** en el ambiente marciano. No es una prohibición literal: son guías, y los requisitos detallados para misiones tripuladas todavía se están definiendo.
+  - https://ntrs.nasa.gov/api/citations/20250010949/downloads/ACR25%20-%20WP%20-%20Planetary%20Protection.pdf
+  - https://nodis3.gsfc.nasa.gov/OPD_docs/NID_8715-129_.pdf
+  - https://cosparhq.cnes.fr/assets/uploads/2024/07/PP-Policy_SRT_220-July-2024.pdf
+- **Micelio (post-PMV):** NASA estudia hongos alimentados con residuos para fabricar materiales de construcción. Por verificar la fuente exacta.
+
 ## Referencias no NASA (valores de la Tierra)
 
 - Cats Protection (Reino Unido), *How long can cats go without food?*: un gato adulto sano sobrevive hasta unas 2 semanas sin comida (con agua), con problemas serios desde los 2 días; sin agua, unos 3–4 días, con deshidratación en 24 horas. https://www.cats.org.uk/cats-blog/how-long-can-cats-go-without-food — usado en `04_economia_y_balance.md` para la urgencia relativa del hambre y la sed.
