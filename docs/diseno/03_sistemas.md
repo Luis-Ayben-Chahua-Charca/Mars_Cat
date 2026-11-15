@@ -19,9 +19,10 @@ Los porcentajes y cantidades de esta página son **ejemplos**: los valores reale
 | Bacterias | Insumo de la preparación del cultivo. **Infinito**: solo se ajusta su valor óptimo en el minijuego | Sí |
 | Fibra | Insumo de trajes | No |
 | Regolito (tierra) | Base de la mezcla de suelo de la granja de plantas. **Infinito**: está en la superficie marciana | Sí |
-| Abono | Insumo de la granja de plantas. **Reserva inicial** suficiente para la primera granja; después sale del edificio de desechos | Sí |
-| Desechos de gatos | Los generan todos los gatos desde el inicio. Se guardan en el **depósito** hasta que se repara el edificio de desechos | Sí |
-| Desechos de ratones | Los genera la granja de ratones. Se guardan en el **depósito** hasta que se procesan en el edificio de desechos | Sí |
+| Abono | Insumo de la granja de plantas. **Reserva inicial** suficiente para la primera granja; después sale del reciclador orgánico | Sí |
+| Desechos de gatos | Los generan todos los gatos desde el inicio, según lo que comen y beben. Se guardan en el **depósito** hasta que se repara el reciclador orgánico | Sí |
+| Desechos de ratones | Los genera la granja de ratones. Se guardan en el **depósito** hasta que se procesan en el reciclador orgánico | Sí |
+| Restos de cosecha | Partes no comestibles de la granja de plantas (tallos, raíces). Insumo del reciclador orgánico | Sí |
 | Tierras raras | Insumo de chips. Se producen en un edificio propio | No |
 | Chips | Se fabrican con tierras raras. Materia prima de robots y de la **construcción** de edificios complejos (post-PMV) | No |
 | Robots | Automatizan la preparación. Se fabrican con chips y metal | No |
@@ -35,9 +36,9 @@ Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso 
 | Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Por definir |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
-| Granja de plantas | Comida; también fibra y algo de oxígeno | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
+| Granja de plantas | Comida; también fibra, algo de oxígeno y restos de cosecha | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
 | Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Por definir |
-| Edificio de desechos | **Abono** | Desechos de gatos y de ratones; resto por definir | Sí: reparar y preparar | Por definir |
+| Reciclador orgánico | **Abono** | Desechos de gatos y de ratones, restos de cosecha; electricidad (calor) y agua | Sí: reparar y preparar (paso 8) | Por definir |
 | Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
 | Reciclador de agua (soporte vital) | Recupera parte del agua consumida; el porcentaje sube con la investigación | Electricidad | No: dañado; en el PMV solo lo menciona la IA | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
@@ -75,7 +76,7 @@ Inspirada en los minijuegos de *Among Us*. **Cada edificio tiene su propio minij
 |---|---|---|
 | Granja de plantas | Preparación del cultivo | Valor guía y rango por insumo (abajo) |
 | Granja de ratones | Por definir | Por definir |
-| Edificio de desechos | Por definir (lo trabaja el equipo) | Por definir |
+| Reciclador orgánico | "Operación Sopa de Bacterias" | Mantener temperatura y humedad en la zona verde durante el ciclo (ver "Desechos y abono") |
 | MOXIE | Filtros de entrada | **Mantenimiento continuo**: los filtros se ensucian solos y se limpian cuando el jugador quiere (ver "Oxígeno") |
 | Extracción de agua | "Alquimista Marciano" | Ubicación y profundidad de perforación, secuencia de presión y biorreactor (ver "Agua") |
 | Energía | "Operación Rescate Solar" | Acción: limpiar polvo gastando batería (ver "Energía") |
@@ -98,7 +99,7 @@ El **abono** usa valores de la Tierra (compost en mezclas de cultivo; ver `05_da
 | Luz | Por definir (%) | Por definir | Por definir |
 | Bacterias | Por definir (cantidad) | Por definir | Por definir |
 
-- **Abono en 0 %:** está **dentro** del rango. La granja arranca, pero rinde menos; así la IA enseña para qué sirve el abono antes de que exista el edificio de desechos.
+- **Abono en 0 %:** está **dentro** del rango. La granja arranca, pero rinde menos; así la IA enseña para qué sirve el abono antes de que exista el reciclador orgánico.
 - **Rango asimétrico:** hacia abajo el abono baja hasta 0 sin bloquear; hacia arriba el borde es la quemadura.
 
 
@@ -218,6 +219,46 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 - **Energía:** el taladro y el calentador gastan electricidad al preparar. Refuerza la regla del tutorial de reparar primero la energía (paso 3) antes que el agua (paso 5).
 - **Enseña:** que el hielo marciano se busca con radar y está a distintas profundidades, por qué el agua líquida no es estable a la presión de Marte, qué son los percloratos y la **biorremediación**.
 
+## Desechos y abono
+
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica-desechos.md`, adaptada aquí. **Acordado**, incluido el minijuego; los controles son propuesta.
+
+- **Edificio: reciclador orgánico.** Módulo sellado que convierte desechos en **abono** con bacterias de compost. Cierra el ciclo: comida → gatos y ratones → desechos → abono → granja de plantas. Es la misma idea del sistema MELiSSA de la ESA (ver `05_datos_nasa.md`).
+- **Insumos:** desechos de gatos, desechos de ratones y restos de cosecha de la granja de plantas. Las bacterias son infinitas.
+- **Dependencias:** **electricidad** (paneles y baterías) para mantener el calor, porque el frío de Marte enfría el módulo, y un poco de **agua** para la humedad de la colonia bacteriana.
+- **Desechos de gatos:** cada gato los genera según lo que come y bebe. Se guardan en el **depósito** desde el inicio y ocupan espacio.
+- **Exceso:** si el depósito se llena de desechos, los gatos **pierden salud** de forma gradual hasta que se procesen. Solo salud: no hay moral.
+- **Sin abono:** la granja de plantas arranca igual, pero rinde menos (abono en 0 %, ver "Granja de plantas").
+- **Por qué no se tira afuera:** las agencias buscan que los desechos de una misión tripulada no contaminen Marte (protección planetaria, ver `05_datos_nasa.md`).
+- **Post-PMV:** ampliar los tanques cuando crece la población; pérdida del lote si un PEM o una tormenta solar corta la energía (las bacterias se vuelven a sembrar); cultivo de **hongos**, que dejan **micelio y fibra** para trajes y para reparar fisuras.
+
+### Minijuego: "Operación Sopa de Bacterias" (acordado)
+
+Tarea puntual: ocupa un gato libre. Sigue el ciclo del edificio (preparar → procesar un tiempo → volver a preparar).
+
+- **Panel:** dos agujas, **temperatura** y **humedad**, cada una con su zona verde. El frío de Marte baja la temperatura de forma constante.
+- **Controles:** una perilla de **calor** (gasta electricidad) y un **aspersor** (gasta agua del pool, la misma que beben los gatos).
+- **Zona verde (valores reales):** temperatura **55–65 °C**, que además elimina los patógenos de los desechos de gato; humedad **50–60 %**.
+- **Fuera de la zona:**
+  - Más de unos 70 °C: se sobrecalienta y las bacterias mueren; se pierde el lote.
+  - Menos de 55 °C: el proceso se frena y el abono no queda sanitizado.
+  - Humedad sobre 65 %: falta aire y las bacterias se "ahogan"; además se gasta agua de más.
+  - Humedad bajo 40 %: el proceso casi se detiene.
+- **Objetivo:** mantener las dos agujas en verde durante el tiempo del ciclo. El **rendimiento** depende del tiempo que estuvieron en verde.
+- **Enseña:** economía circular (la materia orgánica no desaparece), que las bacterias necesitan rangos de temperatura y agua como cualquier ser vivo, y por qué las agencias tratan los desechos como un recurso.
+
+#### Controles (propuesta)
+
+| Control | Acción | Mouse | Teclado |
+|---|---|---|---|
+| Perilla de calor | Nivel continuo 0–100 %: se deja en una posición y se corrige | Arrastrar arriba o abajo sobre la perilla; rueda del mouse encima | Q / E |
+| Aspersor | Rocía solo mientras se mantiene presionado | Mantener clic en el botón | Mantener Espacio |
+
+- La aguja de temperatura tiene **inercia**: se acerca de a poco al nivel de la perilla, así que hay que anticiparse.
+- Zona verde pintada en cada aguja; aviso corto de la IA cerca de los bordes; teclas visibles junto a cada control.
+- **Esc** cierra el minijuego; el ciclo sigue con el último nivel de calor.
+- **Opcional post-PMV:** el calor reseca la mezcla (la humedad baja más rápido con más calor).
+
 ## Salud y trajes espaciales
 
 ### Barras
@@ -291,7 +332,7 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua.
 21. **Granja de ratones:** insumos, minijuego, cuánta comida y cuántos desechos produce.
-22. **Edificio de desechos:** insumos, minijuego y cuánto abono rinde cada lote (lo trabaja el equipo); desechos por gato y por ratón por sol.
+22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
 10. Si "Operación Rescate Solar" es la preparación de energía del PMV (pendiente de revisión). Si entra, las baterías iniciales deben alcanzar para la limpieza y para la primera noche (regla 6 del PMV).
 11. Costo en metal y escombros de cada reparación.
