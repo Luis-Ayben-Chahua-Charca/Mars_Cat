@@ -17,7 +17,7 @@ Los módulos de agua y comida están **por definir** en el issue #__.
 
 | Zona | Estado tras la lluvia de meteoritos | En el PMV |
 |---|---|---|
-| Segura (cueva, con el depósito) | Estable | Sí |
+| Segura (cráter Vivero, con el depósito, MOXIE y esclusa) | Estable | Sí |
 | Media | Dañada, aún reparable | Sí |
 | Lejana | Destruida, no reparable | No |
 

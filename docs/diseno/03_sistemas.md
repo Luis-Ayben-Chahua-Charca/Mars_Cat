@@ -33,18 +33,19 @@ Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso 
 
 | Edificio | Produce | Insumos | En el PMV | Zona |
 |---|---|---|---|---|
-| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Por definir |
+| Energía (paneles solares) | Electricidad, solo de día; nada durante tormentas | Limpieza con CO₂ comprimido, que cuesta energía (ver "Energía") | Sí: reparar y preparar | Media |
 | Baterías de emergencia | Guardan electricidad para la noche y emergencias; reparables | — | Por definir | Por definir |
 | Reactor KRUSTY (Kilopower) | Electricidad constante, sin depender del clima ni del día | Costo único de construcción (minerales, metal y chips); materiales para correcciones de seguridad | No | Por definir |
-| Granja de plantas | Comida; también fibra, algo de oxígeno y restos de cosecha | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Por definir |
-| Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Por definir |
-| Reciclador orgánico | **Abono** | Desechos de gatos y de ratones, restos de cosecha; electricidad (calor) y agua | Sí: reparar y preparar (paso 8) | Por definir |
-| Extracción de agua del subsuelo | Agua (hielo bajo la cueva, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Segura (propuesta) |
+| Granja de plantas | Comida; también fibra, algo de oxígeno y restos de cosecha | Regolito, agua, luz, bacterias, abono (la hidroponía se desbloquea post-PMV en el árbol de conocimiento) | Sí: reparar y preparar | Media |
+| Granja de ratones | Comida (proteína); **desechos de ratones** | Por definir | Sí: reparar y preparar | Media |
+| Reciclador orgánico | **Abono** | Desechos de gatos y de ratones, restos de cosecha; electricidad (calor) y agua | Sí: reparar y preparar (paso 8) | Media |
+| Extracción de agua del subsuelo | Agua (hielo bajo el cráter, purificado) | Electricidad (taladro térmico y calentador); bacterias perclorato-reductoras (infinitas) | Sí: reparar y preparar | Media |
 | Reciclador de agua (soporte vital) | Recupera parte del agua consumida; el porcentaje sube con la investigación | Electricidad | No: dañado; en el PMV solo lo menciona la IA | Segura |
 | Mina de tierras raras | Tierras raras | Por definir (tiene su propio minijuego) | No | Zona nueva (exploración) |
-| MOXIE (industrial) | Oxígeno | Mucha electricidad; filtros de entrada limpios | Sí: reparar y mantener filtros (paso 4) | Por definir |
+| MOXIE (industrial) | Oxígeno | Mucha electricidad; filtros de entrada limpios | Sí: reparar y mantener filtros (paso 4) | Segura |
 | Depósito (almacén compartido) | Guarda alimentos, fibra y escombros; lugar de recuperación (ver `04_economia_y_balance.md`) | — | Sí | Segura |
-| Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No | Por definir |
+| Esclusa | Salida de los gatos al exterior; los heridos que llegan a ella pasan al depósito | — | Sí | Segura |
+| Taller | Chips, robots y trajes | Tierras raras → chips; chips + metal → robots; fibra + un poco de metal → trajes | No (post-PMV: se construye) | Segura |
 
 ## Reparar o construir
 
@@ -201,7 +202,7 @@ Propuesta del equipo en `docs/Propuesta_mecanica/mecanica_agua.md`, adaptada aqu
   1. **Reciclador (soporte vital), post-PMV:** recupera parte del agua que consumen gatos y cultivos, como el sistema de la ISS. La lluvia de meteoritos lo dejó dañado; por eso, al despertar, el agua no alcanza (etapa 2 de `02_core_loop.md`).
      - **En el PMV** no es un edificio: solo la IA lo menciona para explicar por qué falta agua y para presentar el dato del 98 % de la ISS (ver `05_datos_nasa.md`).
      - **Post-PMV** se repara, y su **eficiencia de reciclaje sube por niveles** de investigación en el árbol tecnológico. Reciclar cuesta menos energía que perforar vetas profundas, así que el jugador elige entre las dos fuentes.
-  2. **Extracción de agua del subsuelo, PMV:** el edificio del tutorial (paso 5). Saca **hielo** de debajo de la cueva, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
+  2. **Extracción de agua del subsuelo, PMV:** el edificio del tutorial (paso 5). Saca **hielo** de debajo del cráter, lo derrite en una cámara presurizada y lo limpia de **percloratos** en un biorreactor antes de mandarlo a los tanques.
 - **Consumo:** la sed de cada gato (`04_economia_y_balance.md`) y la preparación de la **granja de plantas**. La hidroponía es post-PMV.
 - **Exceso:** con los tanques llenos, la extracción se detiene y queda en cola, igual que el depósito. El agua no se pierde.
 - **Sin agua:** rige la regla de sed (alerta extrema, busca agua, muere). La granja de plantas no arranca porque el insumo agua queda fuera de rango.
@@ -213,7 +214,7 @@ Panel de estación: el jugador **no controla al gato**, que se asigna solo al pu
 
 **Paso 1 — Sondeo y perforación**
 
-- Una **vista en corte del subsuelo** bajo la cueva muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
+- Una **vista en corte del subsuelo** bajo el cráter muestra el resultado del radar: vetas de hielo a distintas **profundidades**, con distinta **pureza** (cuánto polvo de regolito, y por tanto percloratos, tienen) y **volumen**.
 - El jugador **coloca** el taladro y elige la **profundidad**:
   - **Somero:** barato y rápido, pero hielo más sucio y con menos volumen.
   - **Profundo:** hielo más puro y abundante, pero cuesta más electricidad y tiempo.
