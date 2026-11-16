@@ -6,9 +6,12 @@ using MarsCat.Logic.Cats;
 using MarsCat.Logic.Clock;
 using MarsCat.Logic.Data;
 using MarsCat.Logic.Energy;
+using MarsCat.Logic.Food;
 using MarsCat.Logic.Preparation;
+using MarsCat.Logic.Recycling;
 using MarsCat.Logic.Resources;
 using MarsCat.Logic.Tutorial;
+using MarsCat.Logic.Water;
 using MarsCat.Logic.Work;
 using MarsCat.Unity.UI;
 using UnityEngine;
@@ -89,6 +92,8 @@ namespace MarsCat.Unity
         private readonly Dictionary<string, Cat> _workers = new Dictionary<string, Cat>(StringComparer.Ordinal);
         private readonly HashSet<string> _postJobs = new HashSet<string>(StringComparer.Ordinal);
         private bool _paused;
+        private int _minigameSeedOffset;
+        private float _moxieKgPerGameSecond;
 
         /// <summary>Ya se crearon todos los sistemas.</summary>
         public bool IsReady { get; private set; }
@@ -102,6 +107,29 @@ namespace MarsCat.Unity
         public JobAssigner Jobs { get; private set; }
         public TutorialSequence Tutorial { get; private set; }
         public MoxieFilters MoxieFilters { get; private set; }
+
+        /// <summary>Aire de la base (#55): % de O₂ y franjas.</summary>
+        public BaseAtmosphere Atmosphere { get; private set; }
+        public AtmosphereConfig AtmosphereConfig { get; private set; }
+
+        /// <summary>Granja de ratones, ratas sueltas, La Redada (preparación de la granja) y caza por hambre (#57).</summary>
+        public RatFarm RatFarm { get; private set; }
+        public LooseRats LooseRats { get; private set; }
+        public RatRaid RatRaid { get; private set; }
+        public RatHunt RatHunt { get; private set; }
+
+        // Configuraciones de los minijuegos (Lote 3): cada minijuego crea su sesión con ellas.
+        public SolarCleaningConfig SolarCleaningConfig { get; private set; }
+        public MeltingConfig MeltingConfig { get; private set; }
+        public FixedVein IceVein { get; private set; }
+        public WashConfig SoilWashConfig { get; private set; }
+        public MixConfig SoilMixConfig { get; private set; }
+        public YieldConfig SoilYieldConfig { get; private set; }
+        public CompostMixConfig CompostMixConfig { get; private set; }
+        public CompostConfig CompostConfig { get; private set; }
+
+        /// <summary>Semilla para las sesiones de minijuego (cambia en cada uso para que no se repitan).</summary>
+        public int NextMinigameSeed() => _seed + (++_minigameSeedOffset);
 
         /// <summary>Edificios del PMV por id (solar_panels, moxie, water_extractor, plant_farm, rat_farm, organic_recycler).</summary>
         public IReadOnlyDictionary<string, Building> Buildings => _buildings;
@@ -211,6 +239,27 @@ namespace MarsCat.Unity
             Energy.RegisterProducer(SolarProducerId, Balance.Get("building." + SolarPanelsId + ".production_rate_per_sol"), true);
             Energy.SetProducerYield(SolarProducerId, 0f);
 
+            // Aire: el MOXIE produce O₂ (kg por sol → por segundo de juego, T7) según la fracción de filtros limpios.
+            AtmosphereConfig = AtmosphereConfig.FromBalance(Balance);
+            Atmosphere = new BaseAtmosphere(AtmosphereConfig, AtmosphereConfig.InitialVolumeM3);
+            Atmosphere.OnCriticalTimeout += HandleCriticalTimeout;
+            _moxieKgPerGameSecond = Balance.Get("building." + MoxieId + ".production_rate_per_sol") / gameSecondsPerSol;
+
+            // Ratas: la granja convierte ratas en raciones; las sueltas se capturan en La Redada o las cazan los gatos con hambre.
+            RatFarm = new RatFarm(RatFarmConfig.FromBalance(Balance), Resources);
+            LooseRats = LooseRats.FromBalance(Balance);
+            RatRaid = new RatRaid(LooseRats, RatFarm);
+            RatHunt = new RatHunt(Colony, LooseRats, Resources, RatHuntConfig.FromBalance(Balance));
+
+            SolarCleaningConfig = SolarCleaningConfig.FromBalance(Balance);
+            MeltingConfig = MeltingConfig.FromBalance(Balance);
+            IceVein = FixedVein.FromBalance(Balance);
+            SoilWashConfig = WashConfig.FromBalance(Balance);
+            SoilMixConfig = MixConfig.FromBalance(Balance);
+            SoilYieldConfig = YieldConfig.FromBalance(Balance, "soil", new[] { "wash", "mix" });
+            CompostMixConfig = CompostMixConfig.FromBalance(Balance);
+            CompostConfig = CompostConfig.FromBalance(Balance);
+
             Jobs.OnAssigned += HandleAssigned;
             Jobs.OnReleased += HandleReleased;
 
@@ -255,15 +304,51 @@ namespace MarsCat.Unity
             Energy.Tick(gameDt, night);
             foreach (Building building in _buildings.Values)
                 building.Tick(gameDt);
-            if (_buildings[MoxieId].State == BuildingState.Running)
+            Building moxie = _buildings[MoxieId];
+            bool moxieWorking = moxie.State == BuildingState.Running && Energy.IsPowered(MoxieId);
+            if (moxie.State == BuildingState.Running)
                 MoxieFilters.Tick(gameDt);
 
+            BuildingState ratFarmState = _buildings[RatFarmId].State;
+            if (ratFarmState == BuildingState.Running || ratFarmState == BuildingState.Depleted || ratFarmState == BuildingState.Unprepared)
+                RatFarm.Tick(gameDt);
+
             Colony.Tick(dt, night);
+            RatHunt.Tick(dt);   // después de la colonia; segundos reales, como el hambre
             Jobs.Tick(dt, Colony, night);
+
+            float producedKg = moxieWorking ? _moxieKgPerGameSecond * MoxieFilters.Yield * gameDt : 0f;
+            CountCats(out int resting, out int working);
+            Atmosphere.Tick(gameDt, producedKg, resting, working, dt);
+        }
+
+        private void CountCats(out int resting, out int working)
+        {
+            resting = 0;
+            working = 0;
+            foreach (Cat cat in Colony.Cats)
+            {
+                if (cat.State == CatState.Dead) continue;
+                if (cat.State == CatState.WorkingIndoor || cat.State == CatState.WorkingOutdoor) working++;
+                else resting++;
+            }
+        }
+
+        private void HandleCriticalTimeout()
+        {
+            // PMV sin derrota (regla 7): solo se avisa. Las muertes por asfixia quedan para después del PMV.
+            Debug.LogWarning("GameBootstrap: el aire pasó el margen en franja crítica.", this);
         }
 
         private void HandleBuildingStateChanged(Building building, BuildingState from, BuildingState to)
         {
+            // Al terminar la reparación el módulo se presuriza: suma su volumen al aire y deja una fuga (#55).
+            string modulePrefix = "building." + building.Id + ".";
+            if (from == BuildingState.Repairing && to == BuildingState.Unprepared
+                && Balance.TryGet(modulePrefix + "volume_m3", out float volume)
+                && Balance.TryGet(modulePrefix + "leak_kg_per_sol", out float leak))
+                Atmosphere.AddModule(volume, leak);
+
             if (building.Id == SolarPanelsId)
                 Energy.SetProducerYield(SolarProducerId, to == BuildingState.Running ? building.Yield : 0f);
 
@@ -286,6 +371,7 @@ namespace MarsCat.Unity
             if (building == null || job.Kind != JobKind.Post) return;
             _workers[job.BuildingId] = cat;
             building.SetWorkerPresent(true);
+            if (job.BuildingId == RatFarmId) RatFarm.SetWorkerPresent(true);
             WorkerChanged?.Invoke(job.BuildingId, cat);
         }
 
@@ -295,6 +381,7 @@ namespace MarsCat.Unity
             if (building == null || job.Kind != JobKind.Post) return;
             _workers.Remove(job.BuildingId);
             building.SetWorkerPresent(false);
+            if (job.BuildingId == RatFarmId) RatFarm.SetWorkerPresent(false);
             WorkerChanged?.Invoke(job.BuildingId, null);
         }
 
@@ -314,6 +401,7 @@ namespace MarsCat.Unity
             }
             foreach (Building building in _buildings.Values)
                 building.OnStateChanged -= HandleBuildingStateChanged;
+            if (Atmosphere != null) Atmosphere.OnCriticalTimeout -= HandleCriticalTimeout;
         }
     }
 }

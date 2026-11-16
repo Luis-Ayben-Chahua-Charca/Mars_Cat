@@ -51,14 +51,18 @@ namespace MarsCat.Unity.UI
 
         private void Start()
         {
-            if (_source == Source.Electricity)
+            if (_bootstrap == null)
             {
-                if (_bootstrap == null)
+                // Sin bootstrap, el oxígeno muestra _previewValue (útil en escenas de prueba); la energía no puede.
+                if (_source == Source.Electricity)
                 {
                     Debug.LogWarning("HudArcBar: falta asignar el GameBootstrap.", this);
                     enabled = false;
                     return;
                 }
+            }
+            else
+            {
                 _bootstrap.WhenReady(() => _ready = true);
             }
             _shown = CurrentTarget();
@@ -85,8 +89,19 @@ namespace MarsCat.Unity.UI
                 return Mathf.Clamp01(pool.Get(ResourceId.Electricity) / capacity);
             }
 
-            // #55: conectar BaseAtmosphere.OxygenFraction cuando exista
-            return _hasExternalValue ? _external : _previewValue;
+            if (_hasExternalValue) return _external;
+            // #55: el arco va lleno con el % inicial de O₂ (0,21) y vacío en 0.
+            if (_ready && _bootstrap.Atmosphere != null && _bootstrap.AtmosphereConfig.InitialFraction > 0f)
+                return Mathf.Clamp01(_bootstrap.Atmosphere.OxygenFraction / _bootstrap.AtmosphereConfig.InitialFraction);
+            return _previewValue;
+        }
+
+        // Etiqueta: para el oxígeno muestra el % real de O₂ en el aire (21,0 %); para la energía, el % de la batería.
+        private string LabelText()
+        {
+            if (_source == Source.Oxygen && !_hasExternalValue && _ready && _bootstrap.Atmosphere != null)
+                return (_bootstrap.Atmosphere.OxygenFraction * 100f).ToString("0.0") + "%";
+            return Mathf.RoundToInt(_shown * 100f) + "%";
         }
 
         private void Apply()
@@ -97,7 +112,7 @@ namespace MarsCat.Unity.UI
                 if (_colors != null) _fill.color = _colors.Evaluate(_shown);
             }
             if (_label != null)
-                _label.text = Mathf.RoundToInt(_shown * 100f) + "%";
+                _label.text = LabelText();
         }
     }
 }
