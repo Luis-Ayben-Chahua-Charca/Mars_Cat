@@ -14,11 +14,12 @@ namespace MarsCat.Logic.Cats
         public float WaterDeathSeconds { get; }
         public float WaterRation { get; }
         public float InitialNeedSpread { get; }
+        public float WastePerMeal { get; }
 
         public CatConfig(float foodIntervalSeconds, float foodAlertSeconds,
             float foodDeathSeconds, float foodRation, float waterIntervalSeconds,
             float waterAlertSeconds, float waterDeathSeconds, float waterRation,
-            float initialNeedSpread)
+            float initialNeedSpread, float wastePerMeal = 0f)
         {
             ValidateNeed(foodIntervalSeconds, foodAlertSeconds, foodDeathSeconds, foodRation, "food");
             ValidateNeed(waterIntervalSeconds, waterAlertSeconds, waterDeathSeconds, waterRation, "water");
@@ -35,18 +36,25 @@ namespace MarsCat.Logic.Cats
             WaterAlertSeconds = waterAlertSeconds;
             WaterDeathSeconds = waterDeathSeconds;
             WaterRation = waterRation;
+            if (float.IsNaN(wastePerMeal) || float.IsInfinity(wastePerMeal) || wastePerMeal < 0f)
+                throw new ArgumentOutOfRangeException(nameof(wastePerMeal),
+                    "Los desechos por comida deben ser finitos y no negativos.");
+
             InitialNeedSpread = initialNeedSpread;
+            WastePerMeal = wastePerMeal;
         }
 
         public static CatConfig FromBalance(BalanceData data)
         {
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
+            // Si la clave no existe no se generan desechos (compatibilidad con balances anteriores).
+            data.TryGet("cat.waste_per_meal", out float wastePerMeal);
             return new CatConfig(data.Get("cat.food.interval_seconds"),
                 data.Get("cat.food.alert_seconds"), data.Get("cat.food.death_seconds"),
                 data.Get("cat.food.ration"), data.Get("cat.water.interval_seconds"),
                 data.Get("cat.water.alert_seconds"), data.Get("cat.water.death_seconds"),
-                data.Get("cat.water.ration"), data.Get("cat.initial_need_spread"));
+                data.Get("cat.water.ration"), data.Get("cat.initial_need_spread"), wastePerMeal);
         }
 
         private static void ValidateNeed(float interval, float alert, float death, float ration, string name)

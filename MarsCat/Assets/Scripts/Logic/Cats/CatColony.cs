@@ -115,6 +115,8 @@ namespace MarsCat.Logic.Cats
                 if (!_pool.TryConsume(resource, ration))
                     break;
                 cat.Satisfy(need);
+                if (need == Need.Food && _config.WastePerMeal > 0f)
+                    _pool.Add(ResourceId.CatWaste, _config.WastePerMeal);
             }
         }
 
