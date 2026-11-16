@@ -65,3 +65,112 @@ ui.clock.night;Noche
 ui.pause;Pausa
 ui.missions.title;Misiones
 ui.ai.name;IA de la base
+# Minijuego: Operación Rescate Solar (#31)
+minigame.solar.rows;Filas restantes: {0}
+minigame.solar.efficiency;Eficiencia: {0}%
+minigame.solar.energy;Electricidad: {0} kWh
+minigame.solar.no_energy;¡Sin electricidad para disparar!
+minigame.solar.result;Panel limpio al {0}%
+minigame.solar.continue;Continuar
+# Minijuego: filtros del MOXIE (#59)
+minigame.moxie.efficiency;Eficiencia: {0}%
+minigame.moxie.start;Poner en marcha
+minigame.moxie.clean_n;Limpiar {0}
+minigame.moxie.cleaning;Un gato está limpiando…
+minigame.moxie.waiting_cat;Esperando un gato libre
+minigame.moxie.all_clean;Todos los filtros están limpios
+minigame.moxie.no_free_cats;No hay gatos libres. Libera a uno de su puesto:
+minigame.moxie.release;Liberar gato
+minigame.moxie.worker_row;{0} (gato {1})
+prep.moxie.filters_dirty;Los filtros están tapados: límpialos antes de poner en marcha el MOXIE
+# Minijuego: cámara de derretido del extractor (#30)
+minigame.melt.title;Cámara de derretido
+minigame.melt.phase.pressure;Presurizar: manómetro
+minigame.melt.phase.heat;Calentar: termómetro
+minigame.melt.hint;A / D o ← / →: mantén la aguja en la zona verde (también puedes arrastrar con el mouse)
+minigame.melt.accel.button;Acelerar (Shift)
+minigame.melt.accel.off;Acelerado: apagado (cuesta {0} kWh extra)
+minigame.melt.accel.on;Acelerado: encendido (+{0} kWh)
+minigame.melt.msg.no_energy;No hay energía para acelerar.
+minigame.melt.msg.phase_done;Presión lista. Ahora calienta.
+minigame.melt.msg.pressure_failed;Se perdió la presión: la fase se reinicia.
+minigame.melt.msg.boiled;El agua hirvió.
+minigame.melt.result.ok;Entraron {0} L de agua a los tanques.
+minigame.melt.result.lost;Se perdió el lote de agua.
+minigame.melt.continue;Continuar
+minigame.melt.retry;Reintentar
+minigame.melt.exit;Salir
+prep.water.boiled;Con la presión de Marte, el agua calentada sin presión hierve: se perdió el lote
+prep.water.unsafe;El agua no es segura para beber
+# Minijuego: Fábrica de Suelo (#29)
+minigame.soil.wash.header;1. Lavar el regolito
+minigame.soil.mix.header;2. Mezclar
+minigame.soil.water.label;Agua de lavado
+minigame.soil.perchlorate.label;Perclorato restante
+minigame.soil.compost.label;Abono (% de la mezcla)
+minigame.soil.bacteria.label;Bacterias (% de inóculo)
+minigame.soil.liters;{0} L
+minigame.soil.percent;{0} %
+minigame.soil.guide;Guía de la IA: {0} (rango {1} a {2})
+minigame.soil.perchlorate.value;{0} % (umbral {1} %)
+minigame.soil.ok;En rango
+minigame.soil.burn;Exceso de sales: quema las plantas. Baja el abono.
+minigame.soil.yield;Rendimiento previsto: {0} %
+minigame.soil.yield.none;Rendimiento previsto: corrige los insumos en rojo
+minigame.soil.cost;Cuesta: {0} L de agua (hay {1}) y {2} kg de abono (hay {3})
+minigame.soil.confirm;Preparar
+prep.wash.too_low;Poca agua: el perclorato sigue sobre el umbral. Sube el agua de lavado.
+prep.wash.too_high;Demasiada agua: se gasta agua que beben los gatos. Baja los litros.
+prep.wash.insufficient;No hay agua suficiente para lavar.
+prep.wash.improve;El lavado se puede afinar: acércate al valor guía de agua.
+prep.mix.compost.too_low;Poco abono. Sube el porcentaje.
+prep.mix.compost.too_high;Exceso de abono: las sales queman las plantas. Baja el abono.
+prep.mix.bacteria.too_low;Pocas bacterias. Sube la dosis.
+prep.mix.bacteria.too_high;Demasiadas bacterias. Baja la dosis.
+prep.mix.insufficient;No hay abono suficiente en el depósito.
+prep.mix.improve;La mezcla se puede afinar: acércate a los valores guía de abono y bacterias.
+# Minijuego: La Redada (#60)
+minigame.raid.instructions;Haz clic en una rata suelta: un gato libre la llevará a la granja.
+minigame.raid.loose;Ratas sueltas: {0}
+minigame.raid.farm;Granja: {0} / {1} ratas
+minigame.raid.done;Terminar
+minigame.raid.going;Un gato va por la rata…
+minigame.raid.idle;Elige una rata suelta.
+minigame.raid.rejected;Ahora no se puede: no hay un gato libre o esa rata ya está marcada.
+minigame.raid.running;¡La granja ya funciona!
+minigame.raid.none;No quedan ratas sueltas.
+# Minijuego: Compostador y Operación Sopa de Bacterias (#61)
+minigame.compost.title_mix;Compostador: mezcla los desechos
+minigame.compost.title_soup;Operación Sopa de Bacterias
+minigame.compost.input_label;{0} (disponible: {1:0.0})
+minigame.compost.amount;{0:0.0}
+minigame.compost.ratio;Relación C:N actual: {0:0.0}
+minigame.compost.ratio_empty;Relación C:N actual: —
+minigame.compost.range;Meta: {2:0}:1 (rango {0:0} a {1:0})
+minigame.compost.total;Cantidad total: {0:0.0}
+minigame.compost.mix_ok;La mezcla está en rango. Ya puedes cargarla.
+minigame.compost.confirm;Cargar mezcla
+minigame.compost.temp_value;Temperatura: {0:0.0} °C (verde {1:0} a {2:0} °C)
+minigame.compost.humidity_value;Humedad: {0:0} % (verde {1:0} a {2:0} %)
+minigame.compost.heat_value;Calor: {0} %
+minigame.compost.heat_keys;[Q] baja   [E] sube
+minigame.compost.sprinkler_keys;[Espacio] mantener
+minigame.compost.sprinkler_on;Aspersor: rociando
+minigame.compost.sprinkler_off;Aspersor: apagado
+minigame.compost.time;Tiempo en verde: {0:0} s de {1:0} s (ciclo: {2:0} s)
+minigame.compost.yield_preview;Rendimiento previsto: {0} %
+minigame.compost.warn_hot;¡Cuidado, se calienta!
+minigame.compost.warn_drown;¡Demasiada agua, se ahogan!
+minigame.compost.warn_dry;Muy seca, rocía.
+minigame.compost.warn_cold;Se enfría, sube el calor.
+minigame.compost.warn_humidity_low;Humedad baja.
+minigame.compost.warn_humidity_high;Humedad alta.
+minigame.compost.warn_ok;Todo en verde.
+minigame.compost.result_ok;Ciclo completo. Rendimiento: {0} %
+minigame.compost.continue;Continuar
+prep.compost.empty;La mezcla está vacía: agrega desechos.
+prep.compost.too_low;Falta carbono (poca cama de rata): la mezcla pierde nitrógeno y huele mal.
+prep.compost.too_high;Sobra carbono: el proceso casi no avanza. Agrega desechos de gato o restos.
+prep.compost.insufficient;No hay desechos suficientes para esa mezcla.
+prep.compost.overheated;Se sobrecalentó: las bacterias murieron y se perdió el lote.
+prep.rat_farm.need_rats;Faltan ratas en la granja: captura más en La Redada para superar el pie de cría
