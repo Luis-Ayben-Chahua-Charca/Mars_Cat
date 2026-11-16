@@ -151,10 +151,14 @@ namespace MarsCat.Logic.Tests
         private static string ResourceCsv()
         {
             string[] names = { "electricity", "food", "water", "metal", "debris",
-                "compost", "cat_waste", "rat_waste", "crop_residue" };
+                "compost", "cat_waste", "rat_waste", "crop_residue",
+                null, null, // Bacteria y Regolith: infinitos, sin claves
+                "forage", "fiber" };
             var csv = new StringBuilder(Header);
             for (int i = 0; i < names.Length; i++)
             {
+                if (names[i] == null)
+                    continue;
                 csv.Append("resource.").Append(names[i]).Append(".initial;")
                     .Append(i.ToString(CultureInfo.InvariantCulture)).Append(";u;diseno\n");
                 csv.Append("resource.").Append(names[i]).Append(".capacity;20;u;diseno\n");

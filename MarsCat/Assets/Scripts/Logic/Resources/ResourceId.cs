@@ -12,6 +12,9 @@ namespace MarsCat.Logic.Resources
         RatWaste,
         CropResidue,
         Bacteria,
-        Regolith
+        Regolith,
+        // Cadena alimentaria (ola 3.5): la granja de plantas produce forraje y, como subproducto, fibra.
+        Forage,
+        Fiber
     }
 }
