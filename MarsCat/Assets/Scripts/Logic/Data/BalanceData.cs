@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Gemini (Google); modificado con Codex (OpenAI).
 using System;
 using System.Collections.Generic;
 

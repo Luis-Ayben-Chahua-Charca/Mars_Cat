@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 namespace MarsCat.Logic.Preparation
 {
     // Un paso de una preparación de valor guía y rango. Cada paso guarda sus propios valores.

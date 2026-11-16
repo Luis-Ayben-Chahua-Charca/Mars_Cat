@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Gemini (Google); modificado con Claude Code (Anthropic).
 using System;
 using System.Collections.Generic;
 using System.Globalization;

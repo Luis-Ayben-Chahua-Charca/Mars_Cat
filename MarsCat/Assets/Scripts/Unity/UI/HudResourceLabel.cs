@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 using System.Globalization;
 using MarsCat.Logic.Resources;
 using TMPro;

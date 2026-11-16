@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Se ejecuta al importar/reimportar cualquier FBX cuyo nombre contenga "cabina".
 //  - Ajustes del importador: escala 1, unidades del archivo (metros), sin cámaras/luces/animación, normales importadas,
 //    tangentes MikkTSpace, UV de lightmap solo en los modelos visuales, sin materiales en el FBX de colliders.

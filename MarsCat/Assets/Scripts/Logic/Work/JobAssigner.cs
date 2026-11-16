@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Codex (OpenAI).
 using System;
 using System.Collections.Generic;
 using System.Linq;

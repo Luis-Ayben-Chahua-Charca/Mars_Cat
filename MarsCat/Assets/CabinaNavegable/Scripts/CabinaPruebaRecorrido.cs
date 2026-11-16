@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Prueba automática de navegación EN UNITY (física real de Unity + puertas con su script).
 // Recorre los waypoints calculados en la auditoría (CabinaDatos.Recorrido):
 // acceso principal -> núcleo -> M-01..M-06 (volviendo al núcleo) -> zona técnica -> salida sur.

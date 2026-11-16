@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Codex (OpenAI); modificado con Claude Code (Anthropic).
 using System;
 using System.Collections.Generic;
 using MarsCat.Logic.Energy;

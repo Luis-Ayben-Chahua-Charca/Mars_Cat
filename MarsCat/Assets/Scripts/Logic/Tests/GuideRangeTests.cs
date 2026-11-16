@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 using System;
 using MarsCat.Logic.Preparation;
 using NUnit.Framework;

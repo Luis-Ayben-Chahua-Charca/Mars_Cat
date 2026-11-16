@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Codex (OpenAI); modificado con Claude Code (Anthropic).
 namespace MarsCat.Logic.Resources
 {
     public enum ResourceId

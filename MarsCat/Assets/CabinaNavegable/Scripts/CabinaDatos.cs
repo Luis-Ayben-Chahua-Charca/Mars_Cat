@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // GENERADO AUTOMÁTICAMENTE por SCRIPTS_BLENDER/audit/gen_unity_data.py a partir de CABINA_NAVEGABLE.blend
 // y de la auditoría de navegación. No editar a mano: regenerar si cambia el modelo.
 // Coordenadas de Unity esperadas = (-x, z, -y) de Blender (conversión FBX -Z Forward / Y Up + espejo X de Unity).

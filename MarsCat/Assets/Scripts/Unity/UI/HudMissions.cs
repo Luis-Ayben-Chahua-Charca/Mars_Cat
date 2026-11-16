@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 using MarsCat.Logic.Tutorial;
 using TMPro;
 using UnityEngine;

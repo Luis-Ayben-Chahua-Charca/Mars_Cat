@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Gemini (Google).
 using System;
 using System.Collections.Generic;
 using System.Globalization;

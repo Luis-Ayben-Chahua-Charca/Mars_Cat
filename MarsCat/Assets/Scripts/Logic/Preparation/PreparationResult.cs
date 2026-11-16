@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Gemini (Google).
 using System;
 
 namespace MarsCat.Logic.Preparation

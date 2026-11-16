@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Assets/Editor/ImportarCabinaNavegable.cs
 // Menú: Tools > Cabina Navegable > Importar y configurar escenario
 //

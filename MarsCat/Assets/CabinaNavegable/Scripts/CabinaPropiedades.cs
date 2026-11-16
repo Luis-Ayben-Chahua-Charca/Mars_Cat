@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Componente de datos: guarda las propiedades personalizadas exportadas desde Blender
 // (tipo, puerta_id, recorrido_m, apertura_dir_unity, senal_id, ...). Lo rellena CabinaImportPostprocessor al importar.
 using System.Globalization;

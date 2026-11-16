@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Reglas comunes para convertir las mallas COL_* de CABINA_COLLIDERS.fbx en colliders de Unity.
 //  - COL_TRG_*            -> BoxCollider (Is Trigger)            [zona de detección de puertas]
 //  - COL_PUERTA_*         -> BoxCollider                         [bloqueo con la puerta cerrada; lo gestiona la puerta]

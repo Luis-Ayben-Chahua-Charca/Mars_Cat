@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Controlador en primera persona basado en CharacterController.
 // Controles: WASD/flechas = mover · ratón = mirar · Shift = correr · Espacio = saltar · clic = capturar ratón · Esc = liberarlo.
 // Funciona con el Input System nuevo (ENABLE_INPUT_SYSTEM) y con el Input Manager clásico (ENABLE_LEGACY_INPUT_MANAGER).

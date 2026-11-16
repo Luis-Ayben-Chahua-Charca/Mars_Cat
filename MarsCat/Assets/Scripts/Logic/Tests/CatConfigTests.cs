@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Codex (OpenAI).
 using System;
 using MarsCat.Logic.Cats;
 using NUnit.Framework;

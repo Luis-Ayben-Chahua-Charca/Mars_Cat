@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

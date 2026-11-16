@@ -1,3 +1,4 @@
+// Asistencia de IA: escrito con Claude Code (Anthropic).
 // Puerta automática deslizante. Va en el objeto trigger COL_TRG_PUERTA_<id> (BoxCollider con Is Trigger).
 // La configura automáticamente el menú Cabina > 2. Montar escena de prueba.
 // - Se abre cuando un CharacterController / Rigidbody / objeto con tag "Player" entra en el trigger.
