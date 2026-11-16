@@ -194,3 +194,9 @@ minigame.compost.cooling_per_second;0.5;C_por_s;diseno
 minigame.compost.inertia;0.3;fraccion_por_s;diseno
 minigame.compost.heat_kwh_per_second;0.005;kWh_por_s;diseno
 minigame.compost.sprinkler_l_per_second;0.01;L_por_s;diseno
+minigame.compost.temp.start;20;C;placeholder
+minigame.compost.temp.ambient;10;C;placeholder
+minigame.compost.temp.max_heat;80;C;placeholder
+minigame.compost.humidity.start;45;porcentaje;placeholder
+minigame.compost.humidity.sprinkler_per_second;3;porcentaje_por_s;placeholder
+minigame.compost.humidity.dry_per_second;0.5;porcentaje_por_s;placeholder
