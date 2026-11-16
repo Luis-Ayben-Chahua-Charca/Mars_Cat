@@ -181,7 +181,7 @@ Cierra los valores del PMV que estaban en `placeholder`. Fuentes y cálculos en 
 | Aire | Margen en crítico antes de morir | 60 s reales | `air.critical_seconds` | `diseno` (como el agua) |
 | MOXIE | Producción con 5 filtros limpios | 2 kg de O₂ por sol | `building.moxie.production_rate_per_sol` | `derivado` (Hecht, 2022) |
 | MOXIE | Electricidad | 20 kWh por sol | `building.moxie.energy_rate_per_sol` | `derivado` (~10 kWh por kg) |
-| MOXIE | Un filtro se ensucia cada / limpiar un filtro | 360 s de juego (0,5 sol) / 5 s reales | `minigame.moxie.dirty_seconds`, `minigame.moxie.clean_seconds` | `diseno` |
+| MOXIE | Un filtro se ensucia cada / limpiar un filtro | 360 s de juego (0,5 sol) / 5 s de juego | `minigame.moxie.dirty_interval_seconds`, `minigame.moxie.cleaning_seconds_per_filter` (claves del código de #56; antes 144 y 10) | `diseno` |
 | Energía | Paneles | 60 m² → 36 kWh por sol | `building.solar_panels.production_rate_per_sol` | `derivado` (6 kWh cada 10 m²) |
 | Energía | Calefacción nocturna | 10 kWh por noche | `energy.heating.rate_per_sol` | `diseno` (~30 % del día; noche de −90 °C) |
 | Energía | Presupuesto | 36 − 20 (MOXIE) − 10 (noche) = 6 kWh por sol para el resto | — | Cuenta de control |
@@ -204,6 +204,8 @@ Cierra los valores del PMV que estaban en `placeholder`. Fuentes y cálculos en 
 | Edificios | Reparación | 9 escombros + 1 metal; 10 s reales | `building.<id>.repair_debris_cost`, `…repair_metal_cost`, `…repair_seconds` | `diseno` (90 % / 10 %, acordado) |
 | Reservas | Escombros / metal iniciales | 60 / 6 | `resource.debris.initial`, `resource.metal.initial` | `diseno` (alcanza para todo el tutorial) |
 | Topes | Agua / electricidad / raciones / forraje | 10 L / 20 kWh / 100 / 2 kg | `resource.<id>.capacity` | `diseno` |
+
+**Cargado en el CSV** (`MarsCat/Assets/Data/balance_pmv.csv`, 180 claves). Las tasas `_per_sol` se reparten sobre el sol completo: como los paneles solo producen de día y la calefacción solo consume de noche, en el CSV sus tasas valen el doble (72 y 20) para entregar 36 kWh de día y gastar 10 kWh de noche.
 
 **Controles de cuentas:**
 
