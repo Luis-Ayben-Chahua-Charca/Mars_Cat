@@ -53,7 +53,7 @@ Los minerales del juego salen siempre de datos de NASA. El **abono** es recurso 
 
 La zona Segura es la **cabina principal**, un solo conjunto dentro del cráter que contiene el **depósito**, el **MOXIE** y las **esclusas** (sus puertas exteriores). Las unidades de la escena se miden en metros: la cabina mide unos 26 × 30 m, con pasillos de 2 m. En el PMV la cabina se ve **sin techo** para que se vea el interior; después del PMV el techo puede abrirse al seleccionar un edificio.
 
-Los edificios de la zona Media se conectan con la cabina por **pasillos**. Qué pasillos se reparan con qué módulo, y si los paneles solares quedan fuera de esa red, está en los pendientes.
+Los edificios de la zona Media se conectan con la cabina por **pasillos**. **Cada pasillo se repara junto con su módulo** (acordado): al reparar un edificio queda reparado también el pasillo que lo une a la cabina. Si los paneles solares quedan fuera de esa red está en los pendientes.
 
 ### Granja de ratones y raciones (acordado; actualizado con La Redada)
 
@@ -380,7 +380,7 @@ Inspirado en las acciones con tiempo de *Mi Vecino Infernal 2*: cada fase tiene 
 
 ## Desechos y abono
 
-Propuesta del equipo en `docs/Propuesta_mecanica/mecanica-desechos.md`, adaptada aquí. **Acordado**, incluido el minijuego; los controles son propuesta.
+Propuesta del equipo en `docs/Propuesta_mecanica/mecanica-desechos.md`, adaptada aquí. **Acordado**, incluidos el minijuego y sus controles.
 
 - **Edificio: reciclador orgánico.** Módulo sellado que convierte desechos en **abono** con bacterias de compost. Cierra el ciclo: forraje → ratas → raciones → gatos; gatos y ratas → desechos → abono → granja de plantas. Es la misma idea del sistema MELiSSA de la ESA (ver `05_datos_nasa.md`).
 - **Insumos:** desechos de gatos, desechos de ratones y restos de cosecha de la granja de plantas. Las bacterias son infinitas.
@@ -425,13 +425,14 @@ Tarea puntual: ocupa un gato libre. Sigue el ciclo del edificio (preparar → pr
 - **Objetivo:** mantener las dos agujas en verde durante el tiempo del ciclo. El **rendimiento** depende del tiempo que estuvieron en verde.
 - **Enseña:** economía circular (la materia orgánica no desaparece), que las bacterias necesitan rangos de temperatura y agua como cualquier ser vivo, y por qué las agencias tratan los desechos como un recurso.
 
-#### Controles (propuesta)
+#### Controles (acordado): solo teclado
 
-| Control | Acción | Mouse | Teclado |
-|---|---|---|---|
-| Perilla de calor | Nivel continuo 0–100 %: se deja en una posición y se corrige | Arrastrar arriba o abajo sobre la perilla; rueda del mouse encima | Q / E |
-| Aspersor | Rocía solo mientras se mantiene presionado | Mantener clic en el botón | Mantener Espacio |
+| Control | Acción | Tecla |
+|---|---|---|
+| Perilla de calor | Nivel continuo 0–100 %: se deja en una posición y se corrige | **Q** baja / **E** sube |
+| Aspersor | Rocía solo mientras se mantiene presionado | Mantener **Espacio** |
 
+- El mouse no controla la perilla ni el aspersor.
 - La aguja de temperatura tiene **inercia**: se acerca de a poco al nivel de la perilla, así que hay que anticiparse.
 - Zona verde pintada en cada aguja; aviso corto de la IA cerca de los bordes; teclas visibles junto a cada control.
 - **Esc** cierra el minijuego; el ciclo sigue con el último nivel de calor.
@@ -513,7 +514,7 @@ Los valores numéricos del PMV de los pendientes 3, 7, 9–12, 16 y 20–23 qued
 19. **Reciclador de agua (post-PMV):** porcentaje de recuperación por nivel de investigación, costo de reparación y consumo de electricidad.
 20. Tope de los tanques de agua (valor en `Data/`; en el PMV cada recurso tiene su propio tope, acordado).
 21. **Granja de ratones:** probar el ritmo acordado (12 sueltas, tope 40, 0,75 por sol, pie de 15, 4 raciones por rata); dónde están las ratas sueltas; cuántos desechos produce cada rata; cuánto tardan la captura y la caza.
-24. **Pasillos:** si cada pasillo se repara junto con su módulo (propuesta), si la red de la zona Media debe quedar intacta desde el inicio para no aislar edificios, y si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa.
+24. **Pasillos:** ~~si cada pasillo se repara junto con su módulo~~ (acordado: sí). Queda si los paneles solares quedan fuera de la red y se llega a ellos por la esclusa (post-PMV si no afecta al tutorial).
 25. **Caminos de los gatos:** si usan una red de puntos de paso (puestos de trabajo y necesidades, como comer en el depósito) en lugar de una malla de navegación. Se decide en el issue de los gatos en escena (#33).
 22. **Reciclador orgánico:** confirmar los controles; desechos por gato y por ratón por sol; restos por cosecha; cuánto abono rinde cada lote; duración del ciclo; cuánta salud se pierde con el depósito lleno de desechos.
 23. **Aire:** aprobar la meta de 21 % y las franjas; volumen y fuga de cada edificio; consumo por gato (en reposo y trabajando); margen de reacción bajo 10 %; cuánto aportan las plantas.
