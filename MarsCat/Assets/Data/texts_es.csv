@@ -1,0 +1,67 @@
+clave;texto
+# Textos del juego en español. Formato: clave;texto (se corta en el primer ';'). "\n" = salto de línea.
+# Misiones de la IA: 02_core_loop.md, "Tutorial" (acordadas). Las marcadas "provisional" no están acordadas.
+tutorial.cinematic.mission;La base fue evacuada. Despierten.
+tutorial.move_camera.mission;Recorran la base: muevan la cámara con WASD o arrastrando con el ratón (provisional)
+tutorial.energy.mission;No tenemos energía: reparen el edificio de energía
+tutorial.oxygen.mission;Ahora reparemos el MOXIE para tener una fuente de oxígeno estable
+tutorial.water.mission;El reciclador de agua quedó dañado y los tanques no alcanzan. El radar encontró hielo bajo el cráter: reparen el extractor y derritan el hielo. Primero presión, después calor: con la presión de Marte, el agua calentada sin presión hierve
+tutorial.plant_farm.mission;Ustedes comen carne, pero las ratas comen plantas. Reparen la granja y preparen el suelo: el regolito trae percloratos tóxicos, así que lávenlo y mézclenlo con abono. Hay una reserva de abono para empezar
+tutorial.rat_farm.mission;Desde la evacuación hay ratas sueltas en la estación, y no van a aparecer más. Atrápenlas para fundar la granja antes de que un gato hambriento se las coma. Con forraje, criarán solas
+tutorial.recycler.mission;El depósito se está llenando de desechos y eso enferma a la colonia. Reparen el reciclador: mezclen desechos, restos de papa y la cama de las ratas hasta 30 de carbono por 1 de nitrógeno, y mantengan la sopa entre 55 y 65 °C para eliminar los parásitos
+tutorial.done.mission;La base vuelve a funcionar. Sigan atentos al aire, la energía y la comida
+# Nombres de edificios (building.<id>.name)
+building.solar_panels.name;Paneles solares
+building.moxie.name;MOXIE
+building.water_extractor.name;Extractor de agua
+building.plant_farm.name;Granja de plantas
+building.rat_farm.name;Granja de ratones
+building.organic_recycler.name;Reciclador orgánico
+building.depot.name;Depósito
+# Estados de edificio (BuildingState)
+building.state.damaged;Dañado
+building.state.repairing;Reparando
+building.state.unprepared;Reparado: falta preparar
+building.state.running;Funcionando
+building.state.depleted;Agotado: hay que preparar de nuevo
+# Estados de gato (CatState)
+cat.state.free;Libre
+cat.state.workingindoor;Trabajando
+cat.state.workingoutdoor;Trabajando afuera
+cat.state.fallen;Caído
+cat.state.recovering;Recuperándose
+cat.state.resting;Descansando
+cat.state.seekingfood;Buscando comida
+cat.state.dead;Muerto
+# Recursos (resource.<id>.name)
+resource.electricity.name;Energía
+resource.food.name;Raciones
+resource.water.name;Agua
+resource.metal.name;Metal
+resource.debris.name;Escombros
+resource.compost.name;Abono
+resource.cat_waste.name;Desechos de gatos
+resource.rat_waste.name;Cama de ratas
+resource.crop_residue.name;Restos de cosecha
+resource.forage.name;Forraje
+resource.fiber.name;Fibra
+# Interfaz
+ui.panel.repair;Reparar
+ui.panel.repair_cost;Costo: {0} metal, {1} escombros
+ui.panel.not_enough;No alcanzan los materiales
+ui.panel.open_minigame;Preparar (minijuego)
+ui.panel.worker;Trabajador: gato {0}
+ui.panel.no_worker;Sin trabajador
+ui.panel.yield;Rendimiento: {0:P0}
+ui.panel.powered;Con energía
+ui.panel.unpowered;Sin energía
+ui.panel.hunger;Hambre
+ui.panel.thirst;Sed
+ui.panel.health;Salud
+ui.panel.suit;Traje
+ui.clock.sol;Sol {0}
+ui.clock.day;Día
+ui.clock.night;Noche
+ui.pause;Pausa
+ui.missions.title;Misiones
+ui.ai.name;IA de la base
