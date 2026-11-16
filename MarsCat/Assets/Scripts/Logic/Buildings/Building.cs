@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MarsCat.Logic.Energy;
 using MarsCat.Logic.Preparation;
 using MarsCat.Logic.Resources;
@@ -12,6 +13,8 @@ namespace MarsCat.Logic.Buildings
         private readonly EnergyGrid _energy;
         private double _elapsed;
         private double _pendingProduction;
+        private readonly Dictionary<ResourceId, double> _pendingByproducts = new Dictionary<ResourceId, double>();
+        private readonly List<ResourceId> _flushKeys = new List<ResourceId>();
         private bool _workerPresent;
         private bool _startingRepair;
         private bool _ticking;
@@ -111,6 +114,11 @@ namespace MarsCat.Logic.Buildings
 
             double workingTime = Math.Min(gameDt, _config.RunSeconds - _elapsed);
             _pendingProduction += (double)_config.ProductionRatePerSecond * Yield * workingTime;
+            foreach (KeyValuePair<ResourceId, float> byproduct in _config.ByproductRatesPerSecond)
+            {
+                _pendingByproducts.TryGetValue(byproduct.Key, out double pending);
+                _pendingByproducts[byproduct.Key] = pending + (double)byproduct.Value * Yield * workingTime;
+            }
             _elapsed += workingTime;
             FlushProduction();
             if (_elapsed >= _config.RunSeconds)
@@ -119,11 +127,22 @@ namespace MarsCat.Logic.Buildings
 
         private void FlushProduction()
         {
-            if (_pendingProduction <= 0d)
+            // La cola persiste incluso al agotarse o al preparar un nuevo ciclo (también la de los subproductos).
+            _pendingProduction = Flush(_config.ProducedResource, _pendingProduction);
+            if (_pendingByproducts.Count == 0)
                 return;
-            float amount = (float)Math.Min(float.MaxValue, _pendingProduction);
-            // La cola persiste incluso al agotarse o al preparar un nuevo ciclo.
-            _pendingProduction = Math.Max(0d, _pendingProduction - _pool.Add(_config.ProducedResource, amount));
+            _flushKeys.Clear();
+            _flushKeys.AddRange(_pendingByproducts.Keys);
+            foreach (ResourceId id in _flushKeys)
+                _pendingByproducts[id] = Flush(id, _pendingByproducts[id]);
+        }
+
+        private double Flush(ResourceId id, double pending)
+        {
+            if (pending <= 0d)
+                return pending;
+            float amount = (float)Math.Min(float.MaxValue, pending);
+            return Math.Max(0d, pending - _pool.Add(id, amount));
         }
 
         private void ChangeState(BuildingState next)
