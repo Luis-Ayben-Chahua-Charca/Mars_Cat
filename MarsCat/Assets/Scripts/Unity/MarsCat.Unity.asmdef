@@ -1,7 +1,9 @@
 {
     "name": "MarsCat.Unity",
     "rootNamespace": "MarsCat.Unity",
-    "references": [],
+    "references": [
+        "GUID:213cf692330627243896e120ed535451"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
