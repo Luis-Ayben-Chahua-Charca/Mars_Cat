@@ -1,6 +1,6 @@
-# 06 — Guía de Lógica: olas 1 a 3
+# 06 — Guía de Lógica
 
-**Estado:** contratos acordados de las olas 1 a 3 (#15 a #22). Contratos de la ola 4 en adelante: propuesta pendiente de aprobación (ver su sección).
+**Estado:** **todos los contratos acordados**: olas 1 a 3 (#15 a #22), ola 3.5 y ola 4 (#20 parte 2, #23, #54, #55, #56, #57, #58 y Rescate Solar). Una mejora o un cambio se discute en su issue y se aprueba antes de programarlo.
 **Para quién:** Lógica 1, Lógica 2 y sus agentes. Integración Unity la usa para saber qué conectar.
 **Qué es:** qué clases se crean, en qué orden, para qué sirve cada una y de qué depende. Complementa `05_plan_implementacion.md`. El avance no se anota aquí: vive en el tablero y en los commits `#n`.
 
@@ -251,9 +251,9 @@ Sin esto el GameBootstrap (#26) no puede cargar el balance.
 
 Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, `forage` y `fiber` en kg. El resto de las claves va como `placeholder`. La fuente no puede llevar `;`.
 
-## Olas 4 en adelante — contratos propuestos
+## Olas 4 en adelante — contratos acordados
 
-**Estado:** **acordados** el #55 (aire), el #57 (granja, redada y caza), el #54 (solo el paso 2, con la cadena de abajo) y el #20 parte 2 (Fábrica de Suelo y su fórmula de rendimiento). El resto es propuesta de Gestión pendiente de aprobación de Leyni: no se programa hasta que el issue tenga marcado "Contrato acordado".
+**Estado:** **todos acordados** (#20 parte 2, #23, #54 solo el paso 2, #55, #56, #57, #58 y Rescate Solar). Cada issue marca "Contrato acordado" y ya se puede programar.
 
 ### Reglas de los minijuegos
 
@@ -262,7 +262,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - Lo aleatorio recibe una semilla (`int seed`) para que las pruebas sean repetibles.
 - Todo valor de balance va en el CSV con el prefijo `minigame.<nombre>.`.
 
-### Reparto propuesto
+### Reparto (acordado)
 
 | Persona | Issues | Carpetas nuevas |
 |---|---|---|
