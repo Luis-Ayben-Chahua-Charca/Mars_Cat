@@ -152,6 +152,12 @@ namespace MarsCat.EditorTools
                 Ref(so, "_bootstrap", Bootstrap);
                 Ref(so, "_detailPanel", Object.FindAnyObjectByType<DetailPanel>(FindObjectsInactive.Include));
                 Ref(so, "_aiCorner", Object.FindAnyObjectByType<AiCorner>(FindObjectsInactive.Include));
+                var sceneInput = new List<Object>();
+                var camera = Object.FindAnyObjectByType<MarsCat.Unity.View.BaseCameraController>(FindObjectsInactive.Include);
+                var selection = Object.FindAnyObjectByType<MarsCat.Unity.View.SelectionController>(FindObjectsInactive.Include);
+                if (camera != null) sceneInput.Add(camera);
+                if (selection != null) sceneInput.Add(selection);
+                RefArray(so, "_disableWhileOpen", sceneInput);
                 SerializedProperty entries = so.FindProperty("_entries");
                 for (int i = 0; i < entries.arraySize; i++)
                 {

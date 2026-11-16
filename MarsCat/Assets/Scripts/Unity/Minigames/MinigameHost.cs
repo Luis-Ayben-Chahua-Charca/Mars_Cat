@@ -36,6 +36,10 @@ namespace MarsCat.Unity.Minigames
         [Tooltip("Si un edificio no tiene minijuego registrado, se prepara con rendimiento 1 (para no trabar el tutorial).")]
         [SerializeField] private bool _fallbackAutoPrepare = true;
 
+        [Tooltip("Componentes que se apagan mientras hay un minijuego que pausa el juego (p. ej. BaseCameraController y " +
+                 "SelectionController), para que Q/W/E o WASD no muevan la cámara detrás del panel.")]
+        [SerializeField] private Behaviour[] _disableWhileOpen = new Behaviour[0];
+
         [SerializeField] private Entry[] _entries = new Entry[0];
 
         private MinigameView _current;
@@ -97,8 +101,15 @@ namespace MarsCat.Unity.Minigames
                 _bootstrap.SetPaused(true);
                 _pausedByHost = true;
             }
+            SetSceneInput(!view.PausesGame);
             view.Open(_bootstrap, buildingId);
             Opened?.Invoke(buildingId);
+        }
+
+        private void SetSceneInput(bool enabled)
+        {
+            foreach (Behaviour behaviour in _disableWhileOpen)
+                if (behaviour != null) behaviour.enabled = enabled;
         }
 
         private MinigameView Find(string buildingId)
@@ -120,6 +131,7 @@ namespace MarsCat.Unity.Minigames
         {
             if (view != _current) return;
             _current = null;
+            SetSceneInput(true);
             if (_pausedByHost)
             {
                 _pausedByHost = false;
