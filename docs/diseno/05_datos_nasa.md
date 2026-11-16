@@ -18,7 +18,7 @@ Registro de las fuentes científicas que respaldan el juego. Nada de esto se usa
 
 **Por qué aquí:** el radar SHARAD del orbitador MRO detectó en Utopia Planitia, entre los 39° y 49° de latitud norte, un depósito de hielo enterrado con tanta agua como el lago Superior: 80 a 170 m de espesor, 50–85 % de hielo, bajo una capa de suelo de 1 a 10 m. NASA lo describe como más accesible que la mayoría del hielo marciano. Fuente: NASA/JPL, *Mars Ice Deposit Holds as Much Water as Lake Superior* (2016), https://www.jpl.nasa.gov/news/mars-ice-deposit-holds-as-much-water-as-lake-superior/
 
-**Por verificar:** Vivero (48,97° N) queda en el borde norte de ese rango de latitud. Conviene confirmar en el mapa del estudio (Stuurman et al., 2016, *Geophysical Research Letters*) que el cráter cae dentro del depósito antes de afirmarlo en la presentación.
+**Verificado (acordado):** NASA ubica el depósito entre 39° y 49° N, **al suroeste** de la sonda Viking 2 (47,6° N, 134° E). Vivero (48,97° N, 118,8° E) queda en el borde norte de esa franja y al norte de Viking 2: **no se puede afirmar que esté sobre el depósito**. En la presentación se dice "en Utopia Planitia, región con hielo subterráneo detectado por radar"; la veta de la base es una licencia declarada.
 
 ## APIs
 
@@ -170,6 +170,7 @@ Base del reciclador orgánico (`03_sistemas.md`, "Desechos y abono"). Verificar 
 | C:N de restos de papa | Residuo del cultivo completo: papa para almidón 16:1, semilla 20:1, consumo 24:1 (valor de referencia anterior: 36:1) | Wageningen University & Research, valores de referencia de residuos de cultivo |
 | Reproducción de la rata | Gestación 21–23 días; camada de 8–18 crías; destete a los 21 días; madurez: machos 6–10 semanas, hembras 8–12 | Merck Veterinary Manual, *Breeding and Reproduction of Rats* |
 | Energía de presas enteras | Los felinos aprovechan el 66–85 % de la energía bruta de presas enteras (ratón, rata, conejo, pollo, codorniz). La densidad (~1,6 kcal/g en fresco) es una estimación del equipo | Petfood Industry, *Whole prey diets targeted for consumption by exotic and domestic felines* |
+| Polvo en paneles | El experimento MAE de Pathfinder midió una pérdida de 0,28 % por día en la corriente de las celdas por polvo depositado | Jenkins, Landis et al. (2001), NASA Glenn, https://ntrs.nasa.gov/citations/20020031145 |
 | Sanitización del compost | Recipiente cerrado: 55 °C o más durante 3 días | EPA, 40 CFR 503, apéndice B (procesos que reducen patógenos) |
 | Toxoplasma | Los ooquistes esporulados dejan de ser infectivos tras 1 minuto a 60 °C; a 45 °C sobreviven 1 día | Dubey (1998), citado por Food Standards Australia New Zealand (2014) |
 | Ratas de laboratorio | Temperatura 20–26 °C; humedad 30–70 %; espacio de 187 cm² (hasta 300 g) a 387 cm² (hasta 500 g) por rata | *Guide for the Care and Use of Laboratory Animals*, 8.ª ed. (National Academies, 2011), tablas 3.1 y 3.2 |
@@ -189,6 +190,16 @@ Enlaces:
 - WUR, residuos de cultivo: https://subsites.wur.nl/nl/display-on-pages/show/reference-values-for-arable-crop-residues-organic-matter-and-cn-ratio.htm
 
 **Investigado:** los restos de papa tienen valor publicado (WUR). Las heces de gato no: se usa una estimación con estiércoles de dieta proteica y la IA lo presenta como estimación.
+
+## Segunda tanda: investigación de datos faltantes
+
+El detalle de cada búsqueda (cifras textuales, cálculos, confianza y lo que no se encontró) quedó en el archivo local de Gestión `_investigacion/propuestas_datos_pmv.md`, fuera del repo. Lo usado está en `04_economia_y_balance.md`, "Segunda tanda de valores". Fuentes principales:
+
+- MOXIE: Hecht, *A Day Full of MOXIE*, NASA Science (2022): ~10,5 g de O₂ por hora con 100 W; un sistema a escala pediría ~25 kW para 2–3 kg por hora. https://science.nasa.gov/blog/a-day-full-of-moxie/
+- Perclorato y cultivo: Oze et al. (2021), *Perchlorate and Agriculture on Mars*, *Soil Systems* 5(3):37: con 0,5 % de perclorato las plantas no crecieron. https://mdpi.com/2571-8789/5/3/37
+- Alimento de la rata: NRC (1995), *Nutrient Requirements of Laboratory Animals*: ~5 g por cada 100 g de peso al día.
+- Fuga de aire de la ISS: ~0,227 kg por día de diseño (ver "Oxígeno y aire").
+- Derretir hielo: calor latente 334 kJ/kg más calentar desde −60 °C ≈ 0,15 kWh por litro en el caso ideal (cálculo físico).
 
 ## Cuando no hay dato (acordado como regla de trabajo)
 

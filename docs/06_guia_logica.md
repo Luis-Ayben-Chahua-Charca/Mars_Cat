@@ -313,7 +313,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - `readonly struct StepScore`: `bool InRange`, `float Score` (0–1; 1 = en el valor guía), `string ReasonKey` (qué corregir si está fuera de rango).
 - `GuideRange` (valor guía, mínimo y máximo de un insumo, leídos del CSV) con `StepScore Evaluate(float value)`: puntaje `1 − |valor − guía| / tolerancia` hacia el lado que corresponda (el rango puede ser asimétrico, como el abono de 0 a 30 %).
 - Pasos del PMV:
-  - `WashStep(WashConfig, ResourcePool)`: `void SetWater(float liters)`; el perclorato baja según el agua y parte de 0,4–0,6 %; cobra el agua al confirmar. Claves `minigame.soil.wash.*`.
+  - `WashStep(WashConfig, ResourcePool)`: `void SetWater(float liters)`; el perclorato restante es `inicial ÷ (1 + litros ÷ kg del lote)` (inicial 0,5 %, lote 0,25 kg, umbral 0,1 %); cobra el agua al confirmar. Claves `minigame.soil.wash.*`.
   - `MixStep(MixConfig)`: `void SetCompost(float percent)`, `void SetBacteria(float dose)`; usa `GuideRange` (abono: guía 20 %, rango 0–30 %). Cobra el abono al confirmar. Claves `minigame.soil.mix.*`.
   - Post-PMV: `LightStep` (horas de luz, guía 12 h) se agrega a la lista.
 - `MultiStepPreparation(IReadOnlyList<IPreparationStep> steps, YieldConfig)`:
@@ -334,7 +334,7 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 - `CompostMix(CompostMixConfig, ResourcePool)`:
   - `void SetAmount(ResourceId id, float amount)` para `CatWaste`, `RatWaste` y `CropResidue`.
   - `float Ratio`: carbono total ÷ nitrógeno total, con `cn` y `n_fraction` de cada insumo (`minigame.compost.mix.<insumo>.cn` y `.n_fraction`). Con `n_fraction` igual en todos, es el promedio ponderado por cantidad.
-  - Valores de partida (`03_sistemas.md`): gato ~10, cama de rata 100–300, restos de papa 20; guía 30, rango 20–40 (acordado).
+  - Valores de partida (`03_sistemas.md`): gato ~10, cama de rata ~75, restos de papa 20; guía 30, rango 20–40 (acordado).
   - `StepScore Evaluate()` (con `GuideRange`); `bool TryConfirm()`: si está en rango, cobra los desechos y devuelve `true`.
 - La Sopa recibe la mezcla ya cobrada: `CompostSession.TryStart()` deja de cobrar los desechos y pasa a recibir el puntaje de la mezcla, que multiplica el rendimiento final.
 - **Probar:** solo desechos de gato da una relación baja y fuera de rango; sumar cama de rata la sube; en rango cobra; fuera de rango no cobra.
@@ -369,13 +369,14 @@ Unidades del pool: `food` en raciones, `water` en litros, `electricity` en kWh, 
 
 **Para qué:** `03_sistemas.md`, "Granja de ratones y raciones" y "La Redada y la caza" (PMV). Reemplaza el esqueleto anterior: ya no hay un gato que trae ratas por intervalo, y el Criadero queda descartado.
 
-- `RatFarmConfig`: raciones por rata, segundos de conversión por rata (tiempo de juego), **forraje por rata por sol**, desechos por rata convertida, tope de ratas (`MaxRats`), `MinBreeders` (pie de cría) y `BreedRate` (por sol; 0 = no se reproducen). Claves `building.rat_farm.*` (valores propuestos en `03_sistemas.md`, "Ritmo de la granja de ratas").
+- `RatFarmConfig`: raciones por rata, segundos de conversión por rata (tiempo de juego), **forraje por rata por sol**, desechos con cama por rata y por sol, tope de ratas (`MaxRats`), `MinBreeders` (pie de cría) y `BreedRate` (por sol; 0 = no se reproducen). Claves `building.rat_farm.*` (valores propuestos en `03_sistemas.md`, "Ritmo de la granja de ratas").
 - `RatFarm(RatFarmConfig, ResourcePool)`:
   - `void Tick(float gameDt)`; `void SetWorkerPresent(bool)`: sin gato en el puesto no convierte.
   - `int Rats`; `bool CanStart` = `Rats > MinBreeders`.
-  - Las ratas comen `Forage` del pool por sol. Con forraje y gato, convierte una rata cada cierto tiempo en raciones (`Food`) y suma `RatWaste`, sin bajar del pie de cría. Con forraje, crecen de forma logística: `BreedRate × Rats × (1 − Rats / MaxRats)` por sol, acumulando la fracción hasta completar una rata. Sin forraje, no convierte ni se reproduce.
+  - Las ratas comen `Forage` del pool por sol. Con forraje y gato, convierte una rata cada cierto tiempo en raciones (`Food`) sin bajar del pie de cría, y suma `RatWaste` por rata y por sol. Con forraje, crecen de forma logística: `BreedRate × Rats × (1 − Rats / MaxRats)` por sol, acumulando la fracción hasta completar una rata. Sin forraje, no convierte ni se reproduce.
   - `int AddRats(int count)` (devuelve las que entraron, respeta el tope) y `int RemoveRats(int count)` (devuelve las que quitó): para la redada ahora y las fugas después.
   - Eventos `OnRatsChanged(int)` y `OnRationsProduced(float)`.
+- **Desechos de gatos (Lógica 1, en `Cats/`):** cada comida suma `cat.waste_per_meal` de `CatWaste` al pool (36 g por día ÷ 2 comidas = 0,018 kg). Es el único cambio en `CatColony`, y se prueba con una comida.
 - `LooseRats(int count)`: ratas sueltas con id `0..count−1` (Unity las ubica en sus puntos). `int Count`; `bool IsLoose(int id)`; `bool TryTake(int id)`; `int AnyLoose()` (−1 si no queda ninguna); evento `OnTaken(int id)`. Clave `rat.loose.initial`.
 - `RatRaid(LooseRats, RatFarm)`, la preparación de la granja:
   - `bool Mark(int ratId)`: el jugador marca una rata; Integración pide un gato libre como tarea puntual normal (#18).

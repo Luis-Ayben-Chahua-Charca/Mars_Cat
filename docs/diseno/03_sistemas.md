@@ -167,10 +167,10 @@ Adaptada de `docs/Propuesta_mecanica/mecanica_comida.md` (minijuego 1). Panel de
 | Insumo | Valor guía | Rango | Fuera de rango | Fuente |
 |---|---|---|---|---|
 | Perclorato del regolito sin lavar | — | — | Valor de partida del medidor: **0,4–0,6 %** de la masa | Phoenix (Hecht et al., 2009) |
-| Agua de lavado | Por definir | Por definir | Poca: el perclorato queda sobre el umbral y no arranca. Mucha: arranca, pero se gasta agua que beben los gatos | Diseño (cantidad por probar) |
+| Agua de lavado (lote de 0,25 kg de regolito) | **1 L** | **1–2 L** | Menos de 1 L: el perclorato queda sobre el umbral de **0,1 %** y no arranca. Más: arranca, pero gasta agua que beben los gatos | Modelo de equilibrio: queda `0,5 % ÷ (1 + litros ÷ kg)`; 1 L sobre 0,25 kg deja 0,1 %. Umbral: Oze et al. (2021) vieron que con 0,5 % las plantas no crecen. Lote simbólico: licencia |
 | Abono (% del volumen de la mezcla) | 20 % | **0 %–30 %** | Más de 30 %: el exceso de sales **quema** las plantas; no arranca | Tierra (ver `05_datos_nasa.md`) |
 | Regolito | El resto de la mezcla (80 % con el valor guía) | — | — | — |
-| Bacterias | Por definir (dosis) | Por definir | Infinitas: solo cuenta la dosis | Diseño |
+| Bacterias (% de inóculo) | **5 %** | **1–10 %** | Infinitas: solo cuenta la dosis | Diseño (no hay dosis medida) |
 | Luz (post-PMV) | **12 h por sol** | Por definir | Luz continua: menos tubérculo y más gasto de energía | NASA (Wheeler et al., 2019) |
 
 - **Abono en 0 %:** está **dentro** del rango. La granja arranca, pero rinde menos; así la IA enseña para qué sirve el abono antes de que exista el reciclador orgánico.
@@ -284,6 +284,7 @@ Por encima de 22 % el aire está **enriquecido** y sube el riesgo de incendio (p
 - **Cambio por tick:** (producción del MOXIE + aporte de las plantas − consumo de los gatos − fugas) ÷ volumen de la base.
 - **El consumo es de los gatos**, según cuántos son y cuánto trabajan, no del tamaño de la base.
 - **El volumen es la reserva:** cuanto más grande la base, más lento cambia el %.
+- **Refugio sellado (acordado):** tras la lluvia de meteoritos solo un **refugio de ~25 m³** de la cabina quedó hermético. Por eso, sin MOXIE, el aire baja de 21 % a 16 % en ~1 sol. Con la cabina entera (~1870 m³) tardaría unos 75 soles: el dato real se cuenta en la IA y explica por qué cada módulo reparado suma reserva.
 - **Cada edificio reparado suma volumen:** al presurizarlo, el % baja un poco una sola vez y la base gana reserva, pero también una **fuga** pequeña permanente. Así, una base más grande pide más oxígeno de forma realista.
 
 ### MOXIE y sus filtros
@@ -397,13 +398,13 @@ Antes de la "Sopa de Bacterias", el jugador **mezcla** los desechos para llegar 
 | Insumo | Aporta | C:N aproximado | Fuente |
 |---|---|---|---|
 | Desechos de gatos | **Nitrógeno** (el gato es carnívoro) | **~10:1** (estimación). No hay un valor publicado para heces de gato; se usan estiércoles de dieta rica en proteína: cerdo 12:1 y pavo 16:1 (NDSU), gallina 9:1 (archivo de UNU Press) | NDSU NM1478; UNU Press |
-| Desechos de ratones **con su cama** | **Carbono** (la cama es viruta o aserrín) | Alto; lo domina la cama: aserrín 442:1, viruta 600:1. Para el CSV, entre 100 y 300:1 según la cama (estimación) | NDSU NM1478 |
+| Desechos de ratones **con su cama** | **Carbono** (la cama es viruta o aserrín) | **~75:1** (derivado: viruta y aserrín de 442–600:1 mezclados con heces y orina; rango 50–110:1) | NDSU NM1478; cálculo del equipo |
 | Restos de cosecha (papa) | Algo de nitrógeno | **16–24:1** según la variedad (papa para almidón 16, semilla 20, consumo 24) | Wageningen University & Research |
 | Agua y bacterias | Humedad y la colonia (bacterias infinitas) | — | — |
 
 - **Meta:** valor guía **30:1** (Cornell y NDSU). Rango **20–40:1** (acordado), el rango de trabajo de NDSU: 10 puntos de margen a cada lado.
 - **Lo que enseña la tabla:** los desechos de gato y los restos de papa están **por debajo** de la meta. Sin la cama de las ratas, el carbono no alcanza: la granja de ratones también aporta al compost.
-- **Cálculo correcto:** la C:N de la mezcla es carbono total ÷ nitrógeno total, no el promedio de las relaciones. Ejemplo con el mismo nitrógeno por kilo: 4 kg de gato (10) + 3 kg de restos (20) + 1 kg de cama (200) = (40 + 60 + 200) / 8 = **37,5:1**, dentro del rango.
+- **Cálculo correcto:** la C:N de la mezcla es carbono total ÷ nitrógeno total, no el promedio de las relaciones. Ejemplo con el mismo nitrógeno por kilo: 3 kg de gato (10) + 3 kg de restos (20) + 2 kg de cama (75) = (30 + 60 + 150) / 8 = **30:1**, en el valor guía. Sin cama: 3 de gato + 3 de restos = 15:1, fuera de rango.
 - **Fuera de rango:** con demasiado nitrógeno se pierde nutriente como amoníaco (mal olor); con demasiado carbono el proceso casi no avanza. El lote no arranca hasta corregir, sin perderse.
 - **Por qué importa la temperatura del paso 2:** los desechos de gato pueden traer **Toxoplasma**. Sus ooquistes mueren en 1 minuto a 60 °C, y la norma de la EPA para compostaje en recipiente cerrado pide 55 °C o más durante 3 días. Por eso la zona verde de la Sopa (55–65 °C) es también la **sanitización**: sin ella, el abono no sería apto para cultivar el forraje.
 - **Sin deuda técnica:** es una sesión aparte que entrega un factor de calidad de la mezcla; la Sopa no cambia (ver `docs/06_guia_logica.md`).
@@ -497,6 +498,8 @@ Además del estado, un **atributo permanente** `Degradado` (sí o no). El asigna
 - Los trajes iniciales **viven en el depósito** hasta que se construye el **taller** (post-PMV). El taller permite fabricar más trajes y activa la mecánica de degradación.
 
 ## Pendientes
+
+Los valores numéricos del PMV de los pendientes 3, 7, 9–12, 16 y 20–23 quedan cubiertos por la segunda tanda acordada (`04_economia_y_balance.md`). Siguen abiertos los puntos de diseño y lo post-PMV.
 
 1. **Luz:** LED post-PMV (acordado); falta el rango de horas.
 2. **Hidroponía:** se investiga más tarde en el árbol de conocimiento (post-PMV). Falta definir su mecánica.

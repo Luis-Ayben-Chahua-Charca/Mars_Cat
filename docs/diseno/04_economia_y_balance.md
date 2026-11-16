@@ -166,6 +166,51 @@ Automática, al estilo de *RimWorld* u *Oxygen Not Included*. Hay dos tipos de t
 - El **árbol tecnológico** mejora la producción de alimentos, la eficiencia energética y la producción de trajes.
 - Recursos intangibles: solo **salud**. No hay moral ni esperanza.
 
+## Segunda tanda de valores (acordado)
+
+Cierra los valores del PMV que estaban en `placeholder`. Fuentes y cálculos en `05_datos_nasa.md` ("Segunda tanda" y "Cuando no hay dato"); el sistema de cada uno, en `03_sistemas.md`. La etiqueta es la que va en la columna `fuente` del CSV (#22).
+
+| Sistema | Valor | Cantidad | Clave del CSV | Fuente |
+|---|---|---|---|---|
+| Aire | Volumen inicial (refugio sellado) | 25 m³ | `air.initial_volume_m3` | `diseno` |
+| Aire | % de O₂ inicial | 0,21 | `air.initial_fraction` | `nasa` (ISS) |
+| Aire | Consumo por gato en reposo / trabajando | 0,08 / 0,10 kg de O₂ por sol | `air.cat.rest_kg_per_sol`, `air.cat.work_kg_per_sol` | `derivado` |
+| Aire | Densidad del aire | 1,2 kg/m³ | `air.density` | `tierra` |
+| Aire | Volumen y fuga que suma cada edificio reparado | 25 m³; 0,1 kg de O₂ por sol | `building.<id>.volume_m3`, `building.<id>.leak_kg_per_sol` | `diseno` (la fuga real de la ISS es mucho menor; licencia por los daños) |
+| Aire | % de O₂ de un módulo recién presurizado | 0,16 | `air.new_module_fraction` | `diseno` |
+| Aire | Margen en crítico antes de morir | 60 s reales | `air.critical_seconds` | `diseno` (como el agua) |
+| MOXIE | Producción con 5 filtros limpios | 2 kg de O₂ por sol | `building.moxie.production_rate_per_sol` | `derivado` (Hecht, 2022) |
+| MOXIE | Electricidad | 20 kWh por sol | `building.moxie.energy_rate_per_sol` | `derivado` (~10 kWh por kg) |
+| MOXIE | Un filtro se ensucia cada / limpiar un filtro | 360 s de juego (0,5 sol) / 5 s reales | `minigame.moxie.dirty_seconds`, `minigame.moxie.clean_seconds` | `diseno` |
+| Energía | Paneles | 60 m² → 36 kWh por sol | `building.solar_panels.production_rate_per_sol` | `derivado` (6 kWh cada 10 m²) |
+| Energía | Calefacción nocturna | 10 kWh por noche | `energy.heating.rate_per_sol` | `diseno` (~30 % del día; noche de −90 °C) |
+| Energía | Presupuesto | 36 − 20 (MOXIE) − 10 (noche) = 6 kWh por sol para el resto | — | Cuenta de control |
+| Agua | Veta fija del PMV | 5 L de hielo, pureza 0,6 → 3 L de agua por lote | `minigame.water.vein.liters`, `minigame.water.vein.purity` | `derivado` (NASA: 50–85 % de hielo) |
+| Agua | Energía por lote | 1,5 kWh | `minigame.melt.energy_kwh` | `derivado` (0,3 kWh por litro de hielo) |
+| Granja de plantas | Área y forraje | 20 m² → 0,42 kg por sol | `building.plant_farm.production_rate_per_sol` | `nasa` (BVAD, 21 g/m² al día) |
+| Granja de plantas | Fibra / restos de cosecha | 0,08 / 0,10 kg por sol | `building.plant_farm.byproduct.fiber_per_sol`, `…crop_residue_per_sol` | `derivado` (0,18 kg no comestibles, repartidos) |
+| Fábrica de Suelo | Lote / perclorato inicial / umbral | 0,25 kg / 0,5 % / 0,1 % | `minigame.soil.wash.batch_kg`, `.initial_percent`, `.threshold_percent` | `nasa` (Phoenix) y `tierra` (Oze et al.); lote: `diseno` |
+| Fábrica de Suelo | Agua de lavado | Guía 1 L, rango 1–2 L | `minigame.soil.wash.guide`, `.min`, `.max` | `derivado` |
+| Fábrica de Suelo | Mezcla: lote y abono | 1 kg; guía 20 %, rango 0–30 % (0,2 kg con la guía) | `minigame.soil.mix.batch_kg`, `.compost.*` | `diseno` / acordado |
+| Fábrica de Suelo | Bacterias | Guía 5 %, rango 1–10 % | `minigame.soil.mix.bacteria.*` | `diseno` |
+| Abono | Reserva inicial | 1 kg (5 preparaciones) | `resource.compost.initial` | `diseno` |
+| Ratas | Desechos con cama | 0,02 kg por rata y por sol | `building.rat_farm.waste_per_rat_per_sol` | `estimacion` |
+| Ratas | Captura / caza | 15 s / 30 s reales | `rat.capture_seconds`, `rat.hunt_seconds` | `diseno` |
+| Gatos | Desechos | 0,018 kg por comida (36 g por día) | `cat.waste_per_meal` | `estimacion` (confianza baja) |
+| Reciclador | Lote y rendimiento | 1 kg de mezcla → 0,6 kg de abono | `minigame.compost.batch_kg`, `minigame.compost.yield_ratio` | `tierra` |
+| Reciclador | Duración del ciclo | 60 s reales | `minigame.compost.cycle_seconds` | `diseno` (en la Tierra, 30–45 días; licencia) |
+| Reciclador | Tope de desechos / salud con el depósito lleno | 3 kg / −5 % de salud por sol | `resource.cat_waste.capacity`, `cat.waste_full_health_per_sol` | `diseno` |
+| Edificios | Duración de un ciclo de funcionamiento | 720 s de juego (1 sol) | `building.<id>.run_seconds` | `diseno` |
+| Edificios | Reparación | 9 escombros + 1 metal; 10 s reales | `building.<id>.repair_debris_cost`, `…repair_metal_cost`, `…repair_seconds` | `diseno` (90 % / 10 %, acordado) |
+| Reservas | Escombros / metal iniciales | 60 / 6 | `resource.debris.initial`, `resource.metal.initial` | `diseno` (alcanza para todo el tutorial) |
+| Topes | Agua / electricidad / raciones / forraje | 10 L / 20 kWh / 100 / 2 kg | `resource.<id>.capacity` | `diseno` |
+
+**Controles de cuentas:**
+
+- **Aire:** 25 m³ × 1,2 × 0,05 = 1,5 kg de O₂ entre 21 % y 16 %, lo que consumen los 15 gatos en ~1 sol. El MOXIE da 2 kg: cubre a los gatos y las fugas de los primeros módulos.
+- **Agua:** 6 L iniciales y 3 L por sol de consumo; el extractor da 3 L por ciclo de 1 sol. Cada preparación de la granja gasta 1 L más: el agua queda justa a propósito.
+- **Comida:** 60 raciones iniciales (2 soles); la granja de ratas llega a ~28 raciones por sol (ritmo acordado).
+
 ## Pendientes
 
 1. Topes de almacenamiento y tamaño del lote (el documento antiguo menciona 15 unidades por lote de plantas como ejemplo).

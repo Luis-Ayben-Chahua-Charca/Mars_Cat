@@ -6,7 +6,7 @@
 
 ## Nombre
 
-Por definir. `Mars Cat` es solo el identificador del producto.
+**Mars Miau House** (acordado). `Mars Cat` / `MarsCat` sigue siendo el identificador técnico (repo, proyecto Unity, namespaces).
 
 ## Logline
 

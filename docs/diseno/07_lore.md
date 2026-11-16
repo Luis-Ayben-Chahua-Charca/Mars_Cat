@@ -6,7 +6,7 @@
 
 ## Nombre del juego
 
-**Por definir.** `Mars Cat` / `MarsCat` es solo el identificador del producto (repo, proyecto Unity, namespaces), no el nombre final.
+**Mars Miau House** (acordado). `Mars Cat` / `MarsCat` sigue siendo el identificador técnico (repo, proyecto Unity, namespaces).
 
 ## Premisa
 
@@ -47,7 +47,7 @@ Las etapas jugables y el tutorial están en `02_core_loop.md`.
 ## Pendientes
 
 1. Balance y recursos: primera versión en `04_economia_y_balance.md`; el equipo sigue trabajando en ello.
-2. Nombre final del juego.
+2. ~~Nombre final del juego~~: Mars Miau House (acordado).
 3. Cuántos gatos hay y si tienen nombres o personalidades distintas.
 4. Personalidad y tono de la IA guía (afecta voz, textos y audio).
 5. Si habrá más cataclismos después de la lluvia de meteoritos y cuáles.

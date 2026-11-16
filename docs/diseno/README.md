@@ -1,6 +1,6 @@
 # docs/diseno/ — Diseño del juego
 
-Documentos de diseño del juego. **Nombre del juego: por definir** (`Mars Cat` es solo el identificador del producto). Los mantiene Gestión; el contenido sale de decisiones del equipo registradas en los issues. Los demás perfiles solo los leen.
+Documentos de diseño del juego. **Nombre del juego: Mars Miau House** (`Mars Cat` es solo el identificador técnico). Los mantiene Gestión; el contenido sale de decisiones del equipo registradas en los issues. Los demás perfiles solo los leen.
 
 ## Reglas
 
