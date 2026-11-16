@@ -65,6 +65,8 @@ namespace MarsCat.Unity
         };
 
         private const string SolarProducerId = "solar_panels.output";
+        private const string MoxieCleaningJobId = "moxie.cleaning";
+        private const string RaidJobPrefix = "raid.";
         private const string PostJobSuffix = ".post";
 
         [Tooltip("MarsCat/Assets/Data/balance_pmv.csv")]
@@ -128,6 +130,51 @@ namespace MarsCat.Unity
         public YieldConfig SoilYieldConfig { get; private set; }
         public CompostMixConfig CompostMixConfig { get; private set; }
         public CompostConfig CompostConfig { get; private set; }
+
+        /// <summary>Hay una limpieza de filtros del MOXIE pedida o en curso (tarea puntual de un gato).</summary>
+        public bool IsCleaningFilters { get; private set; }
+
+        /// <summary>Terminó una limpieza de filtros (cantidad limpiada).</summary>
+        public event Action<int> FiltersCleaned;
+
+        /// <summary>Se marcó una rata suelta para La Redada (id de la rata).</summary>
+        public event Action<int> RatMarked;
+
+        /// <summary>Un gato llegó a la rata marcada (id, true si entró a la granja).</summary>
+        public event Action<int, bool> RatCaptured;
+
+        /// <summary>
+        /// Pide limpiar 1, 2 o 5 filtros del MOXIE (#59). Crea una tarea puntual: la limpieza avanza mientras un gato
+        /// la atiende. false si ya hay una limpieza en curso.
+        /// </summary>
+        public bool StartFilterCleaning(int count)
+        {
+            if (IsCleaningFilters) return false;
+            IsCleaningFilters = true;
+            Jobs.RegisterJob(new Job(MoxieCleaningJobId, JobKind.OneOff, MoxieId, false));
+            MoxieFilters.RequestCleaning(count);   // si no hay filtros sucios termina en el acto (HandleCleaningFinished)
+            return true;
+        }
+
+        /// <summary>
+        /// La Redada (#60): marca una rata suelta y crea una tarea puntual para que un gato libre la lleve a la granja.
+        /// false si la rata no está suelta, ya estaba marcada o la granja todavía no está reparada.
+        /// </summary>
+        public bool RequestRatCapture(int ratId)
+        {
+            BuildingState farm = _buildings[RatFarmId].State;
+            if (farm == BuildingState.Damaged || farm == BuildingState.Repairing) return false;
+            if (!RatRaid.Mark(ratId)) return false;
+            Jobs.RegisterJob(new Job(RaidJobPrefix + ratId, JobKind.OneOff, RatFarmId, false));
+            RatMarked?.Invoke(ratId);
+            return true;
+        }
+
+        /// <summary>Saca al gato del puesto de un edificio para que quede libre (el jugador elige de dónde sale).</summary>
+        public void ReleaseWorker(string buildingId)
+        {
+            if (GetWorker(buildingId) != null) Jobs.Release(buildingId);
+        }
 
         /// <summary>Semilla para las sesiones de minijuego (cambia en cada uso para que no se repitan).</summary>
         public int NextMinigameSeed() => _seed + (++_minigameSeedOffset);
@@ -263,6 +310,7 @@ namespace MarsCat.Unity
 
             Jobs.OnAssigned += HandleAssigned;
             Jobs.OnReleased += HandleReleased;
+            MoxieFilters.OnCleaningFinished += HandleCleaningFinished;
 
             Colony.Spawn(Mathf.RoundToInt(Balance.Get("colony.initial_cats")));
 
@@ -307,8 +355,8 @@ namespace MarsCat.Unity
                 building.Tick(gameDt);
             Building moxie = _buildings[MoxieId];
             bool moxieWorking = moxie.State == BuildingState.Running && Energy.IsPowered(MoxieId);
-            if (moxie.State == BuildingState.Running)
-                MoxieFilters.Tick(gameDt);
+            if (moxie.State == BuildingState.Running || IsCleaningFilters)
+                MoxieFilters.Tick(gameDt);   // se ensucian funcionando; la limpieza pedida avanza siempre
 
             BuildingState ratFarmState = _buildings[RatFarmId].State;
             if (ratFarmState == BuildingState.Running || ratFarmState == BuildingState.Depleted || ratFarmState == BuildingState.Unprepared)
@@ -368,18 +416,59 @@ namespace MarsCat.Unity
 
         private void HandleAssigned(Job job, Cat cat)
         {
+            if (job.Kind == JobKind.OneOff)
+            {
+                HandleOneOffAssigned(job);
+                return;
+            }
             Building building = GetBuilding(job.BuildingId);
-            if (building == null || job.Kind != JobKind.Post) return;
+            if (building == null) return;
             _workers[job.BuildingId] = cat;
             building.SetWorkerPresent(true);
             if (job.BuildingId == RatFarmId) RatFarm.SetWorkerPresent(true);
             WorkerChanged?.Invoke(job.BuildingId, cat);
         }
 
+        private void HandleOneOffAssigned(Job job)
+        {
+            if (job.Id == MoxieCleaningJobId)
+            {
+                MoxieFilters.SetWorkerPresent(true);
+                return;
+            }
+            if (job.Id.StartsWith(RaidJobPrefix, StringComparison.Ordinal)
+                && int.TryParse(job.Id.Substring(RaidJobPrefix.Length), out int ratId))
+            {
+                // PMV: el gato llega en cuanto se le asigna la tarea (la animación del viaje la hace la vista).
+                bool captured = RatRaid.Capture(ratId);
+                Jobs.UnregisterJob(job.Id);   // libera al gato
+                RatCaptured?.Invoke(ratId, captured);
+                Building farm = _buildings[RatFarmId];
+                PreparationResult result = RatRaid.Result;
+                if (captured && result.Starts
+                    && (farm.State == BuildingState.Unprepared || farm.State == BuildingState.Depleted))
+                    farm.ApplyPreparation(result);
+            }
+        }
+
+        private void HandleCleaningFinished(int cleaned)
+        {
+            if (!IsCleaningFilters) return;
+            IsCleaningFilters = false;
+            MoxieFilters.SetWorkerPresent(false);
+            Jobs.UnregisterJob(MoxieCleaningJobId);
+            FiltersCleaned?.Invoke(cleaned);
+        }
+
         private void HandleReleased(Job job, Cat cat)
         {
+            if (job.Kind == JobKind.OneOff)
+            {
+                if (job.Id == MoxieCleaningJobId) MoxieFilters.SetWorkerPresent(false);
+                return;
+            }
             Building building = GetBuilding(job.BuildingId);
-            if (building == null || job.Kind != JobKind.Post) return;
+            if (building == null) return;
             _workers.Remove(job.BuildingId);
             building.SetWorkerPresent(false);
             if (job.BuildingId == RatFarmId) RatFarm.SetWorkerPresent(false);
@@ -403,6 +492,7 @@ namespace MarsCat.Unity
             foreach (Building building in _buildings.Values)
                 building.OnStateChanged -= HandleBuildingStateChanged;
             if (Atmosphere != null) Atmosphere.OnCriticalTimeout -= HandleCriticalTimeout;
+            if (MoxieFilters != null) MoxieFilters.OnCleaningFinished -= HandleCleaningFinished;
         }
     }
 }
