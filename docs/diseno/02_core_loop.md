@@ -34,7 +34,7 @@ Los gatos empiezan en la zona segura con:
 
 Orden de pasos:
 
-Pipeline **acordado** para el PMV. Desde el paso 3, cada edificio sigue el mismo patrón: **misión de la IA → reparación → minijuego**.
+Pipeline **acordado** para el PMV, con las misiones de la IA (acordadas). Desde el paso 3, cada edificio sigue el mismo patrón: **misión de la IA → reparación → minijuego**.
 
 | # | Paso | Misión de la IA | Notas |
 |---|---|---|---|
@@ -42,10 +42,10 @@ Pipeline **acordado** para el PMV. Desde el paso 3, cada edificio sigue el mismo
 | 2 | Mover la cámara | — | |
 | 3 | **Energía** (paneles solares) | "No tenemos energía: reparen el edificio de energía" | Primero, porque todo lo demás la consume |
 | 4 | **Oxígeno** (MOXIE) | "Ahora reparemos el MOXIE para tener una fuente de oxígeno estable" | Minijuego de filtros (ver "Oxígeno" en `03_sistemas.md`) |
-| 5 | **Agua** (extracción del subsuelo) | "El reciclador de agua quedó dañado y los tanques no alcanzan. El radar encontró hielo bajo el cráter: reparen el extractor y derritan el hielo. Primero presión, después calor: con la presión de Marte, el agua calentada sin presión hierve" (propuesta) | La IA explica que el reciclador de agua quedó dañado y por eso hay que sacar agua del hielo |
-| 6 | **Forraje: granja de plantas (papa)** | "Ustedes comen carne, pero las ratas comen plantas. Reparen la granja y preparen el suelo: el regolito trae percloratos tóxicos, así que lávenlo y mézclenlo con abono. Hay una reserva de abono para empezar" (propuesta) | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja. Produce el forraje que comerán las ratas |
-| 7 | **Comida: granja de ratones** (las ratas comen forraje; los gatos, raciones) | "Desde la evacuación hay ratas sueltas en la estación, y no van a aparecer más. Atrápenlas para fundar la granja antes de que un gato hambriento se las coma. Con forraje, criarán solas" (propuesta) | Los desechos de los gatos se guardan en el **depósito** desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
-| 8 | **Reciclador orgánico** | "El depósito se está llenando de desechos y eso enferma a la colonia. Reparen el reciclador: mezclen desechos, restos de papa y la cama de las ratas hasta 30 de carbono por 1 de nitrógeno, y mantengan la sopa entre 55 y 65 °C para eliminar los parásitos" (propuesta) | Procesa los desechos guardados en el depósito y los restos de cosecha, los convierte en **abono** y cierra el ciclo con la granja de plantas |
+| 5 | **Agua** (extracción del subsuelo) | "El reciclador de agua quedó dañado y los tanques no alcanzan. El radar encontró hielo bajo el cráter: reparen el extractor y derritan el hielo. Primero presión, después calor: con la presión de Marte, el agua calentada sin presión hierve" | La IA explica que el reciclador de agua quedó dañado y por eso hay que sacar agua del hielo |
+| 6 | **Forraje: granja de plantas (papa)** | "Ustedes comen carne, pero las ratas comen plantas. Reparen la granja y preparen el suelo: el regolito trae percloratos tóxicos, así que lávenlo y mézclenlo con abono. Hay una reserva de abono para empezar" | Usa la **reserva inicial de abono**, suficiente para montar esta primera granja. Produce el forraje que comerán las ratas |
+| 7 | **Comida: granja de ratones** (las ratas comen forraje; los gatos, raciones) | "Desde la evacuación hay ratas sueltas en la estación, y no van a aparecer más. Atrápenlas para fundar la granja antes de que un gato hambriento se las coma. Con forraje, criarán solas" | Los desechos de los gatos se guardan en el **depósito** desde el inicio; con los ratones se suman los suyos y el depósito se llena: aparece el último problema |
+| 8 | **Reciclador orgánico** | "El depósito se está llenando de desechos y eso enferma a la colonia. Reparen el reciclador: mezclen desechos, restos de papa y la cama de las ratas hasta 30 de carbono por 1 de nitrógeno, y mantengan la sopa entre 55 y 65 °C para eliminar los parásitos" | Procesa los desechos guardados en el depósito y los restos de cosecha, los convierte en **abono** y cierra el ciclo con la granja de plantas |
 
 La reparación de cada edificio es **automática**; después viene la fase de **preparación** (minijuego) para que funcione.
 
